@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { render } from 'react-dom'
 
 class App extends Component {
@@ -10,7 +11,11 @@ class App extends Component {
     }
         render() {
             return (
-
+                <main>
+                    <Switch>
+                        
+                    </Switch>
+                </main>
             )
         }
 };
