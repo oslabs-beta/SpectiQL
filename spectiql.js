@@ -1,5 +1,8 @@
+//function to render our frontend GUI depending on their endpoint
 const renderSpectiQL = (uri) => {
-    return /*
+    return 
+
+    /*
     we need to render our entire app here!
     probably along the lines of:
     <App >
@@ -36,11 +39,22 @@ const renderSpectiQL = (uri) => {
   */
   }
   
+  //sending our GUI to their desired endpoint (URI).
   const config = (uri) => {
     return (request, response) => {
       response.set('Content-Type', 'text/html')
       response.send(renderSpectiQL(uri));
     }
   }
+
+  //builds a SDL schema into parsed schema where we can use to get the entire queries of a client's schema
+  //filePath needs to be the entire file path. example: /Users/justinkwon/Documents/Codesmith/graphqltest/schema.gql
+  //to use: require function into desired file and invoke the function with the entire file path
+  //example: createSchema('/Users/justinkwon/Documents/Codesmith/graphqltest/index.js');
+  const createSchema = (filePath) => {
+    const buildSchema = fs.readFileSync(filePath, {encoding: 'utf-8'});
+    const parsedSchema = easygraphqlSchemaParser(buildSchema);
+      return parsedSchema;
+  }
   
-  module.exports = config;
+  module.exports = { config, createSchema };
