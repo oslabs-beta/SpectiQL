@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import Button from 'react-bootstrap/Button';
+import { Button, ButtonToolbar } from 'react-bootstrap';
 //this is not correct!
 import '../../public/styling/index.css';
 
 class SideBar extends Component {
   render() {
     return(
-      <ButtonToolbar className = "buttonContainer">
+      <div>
+      <ButtonToolbar className="buttonContainer">
       <Button variant="outline-dark" size="lg">
        Queries
       </Button>
@@ -23,6 +24,7 @@ class SideBar extends Component {
         Save
       </Button>
     </ButtonToolbar>
+    </div>
     )
   }
 }; 

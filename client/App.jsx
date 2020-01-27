@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { HashRouter, Route, Link, Switch } from 'react-router-dom';
 import Main from "./mainContainer/main.jsx";
 
 class App extends Component {
@@ -16,11 +16,11 @@ class App extends Component {
 
         render() {
             return (
-                <BrowserRouter> 
+                <HashRouter> 
                     <div class="introPage">
                         <nav>
                             <ul>
-                                    <Link to="/">
+                                    <Link to="/main" exact>
                                         <button>Next</button>
                                         </Link>
                                     <Link to="/documentation" onClick={this.openDocs}>
@@ -29,10 +29,12 @@ class App extends Component {
                             </ul>
                         </nav>
                         <Switch>
-                            <Route path="/main" component={Main}/>
+                            <Route path="/main">
+                                <Main />
+                                </Route>
                         </Switch>
                     </div>
-                </BrowserRouter>
+                </HashRouter>
             )
         }
 };
