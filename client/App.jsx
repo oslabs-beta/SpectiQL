@@ -3,7 +3,7 @@ import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Main from "./mainContainer/main.jsx";
 import './public/styling/index.css';
 // const createSchema = require('../spectiql').createSchema
-// import { createSchema } from '../spectiql'
+// import { createSchema } from '../spectiql';
 
 class App extends Component {
   constructor(props) {
