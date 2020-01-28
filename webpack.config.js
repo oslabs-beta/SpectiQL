@@ -1,11 +1,27 @@
 const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
         entry: "./index.js",
+        target: "web",
         output: {
           path: path.resolve(__dirname, "build"),
           filename: "bundle.js"
         },
+        devServer: {
+          contentBase: "./client/public/",
+          open: true,
+          port: 3000,
+          overlay: true
+        },
+        plugins: [
+          new HtmlWebpackPlugin({
+              template: './client/public/index.html',
+              output: './client/public/index.html'
+          }),
+          new webpack.HotModuleReplacementPlugin()
+        ],
     module: {
       rules: [
         {
@@ -43,7 +59,11 @@ module.exports = {
         {
           test: /\.css$/,
           use: ["style-loader", "css-loader"]
-        }
+        },
+        {
+          test: /\.node$/,
+          loader: 'node-loader'
+      },
       ]
     },
     node: {
