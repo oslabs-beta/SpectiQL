@@ -11,7 +11,7 @@ class TestQuery extends Component {
               Write Query:
             </Form.Label>
             <Form.Control
-              type="text"
+              as="textarea"
               placeholder="Enter query here..."
               style={{ width: "80%", height: "18rem" }}
               name = "writeQuery"
@@ -25,7 +25,7 @@ class TestQuery extends Component {
               Select Query:
             </Form.Label>
             <Form.Control
-              type="text"
+              as="textarea"
               placeholder="Sample selected query here..."
               style={{ width: "80%", height: "18rem" }}
             />

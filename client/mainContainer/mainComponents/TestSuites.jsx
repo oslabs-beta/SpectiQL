@@ -42,39 +42,4 @@ class TestSuites extends Component {
   }
 }
 
-/*
-
-      <div>
-        <Card style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>Test Suite 1:</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">Test Name</Card.Subtitle>
-            <Card.Text>Test description</Card.Text>
-            <Card.Link href="#">Edit Test</Card.Link>
-            <Card.Link href="#">Delete Test</Card.Link>
-          </Card.Body>
-        </Card>
-
-        <Card style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>Test Suite 2:</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">Test Name</Card.Subtitle>
-            <Card.Text>Test description</Card.Text>
-            <Card.Link href="#">Edit Test</Card.Link>
-            <Card.Link href="#">Delete Test</Card.Link>
-          </Card.Body>
-        </Card>
-
-        <Card style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>Test Suite 3:</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">Test Name</Card.Subtitle>
-            <Card.Text>Test description</Card.Text>
-            <Card.Link href="#">Edit Test</Card.Link>
-            <Card.Link href="#">Delete Test</Card.Link>
-          </Card.Body>
-        </Card>
-      </div>
-*/
-
 export default TestSuites;
