@@ -6,7 +6,7 @@ class TestInput extends Component {
     return (
       <Form>
         <Form.Group controlId="test-suite">
-          <Form.Label column sm={3}>
+          <Form.Label column sm={6}>
             Test Suite:
           </Form.Label>
           <Col sm="6">
@@ -21,7 +21,7 @@ class TestInput extends Component {
         </Form.Group>
 
         <Form.Group controlId="test-description">
-          <Form.Label column sm={3}>
+          <Form.Label column sm={6}>
             Test Description:
           </Form.Label>
           <Col sm="6">

@@ -13,20 +13,25 @@ class App extends Component {
         render() {
             return (
                 <HashRouter> 
-                    <div className="fullscreen">
-                        <nav>
-                            <ul>
+                  <div className="fullscreen">
+                    <div className="introContainer">
+                      <div className="introHeader">
+                        SpectiQL
+                      </div>
+                                    <div className="introNext">
                                     <Link to="/main" exact>
                                         <button className="next-button">Next</button>
                                         </Link>
+                                    </div>
+                                    <div className="introDoc">
                                     <Link to="/documentation" exact onClick={this.openDocs}>
-                                        <button className="next-button">Docs</button>
+                                        <button className="doc-button">Docs</button>
                                         </Link>
-                            </ul>
-                        </nav>
+                                        </div>
                         <Switch>
-                            <Route path="/main" component={Main} />
+                            <Route path="/main" exact component={Main} />
                         </Switch>
+                    </div>
                     </div>
                 </HashRouter>
             )

@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
 import LeftSideBar from "./mainComponents/LeftSideBar.jsx";
-=======
-import SideBar from "./mainComponents/LeftSideBar.jsx";
->>>>>>> c23ac976718edef4c19e76bb928d0971cfbda03c
 import TestInput from "./mainComponents/TestInput.jsx";
 import TestQuery from "./mainComponents/TestQuery.jsx";
 import GenerateTest from "./mainComponents/GenerateTest.jsx";
@@ -36,19 +32,26 @@ class Main extends Component {
   }
   render() {
     return (
-<<<<<<< HEAD
-      <div>
-        <LeftSideBar />
+      <div className="fullscreen">
+        <div className="mainContainer">
+          <div className="leftSideBar">
+              <LeftSideBar />
+          </div>
+          <div className="testInput">
         <TestInput
           testSuiteName={this.state.testSuiteName}
           testDescription={this.state.testDescription}
           writeQuery={this.state.writeQuery}
           onChange={this.handleChange}
         />
+        </div>
+        <div className="testQuery">
         <TestQuery
           writeQuery={this.state.writeQuery}
           onChange={this.handleChange}
         />
+        </div>
+        <div className="generateTest">
         <GenerateTest
           testSuiteName={this.testSuiteName}
           testDescription={this.testDescription}
@@ -56,14 +59,11 @@ class Main extends Component {
           handleClick={this.handleClick}
           generatedTest = {this.state.generatedTest}
         />
-=======
-      <div className="fullscreen">
-        <SideBar />
-        <TestInput />
-        <TestQuery />
-        <GenerateTest />
->>>>>>> c23ac976718edef4c19e76bb928d0971cfbda03c
+        </div>
+        <div className="testSuites">
         <TestSuites />
+        </div>
+        </div>
       </div>
     );
   }
