@@ -4,13 +4,6 @@ import Main from "./mainContainer/main.jsx";
 import './public/styling/index.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: "sodium bloat"
-    };
-  }
-
   openDocs() {
     window.open(
       "https://github.com/oslabs-beta/SpectiQL/blob/master/README.md"
