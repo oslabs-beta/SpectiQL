@@ -1,4 +1,3 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin")
 const path = require('path');
 
 module.exports = {
@@ -20,6 +19,20 @@ module.exports = {
           }
         },
         {
+          test: /\.(graphql|gql)$/,
+          use: [
+            {
+              loader: 'webpack-graphql-loader',
+              options: {
+                // validate: true,
+                // schema: "./path/to/schema.json",
+                // removeUnusedFragments: true
+                // etc. See "Loader Options" below
+              }
+            }
+          ]
+            },
+        {
             test: /\.html$/,
             use: [
               {
@@ -33,11 +46,8 @@ module.exports = {
         }
       ]
     },
-    plugins: [
-        new HtmlWebPackPlugin({
-          template: "./client/public/index.html",
-          filename: "./output.html"
-        })    
-    ]
+    node: {
+      fs: "empty"
+   }
 };
   
