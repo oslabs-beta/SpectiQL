@@ -4,7 +4,8 @@ import { Form, Col } from "react-bootstrap";
 class TestInput extends Component {
   render() {
     return (
-      <Form>
+      <div className="testInputContainer">
+      <Form className="testSuiteInput">
         <Form.Group controlId="test-suite">
           <Form.Label column sm={6}>
             Test Suite:
@@ -19,7 +20,9 @@ class TestInput extends Component {
             />
           </Col>
         </Form.Group>
+        </Form>
 
+        <Form className="testDescriptionInput">
         <Form.Group controlId="test-description">
           <Form.Label column sm={6}>
             Test Description:
@@ -35,6 +38,7 @@ class TestInput extends Component {
           </Col>
         </Form.Group>
       </Form>
+      </div>
     );
   }
 }
