@@ -9,7 +9,7 @@
     height:100%;
   }
 
-  .fullscreen {
+.fullscreen {
     position: fixed;
     top: 0;
     left: 0;
@@ -19,7 +19,7 @@
     background: whitesmoke; /* Just to visualize the extent */
   }
 
-  .next-button {
+.next-button {
     position: relative;
     margin-top: 60%;
     background: #64a2cc;
@@ -49,3 +49,8 @@
  .next-button:active {
     background: #93b3c9;
     }
+
+.leftSideBar {
+    position: left;
+    
+}
