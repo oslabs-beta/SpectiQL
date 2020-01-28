@@ -6,22 +6,31 @@ class TestInput extends Component {
     return (
       <Form>
         <Form.Group controlId="test-suite">
-          <Form.Label column sm={3}>
+          <Form.Label column sm={6}>
             Test Suite:
           </Form.Label>
           <Col sm="6">
-            <Form.Control type="text" placeholder="Enter test suite here..." />
+            <Form.Control
+              type="text"
+              placeholder="Enter test suite here..."
+              name = "testSuiteName"
+              value={this.props.testSuiteName}
+              onChange={this.props.onChange}
+            />
           </Col>
         </Form.Group>
 
         <Form.Group controlId="test-description">
-          <Form.Label column sm={3}>
+          <Form.Label column sm={6}>
             Test Description:
           </Form.Label>
           <Col sm="6">
             <Form.Control
               type="text"
               placeholder="Enter test description here..."
+              name = "testDescription"
+              value={this.props.testDescription}
+              onChange={this.props.onChange}
             />
           </Col>
         </Form.Group>
