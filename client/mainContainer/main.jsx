@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import LeftSideBar from "./mainComponents/LeftSideBar.jsx";
+=======
+import SideBar from "./mainComponents/LeftSideBar.jsx";
+>>>>>>> c23ac976718edef4c19e76bb928d0971cfbda03c
 import TestInput from "./mainComponents/TestInput.jsx";
 import TestQuery from "./mainComponents/TestQuery.jsx";
 import GenerateTest from "./mainComponents/GenerateTest.jsx";
@@ -32,6 +36,7 @@ class Main extends Component {
   }
   render() {
     return (
+<<<<<<< HEAD
       <div>
         <LeftSideBar />
         <TestInput
@@ -51,6 +56,13 @@ class Main extends Component {
           handleClick={this.handleClick}
           generatedTest = {this.state.generatedTest}
         />
+=======
+      <div className="fullscreen">
+        <SideBar />
+        <TestInput />
+        <TestQuery />
+        <GenerateTest />
+>>>>>>> c23ac976718edef4c19e76bb928d0971cfbda03c
         <TestSuites />
       </div>
     );
