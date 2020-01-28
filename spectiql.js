@@ -1,7 +1,9 @@
-//function to render our frontend GUI depending on their endpoint
+const fs = require('fs')
+const easygraphqlSchemaParser = require('easygraphql-parser')
+
+// function to render our frontend GUI depending on their endpoint
 const renderSpectiQL = (uri) => {
     return 
-
     /*
     we need to render our entire app here!
     probably along the lines of:
@@ -52,9 +54,11 @@ const renderSpectiQL = (uri) => {
   //to use: require function into desired file and invoke the function with the entire file path
   //example: createSchema('/Users/justinkwon/Documents/Codesmith/graphqltest/index.js');
   const createSchema = (filePath) => {
-    const buildSchema = fs.readFileSync(filePath, {encoding: 'utf-8'});
+    const buildSchema = fs.readFileSync('/Users/justinkwon/Documents/Codesmith/SpectiQL/'+filePath, {encoding: 'utf-8'});
     const parsedSchema = easygraphqlSchemaParser(buildSchema);
-      return parsedSchema;
+    return parsedSchema;
   }
+
+  console.log(createSchema('schema.gql'));
   
   module.exports = { config, createSchema };
