@@ -12,6 +12,7 @@ class GenerateTest extends Component {
               size="lg"
               block
               style={{ height: "4rem", width: "80%" }}
+              onClick = {this.props.handleClick}
             >
               Generate Test
             </Button>
@@ -33,6 +34,7 @@ class GenerateTest extends Component {
               type="text"
               placeholder="Sample Test..."
               style={{ width: "80%", height: "18rem" }}
+              value = {this.props.generatedTest}
             />
           </Form.Group>
         </Form.Row>

@@ -10,7 +10,13 @@ class TestInput extends Component {
             Test Suite:
           </Form.Label>
           <Col sm="6">
-            <Form.Control type="text" placeholder="Enter test suite here..." />
+            <Form.Control
+              type="text"
+              placeholder="Enter test suite here..."
+              name = "testSuiteName"
+              value={this.props.testSuiteName}
+              onChange={this.props.onChange}
+            />
           </Col>
         </Form.Group>
 
@@ -22,6 +28,9 @@ class TestInput extends Component {
             <Form.Control
               type="text"
               placeholder="Enter test description here..."
+              name = "testDescription"
+              value={this.props.testDescription}
+              onChange={this.props.onChange}
             />
           </Col>
         </Form.Group>

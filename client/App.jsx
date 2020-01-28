@@ -3,13 +3,6 @@ import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Main from "./mainContainer/main.jsx";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: "sodium bloat"
-    };
-  }
-
   openDocs() {
     window.open(
       "https://github.com/oslabs-beta/SpectiQL/blob/master/README.md"
