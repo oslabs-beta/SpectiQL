@@ -6,7 +6,7 @@ import "../../public/styling/index.css";
 class SideBar extends Component {
   render() {
     return (
-      <div>
+      <div classname="leftSideBar">
         <ButtonToolbar className="buttonContainer">
           <Button variant="outline-dark" size="lg">
             Queries
