@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from 'react-router-dom';
 import Main from "./mainContainer/main.jsx";
+import './public/styling/index.css';
 
 class App extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class App extends Component {
         render() {
             return (
                 <HashRouter> 
-                    <div class="introPage">
+                    <div className="introPage">
                         <nav>
                             <ul>
                                     <Link to="/main" exact>
@@ -29,9 +30,7 @@ class App extends Component {
                             </ul>
                         </nav>
                         <Switch>
-                            <Route path="/main">
-                                <Main />
-                                </Route>
+                            <Route path="/main" component={Main} />
                         </Switch>
                     </div>
                 </HashRouter>
