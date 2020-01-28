@@ -16,8 +16,12 @@ class GenerateTest extends Component {
             >
               <Dropdown.Item href="#/action-1">Valid Argument</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Invalid Argument</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Valid Schema types</Dropdown.Item>
-              <Dropdown.Item href="#/action-4">Invalid Schema types</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">
+                Valid Schema types
+              </Dropdown.Item>
+              <Dropdown.Item href="#/action-4">
+                Invalid Schema types
+              </Dropdown.Item>
             </DropdownButton>
             <Button
               variant="primary"
@@ -44,7 +48,7 @@ class GenerateTest extends Component {
               Generated Test:
             </Form.Label>
             <Form.Control
-              type="text"
+              as="textarea"
               placeholder="Sample Test..."
               style={{ width: "80%", height: "18rem" }}
               value={this.props.generatedTest}
