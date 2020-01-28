@@ -17,18 +17,17 @@ class App extends Component {
     );
   }
 
-<<<<<<< HEAD
         render() {
             return (
                 <HashRouter> 
-                    <div className="introPage">
+                    <div className="fullscreen">
                         <nav>
                             <ul>
                                     <Link to="/main" exact>
-                                        <button>Next</button>
+                                        <button className="next-button">Next</button>
                                         </Link>
-                                    <Link to="/documentation" onClick={this.openDocs}>
-                                        <button>Docs</button>
+                                    <Link to="/documentation" exact onClick={this.openDocs}>
+                                        <button className="next-button">Docs</button>
                                         </Link>
                             </ul>
                         </nav>
@@ -40,31 +39,5 @@ class App extends Component {
             )
         }
 };
-=======
-  render() {
-    return (
-      <HashRouter>
-        <div class="introPage">
-          <nav>
-            <ul>
-              <Link to="/main" exact>
-                <button>Next</button>
-              </Link>
-              <Link to="/documentation" onClick={this.openDocs}>
-                <button>Docs</button>
-              </Link>
-            </ul>
-          </nav>
-          <Switch>
-            <Route path="/main">
-              <Main />
-            </Route>
-          </Switch>
-        </div>
-      </HashRouter>
-    );
-  }
-}
->>>>>>> 14cdc878a74b0761093c717abe9d299886538cca
 
 export default App;
