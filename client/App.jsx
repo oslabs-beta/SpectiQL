@@ -20,20 +20,27 @@ class App extends Component {
         render() {
             return (
                 <HashRouter> 
-                    <div className="fullscreen">
-                        <nav>
-                            <ul>
+                  <div className="fullscreen">
+                    <div className="introContainer">
+                      <div className="introHeader">
+                        Deez Nuts
+                      </div>
+                        <nav> 
+                                    <div className="introNext">
                                     <Link to="/main" exact>
                                         <button className="next-button">Next</button>
                                         </Link>
+                                    </div>
+                                    <div className="introDoc">
                                     <Link to="/documentation" exact onClick={this.openDocs}>
-                                        <button className="next-button">Docs</button>
+                                        <button className="doc-button">Docs</button>
                                         </Link>
-                            </ul>
+                                        </div>
                         </nav>
                         <Switch>
                             <Route path="/main" component={Main} />
                         </Switch>
+                    </div>
                     </div>
                 </HashRouter>
             )
