@@ -12,10 +12,12 @@ class Main extends Component {
       testSuiteName: "",
       testDescription: "",
       writeQuery: "",
-      generatedTest: ""
+      generatedTest: "",
+      testSuites: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.updateTestSuite = this.updateTestSuite.bind(this);
   }
   handleChange(e) {
     const value = e.target.value;
@@ -29,6 +31,27 @@ class Main extends Component {
     it('${this.state.testDescription}') `;
     console.log('handleClick!!!')
     this.setState({generatedTest: value});
+  }
+  updateTestSuite(){
+    console.log('in updateTestSuite');
+    //push the generated test value into the test suites array 
+    const newTestSuite = {
+      generatedTest: this.state.generatedTest,
+      savedTestSuiteName: this.state.testSuiteName,
+      savedTestDescription : this.state.testDescription
+    }
+    //shallow copy of array 
+    let testSuites = this.state.testSuites.slice(); 
+    testSuites.push(newTestSuite)
+    console.log(`updated testSuites:`, testSuites);
+    return(
+      this.setState({
+      testSuiteName: "",
+      testDescription: "",
+      writeQuery: "",
+      generatedTest: "",
+      testSuites, 
+    })) 
   }
   render() {
     return (
@@ -53,15 +76,18 @@ class Main extends Component {
         </div>
         <div className="generateTest">
         <GenerateTest
-          testSuiteName={this.testSuiteName}
-          testDescription={this.testDescription}
-          writeQuery={this.writeQuery}
+          testSuiteName={this.state.testSuiteName}
+          testDescription={this.state.testDescription}
+          writeQuery={this.state.writeQuery}
           handleClick={this.handleClick}
           generatedTest = {this.state.generatedTest}
+          updateTestSuite = {this.updateTestSuite}
         />
         </div>
         <div className="testSuites">
-        <TestSuites />
+        <TestSuites 
+          testSuites = {this.state.testSuites}
+        />
         </div>
         </div>
       </div>
