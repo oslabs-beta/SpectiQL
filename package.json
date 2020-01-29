@@ -2,7 +2,7 @@
   "name": "spectiql",
   "version": "1.0.0",
   "description": "SpectiQL - GraphQL Testing Tool",
-  "main": "index.js",
+  "main": "spectiql.js",
   "scripts": {
     "test": "standard && node index.js",
     "build": "webpack --mode development",
