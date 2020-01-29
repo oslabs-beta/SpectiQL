@@ -4,6 +4,7 @@ import TestInput from "./mainComponents/TestInput.jsx";
 import TestQuery from "./mainComponents/TestQuery.jsx";
 import GenerateTest from "./mainComponents/GenerateTest.jsx";
 import TestSuites from "./mainComponents/TestSuites.jsx";
+import Tests from "./tests/Tests.jsx";
 
 class Main extends Component {
   constructor(props) {
@@ -22,17 +23,12 @@ class Main extends Component {
 
   handleChange(e) {
     const value = e.target.value;
-    this.setState({ [e.target.name]: value }, () => {
-      console.log(`this.state in handlechange`, this.state);
-    });
+    this.setState({ [e.target.name]: value });
   }
 
   handleClick() {
-    const value = `Describe ('${this.state.testSuiteName}'), 
-    ${this.state.writeQuery} 
-    it('${this.state.testDescription}') `;
-    console.log("handleClick!!!");
-    this.setState({ generatedTest: value });
+    const value = Tests(this.state);
+    return this.setState({ generatedTest: value });
   }
 
   updateTestSuite() {
@@ -45,7 +41,6 @@ class Main extends Component {
     //shallow copy of array
     let testSuites = this.state.testSuites.slice();
     testSuites.push(newTestSuite);
-    console.log(`updated testSuites:`, testSuites);
     return this.setState({
       testSuiteName: "",
       testDescription: "",
