@@ -32,7 +32,7 @@ const path = require('path');
   const config = (uri) => {
     return (request, response) => {
       response.set('Content-Type', 'text/html')
-      response.sendFile(path.join(__dirname, "./client/public/index.html"));
+      response.sendFile(path.join(__dirname, "./build/index.html"));
     }
   }
 
