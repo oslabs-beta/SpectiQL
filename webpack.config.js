@@ -16,10 +16,6 @@ module.exports = {
           overlay: true
         },
         plugins: [
-          new HtmlWebpackPlugin({
-              template: './client/public/index.html',
-              output: './client/public/index.html'
-          }),
           new webpack.HotModuleReplacementPlugin()
         ],
     module: {
