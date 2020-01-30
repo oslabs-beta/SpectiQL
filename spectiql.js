@@ -5,7 +5,7 @@ const path = require('path');
 // function to render our frontend GUI depending on their endpoint
 const renderSpectiQL = (uri) => {
     return 
-    
+
     `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -28,7 +28,7 @@ const renderSpectiQL = (uri) => {
   const config = (uri) => {
     return (request, response) => {
       response.set('Content-Type', 'text/html')
-      response.send(renderSpectiQL(uri));
+      response.sendFile(path.join(__dirname, "./build/index.html"));
     }
   }
 
