@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Button, ButtonToolbar } from "react-bootstrap";
-//this is not correct!
-import "../../public/styling/index.css";
+
 
 class SideBar extends Component {
   render() {
@@ -22,6 +21,12 @@ class SideBar extends Component {
           </Button>
           <Button variant="outline-dark" size="lg">
             Save
+          </Button>
+          <Button variant="outline-dark" size="lg">
+            Export
+          </Button>
+          <Button variant="outline-dark" size="lg">
+            Clear
           </Button>
         </ButtonToolbar>
       </div>

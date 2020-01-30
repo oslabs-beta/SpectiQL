@@ -13,7 +13,8 @@ module.exports = {
           contentBase: "./client/public/",
           open: true,
           port: 3000,
-          overlay: true
+          overlay: true,
+          publicPath: '/build/'
         },
         plugins: [
           new webpack.HotModuleReplacementPlugin()
