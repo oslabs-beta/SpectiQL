@@ -24,9 +24,9 @@ const path = require('path');
 //     </html>`
 
 //   }
-  const test = () => {
-    return easygraphqlTester.test();
-  }
+  // const test = () => {
+  //   return easygraphqlTester.test();
+  // }
 
   //sending our GUI to their desired endpoint (URI).
   const config = (uri) => {
