@@ -10,9 +10,9 @@ class App extends Component {
     this.state = {
       text: "sodium bloat",
       filePath: "",
-      schema: []
+      schema: {}
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleNextClick = this.handleNextClick.bind(this);
   }
 
   openDocs() {
@@ -21,12 +21,15 @@ class App extends Component {
     );
   }
 
-  handleClick() {
+  handleNextClick() {
     fetch('/spectiql', {
       method: 'POST',
     })
     .then(response => response.json())
-    .then(console.log(response))
+    .then((response) => {
+      this.setState({ schema: response.schema})
+      console.log(this.state.schema);
+    })
     .catch(err => console.log(err));
   }
 
@@ -38,7 +41,7 @@ class App extends Component {
             <div className="introHeader">SpectiQL</div>
             <div className="introNext">
               <Link to="/main" exact>
-                <button className="next-button" onClick={this.handleClick}>Next</button>
+                <button className="next-button" onClick={this.handleNextClick}>Next</button>
               </Link>
             </div>
             <div className="introDoc">
