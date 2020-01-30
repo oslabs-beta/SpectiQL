@@ -39,7 +39,7 @@ class App extends Component {
       <HashRouter>
         <div className="fullscreen">
           <div className="introContainer">
-            <div className="introHeader">SpectiQL</div>
+            <div className="introHeader">TestiQL</div>
             <div className="introNext">
               <Link to="/main" exact onClick={this.handleClick}>
                 <button className="next-button">Next</button>
