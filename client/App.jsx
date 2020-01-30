@@ -3,8 +3,6 @@ import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Main from "./mainContainer/main.jsx";
 
 import "./public/styling/index.css";
-// const createSchema = require('../spectiql').createSchema
-// import { createSchema } from '../spectiql';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +12,7 @@ class App extends Component {
       filePath: "",
       schema: []
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   openDocs() {
@@ -22,33 +21,27 @@ class App extends Component {
     );
   }
 
+  handleClick() {
+    fetch('/spectiql', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+    })
+  }
+
   render() {
     return (
       <HashRouter>
         <div className="fullscreen">
-          <div className="input-group">
-            <span className="input-group-text" id="inputGroupFileAddon01">
-              Upload
-            </span>
-            <div className="custom-file">
-              <input
-                type="file"
-                className="custom-file-input"
-                id="inputGroupFile01"
-                aria-describedby="inputGroupFileAddon01"
-                onChange={e => {
-                  this.setState({ filePath: e.target.files[0].name });
-                }}
-              />
-              <label className="custom-file-label" htmlFor="inputGroupFile01">
-                {this.state.filePath}
-              </label>
-            </div>
-          </div>
           <div className="introContainer">
             <div className="introHeader">SpectiQL</div>
             <div className="introNext">
-              <Link to="/main" exact>
+              <Link to="/main" exact onClick={this.handleClick}>
                 <button className="next-button">Next</button>
               </Link>
             </div>

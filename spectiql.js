@@ -2,6 +2,7 @@ const fs = require('fs')
 const easygraphqlSchemaParser = require('easygraphql-parser');
 const easygraphqlTester = require('easygraphql-tester');
 const extension = require('./extension');
+<<<<<<< HEAD
 const path = require('path');
 // function to render our frontend GUI depending on their endpoint
 // const renderSpectiQL = (uri) => {
@@ -28,6 +29,9 @@ const path = require('path');
   //   return easygraphqlTester.test();
   // }
 
+=======
+  
+>>>>>>> f966c3cd1c20214af2d644105c6abc37e980b9e8
   //sending our GUI to their desired endpoint (URI).
   const config = (uri) => {
     return (request, response) => {
@@ -41,13 +45,26 @@ const path = require('path');
   //to use: require function into desired file and invoke the function with the entire file path
   //example: createSchema('/Users/justinkwon/Documents/Codesmith/graphqltest/index.js');
   const createSchema = (filePath) => {
-    const buildSchema = fs.readFileSync(path.join(__dirname, "schema.gql"), {encoding: 'utf-8'});
+    const buildSchema = fs.readFileSync(filePath, {encoding: 'utf-8'});
     const parsedSchema = easygraphqlSchemaParser(buildSchema);
     return parsedSchema;
   }
 
+<<<<<<< HEAD
   // console.log(createSchema('schema.gql'));
   
   module.exports = { config, createSchema, extension };
 
   console.log(test());
+=======
+  const getSchema = (filePath) => {
+    const parsedSchema = createSchema(filePath);
+    return (request, response) => {
+      response.set('Content-Type', 'text/html');
+      response.status(200).json({ schema: parsedSchema});
+    }
+  }
+
+  
+  module.exports = { config, extension, getSchema };
+>>>>>>> f966c3cd1c20214af2d644105c6abc37e980b9e8
