@@ -7,22 +7,15 @@ class GenerateTest extends Component {
       <Form className="generate-test">
         <Form.Row>
           <Form.Group as={Col} style={{ margin: 0, padding: 0 }}>
-            <DropdownButton
-              id="dropdown-basic-button"
-              title="Select Tests"
-              size="lg"
-              block
-              style={{ height: "4rem", width: "80%" }}
-            >
-              <Dropdown.Item href="#/action-1">Valid Argument</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Invalid Argument</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">
-                Valid Schema types
-              </Dropdown.Item>
-              <Dropdown.Item href="#/action-4">
-                Invalid Schema types
-              </Dropdown.Item>
-            </DropdownButton>
+            <select  onChange = {this.props.selectTest}>
+              <option value = "" selected disabled>Select Test</option>
+              <option value = "validQuery">Valid Query</option>
+              <option value= "invalidQuery" >Invalid Query</option>
+              <option value= "validArgField" >Valid Argument Field</option>
+              <option value = "invalidArgField" >Invalid Argument Field</option>
+              <option value= "validArgDataType" >Valid Argument DataType</option>
+              <option value = "invalidArgDataType" >Invalid Argument DataType</option>
+            </select>
             <Button
               variant="primary"
               size="lg"
