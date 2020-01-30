@@ -14,7 +14,7 @@ module.exports = {
           open: true,
           port: 3000,
           overlay: true,
-          publicPath: '/build/'
+          publicPath: '../../build/'
         },
         plugins: [
           new webpack.HotModuleReplacementPlugin()
