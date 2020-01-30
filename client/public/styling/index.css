@@ -32,7 +32,9 @@
   }
 
 .introHeader {
+  font-family: 'Monoton', cursive;
   text-align: center;
+  font-size: 50px;
   grid-column: 1/5;
   grid-row: 1/4;
 }
