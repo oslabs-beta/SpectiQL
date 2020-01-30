@@ -2,7 +2,7 @@ const validQuery = (props) =>{
   // console.log(props);
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
-    const validQueryTest = \`${props.writeQuery}\`
+    const validQueryTest = \`\n${props.writeQuery}\`
     tester.test(true, validQueryTest)
   })`;
   return newTest;
