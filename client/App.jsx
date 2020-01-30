@@ -23,15 +23,11 @@ class App extends Component {
 
   handleClick() {
     fetch('/spectiql', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      }
+      method: 'POST',
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('Success:', data);
-    })
+    .then(response => response.json())
+    .then(console.log(response))
+    .catch(err => console.log(err));
   }
 
   render() {
@@ -41,8 +37,8 @@ class App extends Component {
           <div className="introContainer">
             <div className="introHeader">SpectiQL</div>
             <div className="introNext">
-              <Link to="/main" exact onClick={this.handleClick}>
-                <button className="next-button">Next</button>
+              <Link to="/main" exact>
+                <button className="next-button" onClick={this.handleClick}>Next</button>
               </Link>
             </div>
             <div className="introDoc">

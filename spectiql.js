@@ -1,6 +1,7 @@
-const fs = require('fs')
-const easygraphqlSchemaParser = require('easygraphql-parser')
+const fs = require('fs');
+const easygraphqlSchemaParser = require('easygraphql-parser');
 const extension = require('./extension');
+const path = require('path');
   
   //sending our GUI to their desired endpoint (URI).
   const config = (uri) => {
@@ -22,11 +23,13 @@ const extension = require('./extension');
 
   const getSchema = (filePath) => {
     const parsedSchema = createSchema(filePath);
+    console.log(parsedSchema);
     return (request, response) => {
       response.set('Content-Type', 'text/html');
       response.status(200).json({ schema: parsedSchema});
     }
   }
+
 
   
   module.exports = { config, extension, getSchema };
