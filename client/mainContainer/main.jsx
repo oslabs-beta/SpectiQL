@@ -27,19 +27,21 @@ class Main extends Component {
       generatedTest: "",
       testSuites: [],
       selectedTest: "",
+      testIndex: 0,
       testFunctions: {
         validQuery,
         invalidQuery,
         validArgField,
         invalidArgField,
         validArgDataType,
-        invalidArgDataType,
+        invalidArgDataType
       }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.updateTestSuite = this.updateTestSuite.bind(this);
-    this.selectTest= this.selectTest.bind(this);
+    this.selectTest = this.selectTest.bind(this);
+    this.deleteTest = this.deleteTest.bind(this);
   }
 
   handleChange(e) {
@@ -48,15 +50,13 @@ class Main extends Component {
   }
 
   handleClick() {
-    const value = this.state.testFunctions[this.state.selectedTest](this.state)
-    // const value = this.state.selectedTest(this.state);
+    const value = this.state.testFunctions[this.state.selectedTest](this.state);
+    // document.getElementById('dd-reset').value('default')
     return this.setState({ generatedTest: value });
   }
 
-  selectTest(e){
-    // console.log(`e.target.value`,e.target.value)
-    // console.log('inside selectest')
-    this.setState({selectedTest: e.target.value})
+  selectTest(e) {
+    this.setState({ selectedTest: e.target.value });
   }
 
   updateTestSuite() {
@@ -64,7 +64,8 @@ class Main extends Component {
     const newTestSuite = {
       generatedTest: this.state.generatedTest,
       savedTestSuiteName: this.state.testSuiteName,
-      savedTestDescription: this.state.testDescription
+      savedTestDescription: this.state.testDescription,
+      testIndex: this.state.testIndex + 1
     };
     //shallow copy of array
     let testSuites = this.state.testSuites.slice();
@@ -75,9 +76,21 @@ class Main extends Component {
       writeQuery: "",
       generatedTest: "",
       selectedTest: "",
+      testIndex: this.state.testIndex + 1,
       testSuites
     });
   }
+
+  deleteTest(idx) {
+    let testSuites = this.state.testSuites.filter(test => test.testIndex !== idx);
+    return this.setState(
+      {
+        testSuites,
+        testIndex: this.state.testIndex - 1
+      }
+    );
+  }
+  
   render() {
     return (
       <div className="fullscreen">
@@ -107,11 +120,14 @@ class Main extends Component {
               handleClick={this.handleClick}
               generatedTest={this.state.generatedTest}
               updateTestSuite={this.updateTestSuite}
-              selectTest ={this.selectTest}
+              selectTest={this.selectTest}
             />
           </div>
           <div className="testSuites">
-            <TestSuites testSuites={this.state.testSuites} />
+            <TestSuites
+              testSuites={this.state.testSuites}
+              deleteTest={this.deleteTest}
+            />
           </div>
         </div>
       </div>

@@ -1,20 +1,23 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 class TestSuites extends Component {
   render() {
     // console.log(`this.props`,this.props)
-    const testSuite = this.props.testSuites.map((test, idx) => (
+    const testSuite = this.props.testSuites.map((test, index) => (
       // console.log(`test`, test)
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "18rem" }} key={index}>
         <Card.Body>
-          <Card.Title>Test Suite {idx + 1}</Card.Title>
+          <Card.Title>Test Suite {index + 1}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             {test.savedTestSuiteName}
           </Card.Subtitle>
           <Card.Text>{test.savedTestDescription}</Card.Text>
-          <Card.Link href="#">Edit Test</Card.Link>
-          <Card.Link href="#">Delete Test</Card.Link>
+          <Button
+            onClick={() => this.props.deleteTest(test.testIndex)}
+          >
+            Delete Test
+          </Button>
         </Card.Body>
       </Card>
     ));
