@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Main from "./mainContainer/main.jsx";
-
 import "./public/styling/index.css";
+import Particles from "react-particles-js";
+import "animate.css/animate.min.css";
+import ScrollAnimation from 'react-animate-on-scroll';
+
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +42,32 @@ class App extends Component {
       <HashRouter>
         <div className="fullscreen">
           <div className="introContainer">
-            <div className="introHeader">SpectiQL</div>
+            <div className="introHeader">
+            <ScrollAnimation animateIn="fadeIn" delay="3000" >
+            <h1>SpectiQL</h1>
+              </ScrollAnimation>
+                  </div>
+            <div className="introInstruction">
+                              <Particles className="introAnimate"
+                    params={{
+                      "particles": {
+                          "number": {
+                              "value": 50
+                          },
+                          "size": {
+                              "value": 3
+                          }
+                      },
+                      "interactivity": {
+                          "events": {
+                              "onhover": {
+                                  "enable": true,
+                                  "mode": "repulse"
+                              }
+                          }
+                      }
+                  }} />
+            </div>
             <div className="introNext">
               <Link to="/main" exact onClick={this.handleClick}>
                 <button className="next-button">Next</button>

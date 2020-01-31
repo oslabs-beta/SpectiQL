@@ -1,6 +1,6 @@
 {
   "name": "spectiql",
-  "version": "1.6.0",
+  "version": "2.5.0",
   "description": "SpectiQL - GraphQL Testing Tool",
   "main": "spectiql.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
+    "animate.css": "^3.7.2",
     "babel-loader": "^8.0.6",
     "bootstrap": "^4.4.1",
     "css-loader": "^3.4.2",
@@ -41,8 +42,10 @@
     "npm": "^6.13.7",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
+    "react-animate-on-scroll": "^2.1.5",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
+    "react-particles-js": "^2.7.0",
     "react-router-dom": "^5.1.2",
     "router": "^1.3.4",
     "standard": "^14.3.1",

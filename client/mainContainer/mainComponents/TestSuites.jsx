@@ -25,13 +25,13 @@ class TestSuites extends Component {
       <div class="wrapper">
         <nav id="sidebar">
           <div class="sidebar-header">
-            <h3>Test Suites:</h3>
+            <h3>Test Suites</h3>
           </div>
           {testSuite}
         </nav>
 
         <div id="content">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <nav id="content" class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
               <button type="button" id="sidebarCollapse" class="btn btn-info">
                 <i class="fas fa-align-left"></i>

@@ -4,6 +4,10 @@ import TestInput from "./mainComponents/TestInput.jsx";
 import TestQuery from "./mainComponents/TestQuery.jsx";
 import GenerateTest from "./mainComponents/GenerateTest.jsx";
 import TestSuites from "./mainComponents/TestSuites.jsx";
+import "animate.css/animate.min.css";
+import ScrollAnimation from 'react-animate-on-scroll';
+import Particles from "react-particles-js";
+
 import {
   validQuery,
   invalidQuery,

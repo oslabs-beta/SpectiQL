@@ -4,10 +4,11 @@ import { Form, Col } from "react-bootstrap";
 class TestQuery extends Component {
   render() {
     return (
+      <div className="writeQueryBox">
       <Form className="test-query-box">
         <Form.Row>
           <Form.Group as={Col} controlId="write-query">
-            <Form.Label column sm={3}>
+            <Form.Label column sm={6}>
               Write Query:
             </Form.Label>
             <Form.Control
@@ -21,7 +22,7 @@ class TestQuery extends Component {
           </Form.Group>
 
           <Form.Group as={Col} controlId="select-query">
-            <Form.Label column sm={3}>
+            <Form.Label column sm={6}>
               Select Query:
             </Form.Label>
             <Form.Control
@@ -32,6 +33,7 @@ class TestQuery extends Component {
           </Form.Group>
         </Form.Row>
       </Form>
+      </div>
     );
   }
 }
