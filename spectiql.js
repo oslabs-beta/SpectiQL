@@ -4,7 +4,7 @@ const extension = require('./extension');
 const path = require('path');
   
   //sending our GUI to their desired endpoint (URI).
-  const config = (uri) => {
+  const config = () => {
     return (request, response) => {
       response.set('Content-Type', 'text/html')
       response.sendFile(path.join(__dirname, "./build/index.html"));
@@ -32,5 +32,5 @@ const path = require('path');
 
 
   
-  module.exports = { config, createSchema, extension };
+  module.exports = { config, getSchema, extension };
 
