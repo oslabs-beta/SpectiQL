@@ -11,11 +11,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "sodium bloat",
-      filePath: "",
-      schema: []
+      schema: {}
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleNextClick = this.handleNextClick.bind(this);
   }
 
   openDocs() {
@@ -24,17 +22,16 @@ class App extends Component {
     );
   }
 
-  handleClick() {
+  handleNextClick() {
     fetch('/spectiql', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      }
+      method: 'POST',
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('Success:', data);
+    .then(response => response.json())
+    .then((response) => {
+      this.setState({ schema: response.schema});
+      console.log(this.state.schema);
     })
+    .catch(err => console.log(err));
   }
 
   render() {
@@ -58,6 +55,9 @@ class App extends Component {
                               "value": 3
                           }
                       },
+                      "color": {
+                        "value": "#7a3e3e"
+                      },
                       "interactivity": {
                           "events": {
                               "onhover": {
@@ -69,8 +69,8 @@ class App extends Component {
                   }} />
             </div>
             <div className="introNext">
-              <Link to="/main" exact onClick={this.handleClick}>
-                <button className="next-button">Next</button>
+              <Link to="/main" exact>
+                <button className="next-button" onClick={this.handleNextClick}>Next</button>
               </Link>
             </div>
             <div className="introDoc">
