@@ -1,6 +1,6 @@
 {
   "name": "spectiql",
-  "version": "1.6.0",
+  "version": "3.1.0",
   "description": "SpectiQL - GraphQL Testing Tool",
   "main": "spectiql.js",
   "scripts": {
@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/oslabs-beta/SpectiQL#readme",
   "dependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
     "bootstrap": "^4.4.1",

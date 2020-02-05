@@ -7,8 +7,8 @@ class GenerateTest extends Component {
       <Form className="generate-test">
         <Form.Row>
           <Form.Group as={Col} style={{ margin: 0, padding: 0 }}>
-            <select  onChange = {this.props.selectTest}>
-              <option value = "" selected disabled>Select Test</option>
+            <select id="dd-reset" onChange = {this.props.selectTest}>
+              <option value ="default" disabled selected>Select Test</option>
               <option value = "validQuery">Valid Query</option>
               <option value= "invalidQuery" >Invalid Query</option>
               <option value= "validArgField" >Valid Argument Field</option>

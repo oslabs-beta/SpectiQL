@@ -8,16 +8,27 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "sodium bloat",
-      filePath: "",
-      schema: []
+      schema: {}
     };
+    this.handleNextClick = this.handleNextClick.bind(this);
   }
 
   openDocs() {
     window.open(
       "https://github.com/oslabs-beta/SpectiQL/blob/master/README.md"
     );
+  }
+
+  handleNextClick() {
+    fetch('/spectiql', {
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then((response) => {
+      this.setState({ schema: response.schema});
+      console.log(this.state.schema);
+    })
+    .catch(err => console.log(err));
   }
 
   render() {
@@ -28,7 +39,7 @@ class App extends Component {
             <div className="introHeader">SpectiQL</div>
             <div className="introNext">
               <Link to="/main" exact>
-                <button className="next-button">Next</button>
+                <button className="next-button" onClick={this.handleNextClick}>Next</button>
               </Link>
             </div>
             <div className="introDoc">
