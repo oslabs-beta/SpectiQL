@@ -14,6 +14,11 @@ class TestSuites extends Component {
           </Card.Subtitle>
           <Card.Text>{test.savedTestDescription}</Card.Text>
           <Button
+            onClick={() => this.props.editTest(test.testIndex)}
+          >
+            Edit Test
+          </Button>
+          <Button
             onClick={() => this.props.deleteTest(test.testIndex)}
           >
             Delete Test
