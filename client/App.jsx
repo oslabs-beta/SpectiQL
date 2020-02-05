@@ -8,8 +8,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "sodium bloat",
-      filePath: "",
       schema: {}
     };
     this.handleNextClick = this.handleNextClick.bind(this);
@@ -27,7 +25,7 @@ class App extends Component {
     })
     .then(response => response.json())
     .then((response) => {
-      this.setState({ schema: response.schema})
+      this.setState({ schema: response.schema});
       console.log(this.state.schema);
     })
     .catch(err => console.log(err));
