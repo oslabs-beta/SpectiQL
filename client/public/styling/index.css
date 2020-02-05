@@ -1,4 +1,3 @@
-
 /* .buttonContainer{
     display: flex; 
     flex-direction: column;
@@ -10,16 +9,15 @@
     height:100%;
   } */
 
-  .fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow: auto;
-    /* background: rgb(99, 56, 56); Just to visualize the extent */
-    
-  }
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  /* background: rgb(99, 56, 56); Just to visualize the extent */
+}
 
 .form-control {
   /* opacity: 80%;
@@ -28,21 +26,22 @@
 
 #content {
   background: none !important;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   width: 100%;
 }
 
 .introContainer {
-    display: grid;
-    position: fixed;
-    grid-template-columns: repeat(4, 25% [col-start]);
-    grid-template-rows: repeat(4, 25% [row-start]);
-    /* overflow: auto; */
-    background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed;
-    background-size: cover;
-    /* width: 100vw;
+  display: grid;
+  position: fixed;
+  grid-template-columns: repeat(4, 25% [col-start]);
+  grid-template-rows: repeat(4, 25% [row-start]);
+  /* overflow: auto; */
+  background: url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg)
+    no-repeat center center fixed;
+  background-size: cover;
+  /* width: 100vw;
     height: 100vh; */
-  }
+}
 
 .introHeader {
   text-align: center;
@@ -54,9 +53,8 @@
 h1 {
   line-height: 5.5;
   font-weight: 800;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 88px;
-
 }
 
 .introInstruction {
@@ -77,77 +75,75 @@ h1 {
 }
 
 .next-button {
-    width: 100%;
-    padding: 8px 4px 8px 10px;
-    margin-bottom: 0px;
-    color: black;
+  width: 100%;
+  padding: 8px 4px 8px 10px;
+  margin-bottom: 0px;
+  color: black;
 
-    /* Styles */
-    border: 1px solid #4e3043; /* Fallback */
-    border: 1px solid rgba(78,48,67, 0.8);
-    background: whitesmoke;
-    opacity: 75%;
-    box-shadow: 
-        0 1px 0 rgba(255,255,255,0.2), 
-        inset 0 1px 1px rgba(0,0,0,0.1);
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
+  /* Styles */
+  border: 1px solid #4e3043; /* Fallback */
+  border: 1px solid rgba(78, 48, 67, 0.8);
+  background: whitesmoke;
+  opacity: 75%;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 
-    /* Font styles */
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    color: black;
-    font-size: 13px;
-    margin-top: 50%;
-    }
- .next-button:hover {
-    background: rgb(136, 133, 133);
-    color: white;
-    }
- .next-button:active {
-    background: white;
-    }
+  /* Font styles */
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: black;
+  font-size: 13px;
+  margin-top: 50%;
+}
+.next-button:hover {
+  background: rgb(136, 133, 133);
+  color: white;
+}
+.next-button:active {
+  background: white;
+}
 
-    .doc-button {
-      width: 100%;
-      padding: 8px 4px 8px 10px;
-      margin-bottom: 0px;
-      color: black;
-  
-      /* Styles */
-      border: 1px solid #4e3043; /* Fallback */
-      border: 1px solid rgba(78,48,67, 0.8);
-      background: whitesmoke;
-      opacity: 75%;
-      box-shadow: 
-          0 1px 0 rgba(255,255,255,0.2), 
-          inset 0 1px 1px rgba(0,0,0,0.1);
-      -webkit-transition: all 0.3s ease-out;
-      -moz-transition: all 0.3s ease-out;
-      -ms-transition: all 0.3s ease-out;
-      -o-transition: all 0.3s ease-out;
-      transition: all 0.3s ease-out;
-  
-      /* Font styles */
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      color: black;
-      font-size: 13px;
-      margin-top: 50%;
-      }
-   .doc-button:hover {
-    background: rgb(136, 133, 133);
-    color: white;
-      }
-   .doc-button:active {
-    background: white;
-      }
+.doc-button {
+  width: 100%;
+  padding: 8px 4px 8px 10px;
+  margin-bottom: 0px;
+  color: black;
+
+  /* Styles */
+  border: 1px solid #4e3043; /* Fallback */
+  border: 1px solid rgba(78, 48, 67, 0.8);
+  background: whitesmoke;
+  opacity: 75%;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+
+  /* Font styles */
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: black;
+  font-size: 13px;
+  margin-top: 50%;
+}
+.doc-button:hover {
+  background: rgb(136, 133, 133);
+  color: white;
+}
+.doc-button:active {
+  background: white;
+}
 
 .leftSideBar {
-    position: left;
+  position: left;
 }
 
 .buttonContainer {
@@ -156,74 +152,75 @@ h1 {
   grid-template-rows: repeat(10, 10% [row-start]);
 }
 
-  .selections {
-    text-align: center;
-    line-height: 2.5;
-    font-weight: 800;
-    font-size: 33px;
-    font-family: 'Poppins', sans-serif;
-    grid-row: 1;
-    width: 70%;
-    margin-right: 30%;
-  }
+.selections {
+  text-align: center;
+  line-height: 2.5;
+  font-weight: 800;
+  font-size: 33px;
+  font-family: "Poppins", sans-serif;
+  grid-row: 1;
+  width: 70%;
+  margin-right: 30%;
+}
 
-  .queries {
-    grid-row: 2;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-  }
+.queries {
+  grid-row: 2;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+}
 
-  .mutations {
-    grid-row: 3;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-  }
+.mutations {
+  grid-row: 3;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+}
 
-  .subscriptions {
-    grid-row: 4;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-  }
+.subscriptions {
+  grid-row: 4;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+}
 
-  .testing {
-    text-align: center;
-    line-height: 2.5;
-    font-weight: 800;
-    font-size: 33px;
-    font-family: 'Poppins', sans-serif;
-    grid-row: 5;
-    width: 70%;
-    margin-right: 20%;
-  }
+.testing {
+  text-align: center;
+  line-height: 2.5;
+  font-weight: 800;
+  font-size: 33px;
+  font-family: "Poppins", sans-serif;
+  grid-row: 5;
+  width: 70%;
+  margin-right: 20%;
+}
 
-  .tester {
-    grid-row: 6;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-  }
+.tester {
+  grid-row: 6;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+}
 
-  .save {
-    grid-row: 7;
-    width: 100%;
-    color: green;
-    font-family: 'Poppins', sans-serif;
-  }
+.save {
+  grid-row: 7;
+  width: 100%;
+  color: green;
+  font-family: "Poppins", sans-serif;
+}
 
-  .export {
-    grid-row: 8;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-  }
+.export {
+  grid-row: 8;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+}
 
-  .clear {
-    grid-row: 10;
-    width: 100%;
-    color: red;
-    font-family: 'Poppins', sans-serif;
-  }
+.clear {
+  grid-row: 10;
+  width: 100%;
+  color: red;
+  font-family: "Poppins", sans-serif;
+}
 
 .mainContainer {
-  background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed;
+  background: url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg)
+    no-repeat center center fixed;
   background-size: cover;
   display: grid;
   position: fixed;
@@ -269,20 +266,20 @@ h1 {
 
 .testSuiteInput {
   grid-column: 1;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: left;
   margin-top: 17%;
 }
 
 .testDescriptionInput {
   grid-column: 2;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: left;
   margin-top: 17%;
 }
 
 .writeQueryBox {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .test-query-box {
@@ -290,16 +287,16 @@ h1 {
 }
 
 .generate-test {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .addTest {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   height: 35%;
 }
 
 .generateTest {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   height: 35%;
   margin-top: 2%;
 }
@@ -314,7 +311,7 @@ h3 {
   line-height: 2.5;
   font-weight: 800;
   font-size: 33px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   width: 100%;
   margin-right: 30%;
 }

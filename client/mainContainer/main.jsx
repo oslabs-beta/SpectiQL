@@ -27,6 +27,7 @@ class Main extends Component {
       generatedTest: "",
       testSuites: [],
       selectedTest: "",
+      dropDownIndex: 0,
       testIndex: 0,
       testFunctions: {
         validQuery,
@@ -42,6 +43,8 @@ class Main extends Component {
     this.updateTestSuite = this.updateTestSuite.bind(this);
     this.selectTest = this.selectTest.bind(this);
     this.deleteTest = this.deleteTest.bind(this);
+    this.editTest = this.editTest.bind(this);
+    this.dropDownReset = this.dropDownReset.bind(this);
   }
 
   handleChange(e) {
@@ -51,20 +54,25 @@ class Main extends Component {
 
   handleClick() {
     const value = this.state.testFunctions[this.state.selectedTest](this.state);
-    // document.getElementById('dd-reset').value('default')
     return this.setState({ generatedTest: value });
   }
 
   selectTest(e) {
-    this.setState({ selectedTest: e.target.value });
+    this.setState({
+      selectedTest: e.target.value,
+      dropDownIndex: e.target.selectedIndex
+    });
   }
 
   updateTestSuite() {
     //push the generated test value into the test suites array
     const newTestSuite = {
-      generatedTest: this.state.generatedTest,
+      savedGeneratedTest: this.state.generatedTest,
       savedTestSuiteName: this.state.testSuiteName,
       savedTestDescription: this.state.testDescription,
+      savedWriteQuery: this.state.writeQuery,
+      savedSelectedTest: this.state.selectedTest,
+      savedDropDownIndex: this.state.dropDownIndex,
       testIndex: this.state.testIndex + 1
     };
     //shallow copy of array
@@ -75,20 +83,42 @@ class Main extends Component {
       testDescription: "",
       writeQuery: "",
       generatedTest: "",
-      selectedTest: "",
+      dropDownIndex: 0,
+      selectedTest: this.dropDownReset(),
       testIndex: this.state.testIndex + 1,
       testSuites
     });
   }
 
+  editTest(idx) {
+    let testSuite = this.state.testSuites[idx - 1];
+    console.log('testSuite', testSuite)
+    let dropDownIndex = document.getElementById("dd-reset");
+    dropDownIndex.selectedIndex = testSuite.savedDropDownIndex;
+    return this.setState({
+      testSuiteName: testSuite.savedTestSuiteName,
+      testDescription: testSuite.savedTestDescription,
+      writeQuery: testSuite.savedWriteQuery,
+      selectedTest: dropDownIndex.selectedIndex,
+      generatedTest: testSuite.savedGeneratedTest
+    })
+  }
+
   deleteTest(idx) {
     let testSuites = this.state.testSuites.filter(test => test.testIndex !== idx);
-    return this.setState(
-      {
-        testSuites,
-        testIndex: this.state.testIndex - 1
-      }
-    );
+    return this.setState({
+      testSuiteName: "",
+      testDescription: "",
+      writeQuery: "",
+      generatedTest: "",
+      selectedTest: this.dropDownReset(),
+      testSuites,
+      testIndex: this.state.testIndex - 1,
+    });
+  }
+
+  dropDownReset() {
+    document.getElementById("dd-reset").selectedIndex = 0;
   }
   
   render() {
@@ -127,6 +157,7 @@ class Main extends Component {
             <TestSuites
               testSuites={this.state.testSuites}
               deleteTest={this.deleteTest}
+              editTest={this.editTest}
             />
           </div>
         </div>
