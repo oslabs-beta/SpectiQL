@@ -37,11 +37,11 @@
     position: fixed;
     grid-template-columns: repeat(4, 25% [col-start]);
     grid-template-rows: repeat(4, 25% [row-start]);
-    /* overflow: auto; */
+    overflow: auto;
     background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed;
     background-size: cover;
-    /* width: 100vw;
-    height: 100vh; */
+    width: 100vw;
+    height: 100vh;
   }
 
 .introHeader {
@@ -101,7 +101,7 @@ h1 {
     text-align: center;
     color: black;
     font-size: 13px;
-    margin-top: 50%;
+    margin-top: 40%;
     }
  .next-button:hover {
     background: rgb(136, 133, 133);
@@ -136,7 +136,7 @@ h1 {
       text-align: center;
       color: black;
       font-size: 13px;
-      margin-top: 50%;
+      margin-top: 40%;
       }
    .doc-button:hover {
     background: rgb(136, 133, 133);
