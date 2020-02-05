@@ -10,7 +10,7 @@ class TestInput extends Component {
             <Form.Label column sm={6}>
               Test Suite:
             </Form.Label>
-            <Col sm="6">
+            <Col sm="10">
               <Form.Control
                 type="text"
                 placeholder="Enter test suite here..."
@@ -27,7 +27,7 @@ class TestInput extends Component {
             <Form.Label column sm={6}>
               Test Description:
             </Form.Label>
-            <Col sm="6">
+            <Col sm="10">
               <Form.Control
                 type="text"
                 placeholder="Enter test description here..."

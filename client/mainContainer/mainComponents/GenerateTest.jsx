@@ -7,8 +7,8 @@ class GenerateTest extends Component {
       <Form className="generate-test">
         <Form.Row>
           <Form.Group as={Col} style={{ margin: 0, padding: 0 }}>
-            <select  onChange = {this.props.selectTest}>
-              <option value = "" selected disabled>Select Test</option>
+            <select className="selectType" id="dd-reset" onChange = {this.props.selectTest}>
+              <option value ="default" disabled selected>Select Test</option>
               <option value = "validQuery">Valid Query</option>
               <option value= "invalidQuery" >Invalid Query</option>
               <option value= "validArgField" >Valid Argument Field</option>
@@ -16,20 +16,20 @@ class GenerateTest extends Component {
               <option value= "validArgDataType" >Valid Argument DataType</option>
               <option value = "invalidArgDataType" >Invalid Argument DataType</option>
             </select>
-            <Button
+            <Button className="generateTest"
               variant="primary"
               size="lg"
               block
-              style={{ height: "4rem", width: "80%" }}
+              style={{ height: "35%", width: "100%" }}
               onClick={this.props.handleClick}
             >
               Generate Test
             </Button>
-            <Button
+            <Button className="addTest"
               variant="outline-primary"
               size="lg"
               block
-              style={{ height: "4rem", width: "80%" }}
+              style={{ height: "35%", width: "100%" }}
               onClick={this.props.updateTestSuite}
             >
               Add to Test Suite
@@ -37,7 +37,7 @@ class GenerateTest extends Component {
           </Form.Group>
 
           <Form.Group as={Col} controlId="sample-test">
-            <Form.Label column sm={3}>
+            <Form.Label column sm={6}>
               Generated Test:
             </Form.Label>
             <Form.Control

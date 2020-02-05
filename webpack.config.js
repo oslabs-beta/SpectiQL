@@ -14,9 +14,12 @@ module.exports = {
           open: true,
           port: 3000,
           overlay: true,
-          publicPath: '/build/'
         },
         plugins: [
+          new HtmlWebpackPlugin({
+            template: './client/public/index.html',
+            output: './client/public/index.html'
+        }),
           new webpack.HotModuleReplacementPlugin()
         ],
     module: {

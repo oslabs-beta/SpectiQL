@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Main from "./mainContainer/main.jsx";
-
 import "./public/styling/index.css";
+import Particles from "react-particles-js";
+import "animate.css/animate.min.css";
+import ScrollAnimation from 'react-animate-on-scroll';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "sodium bloat",
-      filePath: "",
-      schema: []
+      schema: {}
     };
+    this.handleNextClick = this.handleNextClick.bind(this);
   }
 
   openDocs() {
@@ -20,15 +22,55 @@ class App extends Component {
     );
   }
 
+  handleNextClick() {
+    fetch('/spectiql', {
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then((response) => {
+      this.setState({ schema: response.schema});
+      console.log(this.state.schema);
+    })
+    .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <HashRouter>
         <div className="fullscreen">
           <div className="introContainer">
-            <div className="introHeader">SpectiQL</div>
+            <div className="introHeader">
+            <ScrollAnimation animateIn="fadeIn" delay="3000" >
+            <h1>SpectiQL</h1>
+              </ScrollAnimation>
+                  </div>
+            <div className="introInstruction">
+                              <Particles className="introAnimate"
+                    params={{
+                      "particles": {
+                          "number": {
+                              "value": 50
+                          },
+                          "size": {
+                              "value": 3
+                          }
+                      },
+                      "color": {
+                        "value": "#7a3e3e"
+                      },
+                      "interactivity": {
+                          "events": {
+                              "onhover": {
+                                  "enable": true,
+                                  "mode": "repulse"
+                              }
+                          }
+                      }
+                  }} />
+            </div>
             <div className="introNext">
               <Link to="/main" exact>
-                <button className="next-button">Next</button>
+                <button className="next-button" onClick={this.handleNextClick}>Next</button>
               </Link>
             </div>
             <div className="introDoc">
