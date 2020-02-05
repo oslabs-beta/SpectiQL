@@ -16,7 +16,7 @@ const path = require('path');
   //to use: require function into desired file and invoke the function with the entire file path
   //example: createSchema('/Users/justinkwon/Documents/Codesmith/graphqltest/index.js');
   const createSchema = (filePath) => {
-    const buildSchema = fs.readFileSync(filePath), {encoding: 'utf-8'});
+    const buildSchema = fs.readFileSync((filePath), {encoding: 'utf-8'});
     const parsedSchema = easygraphqlSchemaParser(buildSchema);
     return parsedSchema;
   }
