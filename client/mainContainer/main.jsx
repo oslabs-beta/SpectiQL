@@ -36,6 +36,7 @@ class Main extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.updateTestSuite = this.updateTestSuite.bind(this);
     this.selectTest= this.selectTest.bind(this);
+    this.clearSuites = this.clearSuites.bind(this);
   }
 
   handleChange(e) {
@@ -74,12 +75,15 @@ class Main extends Component {
       testSuites
     });
   }
+  clearSuites(){
+    this.setState({testSuites: []})
+  }
   render() {
     return (
       <div className="fullscreen">
         <div className="mainContainer">
           <div className="leftSideBar">
-            <LeftSideBar />
+            <LeftSideBar clearSuites = {this.clearSuites}/>
           </div>
           <div className="testInput">
             <TestInput

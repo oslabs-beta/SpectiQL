@@ -25,7 +25,7 @@ class SideBar extends Component {
           <Button variant="outline-dark" size="lg">
             Export
           </Button>
-          <Button variant="outline-dark" size="lg">
+          <Button variant="outline-dark" size="lg" onClick = {this.props.clearSuites}>
             Clear
           </Button>
         </ButtonToolbar>
