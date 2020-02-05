@@ -58,6 +58,9 @@ class App extends Component {
                               "value": 3
                           }
                       },
+                      "color": {
+                        "value": "#7a3e3e"
+                      },
                       "interactivity": {
                           "events": {
                               "onhover": {
