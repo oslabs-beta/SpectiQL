@@ -31,17 +31,17 @@
 }
 
 .introContainer {
-  display: grid;
-  position: fixed;
-  grid-template-columns: repeat(4, 25% [col-start]);
-  grid-template-rows: repeat(4, 25% [row-start]);
-  /* overflow: auto; */
-  background: url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg)
-    no-repeat center center fixed;
-  background-size: cover;
-  /* width: 100vw;
-    height: 100vh; */
-}
+
+    display: grid;
+    position: fixed;
+    grid-template-columns: repeat(4, 25% [col-start]);
+    grid-template-rows: repeat(4, 25% [row-start]);
+    overflow: auto;
+    background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+  }
 
 .introHeader {
   text-align: center;
@@ -75,72 +75,74 @@ h1 {
 }
 
 .next-button {
-  width: 100%;
-  padding: 8px 4px 8px 10px;
-  margin-bottom: 0px;
-  color: black;
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 0px;
+    color: black;
 
-  /* Styles */
-  border: 1px solid #4e3043; /* Fallback */
-  border: 1px solid rgba(78, 48, 67, 0.8);
-  background: whitesmoke;
-  opacity: 75%;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 1px 1px rgba(0, 0, 0, 0.1);
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+    /* Styles */
+    border: 1px solid #4e3043; /* Fallback */
+    border: 1px solid rgba(78,48,67, 0.8);
+    background: whitesmoke;
+    opacity: 75%;
+    box-shadow: 
+        0 1px 0 rgba(255,255,255,0.2), 
+        inset 0 1px 1px rgba(0,0,0,0.1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
 
-  /* Font styles */
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  color: black;
-  font-size: 13px;
-  margin-top: 50%;
-}
-.next-button:hover {
-  background: rgb(136, 133, 133);
-  color: white;
-}
-.next-button:active {
-  background: white;
-}
+    /* Font styles */
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: black;
+    font-size: 13px;
+    margin-top: 40%;
+    }
+ .next-button:hover {
+    background: rgb(136, 133, 133);
+    color: white;
+    }
+ .next-button:active {
+    background: white;
+    }
 
-.doc-button {
-  width: 100%;
-  padding: 8px 4px 8px 10px;
-  margin-bottom: 0px;
-  color: black;
-
-  /* Styles */
-  border: 1px solid #4e3043; /* Fallback */
-  border: 1px solid rgba(78, 48, 67, 0.8);
-  background: whitesmoke;
-  opacity: 75%;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 1px 1px rgba(0, 0, 0, 0.1);
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-
-  /* Font styles */
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  color: black;
-  font-size: 13px;
-  margin-top: 50%;
-}
-.doc-button:hover {
-  background: rgb(136, 133, 133);
-  color: white;
-}
-.doc-button:active {
-  background: white;
-}
+    .doc-button {
+      width: 100%;
+      padding: 8px 4px 8px 10px;
+      margin-bottom: 0px;
+      color: black;
+  
+      /* Styles */
+      border: 1px solid #4e3043; /* Fallback */
+      border: 1px solid rgba(78,48,67, 0.8);
+      background: whitesmoke;
+      opacity: 75%;
+      box-shadow: 
+          0 1px 0 rgba(255,255,255,0.2), 
+          inset 0 1px 1px rgba(0,0,0,0.1);
+      -webkit-transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+      -o-transition: all 0.3s ease-out;
+      transition: all 0.3s ease-out;
+  
+      /* Font styles */
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      color: black;
+      font-size: 13px;
+      margin-top: 40%;
+      }
+   .doc-button:hover {
+    background: rgb(136, 133, 133);
+    color: white;
+      }
+   .doc-button:active {
+    background: white;
+      }
 
 .leftSideBar {
   position: left;
