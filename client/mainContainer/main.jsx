@@ -29,6 +29,7 @@ class Main extends Component {
       selectedTest: "",
       dropDownIndex: 0,
       testIndex: 0,
+      testSuiteToggler: true,
       testFunctions: {
         validQuery,
         invalidQuery,
@@ -40,11 +41,13 @@ class Main extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.addTestSuite = this.addTestSuite.bind(this);
     this.updateTestSuite = this.updateTestSuite.bind(this);
     this.selectTest = this.selectTest.bind(this);
     this.deleteTest = this.deleteTest.bind(this);
     this.editTest = this.editTest.bind(this);
     this.dropDownReset = this.dropDownReset.bind(this);
+    this.testSuiteToggler = this.testSuiteToggler.bind(this);
   }
 
   handleChange(e) {
@@ -64,7 +67,7 @@ class Main extends Component {
     });
   }
 
-  updateTestSuite() {
+  addTestSuite() {
     //push the generated test value into the test suites array
     const newTestSuite = {
       savedGeneratedTest: this.state.generatedTest,
@@ -90,17 +93,43 @@ class Main extends Component {
     });
   }
 
+  updateTestSuite() {
+    let testSuites = this.state.testSuites.slice();
+    const updatedTestSuite = {
+      savedGeneratedTest: this.state.generatedTest,
+      savedTestSuiteName: this.state.testSuiteName,
+      savedTestDescription: this.state.testDescription,
+      savedWriteQuery: this.state.writeQuery,
+      savedSelectedTest: this.state.selectedTest,
+      savedDropDownIndex: this.state.dropDownIndex,
+      testIndex: this.state.testIndex
+    };
+    testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
+    return this.setState({
+      testSuiteName: "",
+      testDescription: "",
+      writeQuery: "",
+      generatedTest: "",
+      dropDownIndex: 0,
+      selectedTest: this.dropDownReset(),
+      testSuites,
+      testSuiteToggler: true
+    })
+  }
+
   editTest(idx) {
-    let testSuite = this.state.testSuites[idx - 1];
-    console.log('testSuite', testSuite)
+    let testSuite = this.state.testSuites[idx - 1];   
+    console.log('edit test state', this.state) 
     let dropDownIndex = document.getElementById("dd-reset");
     dropDownIndex.selectedIndex = testSuite.savedDropDownIndex;
     return this.setState({
       testSuiteName: testSuite.savedTestSuiteName,
       testDescription: testSuite.savedTestDescription,
       writeQuery: testSuite.savedWriteQuery,
-      selectedTest: dropDownIndex.selectedIndex,
-      generatedTest: testSuite.savedGeneratedTest
+      selectedTest: this.dropDownReset(),
+      generatedTest: testSuite.savedGeneratedTest,
+      testIndex: testSuite.testIndex,
+      testSuiteToggler: false
     })
   }
 
@@ -119,6 +148,12 @@ class Main extends Component {
 
   dropDownReset() {
     document.getElementById("dd-reset").selectedIndex = 0;
+  }
+
+  testSuiteToggler() {
+    return this.setState({
+      testSuiteToggler: !this.state.testSuiteToggler
+    })
   }
   
   render() {
@@ -149,8 +184,10 @@ class Main extends Component {
               writeQuery={this.state.writeQuery}
               handleClick={this.handleClick}
               generatedTest={this.state.generatedTest}
+              addTestSuite={this.addTestSuite}
               updateTestSuite={this.updateTestSuite}
               selectTest={this.selectTest}
+              testSuiteToggler={this.state.testSuiteToggler}
             />
           </div>
           <div className="testSuites">
