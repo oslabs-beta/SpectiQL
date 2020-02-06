@@ -1,8 +1,35 @@
 import React, { Component } from "react";
-import { Button, Form, Col, DropdownButton, Dropdown } from "react-bootstrap";
+import { Button, Form, Col } from "react-bootstrap";
 
 class GenerateTest extends Component {
   render() {
+    const editTestSuite = () => {
+      if (this.props.testSuiteToggler) {
+        return (
+          <Button className="addTest"
+          variant="outline-primary"
+          size="lg"
+          block
+          style={{ height: "35%", width: "100%" }}
+          onClick={this.props.addTestSuite}
+        >
+          Add to Test Suite
+        </Button>
+        )
+      } else {
+        return (
+          <Button className="updateTest"
+          variant="outline-primary"
+          size="lg"
+          block
+          style={{ height: "35%", width: "100%" }}
+          onClick={this.props.updateTestSuite}
+        >
+          Update Test Suite
+        </Button>
+        )
+      }
+    };
     return (
       <Form className="generate-test">
         <Form.Row>
@@ -25,15 +52,7 @@ class GenerateTest extends Component {
             >
               Generate Test
             </Button>
-            <Button className="addTest"
-              variant="outline-primary"
-              size="lg"
-              block
-              style={{ height: "35%", width: "100%" }}
-              onClick={this.props.updateTestSuite}
-            >
-              Add to Test Suite
-            </Button>
+            {editTestSuite()}
           </Form.Group>
 
           <Form.Group as={Col} controlId="sample-test">
