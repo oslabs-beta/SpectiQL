@@ -146,9 +146,9 @@ h1 {
     background: white;
       }
 
-.leftSideBar {
+/* .leftSideBar {
     position: left;
-}
+} */
 
 .buttonContainer {
   display: grid;
@@ -169,20 +169,23 @@ h1 {
 
   .queries {
     grid-row: 2;
-    width: 100%;
+    width: inherit;
     font-family: 'Poppins', sans-serif;
+    font-size: 12px;
   }
 
   .mutations {
     grid-row: 3;
-    width: 100%;
+    width: inherit;
     font-family: 'Poppins', sans-serif;
+    font-size: 12px;
   }
 
   .subscriptions {
     grid-row: 4;
-    width: 100%;
+    width: inherit;
     font-family: 'Poppins', sans-serif;
+    font-size: 12px;
   }
 
   .testing {
@@ -198,28 +201,32 @@ h1 {
 
   .tester {
     grid-row: 6;
-    width: 100%;
+    width: inherit;
     font-family: 'Poppins', sans-serif;
+    font-size: 12px;
   }
 
   .save {
     grid-row: 7;
-    width: 100%;
+    width: inherit;
     color: green;
     font-family: 'Poppins', sans-serif;
+    font-size: 12px;
   }
 
   .export {
     grid-row: 8;
-    width: 100%;
+    width: inherit;
     font-family: 'Poppins', sans-serif;
+    font-size: 12px;
   }
 
   .clear {
     grid-row: 10;
-    width: 100%;
+    width: inherit;
     color: red;
     font-family: 'Poppins', sans-serif;
+    font-size: 12px;
   }
 
 .mainContainer {
@@ -235,6 +242,7 @@ h1 {
 }
 
 .leftSideBar {
+  position: left;
   grid-column: 1;
   grid-row: 1/5;
 }
