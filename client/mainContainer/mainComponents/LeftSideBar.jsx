@@ -3,7 +3,9 @@ import { Button, ButtonToolbar } from "react-bootstrap";
 
 
 class SideBar extends Component {
+
   render() {
+
     return (
       <div className="leftSideBar">
         <ButtonToolbar className="buttonContainer">

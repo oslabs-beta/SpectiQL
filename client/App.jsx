@@ -5,23 +5,27 @@ import "./public/styling/index.css";
 import Particles from "react-particles-js";
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
+import FileSaver, { saveAs } from 'file-saver';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      schema: {}
+      schema: {
+
+      }
     };
     this.handleNextClick = this.handleNextClick.bind(this);
   }
 
   openDocs() {
     window.open(
-      "https://github.com/oslabs-beta/SpectiQL/blob/master/README.md"
+      "https://github.com/oslabs-beta/SpectiQL/blob/master/REAMDE.md"
     );
   }
 
+  //retrieving user's schema after they configure their file path
   handleNextClick() {
     fetch('/spectiql', {
       method: 'POST',

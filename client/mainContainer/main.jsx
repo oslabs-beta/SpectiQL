@@ -45,6 +45,7 @@ class Main extends Component {
     this.deleteTest = this.deleteTest.bind(this);
     this.editTest = this.editTest.bind(this);
     this.dropDownReset = this.dropDownReset.bind(this);
+    this.handleExportClick = this.handleExportClick.bind(this);
   }
 
   handleChange(e) {
@@ -55,6 +56,16 @@ class Main extends Component {
   handleClick() {
     const value = this.state.testFunctions[this.state.selectedTest](this.state);
     return this.setState({ generatedTest: value });
+  }
+
+
+  //onClick: user downloads a JSON object that has their test suites.
+  handleExportClick() {
+    console.log('helloBruh')
+    let newNew = {};
+    newNew.schema = this.state.schema;
+    var blob = new Blob([JSON.stringify(newNew)], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "hello.test.js");
   }
 
   selectTest(e) {
