@@ -14,7 +14,7 @@ class EnterInfo extends Component {
                 </div>
 
                 <div className="selectTestText">
-                    Please select the type of test
+                    *Please select the type of test
                 </div>
 
             </div>

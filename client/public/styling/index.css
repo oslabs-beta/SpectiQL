@@ -26,7 +26,8 @@ form {
     grid-template-columns: repeat(4, 25% [col-start]);
     grid-template-rows: repeat(4, 25% [row-start]);
     /* overflow: auto; */
-    background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed;
+    /* background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed; */
+    background: rgb(29, 29, 31);
     background-size: cover;
     /* width: 100vw;
     height: 100vh; */
@@ -42,10 +43,11 @@ form {
 }
 
 h1 {
-  line-height: 5.5;
+  line-height: 7.5;
   font-weight: 800;
   font-family: 'Poppins', sans-serif;
   font-size: 88px;
+  color: #f5f5f7;
 
 }
 
@@ -221,7 +223,7 @@ h1 {
   display: grid;
   position: fixed;
   grid-template-columns: 15% 42.5% 42.5%;
-  grid-template-rows: 5% 20% 35% 35% 5%;
+  grid-template-rows: 9% 20% 35% 35% 1%;
   /* overflow: auto; */
   width: 100vw;
   height: 100vh;
@@ -254,7 +256,7 @@ h1 {
     position: fixed;
     width: 150px;
     overflow-y: scroll;
-    top: 10%;
+    top: 14%;
     bottom: 0;
   }
 
@@ -345,6 +347,8 @@ h1 {
       text-align: right;
       font-style: italic;
       margin-top: 1%;
+      font-size: 15px;
+      color: rgb(29, 29, 31);
     }
     .enterTestDescText {
       grid-row: 2;
@@ -352,12 +356,16 @@ h1 {
       text-align: right;
       font-style: italic;
       margin-top: 1%;
+      font-size: 15px;
+      color: rgb(29, 29, 31);
     }
     .selectTestText {
       grid-row: 3;
       font-family: 'Poppins', sans-serif;
       text-align: right;
       margin-top: 1%;
+      font-size: 15px;
+      color: rgb(29, 29, 31);
     }
 
 .testInput {
@@ -485,24 +493,24 @@ h1 {
 
     .addTestButton{
       font-family: 'Poppins', sans-serif;
-      background: whitesmoke;
+      background: #e2e2e9;
     }
     .addTestButton:active{
-      background: rgb(140, 194, 142) !important;
+      background: rgb(189, 240, 191) !important;
     }
     .addTestButton:hover {
-      background: rgb(140, 194, 142) !important;
+      background: rgb(189, 240, 191) !important;
       }
 
     .generateTestButton {
       font-family: 'Poppins', sans-serif;
-      background: whitesmoke;
+      background: #e2e2e9;
     }
     .generateTestButton:active{
-      background: rgb(140, 194, 142) !important;
+      background: rgb(189, 240, 191) !important;
     }
     .generateTestButton:hover {
-      background: rgb(140, 194, 142) !important;
+      background: rgb(189, 240, 191) !important;
       }
 
 

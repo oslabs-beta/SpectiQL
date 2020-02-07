@@ -33,7 +33,7 @@ class GenerateTest extends Component {
               style={{ height: "42%", width: "100%", color: "black", borderColor: "black" }}
               onClick={this.props.updateTestSuite}
             >
-              Add to Test Suite
+              Add to Test Suites
             </Button>
           </Form.Group>
 
