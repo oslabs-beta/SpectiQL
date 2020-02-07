@@ -4,10 +4,11 @@ import { Button, Form, Col, DropdownButton, Dropdown } from "react-bootstrap";
 class GenerateTest extends Component {
   render() {
     return (
-      <Form className="generate-test">
-        <Form.Row>
-          <Form.Group as={Col} style={{ margin: 0, padding: 0 }}>
-            <select className="selectType" id="dd-reset" onChange = {this.props.selectTest}>
+      <div className="generateTestBox">
+      {/* <Form className="generate-test"> */}
+        {/* <Form.Row> */}
+          <Form.Group as={Col} style={{ margin: 0, padding: 3 }}>
+            {/* <select className="selectType" id="dd-reset" onChange = {this.props.selectTest}>
               <option value ="default" disabled selected>Select Test</option>
               <option value = "validQuery">Valid Query</option>
               <option value= "invalidQuery" >Invalid Query</option>
@@ -15,21 +16,21 @@ class GenerateTest extends Component {
               <option value = "invalidArgField" >Invalid Argument Field</option>
               <option value= "validArgDataType" >Valid Argument DataType</option>
               <option value = "invalidArgDataType" >Invalid Argument DataType</option>
-            </select>
-            <Button className="generateTest"
-              variant="primary"
+            </select> */}
+            <Button className="generateTestButton"
+              variant="outline-primary"
               size="lg"
               block
-              style={{ height: "35%", width: "100%" }}
+              style={{ height: "42%", width: "100%", color: "black", borderColor: "black" }}
               onClick={this.props.handleClick}
             >
               Generate Test
             </Button>
-            <Button className="addTest"
+            <Button className="addTestButton"
               variant="outline-primary"
               size="lg"
               block
-              style={{ height: "35%", width: "100%" }}
+              style={{ height: "42%", width: "100%", color: "black", borderColor: "black" }}
               onClick={this.props.updateTestSuite}
             >
               Add to Test Suite
@@ -37,18 +38,19 @@ class GenerateTest extends Component {
           </Form.Group>
 
           <Form.Group as={Col} controlId="sample-test">
-            <Form.Label column sm={6}>
+            {/* <Form.Label column sm={6}>
               Generated Test:
-            </Form.Label>
+            </Form.Label> */}
             <Form.Control
               as="textarea"
-              placeholder="Sample Test..."
-              style={{ width: "80%", height: "18rem" }}
+              placeholder="Generated Test..."
+              style={{ width: "100%", height: "17.7rem" }}
               value={this.props.generatedTest}
             />
           </Form.Group>
-        </Form.Row>
-      </Form>
+        {/* </Form.Row> */}
+      {/* </Form> */}
+      </div>
     );
   }
 }
