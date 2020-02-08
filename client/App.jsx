@@ -1,21 +1,47 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Main from "./main.jsx";
-import Query from "./Containers/QueryContainer.jsx";
+import QueryContainer from "./Containers/QueryContainer.jsx";
 // import Mutations from "./mainContainer/mutationComponent/Mutations.jsx"
 import "./public/styling/index.css";
 import Particles from "react-particles-js"; 
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
+import Query from "./Containers/QueryContainer.jsx";
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      schema: {}
+      schema: {},
+      testSuiteName: "",
+      testDescription: "",
+      selectedTest: "",
+      writeTest: "", 
+      generatedTest: "",
+      testFunctions: {
+                validQuery,
+                invalidQuery,
+                validArgField,
+                invalidArgField,
+                validArgDataType,
+                invalidArgDataType
+      },
+      testSuites: [],
+      testIndex: 0,
+      testSuiteToggler: true
     };
     this.handleNextClick = this.handleNextClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.addTestSuite = this.addTestSuite.bind(this);
+    this.updateTestSuite = this.updateTestSuite.bind(this);
+    this.selectTest = this.selectTest.bind(this);
+    this.deleteTest = this.deleteTest.bind(this);
+    this.editTest = this.editTest.bind(this);
+    this.dropDownReset = this.dropDownReset.bind(this);
+    this.testSuiteToggler = this.testSuiteToggler.bind(this);
   }
 
   openDocs() {
@@ -36,9 +62,113 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
+  handleChange(e) {
+    const value = e.target.value;
+    this.setState({ [e.target.name]: value });
+  }
+
+
+  handleClick() {
+    const value = this.state.testFunctions[this.state.selectedTest](this.state);
+    return this.setState({ generatedTest: value });
+  }
+
+
+  selectTest(e) {
+    this.setState({
+      selectedTest: e.target.value,
+      dropDownIndex: e.target.selectedIndex
+    });
+  }
+
+  addTestSuite() {
+    //push the generated test value into the test suites array
+    const newTestSuite = {
+      savedGeneratedTest: this.state.generatedTest,
+      savedTestSuiteName: this.state.testSuiteName,
+      savedTestDescription: this.state.testDescription,
+      savedWriteTest: this.state.writeTest,
+      savedSelectedTest: this.state.selectedTest,
+      testIndex: this.state.testIndex + 1
+    };
+    //shallow copy of array
+    let testSuites = this.state.testSuites.slice();
+    testSuites.push(newTestSuite);
+    return this.setState({
+      testSuiteName: "",
+      testDescription: "",
+      writeTest: "",
+      generatedTest: "",
+      selectedTest: this.dropDownReset(),
+      testIndex: this.state.testIndex + 1,
+      testSuites
+    });
+  }
+
+  updateTestSuite() {
+    let testSuites = this.state.testSuites.slice();
+    const updatedTestSuite = {
+      savedGeneratedTest: this.state.generatedTest,
+      savedTestSuiteName: this.state.testSuiteName,
+      savedTestDescription: this.state.testDescription,
+      savedWriteTest: this.state.writeTest,
+      savedSelectedTest: this.state.selectedTest,
+      testIndex: this.state.testIndex
+    };
+    testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
+    return this.setState({
+      testSuiteName: "",
+      testDescription: "",
+      writeTest: "",
+      generatedTest: "",
+      dropDownIndex: 0,
+      selectedTest: this.dropDownReset(),
+      testSuites,
+      testSuiteToggler: true
+    })
+  }
+
+  editTest(idx) {
+    let testSuite = this.state.testSuites[idx - 1];   
+    console.log('edit test state', this.state) 
+    let dropDownIndex = document.getElementById("dd-reset");
+    dropDownIndex.selectedIndex = testSuite.savedDropDownIndex;
+    return this.setState({
+      testSuiteName: testSuite.savedTestSuiteName,
+      testDescription: testSuite.savedTestDescription,
+      writeTest: testSuite.savedWriteTest,
+      selectedTest: this.dropDownReset(),
+      generatedTest: testSuite.savedGeneratedTest,
+      testIndex: testSuite.testIndex,
+      testSuiteToggler: false
+    })
+  }
+
+  deleteTest(idx) {
+    let testSuites = this.state.testSuites.filter(test => test.testIndex !== idx);
+    return this.setState({
+      testSuiteName: "",
+      testDescription: "",
+      writeTest: "",
+      generatedTest: "",
+      selectedTest: this.dropDownReset(),
+      testSuites,
+      testIndex: this.state.testIndex - 1,
+    });
+  }
+
+  dropDownReset() {
+    document.getElementById("dd-reset").selectedIndex = 0;
+  }
+
+  testSuiteToggler() {
+    return this.setState({
+      testSuiteToggler: !this.state.testSuiteToggler
+    })
+  }
+
   render() {
     return (
-      <HashRouter>
         <div className="fullscreen">
           <div className="introContainer">
             <div className="introHeader">
@@ -86,12 +216,10 @@ class App extends Component {
               <Route path="/main" exact component={Main}/>
             </Switch>
             <Switch>
-            <Route path="/queries" exact component={Query}/>
+              <Route path="/queries" exact component={Query}/>
             </Switch>
-                
           </div>
         </div>
-      </HashRouter>
     );
   }
 }

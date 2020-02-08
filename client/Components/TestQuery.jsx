@@ -15,9 +15,9 @@ class TestQuery extends Component {
               as="textarea"
               placeholder="Enter query here..."
               style={{ width: "80%", height: "18rem" }}
-              name = "writeTest"
-              value = {this.props.writeTest}
-              onChange = {this.props.handleChange}
+              name="writeTest"
+              value={this.props.writeTest}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
 

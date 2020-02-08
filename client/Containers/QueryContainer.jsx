@@ -6,16 +6,17 @@ import TestSuites from "../Components/TestSuites.jsx";
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 import Particles from "react-particles-js";
+import { Switch } from "react-router-dom";
 
 
 
 class Query extends Component {
   render() {
+    console.log('this is props in query:', this.props.testSuiteName)
     return (
 
       <div className="fullscreen">
         <div className="mainContainer">
-     
           <div className="testInput">
             <TestInput
               testSuiteName={this.props.testSuiteName}

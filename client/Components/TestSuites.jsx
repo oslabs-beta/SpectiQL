@@ -3,10 +3,8 @@ import { Card, Button } from "react-bootstrap";
 
 class TestSuites extends Component {
   render() {
-    // console.log(`this.props`,this.props)
-    console.log('thisis testSuites in testSuites:', this.props.testSuites)
+
     const testSuite = this.props.testSuites.map((test, index) => (
-      // console.log(`test`, test)
       <Card style={{ width: "18rem" }} key={index}>
         <Card.Body>
           <Card.Title>Test Suite {index + 1}</Card.Title>
