@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import LeftSideBar from "./mainComponents/LeftSideBar.jsx";
-import TestInput from "./mainComponents/TestInput.jsx";
-import TestQuery from "./mainComponents/TestQuery.jsx";
-import GenerateTest from "./mainComponents/GenerateTest.jsx";
-import TestSuites from "./mainComponents/TestSuites.jsx";
+import LeftSideBar from "./Components/LeftSideBar.jsx";
+import QueryContainer from "./Containers/QueryContainer.jsx";
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 import Particles from "react-particles-js";
@@ -15,7 +12,8 @@ import {
   invalidArgField,
   validArgDataType,
   invalidArgDataType
-} from "./tests/Tests.jsx";
+} from "./Tests/Tests.jsx";
+
 
 class Main extends Component {
   constructor(props) {
@@ -23,21 +21,20 @@ class Main extends Component {
     this.state = {
       testSuiteName: "",
       testDescription: "",
-      writeQuery: "",
-      generatedTest: "",
-      testSuites: [],
       selectedTest: "",
-      dropDownIndex: 0,
-      testIndex: 0,
-      testSuiteToggler: true,
+      writeTest: "", 
+      generatedTest: "",
       testFunctions: {
-        validQuery,
-        invalidQuery,
-        validArgField,
-        invalidArgField,
-        validArgDataType,
-        invalidArgDataType
-      }
+                validQuery,
+                invalidQuery,
+                validArgField,
+                invalidArgField,
+                validArgDataType,
+                invalidArgDataType
+      },
+      testSuites: [],
+      testIndex: 0,
+      testSuiteToggler: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -55,9 +52,14 @@ class Main extends Component {
     this.setState({ [e.target.name]: value });
   }
 
+  //og handleclick
+  // handleClick() {
+  //   const value = this.state.testFunctions[this.state.selectedTest](this.state);
+  //   return this.setState({ generatedTest: value });
+  // }
+
   handleClick() {
-    const value = this.state.testFunctions[this.state.selectedTest](this.state);
-    return this.setState({ generatedTest: value });
+    console.log('this is handleclick and testsuites in generateTest:');
   }
 
   selectTest(e) {
@@ -73,9 +75,8 @@ class Main extends Component {
       savedGeneratedTest: this.state.generatedTest,
       savedTestSuiteName: this.state.testSuiteName,
       savedTestDescription: this.state.testDescription,
-      savedWriteQuery: this.state.writeQuery,
+      savedWriteTest: this.state.writeTest,
       savedSelectedTest: this.state.selectedTest,
-      savedDropDownIndex: this.state.dropDownIndex,
       testIndex: this.state.testIndex + 1
     };
     //shallow copy of array
@@ -84,9 +85,8 @@ class Main extends Component {
     return this.setState({
       testSuiteName: "",
       testDescription: "",
-      writeQuery: "",
+      writeTest: "",
       generatedTest: "",
-      dropDownIndex: 0,
       selectedTest: this.dropDownReset(),
       testIndex: this.state.testIndex + 1,
       testSuites
@@ -99,16 +99,15 @@ class Main extends Component {
       savedGeneratedTest: this.state.generatedTest,
       savedTestSuiteName: this.state.testSuiteName,
       savedTestDescription: this.state.testDescription,
-      savedWriteQuery: this.state.writeQuery,
+      savedWriteTest: this.state.writeTest,
       savedSelectedTest: this.state.selectedTest,
-      savedDropDownIndex: this.state.dropDownIndex,
       testIndex: this.state.testIndex
     };
     testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
     return this.setState({
       testSuiteName: "",
       testDescription: "",
-      writeQuery: "",
+      writeTest: "",
       generatedTest: "",
       dropDownIndex: 0,
       selectedTest: this.dropDownReset(),
@@ -125,7 +124,7 @@ class Main extends Component {
     return this.setState({
       testSuiteName: testSuite.savedTestSuiteName,
       testDescription: testSuite.savedTestDescription,
-      writeQuery: testSuite.savedWriteQuery,
+      writeTest: testSuite.savedWriteTest,
       selectedTest: this.dropDownReset(),
       generatedTest: testSuite.savedGeneratedTest,
       testIndex: testSuite.testIndex,
@@ -138,7 +137,7 @@ class Main extends Component {
     return this.setState({
       testSuiteName: "",
       testDescription: "",
-      writeQuery: "",
+      writeTest: "",
       generatedTest: "",
       selectedTest: this.dropDownReset(),
       testSuites,
@@ -160,47 +159,33 @@ class Main extends Component {
     return (
       <div className="fullscreen">
         <div className="mainContainer">
-          <div className="leftSideBar">
-            <LeftSideBar clearSuites = {this.clearSuites}/>
-          </div>
-          <div className="testInput">
-            <TestInput
+         <div className="leftSideBar">
+            <LeftSideBar />
+         </div>
+         <div>
+        <QueryContainer 
               testSuiteName={this.state.testSuiteName}
               testDescription={this.state.testDescription}
-              writeQuery={this.state.writeQuery}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="testQuery">
-            <TestQuery
-              writeQuery={this.state.writeQuery}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="generateTest">
-            <GenerateTest
-              testSuiteName={this.state.testSuiteName}
-              testDescription={this.state.testDescription}
-              writeQuery={this.state.writeQuery}
+              writeTest={this.state.writeTest}
+              handleChange={this.handleChange}
               handleClick={this.handleClick}
               generatedTest={this.state.generatedTest}
               addTestSuite={this.addTestSuite}
               updateTestSuite={this.updateTestSuite}
               selectTest={this.selectTest}
               testSuiteToggler={this.state.testSuiteToggler}
-            />
-          </div>
-          <div className="testSuites">
-            <TestSuites
               testSuites={this.state.testSuites}
               deleteTest={this.deleteTest}
               editTest={this.editTest}
-            />
-          </div>
-        </div>
+      />
       </div>
+      </div>
+      </div>
+      
     );
   }
 }
 
 export default Main;
+
+

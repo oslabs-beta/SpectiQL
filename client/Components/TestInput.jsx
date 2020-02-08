@@ -16,7 +16,7 @@ class TestInput extends Component {
                 placeholder="Enter test suite here..."
                 name="testSuiteName"
                 value={this.props.testSuiteName}
-                onChange={this.props.onChange}
+                onChange={this.props.handleChange}
               />
             </Col>
           </Form.Group>
@@ -33,7 +33,7 @@ class TestInput extends Component {
                 placeholder="Enter test description here..."
                 name="testDescription"
                 value={this.props.testDescription}
-                onChange={this.props.onChange}
+                onChange={this.props.handleChange}
               />
             </Col>
           </Form.Group>

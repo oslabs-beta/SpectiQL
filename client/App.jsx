@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
-import Main from "./mainContainer/main.jsx";
-import Mutations from "./mainContainer/mutationComponent/Mutations.jsx"
+import Main from "./main.jsx";
+import Query from "./Containers/QueryContainer.jsx";
+// import Mutations from "./mainContainer/mutationComponent/Mutations.jsx"
 import "./public/styling/index.css";
 import Particles from "react-particles-js"; 
 import "animate.css/animate.min.css";
@@ -82,9 +83,10 @@ class App extends Component {
               </Link>
             </div>
             <Switch>
-              <Route path="/main" exact component={Main} />
-              <Route path="/mutations" exact component={Mutations}/>
-              <Route path="/queries" exact component={Main}/>
+              <Route path="/main" exact component={Main}/>
+            </Switch>
+            <Switch>
+            <Route path="/queries" exact component={Query}/>
             </Switch>
                 
           </div>
