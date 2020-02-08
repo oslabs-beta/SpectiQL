@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { Button, Form, Col } from "react-bootstrap";
 
 class GenerateTest extends Component {
+  constructor(props) {
+    super(props);
+  };
+
   render() {
+    console.log('generatetest props:', this.props)
     const editTestSuite = () => {
       if (this.props.testSuiteToggler) {
         return (

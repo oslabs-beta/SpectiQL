@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Main from "./main.jsx";
-import QueryContainer from "./Containers/QueryContainer.jsx";
 // import Mutations from "./mainContainer/mutationComponent/Mutations.jsx"
 import "./public/styling/index.css";
 import Particles from "react-particles-js"; 
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
-import Query from "./Containers/QueryContainer.jsx";
+
+import {
+  validQuery,
+  invalidQuery,
+  validArgField,
+  invalidArgField,
+  validArgDataType,
+  invalidArgDataType
+} from "./Tests/Tests.jsx";
 
 
 class App extends Component {
@@ -169,6 +176,7 @@ class App extends Component {
 
   render() {
     return (
+        <HashRouter>
         <div className="fullscreen">
           <div className="introContainer">
             <div className="introHeader">
@@ -201,7 +209,6 @@ class App extends Component {
                   }} />
             </div>
             
-            
             <div className="introNext">
               <Link to="/main" exact>
                 <button className="next-button" onClick={this.handleNextClick}>Next</button>
@@ -213,13 +220,18 @@ class App extends Component {
               </Link>
             </div>
             <Switch>
-              <Route path="/main" exact component={Main}/>
+                <Route path="/main" exact render={props=> (<Main appstate={this.state} handleChange={this.handleChange} 
+                handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
+                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
             </Switch>
             <Switch>
-              <Route path="/queries" exact component={Query}/>
+               <Route path="/queries" exact render={props=> (<Main appstate={this.state} handleChange={this.handleChange} 
+                handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
+                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
             </Switch>
           </div>
         </div>
+        </HashRouter>
     );
   }
 }

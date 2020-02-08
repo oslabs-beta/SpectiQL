@@ -22,27 +22,28 @@ class Main extends Component {
   };
   
   render() {
+    console.log('yo this is this.props in main:',this.props)
     return (
       <div className="fullscreen">
         <div className="mainContainer">
          <div className="leftSideBar">
-            <LeftSideBar />
+            <LeftSideBar/>
          </div>
          <div>
         <QueryContainer 
-              testSuiteName={this.state.testSuiteName}
-              testDescription={this.state.testDescription}
-              writeTest={this.state.writeTest}
-              handleChange={this.handleChange}
-              handleClick={this.handleClick}
-              generatedTest={this.state.generatedTest}
-              addTestSuite={this.addTestSuite}
-              updateTestSuite={this.updateTestSuite}
-              selectTest={this.selectTest}
-              testSuiteToggler={this.state.testSuiteToggler}
-              testSuites={this.state.testSuites}
-              deleteTest={this.deleteTest}
-              editTest={this.editTest}
+              testSuiteName={this.props.appstate.testSuiteName}
+              testDescription={this.props.appstate.testDescription}
+              writeTest={this.props.appstate.writeTest}
+              handleChange={this.props.handleChange}
+              handleClick={this.props.handleClick}
+              generatedTest={this.props.appstate.generatedTest}
+              addTestSuite={this.props.addTestSuite}
+              updateTestSuite={this.props.updateTestSuite}
+              selectTest={this.props.selectTest}
+              testSuiteToggler={this.props.appstate.testSuiteToggler}
+              testSuites={this.props.appstate.testSuites}
+              deleteTest={this.props.deleteTest}
+              editTest={this.props.editTest}
       />
       </div>
       </div>
