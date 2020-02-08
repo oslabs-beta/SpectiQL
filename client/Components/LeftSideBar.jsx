@@ -3,20 +3,23 @@ import { Button, ButtonToolbar } from "react-bootstrap";
 import {  Link } from "react-router-dom";
 
 class SideBar extends Component {
+  constructor(props) {
+    super(props);
+  };
+
   render() {
     return (
+      // <div>Hello</div>
       <div className="leftSideBar">
         <ButtonToolbar className="buttonContainer">
           <div className="selections">Select</div>
             <Button className="queries" variant="outline-dark" size="lg">
-              <Link to = '/queries'>
-                Queries
+              <Link to = "/queries">
+              Queries
               </Link>
             </Button>
             <Button className="mutations" variant="outline-dark" size="lg">
-              <Link to = '/mutations' exact>
                 Mutations
-              </Link>
             </Button>
          
           <Button className="subscriptions" variant="outline-dark" size="lg">

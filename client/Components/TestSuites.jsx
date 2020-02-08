@@ -3,9 +3,8 @@ import { Card, Button } from "react-bootstrap";
 
 class TestSuites extends Component {
   render() {
-    // console.log(`this.props`,this.props)
+
     const testSuite = this.props.testSuites.map((test, index) => (
-      // console.log(`test`, test)
       <Card style={{ width: "18rem" }} key={index}>
         <Card.Body>
           <Card.Title>Test Suite {index + 1}</Card.Title>
@@ -27,19 +26,19 @@ class TestSuites extends Component {
       </Card>
     ));
     return (
-      <div class="wrapper">
+      <div className="wrapper">
         <nav id="sidebar">
-          <div class="sidebar-header">
+          <div className="sidebar-header">
             <h3>Test Suites</h3>
           </div>
           {testSuite}
         </nav>
 
         <div id="content">
-          <nav id="content" class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-left"></i>
+          <nav id="content" className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
+              <button type="button" id="sidebarCollapse" className="btn btn-info">
+                <i className="fas fa-align-left"></i>
                 <span>Toggle Sidebar</span>
               </button>
             </div>

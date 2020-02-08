@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
 class TestQuery extends Component {
+  constructor(props) {
+    super(props);
+  };
+
   render() {
     return (
       <div className="writeQueryBox">
@@ -15,9 +19,9 @@ class TestQuery extends Component {
               as="textarea"
               placeholder="Enter query here..."
               style={{ width: "80%", height: "18rem" }}
-              name = "writeQuery"
-              value = {this.props.writeQuery}
-              onChange = {this.props.onChange}
+              name="writeTest"
+              value={this.props.writeTest}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
 
