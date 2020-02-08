@@ -16,11 +16,12 @@ form {
 
 #content {
   background: none !important;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   width: 100%;
 }
 
 .introContainer {
+
     display: grid;
     position: fixed;
     grid-template-columns: repeat(4, 25% [col-start]);
@@ -45,7 +46,7 @@ form {
 h1 {
   line-height: 7.5;
   font-weight: 800;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 88px;
   color: #f5f5f7;
 
@@ -233,6 +234,7 @@ h1 {
   position: top;
   grid-column: 1/4;
   grid-row: 1;
+  z-index: 1;
 }
 
 .testSuites {

@@ -1,22 +1,45 @@
 import React, { Component } from "react";
-import { Button, Form, Col, DropdownButton, Dropdown } from "react-bootstrap";
+import { Button, Form, Col } from "react-bootstrap";
 
 class GenerateTest extends Component {
+  constructor(props) {
+    super(props);
+  };
+
   render() {
+    console.log('generatetest props:', this.props)
+    const editTestSuite = () => {
+      if (this.props.testSuiteToggler) {
+        return (
+          <Button className="addTestButton"
+          variant="outline-primary"
+          size="lg"
+          block
+          style={{ height: "42%", width: "100%", color: "black", borderColor: "black" }}
+          onClick={this.props.addTestSuite}
+        >
+          Add to Test Suite
+        </Button>
+        )
+      } else {
+        return (
+          <Button className="updateTest"
+          variant="outline-primary"
+          size="lg"
+          block
+          style={{ height: "42%", width: "100%", color: "black", borderColor: "black" }}
+          onClick={this.props.updateTestSuite}
+        >
+          Update Test Suite
+        </Button>
+        )
+      }
+    };
     return (
       <div className="generateTestBox">
       {/* <Form className="generate-test"> */}
         {/* <Form.Row> */}
           <Form.Group as={Col} style={{ margin: 0, padding: 3 }}>
-            {/* <select className="selectType" id="dd-reset" onChange = {this.props.selectTest}>
-              <option value ="default" disabled selected>Select Test</option>
-              <option value = "validQuery">Valid Query</option>
-              <option value= "invalidQuery" >Invalid Query</option>
-              <option value= "validArgField" >Valid Argument Field</option>
-              <option value = "invalidArgField" >Invalid Argument Field</option>
-              <option value= "validArgDataType" >Valid Argument DataType</option>
-              <option value = "invalidArgDataType" >Invalid Argument DataType</option>
-            </select> */}
             <Button className="generateTestButton"
               variant="outline-primary"
               size="lg"
@@ -26,7 +49,7 @@ class GenerateTest extends Component {
             >
               Generate Test
             </Button>
-            <Button className="addTestButton"
+            {/* <Button className="addTestButton"
               variant="outline-primary"
               size="lg"
               block
@@ -34,7 +57,8 @@ class GenerateTest extends Component {
               onClick={this.props.updateTestSuite}
             >
               Add to Test Suites
-            </Button>
+            </Button> */}
+            {editTestSuite()}
           </Form.Group>
 
           <Form.Group as={Col} controlId="sample-test">

@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
 class TestQuery extends Component {
+  constructor(props) {
+    super(props);
+  };
+
   render() {
     return (
       <div className="writeQueryBox">

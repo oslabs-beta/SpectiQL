@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
 class TestInput extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="testInputContainer">
@@ -16,7 +20,7 @@ class TestInput extends Component {
                 placeholder="Enter test suite here..."
                 name="testSuiteName"
                 value={this.props.testSuiteName}
-                onChange={this.props.onChange}
+                onChange={this.props.handleChange}
               />
             </Col>
           </Form.Group>
@@ -33,23 +37,23 @@ class TestInput extends Component {
                 placeholder="Enter test description here..."
                 name="testDescription"
                 value={this.props.testDescription}
-                onChange={this.props.onChange}
+                onChange={this.props.handleChange}
               />
             </Col>
           </Form.Group>
         {/* </Form> */}
-        <select className="selectQueryType" id="dd-reset" onChange = {this.props.selectTest}>
-              <option className="new-select" value ="default" disabled selected>Select Test</option>
-              <option className="new-select" value = "validQuery">Valid Query</option>
-              <option className="new-select" value= "invalidQuery" >Invalid Query</option>
-              <option className="new-select" value= "validArgField" >Valid Argument Field</option>
-              <option className="new-select" value = "invalidArgField" >Invalid Argument Field</option>
-              <option className="new-select" value= "validArgDataType" >Valid Argument DataType</option>
-              <option className="new-select" value = "invalidArgDataType" >Invalid Argument DataType</option>
+        <select className="selectQueryType" id="dd-reset" onChange={this.props.selectTest}>
+              <option  value ="default" disabled selected>Select Test</option>
+              <option  value = "validQuery">Valid Query</option>
+              <option  value= "invalidQuery" >Invalid Query</option>
+              <option  value= "validArgField" >Valid Argument Field</option>
+              <option  value = "invalidArgField" >Invalid Argument Field</option>
+              <option  value= "validArgDataType" >Valid Argument DataType</option>
+              <option  value = "invalidArgDataType" >Invalid Argument DataType</option>
             </select>
       </div>
     );
   }
 }
-
+  
 export default TestInput;
