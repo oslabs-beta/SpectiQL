@@ -1,5 +1,6 @@
 const fs = require('fs');
 const easygraphqlSchemaParser = require('easygraphql-parser');
+const EasyGraphQLTester = require('easygraphql-tester')
 const extension = require('./extension');
 const path = require('path');
   
@@ -30,7 +31,12 @@ const path = require('path');
     }
   }
 
+  const testSchema = (filePath) => {
+    const parsedSchema = fs.readFileSync((filePath), {encoding: 'utf-8'});
+    const testInstance = new EasyGraphQLTester(parsedSchema);
+    return testInstance;
+  }
 
   
-  module.exports = { config, getSchema, extension };
+  module.exports = { config, getSchema, extension, testSchema };
 

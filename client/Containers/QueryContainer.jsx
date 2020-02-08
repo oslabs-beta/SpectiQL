@@ -25,6 +25,7 @@ class Query extends Component {
               testSuiteName={this.props.testSuiteName}
               testDescription={this.props.testDescription}
               writeTest={this.props.writeTest}
+              selectTest={this.props.selectTest}
               handleChange={this.props.handleChange}
             />
           </div>
