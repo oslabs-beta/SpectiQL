@@ -5,43 +5,45 @@ class TestSuites extends Component {
   render() {
     console.log('testsuites props', this.props)
     const testSuite = this.props.testSuites.map((test, index) => (
-      <Card style={{ width: "18rem" }} key={index}>
+      // console.log(`test`, test)
+      <Card style={{  }} key={index}>
         <Card.Body>
           <Card.Title>Test Suite {index + 1}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             {test.savedTestSuiteName}
           </Card.Subtitle>
           <Card.Text>{test.savedTestDescription}</Card.Text>
-          <Button
+          <button className="testSuiteEditButton"
             onClick={() => this.props.editTest(test.testIndex)}
           >
             Edit Test
-          </Button>
-          <Button
+          </button>
+          <button className="testSuiteDeleteButton"
             onClick={() => this.props.deleteTest(test.testIndex)}
           >
             Delete Test
-          </Button>
+          </button>
         </Card.Body>
       </Card>
     ));
     return (
-      <div className="wrapper">
-        <nav id="sidebar">
-          <div className="sidebar-header">
-            <h3>Test Suites</h3>
+      <div class="wrapper">
+        <h3>Test Suites</h3>
+        <div id="sidebar">
+          <div class="sidebar-header">
+            {/* <h3>Test Suites</h3> */}
           </div>
           {testSuite}
-        </nav>
+        </div>
 
         <div id="content">
-          <nav id="content" className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container-fluid">
-              <button type="button" id="sidebarCollapse" className="btn btn-info">
-                <i className="fas fa-align-left"></i>
+          <nav id="content" class="navbar navbar-expand-lg navbar-light bg-light">
+            {/* <div class="container-fluid">
+              <button type="button" id="sidebarCollapse" class="btn btn-info">
+                <i class="fas fa-align-left"></i>
                 <span>Toggle Sidebar</span>
               </button>
-            </div>
+            </div> */}
           </nav>
         </div>
       </div>

@@ -10,7 +10,8 @@ module.exports = {
           filename: "bundle.js"
         },
         devServer: {
-          contentBase: "./client/public/",
+          // contentBase: "./build/", //comment out for when developing 
+          contentBase: "./client/public/", 
           open: true,
           port: 3000,
           overlay: true,
@@ -18,7 +19,7 @@ module.exports = {
         plugins: [
           new HtmlWebpackPlugin({
             template: './client/public/index.html',
-            output: './client/public/index.html'
+            output: './build/index.html'
         }),
           new webpack.HotModuleReplacementPlugin()
         ],
