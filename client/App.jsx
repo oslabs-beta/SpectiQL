@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Main from "./main.jsx";
-// import Mutations from "./mainContainer/mutationComponent/Mutations.jsx"
+import Mutations from "./Containers/MutationContainer.jsx"
 import "./public/styling/index.css";
 import Particles from "react-particles-js"; 
 import "animate.css/animate.min.css";
@@ -226,6 +226,11 @@ class App extends Component {
             </Switch>
             <Switch>
                <Route path="/queries" exact render={props=> (<Main appstate={this.state} handleChange={this.handleChange} 
+                handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
+                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
+            </Switch>
+            <Switch>
+               <Route path="/mutations" exact render={props=> (<Mutations appstate={this.state} handleChange={this.handleChange} 
                 handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
                 selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
             </Switch>

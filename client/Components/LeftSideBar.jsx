@@ -19,7 +19,9 @@ class SideBar extends Component {
               </Link>
             </Button>
             <Button className="mutations" variant="outline-dark" size="lg">
-                Mutations
+              <Link to = "/mutations">
+              Mutations
+              </Link>
             </Button>
          
           <Button className="subscriptions" variant="outline-dark" size="lg">

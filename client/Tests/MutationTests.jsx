@@ -1,7 +1,7 @@
 const validMutation = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
-    const validMutationTest = \`\n${props.writeMutation}\`
+    const validMutationTest = \`\n${props.writeTest}\`
     tester.test(true, validMutationTest, ${props.writeInput})
   })`
   return newTest;
@@ -10,7 +10,7 @@ const validMutation = (props) => {
 const invalidMutation = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
-    const inValidMutationTest = \`\n${props.writeMutation}\`
+    const inValidMutationTest = \`\n${props.writeTest}\`
     tester.test(false, validMutationTest, ${props.writeInput})
   })`
   return newTest;
