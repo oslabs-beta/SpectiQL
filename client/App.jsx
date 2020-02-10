@@ -57,6 +57,8 @@ class App extends Component {
     this.testSuiteToggler = this.testSuiteToggler.bind(this);
   }
 
+
+  //redirects to doc page when clicked
   openDocs() {
     window.open(
       "https://github.com/oslabs-beta/SpectiQL/blob/master/REAMDE.md"
