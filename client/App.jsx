@@ -15,7 +15,7 @@ import {
   validArgDataType,
   invalidArgDataType,
   validMutation,
-  inValidMutation,
+  invalidMutation,
 } from "./Tests/Tests.jsx";
 
 
@@ -38,7 +38,7 @@ class App extends Component {
                 validArgDataType,
                 invalidArgDataType,
                 validMutation,
-                inValidMutation
+                invalidMutation
       },
       testSuites: [],
       testIndex: 0,
