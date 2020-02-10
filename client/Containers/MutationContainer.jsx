@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import LeftSideBar from "../Components/LeftSideBar.jsx";
-import TestInput from "../Components/TestInput.jsx";
-import TestMutation from "../mainContainer/mutationComponent/TestMutation.jsx";
-import GenerateMutationTest from "../mainContainer/mutationComponent/GenerateMutationTest.jsx";
+import MutationTestInput from "../Components/MutationTestInput.jsx";
+import TestMutation from "../Components/TestMutation.jsx";
+import GenerateTest from "../Components/GenerateTest.jsx";
 import TestSuites from "../Components/TestSuites.jsx";
 
 class Mutations extends Component {
@@ -18,34 +18,37 @@ class Mutations extends Component {
             <LeftSideBar />
           </div>
           <div className="testInput">
-            <TestInput             
-              testSuiteName={this.props.testSuiteName}
-              testDescription={this.props.testDescription}
-              writeTest={this.props.writeTest}
-              onChange={this.handleChange}
+            <MutationTestInput             
+              testSuiteName={this.props.appstate.testSuiteName}
+              testDescription={this.props.appstate.testDescription}
+              writeTest={this.props.appstate.writeTest}
+              selectTest={this.props.selectTest}
+              handleChange={this.props.handleChange}
               />
           </div>
           <div className="testQuery">
             <TestMutation
-              writeTest={this.props.writeTest}
+              writeTest={this.props.appstate.writeTest}
               writeInput={this.props.writeInput}
-              onChange={this.props.handleChange}
+              handleChange={this.props.handleChange}
             />
           </div>
           <div className="generateTest">
-            <GenerateMutationTest
+            <GenerateTest
               testSuiteName={this.props.testSuiteName}
               testDescription={this.props.testDescription}
               writeTest={this.props.writeTest}
               handleClick={this.props.handleClick}
-              generatedTest={this.props.generatedTest}
+              generatedTest={this.props.appstate.generatedTest}
+              addTestSuite={this.props.addTestSuite}
               updateTestSuite={this.props.updateTestSuite}
               selectTest={this.props.selectTest}
+              testSuiteToggler={this.props.appstate.testSuiteToggler}
               />
           </div>
           <div className="testSuites">
             <TestSuites
-              testSuites={this.props.testSuites}
+              testSuites={this.props.appstate.testSuites}
               deleteTest={this.props.deleteTest}
             />
           </div>

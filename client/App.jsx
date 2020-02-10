@@ -13,7 +13,9 @@ import {
   validArgField,
   invalidArgField,
   validArgDataType,
-  invalidArgDataType
+  invalidArgDataType,
+  validMutation,
+  inValidMutation,
 } from "./Tests/Tests.jsx";
 
 
@@ -26,6 +28,7 @@ class App extends Component {
       testDescription: "",
       selectedTest: "",
       writeTest: "", 
+      writeInput:"",
       generatedTest: "",
       testFunctions: {
                 validQuery,
@@ -33,7 +36,9 @@ class App extends Component {
                 validArgField,
                 invalidArgField,
                 validArgDataType,
-                invalidArgDataType
+                invalidArgDataType,
+                validMutation,
+                inValidMutation
       },
       testSuites: [],
       testIndex: 0,
