@@ -44,6 +44,7 @@ class Main extends Component {
               testSuites={this.props.appstate.testSuites}
               deleteTest={this.props.deleteTest}
               editTest={this.props.editTest}
+              schema={this.props.appstate.schema}
       />
       </div>
       </div>

@@ -33,6 +33,7 @@ class Query extends Component {
             <TestQuery
               writeTest={this.props.writeTest}
               handleChange={this.props.handleChange}
+              schema={this.props.schema}
             />
           </div>
           <div className="generateTest">

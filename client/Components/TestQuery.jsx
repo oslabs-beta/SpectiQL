@@ -7,6 +7,17 @@ class TestQuery extends Component {
   };
 
   render() {
+    // const schemaTreeData = [
+    //   {
+    //     name: 'Query',
+    //     attributes: {
+    //       type: 'Root'
+    //     },
+    //   },
+    //   children:[ {}]
+    // ];
+    console.log(this.props.schema.queries);
+    
     return (
       <div className="writeQueryBox">
       {/* <Form className="test-query-box"> */}
