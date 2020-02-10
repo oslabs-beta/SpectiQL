@@ -64,7 +64,7 @@ const validMutation = (props) => {
 const invalidMutation = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
-    const inValidMutationTest = \`\n${props.writeTest}\`
+    const invalidMutationTest = \`\n${props.writeTest}\`
     tester.test(false, validMutationTest, ${props.writeInput})
   })`
   return newTest;
