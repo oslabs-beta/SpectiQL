@@ -3,12 +3,9 @@ import { Button, ButtonToolbar } from "react-bootstrap";
 import {  Link } from "react-router-dom";
 
 class SideBar extends Component {
-<<<<<<< HEAD:client/mainContainer/mainComponents/LeftSideBar.jsx
-=======
   constructor(props) {
     super(props);
   };
->>>>>>> cd1fe22ce4a85aa02dfa333a0c1fc8d18e3f15b7:client/Components/LeftSideBar.jsx
 
   render() {
 

@@ -24,11 +24,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-      schema: {
-
-      }
-=======
       schema: {},
       testSuiteName: "",
       testDescription: "",
@@ -49,7 +44,6 @@ class App extends Component {
       testSuites: [],
       testIndex: 0,
       testSuiteToggler: true
->>>>>>> cd1fe22ce4a85aa02dfa333a0c1fc8d18e3f15b7
     };
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -68,12 +62,8 @@ class App extends Component {
       "https://github.com/oslabs-beta/SpectiQL/blob/master/REAMDE.md"
     );
   }
-<<<<<<< HEAD
 
   //retrieving user's schema after they configure their file path
-=======
- 
->>>>>>> cd1fe22ce4a85aa02dfa333a0c1fc8d18e3f15b7
   handleNextClick() {
     fetch('/spectiql', {
       method: 'POST',
