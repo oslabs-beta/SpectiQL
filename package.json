@@ -32,6 +32,7 @@
     "babel-loader": "^8.0.6",
     "bootstrap": "^4.4.1",
     "css-loader": "^3.4.2",
+    "d3": "^5.15.0",
     "easygraphql-mock": "^0.1.15",
     "easygraphql-parser": "0.0.13",
     "easygraphql-tester": "^5.1.6",
