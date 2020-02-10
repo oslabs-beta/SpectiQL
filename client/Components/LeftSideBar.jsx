@@ -1,23 +1,32 @@
 import React, { Component } from "react";
 import { Button, ButtonToolbar } from "react-bootstrap";
-
+import {  Link } from "react-router-dom";
 
 class SideBar extends Component {
+  constructor(props) {
+    super(props);
+  };
+
   render() {
     return (
+      // <div>Hello</div>
       <div className="leftSideBar">
         <ButtonToolbar className="buttonContainer">
-          <div className="selections">Select</div>
+          {/* <div className="selections">Select</div> */}
           <Button className="queries" variant="outline-dark" size="lg">
+            <Link to = "/queries">
             Queries
+            </Link>
           </Button>
           <Button className="mutations" variant="outline-dark" size="lg">
+            <Link to = "/mutations">
             Mutations
+            </Link>
           </Button>
           <Button className="subscriptions" variant="outline-dark" size="lg">
             Subscriptions
           </Button>
-          <div className="testing">Testing</div>
+          {/* <div className="testing">Testing</div>
           <Button className="tester" variant="outline-dark" size="lg">
             Tester
           </Button>
@@ -26,7 +35,7 @@ class SideBar extends Component {
           </Button>
           <Button className="export" variant="outline-dark" size="lg">
             Export
-          </Button>
+          </Button> */}
           <Button className="clear" variant="outline-dark" size="lg">
             Clear
           </Button>
