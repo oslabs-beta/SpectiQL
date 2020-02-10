@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
-class TestQuery extends Component {
+class TestMutation extends Component {
   constructor(props) {
     super(props);
   };
-
   render() {
+    console.log('this is inside testmutation:',this.props)
     return (
       <div className="writeQueryBox">
       {/* <Form className="test-query-box"> */}
@@ -18,7 +18,7 @@ class TestQuery extends Component {
             </Form.Label> */}
             <Form.Control
               as="textarea"
-              placeholder="Enter query here..."
+              placeholder="Enter Mutation here..."
               style={{ width: "100%", height: "17.7rem" }}
               name = "writeTest"
               value = {this.props.writeTest}
@@ -34,16 +34,20 @@ class TestQuery extends Component {
             </Form.Label> */}
             <Form.Control
               as="textarea"
-              placeholder="Sample selected query here..."
+              placeholder="Insert your input type variable as an object:"
               style={{ width: "100%", height: "17.7rem" }}
+              name = "writeInput"
+              value = {this.props.writeInput}
+              onChange = {this.props.handleChange}
             />
           </Form.Group>
           </div>
         {/* </Form.Row> */}
       {/* </Form> */}
       </div>
+     
     );
   }
 }
 
-export default TestQuery;
+export default TestMutation;

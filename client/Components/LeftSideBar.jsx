@@ -14,10 +14,14 @@ class SideBar extends Component {
         <ButtonToolbar className="buttonContainer">
           {/* <div className="selections">Select</div> */}
           <Button className="queries" variant="outline-dark" size="lg">
+            <Link to = "/queries">
             Queries
+            </Link>
           </Button>
           <Button className="mutations" variant="outline-dark" size="lg">
+            <Link to = "/mutations">
             Mutations
+            </Link>
           </Button>
           <Button className="subscriptions" variant="outline-dark" size="lg">
             Subscriptions
