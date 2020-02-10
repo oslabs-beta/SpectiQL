@@ -20,8 +20,8 @@ class TestQuery extends Component {
               as="textarea"
               placeholder="Enter query here..."
               style={{ width: "100%", height: "17.7rem" }}
-              name = "writeQuery"
-              value = {this.props.writeQuery}
+              name = "writeTest"
+              value = {this.props.writeTest}
               onChange = {this.props.handleChange}
             />
           </Form.Group>
