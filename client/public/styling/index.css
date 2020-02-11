@@ -190,25 +190,7 @@ h1 {
     color: #f5f5f7;
   }
 
-  .testing {
-    text-align: center;
-    line-height: 2.5;
-    font-weight: 800;
-    font-size: 33px;
-    font-family: 'Poppins', sans-serif;
-    /* grid-row: 5; */
-    width: 70%;
-    margin-right: 20%;
-  }
-
   .export {
-    /* grid-row: 8; */
-    width: inherit;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-  }
-
-  .schemaTree {
     grid-column: 5;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
@@ -237,17 +219,13 @@ h1 {
 .testSuites {
   grid-column: 1;
   grid-row: 2/6;
-  /* background-color: rgb(157, 157, 160); */
   color: black;
 }
 
   .wrapper {
     background: none;
     position: fixed;
-    /* width: 150px;
-    overflow-y: scroll;
-    top: 5%;
-    bottom: 0; */
+
   }
 
   #sidebar {

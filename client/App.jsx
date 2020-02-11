@@ -245,14 +245,14 @@ class App extends Component {
             </div>
 
             <div className="testTypeContainer">
-              Landing Page
+              {/* Landing Page */}
             </div>
 
             <div className="testSuites">
                 <TestSuites
                       testSuites={this.state.testSuites}
-                      deleteTest={this.state.deleteTest}
-                      editTest={this.state.editTest}
+                      deleteTest={this.deleteTest}
+                      editTest={this.editTest}
                 />
             </div>
 
