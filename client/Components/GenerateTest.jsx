@@ -7,9 +7,8 @@ class GenerateTest extends Component {
   };
 
   render () {
-    console.log('testSuiteToggler:', this.propstestSuiteToggler)
     const editTestSuite = () => {
-      if (this.props.testSuiteToggler) {
+      if (this.props.testSuiteToggler === true) {
         return (
           <Button
             className='addTestButton'
