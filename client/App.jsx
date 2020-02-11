@@ -217,10 +217,6 @@ class App extends Component {
       test => test.testIndex !== idx
     );
     return this.setState({
-      testSuiteName: "",
-      testDescription: "",
-      writeTest: "",
-      generatedTest: "",
       selectedTest: this.dropDownReset(),
       testSuiteToggler: true,
       testSuites,
