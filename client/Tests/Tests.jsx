@@ -4,7 +4,8 @@ const validQuery = (props) =>{
     it('${props.testDescription}', () => {
     const validQueryTest = \`\n${props.writeTest}\`
     tester.test(true, validQueryTest)
-  })`;
+  })
+})`;
   return newTest;
 };
 
@@ -13,7 +14,8 @@ const invalidQuery = props => {
     it('${props.testDescription}', () => {
     const invalidQueryTest = \`${props.writeTest}\`
     tester.test(false, invalidQueryTest)
-  })`;
+  })
+})`;
   return newTest;
 };
 
@@ -22,7 +24,8 @@ const validArgField = props => {
     it('${props.testDescription}', () => {
     const validArgFieldTest = \`${props.writeTest}\`
     tester.test(true, validArgFieldTest)
-  })`;
+  })
+})`;
   return newTest;
 };
 
@@ -31,7 +34,8 @@ const invalidArgField = props => {
     it('${props.testDescription}', () => {
     const invalidArgFieldTest = \`${props.writeTest}\`
     tester.test(false, invalidArgFieldTest)
-  })`;
+  })
+})`;
   return newTest;
 };
 
@@ -40,7 +44,8 @@ const validArgDataType = props => {
     it('${props.testDescription}', () => {
     const validArgValueTypeTest = \`${props.writeTest}\`
     tester.test(true, validArgValueTypeTest)
-  })`;
+  })
+})`;
   return newTest;
 };
 
@@ -49,7 +54,8 @@ const invalidArgDataType = props => {
     it('${props.testDescription}', () => {
     const invalidArgValueTypeTest = \`${props.writeTest}\`
     tester.test(false, invalidArgValueTypeTest)
-  })`;
+  })
+})`;
   return newTest;
 };
 const validMutation = (props) => {
@@ -57,7 +63,8 @@ const validMutation = (props) => {
     it('${props.testDescription}', () => {
     const validMutationTest = \`\n${props.writeTest}\`
     tester.test(true, validMutationTest, ${props.writeInput})
-  })`
+  })
+})`
   return newTest;
 }
 
@@ -66,7 +73,8 @@ const invalidMutation = (props) => {
     it('${props.testDescription}', () => {
     const invalidMutationTest = \`\n${props.writeTest}\`
     tester.test(false, validMutationTest, ${props.writeInput})
-  })`
+  })
+})`
   return newTest;
 }
 
