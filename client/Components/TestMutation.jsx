@@ -7,11 +7,8 @@ class TestMutation extends Component {
   }
   ;
   render () {
-    console.log('this is inside testmutation:', this.props)
     return (
       <div className='writeMutationBox'>
-        {/* <Form className="test-query-box"> */}
-        {/* <Form.Row> */}
         <div className='test-mutation-write'>
           <Form.Group as={Col} controlId='write-query'>
             <Form.Label column sm={6}>
@@ -43,12 +40,10 @@ class TestMutation extends Component {
             />
           </Form.Group>
         </div>
-        {/* </Form.Row> */}
-        {/* </Form> */}
       </div>
 
     )
   }
 }
 
-export default TestMutation
+export default TestMutation;

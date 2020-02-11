@@ -23,4 +23,4 @@ class EnterInfo extends Component {
   }
 }
 
-export default EnterInfo
+export default EnterInfo;

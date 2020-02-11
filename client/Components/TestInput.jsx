@@ -7,7 +7,6 @@ class TestInput extends Component {
   }
 
   render () {
-    // console.log('this is inside testinput:', this.props)
     return (
       <div className='testInputContainer'>
         {/* <Form className="testSuiteInput"> */}
@@ -59,4 +58,4 @@ class TestInput extends Component {
   }
 }
 
-export default TestInput
+export default TestInput;
