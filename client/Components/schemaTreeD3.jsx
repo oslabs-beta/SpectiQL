@@ -12,9 +12,10 @@ class SchemaTreeD3 extends Component {
     const dimensions = this.treeContainer.getBoundingClientRect();
     this.setState({
       translate: {
-        x: dimensions.width / 5,
+        x: dimensions.width / 10,
         y: dimensions.height / 2
-      }
+      },
+      depth: 1
     });
   }
 
@@ -88,7 +89,7 @@ class SchemaTreeD3 extends Component {
         <Tree 
           data={queryTreeData} 
           translate={this.state.translate}
-          initialDepth={1}
+          initialDepth={this.state.depth}
           />
       </div>
       </div>
