@@ -12,7 +12,7 @@ class SchemaTreeD3 extends Component {
     const dimensions = this.treeContainer.getBoundingClientRect();
     this.setState({
       translate: {
-        x: dimensions.width / 2,
+        x: dimensions.width / 5,
         y: dimensions.height / 2
       }
     });
@@ -84,10 +84,11 @@ class SchemaTreeD3 extends Component {
 
     return (
     <div className="svg-container">
-      <div id='treeWrapper' style={{ width: '100%', height: '100%' }} ref={tc => (this.treeContainer = tc)} initialDepth={ 1 }>
+      <div id='treeWrapper' style={{ width: '100%', height: '100%' }} ref={tc => (this.treeContainer = tc)} >
         <Tree 
           data={queryTreeData} 
           translate={this.state.translate}
+          initialDepth={1}
           />
       </div>
       </div>
