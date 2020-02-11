@@ -8,7 +8,7 @@ class SideBar extends Component {
   };
 
   render() {
-
+    console.log('this is sidebar props:', this.props)
     return (
       // <div>Hello</div>
       <div className="leftSideBar">
@@ -34,9 +34,10 @@ class SideBar extends Component {
           <Button className="save" variant="outline-dark" size="lg">
             Save
           </Button>
-          <Button className="export" variant="outline-dark" size="lg">
+          */}
+          <Button onClick={this.props.handleExportClick} className="export" variant="outline-dark" size="lg">
             Export
-          </Button> */}
+          </Button>
           <Button className="clear" variant="outline-dark" size="lg">
             Clear
           </Button>

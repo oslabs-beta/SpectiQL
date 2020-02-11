@@ -27,7 +27,7 @@ const path = require('path');
     console.log(parsedSchema);
     return (request, response) => {
       response.set('Content-Type', 'text/html');
-      response.status(200).json({ schema: parsedSchema});
+      response.status(200).json({ filePath, schema: parsedSchema});
     }
   }
 

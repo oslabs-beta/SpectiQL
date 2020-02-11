@@ -27,7 +27,9 @@ class Main extends Component {
       <div className="fullscreen">
         <div className="mainContainer">
          <div className="leftSideBar">
-            <LeftSideBar/>
+            <LeftSideBar
+            handleExportClick={this.props.handleExportClick}
+            />
          </div>
          <div>
         <QueryContainer 
