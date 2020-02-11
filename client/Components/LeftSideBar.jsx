@@ -1,30 +1,29 @@
-import React, { Component } from "react";
-import { Button, ButtonToolbar } from "react-bootstrap";
-import {  Link } from "react-router-dom";
+import React, { Component } from 'react'
+import { Button, ButtonToolbar } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 class SideBar extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   };
 
-  render() {
-    console.log('this is sidebar props:', this.props)
+  render () {
     return (
       // <div>Hello</div>
-      <div className="leftSideBar">
-        <ButtonToolbar className="buttonContainer">
+      <div className='mainNavBar'>
+        <ButtonToolbar className='buttonContainer'>
           {/* <div className="selections">Select</div> */}
-          <Button className="queries" variant="outline-dark" size="lg">
-            <Link to = "/queries">
+          <Button className='queries' variant='outline-dark' size='lg'>
+            <Link to='/queries'>
             Queries
             </Link>
           </Button>
-          <Button className="mutations" variant="outline-dark" size="lg">
-            <Link to = "/mutations">
+          <Button className='mutations' variant='outline-dark' size='lg'>
+            <Link to='/mutations'>
             Mutations
             </Link>
           </Button>
-          <Button className="subscriptions" variant="outline-dark" size="lg">
+          <Button className='subscriptions' variant='outline-dark' size='lg'>
             Subscriptions
           </Button>
           {/* <div className="testing">Testing</div>
@@ -35,15 +34,15 @@ class SideBar extends Component {
             Save
           </Button>
           */}
-          <Button onClick={this.props.handleExportClick} className="export" variant="outline-dark" size="lg">
+          <Button className='schemaTree' onClick={this.props.handleExportClick} className="export" variant="outline-dark" size="lg">
             Export
-          </Button>
-          <Button className="clear" variant="outline-dark" size="lg">
-            Clear
-          </Button>
+          </Button> 
+          {/* <Button className='schemaTree' variant='outline-dark' size='lg'>
+            Schema Tree
+          </Button> */}
         </ButtonToolbar>
       </div>
-    );
+    )
   }
 }
-export default SideBar;
+export default SideBar

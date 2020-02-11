@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import LeftSideBar from "./Components/LeftSideBar.jsx";
-import QueryContainer from "./Containers/QueryContainer.jsx";
-import "animate.css/animate.min.css";
-import ScrollAnimation from 'react-animate-on-scroll';
-import Particles from "react-particles-js";
-import { Switch, Route } from "react-router-dom";
+import React, { Component } from 'react'
+import LeftSideBar from './Components/LeftSideBar.jsx'
+import QueryContainer from './Containers/QueryContainer.jsx'
+import 'animate.css/animate.min.css'
+import ScrollAnimation from 'react-animate-on-scroll'
+import Particles from 'react-particles-js'
+import { Switch, Route } from 'react-router-dom'
 
 import {
   validQuery,
@@ -13,16 +13,15 @@ import {
   invalidArgField,
   validArgDataType,
   invalidArgDataType
-} from "./Tests/Tests.jsx";
-
+} from './Tests/Tests.jsx'
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   };
-  
-  render() {
-    console.log('yo this is this.props in main:',this.props)
+
+  render () {
+    console.log('yo this is this.props in main:', this.props)
     return (
       <div className="fullscreen">
         <div className="mainContainer">
@@ -46,15 +45,15 @@ class Main extends Component {
               testSuites={this.props.appstate.testSuites}
               deleteTest={this.props.deleteTest}
               editTest={this.props.editTest}
-      />
+              schema={this.props.appstate.schema}
+              schemaData={this.props.schemaData}
+            />
+          </div>
+        </div>
       </div>
-      </div>
-      </div>
-      
-    );
+
+    )
   }
 }
 
-export default Main;
-
-
+export default Main
