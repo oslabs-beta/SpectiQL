@@ -21,15 +21,23 @@ const createSchema = (filePath) => {
   const parsedSchema = easygraphqlSchemaParser(buildSchema)
   return parsedSchema
 }
-
-const getSchema = (filePath) => {
-  const parsedSchema = createSchema(filePath)
-  console.log(parsedSchema)
-  return (request, response) => {
-    response.set('Content-Type', 'text/html')
-    response.status(200).json({ schema: parsedSchema })
+  const getSchema = (filePath) => {
+    const parsedSchema = createSchema(filePath);
+    console.log(parsedSchema);
+    return (request, response) => {
+      response.set('Content-Type', 'text/html');
+      response.status(200).json({ filePath, schema: parsedSchema});
+    }
   }
-}
+
+// const getSchema = (filePath) => {
+//   const parsedSchema = createSchema(filePath)
+//   console.log(parsedSchema)
+//   return (request, response) => {
+//     response.set('Content-Type', 'text/html')
+//     response.status(200).json({ schema: parsedSchema })
+//   }
+// }
 
 const testSchema = (filePath) => {
   const parsedSchema = fs.readFileSync((filePath), { encoding: 'utf-8' })

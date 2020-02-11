@@ -33,12 +33,13 @@ class SideBar extends Component {
           <Button className="save" variant="outline-dark" size="lg">
             Save
           </Button>
-          <Button className="export" variant="outline-dark" size="lg">
+          */}
+          <Button className='schemaTree' onClick={this.props.handleExportClick} className="export" variant="outline-dark" size="lg">
             Export
-          </Button> */}
-          <Button className='schemaTree' variant='outline-dark' size='lg'>
+          </Button> 
+          {/* <Button className='schemaTree' variant='outline-dark' size='lg'>
             Schema Tree
-          </Button>
+          </Button> */}
         </ButtonToolbar>
       </div>
     )

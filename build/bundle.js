@@ -498,6 +498,7 @@
             /******/ 					default:
             /******/ 						throw new Error('Unexception type ' + result.type)
 /******/ 				}
+<<<<<<< HEAD
         /******/ 				if (abortError) {
           /******/ 					hotSetStatus('abort')
           /******/ 					return Promise.reject(abortError)
@@ -802,6 +803,743 @@
   /******/
   /******/ 	// Load entry module and return exports
   /******/ 	return hotCreateRequire('./index.js')(__webpack_require__.s = './index.js')
+=======
+/******/ 			};
+/******/ 		});
+/******/ 	}
+/******/
+/******/ 	var hotApplyOnUpdate = true;
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	var hotCurrentHash = "bd1d4ba08e6b108a9972";
+/******/ 	var hotRequestTimeout = 10000;
+/******/ 	var hotCurrentModuleData = {};
+/******/ 	var hotCurrentChildModule;
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	var hotCurrentParents = [];
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	var hotCurrentParentsTemp = [];
+/******/
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	function hotCreateRequire(moduleId) {
+/******/ 		var me = installedModules[moduleId];
+/******/ 		if (!me) return __webpack_require__;
+/******/ 		var fn = function(request) {
+/******/ 			if (me.hot.active) {
+/******/ 				if (installedModules[request]) {
+/******/ 					if (installedModules[request].parents.indexOf(moduleId) === -1) {
+/******/ 						installedModules[request].parents.push(moduleId);
+/******/ 					}
+/******/ 				} else {
+/******/ 					hotCurrentParents = [moduleId];
+/******/ 					hotCurrentChildModule = request;
+/******/ 				}
+/******/ 				if (me.children.indexOf(request) === -1) {
+/******/ 					me.children.push(request);
+/******/ 				}
+/******/ 			} else {
+/******/ 				console.warn(
+/******/ 					"[HMR] unexpected require(" +
+/******/ 						request +
+/******/ 						") from disposed module " +
+/******/ 						moduleId
+/******/ 				);
+/******/ 				hotCurrentParents = [];
+/******/ 			}
+/******/ 			return __webpack_require__(request);
+/******/ 		};
+/******/ 		var ObjectFactory = function ObjectFactory(name) {
+/******/ 			return {
+/******/ 				configurable: true,
+/******/ 				enumerable: true,
+/******/ 				get: function() {
+/******/ 					return __webpack_require__[name];
+/******/ 				},
+/******/ 				set: function(value) {
+/******/ 					__webpack_require__[name] = value;
+/******/ 				}
+/******/ 			};
+/******/ 		};
+/******/ 		for (var name in __webpack_require__) {
+/******/ 			if (
+/******/ 				Object.prototype.hasOwnProperty.call(__webpack_require__, name) &&
+/******/ 				name !== "e" &&
+/******/ 				name !== "t"
+/******/ 			) {
+/******/ 				Object.defineProperty(fn, name, ObjectFactory(name));
+/******/ 			}
+/******/ 		}
+/******/ 		fn.e = function(chunkId) {
+/******/ 			if (hotStatus === "ready") hotSetStatus("prepare");
+/******/ 			hotChunksLoading++;
+/******/ 			return __webpack_require__.e(chunkId).then(finishChunkLoading, function(err) {
+/******/ 				finishChunkLoading();
+/******/ 				throw err;
+/******/ 			});
+/******/
+/******/ 			function finishChunkLoading() {
+/******/ 				hotChunksLoading--;
+/******/ 				if (hotStatus === "prepare") {
+/******/ 					if (!hotWaitingFilesMap[chunkId]) {
+/******/ 						hotEnsureUpdateChunk(chunkId);
+/******/ 					}
+/******/ 					if (hotChunksLoading === 0 && hotWaitingFiles === 0) {
+/******/ 						hotUpdateDownloaded();
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 		fn.t = function(value, mode) {
+/******/ 			if (mode & 1) value = fn(value);
+/******/ 			return __webpack_require__.t(value, mode & ~1);
+/******/ 		};
+/******/ 		return fn;
+/******/ 	}
+/******/
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	function hotCreateModule(moduleId) {
+/******/ 		var hot = {
+/******/ 			// private stuff
+/******/ 			_acceptedDependencies: {},
+/******/ 			_declinedDependencies: {},
+/******/ 			_selfAccepted: false,
+/******/ 			_selfDeclined: false,
+/******/ 			_disposeHandlers: [],
+/******/ 			_main: hotCurrentChildModule !== moduleId,
+/******/
+/******/ 			// Module API
+/******/ 			active: true,
+/******/ 			accept: function(dep, callback) {
+/******/ 				if (dep === undefined) hot._selfAccepted = true;
+/******/ 				else if (typeof dep === "function") hot._selfAccepted = dep;
+/******/ 				else if (typeof dep === "object")
+/******/ 					for (var i = 0; i < dep.length; i++)
+/******/ 						hot._acceptedDependencies[dep[i]] = callback || function() {};
+/******/ 				else hot._acceptedDependencies[dep] = callback || function() {};
+/******/ 			},
+/******/ 			decline: function(dep) {
+/******/ 				if (dep === undefined) hot._selfDeclined = true;
+/******/ 				else if (typeof dep === "object")
+/******/ 					for (var i = 0; i < dep.length; i++)
+/******/ 						hot._declinedDependencies[dep[i]] = true;
+/******/ 				else hot._declinedDependencies[dep] = true;
+/******/ 			},
+/******/ 			dispose: function(callback) {
+/******/ 				hot._disposeHandlers.push(callback);
+/******/ 			},
+/******/ 			addDisposeHandler: function(callback) {
+/******/ 				hot._disposeHandlers.push(callback);
+/******/ 			},
+/******/ 			removeDisposeHandler: function(callback) {
+/******/ 				var idx = hot._disposeHandlers.indexOf(callback);
+/******/ 				if (idx >= 0) hot._disposeHandlers.splice(idx, 1);
+/******/ 			},
+/******/
+/******/ 			// Management API
+/******/ 			check: hotCheck,
+/******/ 			apply: hotApply,
+/******/ 			status: function(l) {
+/******/ 				if (!l) return hotStatus;
+/******/ 				hotStatusHandlers.push(l);
+/******/ 			},
+/******/ 			addStatusHandler: function(l) {
+/******/ 				hotStatusHandlers.push(l);
+/******/ 			},
+/******/ 			removeStatusHandler: function(l) {
+/******/ 				var idx = hotStatusHandlers.indexOf(l);
+/******/ 				if (idx >= 0) hotStatusHandlers.splice(idx, 1);
+/******/ 			},
+/******/
+/******/ 			//inherit from previous dispose call
+/******/ 			data: hotCurrentModuleData[moduleId]
+/******/ 		};
+/******/ 		hotCurrentChildModule = undefined;
+/******/ 		return hot;
+/******/ 	}
+/******/
+/******/ 	var hotStatusHandlers = [];
+/******/ 	var hotStatus = "idle";
+/******/
+/******/ 	function hotSetStatus(newStatus) {
+/******/ 		hotStatus = newStatus;
+/******/ 		for (var i = 0; i < hotStatusHandlers.length; i++)
+/******/ 			hotStatusHandlers[i].call(null, newStatus);
+/******/ 	}
+/******/
+/******/ 	// while downloading
+/******/ 	var hotWaitingFiles = 0;
+/******/ 	var hotChunksLoading = 0;
+/******/ 	var hotWaitingFilesMap = {};
+/******/ 	var hotRequestedFilesMap = {};
+/******/ 	var hotAvailableFilesMap = {};
+/******/ 	var hotDeferred;
+/******/
+/******/ 	// The update info
+/******/ 	var hotUpdate, hotUpdateNewHash;
+/******/
+/******/ 	function toModuleId(id) {
+/******/ 		var isNumber = +id + "" === id;
+/******/ 		return isNumber ? +id : id;
+/******/ 	}
+/******/
+/******/ 	function hotCheck(apply) {
+/******/ 		if (hotStatus !== "idle") {
+/******/ 			throw new Error("check() is only allowed in idle status");
+/******/ 		}
+/******/ 		hotApplyOnUpdate = apply;
+/******/ 		hotSetStatus("check");
+/******/ 		return hotDownloadManifest(hotRequestTimeout).then(function(update) {
+/******/ 			if (!update) {
+/******/ 				hotSetStatus("idle");
+/******/ 				return null;
+/******/ 			}
+/******/ 			hotRequestedFilesMap = {};
+/******/ 			hotWaitingFilesMap = {};
+/******/ 			hotAvailableFilesMap = update.c;
+/******/ 			hotUpdateNewHash = update.h;
+/******/
+/******/ 			hotSetStatus("prepare");
+/******/ 			var promise = new Promise(function(resolve, reject) {
+/******/ 				hotDeferred = {
+/******/ 					resolve: resolve,
+/******/ 					reject: reject
+/******/ 				};
+/******/ 			});
+/******/ 			hotUpdate = {};
+/******/ 			var chunkId = "main";
+/******/ 			// eslint-disable-next-line no-lone-blocks
+/******/ 			{
+/******/ 				/*globals chunkId */
+/******/ 				hotEnsureUpdateChunk(chunkId);
+/******/ 			}
+/******/ 			if (
+/******/ 				hotStatus === "prepare" &&
+/******/ 				hotChunksLoading === 0 &&
+/******/ 				hotWaitingFiles === 0
+/******/ 			) {
+/******/ 				hotUpdateDownloaded();
+/******/ 			}
+/******/ 			return promise;
+/******/ 		});
+/******/ 	}
+/******/
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	function hotAddUpdateChunk(chunkId, moreModules) {
+/******/ 		if (!hotAvailableFilesMap[chunkId] || !hotRequestedFilesMap[chunkId])
+/******/ 			return;
+/******/ 		hotRequestedFilesMap[chunkId] = false;
+/******/ 		for (var moduleId in moreModules) {
+/******/ 			if (Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				hotUpdate[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if (--hotWaitingFiles === 0 && hotChunksLoading === 0) {
+/******/ 			hotUpdateDownloaded();
+/******/ 		}
+/******/ 	}
+/******/
+/******/ 	function hotEnsureUpdateChunk(chunkId) {
+/******/ 		if (!hotAvailableFilesMap[chunkId]) {
+/******/ 			hotWaitingFilesMap[chunkId] = true;
+/******/ 		} else {
+/******/ 			hotRequestedFilesMap[chunkId] = true;
+/******/ 			hotWaitingFiles++;
+/******/ 			hotDownloadUpdateChunk(chunkId);
+/******/ 		}
+/******/ 	}
+/******/
+/******/ 	function hotUpdateDownloaded() {
+/******/ 		hotSetStatus("ready");
+/******/ 		var deferred = hotDeferred;
+/******/ 		hotDeferred = null;
+/******/ 		if (!deferred) return;
+/******/ 		if (hotApplyOnUpdate) {
+/******/ 			// Wrap deferred object in Promise to mark it as a well-handled Promise to
+/******/ 			// avoid triggering uncaught exception warning in Chrome.
+/******/ 			// See https://bugs.chromium.org/p/chromium/issues/detail?id=465666
+/******/ 			Promise.resolve()
+/******/ 				.then(function() {
+/******/ 					return hotApply(hotApplyOnUpdate);
+/******/ 				})
+/******/ 				.then(
+/******/ 					function(result) {
+/******/ 						deferred.resolve(result);
+/******/ 					},
+/******/ 					function(err) {
+/******/ 						deferred.reject(err);
+/******/ 					}
+/******/ 				);
+/******/ 		} else {
+/******/ 			var outdatedModules = [];
+/******/ 			for (var id in hotUpdate) {
+/******/ 				if (Object.prototype.hasOwnProperty.call(hotUpdate, id)) {
+/******/ 					outdatedModules.push(toModuleId(id));
+/******/ 				}
+/******/ 			}
+/******/ 			deferred.resolve(outdatedModules);
+/******/ 		}
+/******/ 	}
+/******/
+/******/ 	function hotApply(options) {
+/******/ 		if (hotStatus !== "ready")
+/******/ 			throw new Error("apply() is only allowed in ready status");
+/******/ 		options = options || {};
+/******/
+/******/ 		var cb;
+/******/ 		var i;
+/******/ 		var j;
+/******/ 		var module;
+/******/ 		var moduleId;
+/******/
+/******/ 		function getAffectedStuff(updateModuleId) {
+/******/ 			var outdatedModules = [updateModuleId];
+/******/ 			var outdatedDependencies = {};
+/******/
+/******/ 			var queue = outdatedModules.map(function(id) {
+/******/ 				return {
+/******/ 					chain: [id],
+/******/ 					id: id
+/******/ 				};
+/******/ 			});
+/******/ 			while (queue.length > 0) {
+/******/ 				var queueItem = queue.pop();
+/******/ 				var moduleId = queueItem.id;
+/******/ 				var chain = queueItem.chain;
+/******/ 				module = installedModules[moduleId];
+/******/ 				if (!module || module.hot._selfAccepted) continue;
+/******/ 				if (module.hot._selfDeclined) {
+/******/ 					return {
+/******/ 						type: "self-declined",
+/******/ 						chain: chain,
+/******/ 						moduleId: moduleId
+/******/ 					};
+/******/ 				}
+/******/ 				if (module.hot._main) {
+/******/ 					return {
+/******/ 						type: "unaccepted",
+/******/ 						chain: chain,
+/******/ 						moduleId: moduleId
+/******/ 					};
+/******/ 				}
+/******/ 				for (var i = 0; i < module.parents.length; i++) {
+/******/ 					var parentId = module.parents[i];
+/******/ 					var parent = installedModules[parentId];
+/******/ 					if (!parent) continue;
+/******/ 					if (parent.hot._declinedDependencies[moduleId]) {
+/******/ 						return {
+/******/ 							type: "declined",
+/******/ 							chain: chain.concat([parentId]),
+/******/ 							moduleId: moduleId,
+/******/ 							parentId: parentId
+/******/ 						};
+/******/ 					}
+/******/ 					if (outdatedModules.indexOf(parentId) !== -1) continue;
+/******/ 					if (parent.hot._acceptedDependencies[moduleId]) {
+/******/ 						if (!outdatedDependencies[parentId])
+/******/ 							outdatedDependencies[parentId] = [];
+/******/ 						addAllToSet(outdatedDependencies[parentId], [moduleId]);
+/******/ 						continue;
+/******/ 					}
+/******/ 					delete outdatedDependencies[parentId];
+/******/ 					outdatedModules.push(parentId);
+/******/ 					queue.push({
+/******/ 						chain: chain.concat([parentId]),
+/******/ 						id: parentId
+/******/ 					});
+/******/ 				}
+/******/ 			}
+/******/
+/******/ 			return {
+/******/ 				type: "accepted",
+/******/ 				moduleId: updateModuleId,
+/******/ 				outdatedModules: outdatedModules,
+/******/ 				outdatedDependencies: outdatedDependencies
+/******/ 			};
+/******/ 		}
+/******/
+/******/ 		function addAllToSet(a, b) {
+/******/ 			for (var i = 0; i < b.length; i++) {
+/******/ 				var item = b[i];
+/******/ 				if (a.indexOf(item) === -1) a.push(item);
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// at begin all updates modules are outdated
+/******/ 		// the "outdated" status can propagate to parents if they don't accept the children
+/******/ 		var outdatedDependencies = {};
+/******/ 		var outdatedModules = [];
+/******/ 		var appliedUpdate = {};
+/******/
+/******/ 		var warnUnexpectedRequire = function warnUnexpectedRequire() {
+/******/ 			console.warn(
+/******/ 				"[HMR] unexpected require(" + result.moduleId + ") to disposed module"
+/******/ 			);
+/******/ 		};
+/******/
+/******/ 		for (var id in hotUpdate) {
+/******/ 			if (Object.prototype.hasOwnProperty.call(hotUpdate, id)) {
+/******/ 				moduleId = toModuleId(id);
+/******/ 				/** @type {TODO} */
+/******/ 				var result;
+/******/ 				if (hotUpdate[id]) {
+/******/ 					result = getAffectedStuff(moduleId);
+/******/ 				} else {
+/******/ 					result = {
+/******/ 						type: "disposed",
+/******/ 						moduleId: id
+/******/ 					};
+/******/ 				}
+/******/ 				/** @type {Error|false} */
+/******/ 				var abortError = false;
+/******/ 				var doApply = false;
+/******/ 				var doDispose = false;
+/******/ 				var chainInfo = "";
+/******/ 				if (result.chain) {
+/******/ 					chainInfo = "\nUpdate propagation: " + result.chain.join(" -> ");
+/******/ 				}
+/******/ 				switch (result.type) {
+/******/ 					case "self-declined":
+/******/ 						if (options.onDeclined) options.onDeclined(result);
+/******/ 						if (!options.ignoreDeclined)
+/******/ 							abortError = new Error(
+/******/ 								"Aborted because of self decline: " +
+/******/ 									result.moduleId +
+/******/ 									chainInfo
+/******/ 							);
+/******/ 						break;
+/******/ 					case "declined":
+/******/ 						if (options.onDeclined) options.onDeclined(result);
+/******/ 						if (!options.ignoreDeclined)
+/******/ 							abortError = new Error(
+/******/ 								"Aborted because of declined dependency: " +
+/******/ 									result.moduleId +
+/******/ 									" in " +
+/******/ 									result.parentId +
+/******/ 									chainInfo
+/******/ 							);
+/******/ 						break;
+/******/ 					case "unaccepted":
+/******/ 						if (options.onUnaccepted) options.onUnaccepted(result);
+/******/ 						if (!options.ignoreUnaccepted)
+/******/ 							abortError = new Error(
+/******/ 								"Aborted because " + moduleId + " is not accepted" + chainInfo
+/******/ 							);
+/******/ 						break;
+/******/ 					case "accepted":
+/******/ 						if (options.onAccepted) options.onAccepted(result);
+/******/ 						doApply = true;
+/******/ 						break;
+/******/ 					case "disposed":
+/******/ 						if (options.onDisposed) options.onDisposed(result);
+/******/ 						doDispose = true;
+/******/ 						break;
+/******/ 					default:
+/******/ 						throw new Error("Unexception type " + result.type);
+/******/ 				}
+/******/ 				if (abortError) {
+/******/ 					hotSetStatus("abort");
+/******/ 					return Promise.reject(abortError);
+/******/ 				}
+/******/ 				if (doApply) {
+/******/ 					appliedUpdate[moduleId] = hotUpdate[moduleId];
+/******/ 					addAllToSet(outdatedModules, result.outdatedModules);
+/******/ 					for (moduleId in result.outdatedDependencies) {
+/******/ 						if (
+/******/ 							Object.prototype.hasOwnProperty.call(
+/******/ 								result.outdatedDependencies,
+/******/ 								moduleId
+/******/ 							)
+/******/ 						) {
+/******/ 							if (!outdatedDependencies[moduleId])
+/******/ 								outdatedDependencies[moduleId] = [];
+/******/ 							addAllToSet(
+/******/ 								outdatedDependencies[moduleId],
+/******/ 								result.outdatedDependencies[moduleId]
+/******/ 							);
+/******/ 						}
+/******/ 					}
+/******/ 				}
+/******/ 				if (doDispose) {
+/******/ 					addAllToSet(outdatedModules, [result.moduleId]);
+/******/ 					appliedUpdate[moduleId] = warnUnexpectedRequire;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// Store self accepted outdated modules to require them later by the module system
+/******/ 		var outdatedSelfAcceptedModules = [];
+/******/ 		for (i = 0; i < outdatedModules.length; i++) {
+/******/ 			moduleId = outdatedModules[i];
+/******/ 			if (
+/******/ 				installedModules[moduleId] &&
+/******/ 				installedModules[moduleId].hot._selfAccepted &&
+/******/ 				// removed self-accepted modules should not be required
+/******/ 				appliedUpdate[moduleId] !== warnUnexpectedRequire
+/******/ 			) {
+/******/ 				outdatedSelfAcceptedModules.push({
+/******/ 					module: moduleId,
+/******/ 					errorHandler: installedModules[moduleId].hot._selfAccepted
+/******/ 				});
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// Now in "dispose" phase
+/******/ 		hotSetStatus("dispose");
+/******/ 		Object.keys(hotAvailableFilesMap).forEach(function(chunkId) {
+/******/ 			if (hotAvailableFilesMap[chunkId] === false) {
+/******/ 				hotDisposeChunk(chunkId);
+/******/ 			}
+/******/ 		});
+/******/
+/******/ 		var idx;
+/******/ 		var queue = outdatedModules.slice();
+/******/ 		while (queue.length > 0) {
+/******/ 			moduleId = queue.pop();
+/******/ 			module = installedModules[moduleId];
+/******/ 			if (!module) continue;
+/******/
+/******/ 			var data = {};
+/******/
+/******/ 			// Call dispose handlers
+/******/ 			var disposeHandlers = module.hot._disposeHandlers;
+/******/ 			for (j = 0; j < disposeHandlers.length; j++) {
+/******/ 				cb = disposeHandlers[j];
+/******/ 				cb(data);
+/******/ 			}
+/******/ 			hotCurrentModuleData[moduleId] = data;
+/******/
+/******/ 			// disable module (this disables requires from this module)
+/******/ 			module.hot.active = false;
+/******/
+/******/ 			// remove module from cache
+/******/ 			delete installedModules[moduleId];
+/******/
+/******/ 			// when disposing there is no need to call dispose handler
+/******/ 			delete outdatedDependencies[moduleId];
+/******/
+/******/ 			// remove "parents" references from all children
+/******/ 			for (j = 0; j < module.children.length; j++) {
+/******/ 				var child = installedModules[module.children[j]];
+/******/ 				if (!child) continue;
+/******/ 				idx = child.parents.indexOf(moduleId);
+/******/ 				if (idx >= 0) {
+/******/ 					child.parents.splice(idx, 1);
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// remove outdated dependency from module children
+/******/ 		var dependency;
+/******/ 		var moduleOutdatedDependencies;
+/******/ 		for (moduleId in outdatedDependencies) {
+/******/ 			if (
+/******/ 				Object.prototype.hasOwnProperty.call(outdatedDependencies, moduleId)
+/******/ 			) {
+/******/ 				module = installedModules[moduleId];
+/******/ 				if (module) {
+/******/ 					moduleOutdatedDependencies = outdatedDependencies[moduleId];
+/******/ 					for (j = 0; j < moduleOutdatedDependencies.length; j++) {
+/******/ 						dependency = moduleOutdatedDependencies[j];
+/******/ 						idx = module.children.indexOf(dependency);
+/******/ 						if (idx >= 0) module.children.splice(idx, 1);
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// Now in "apply" phase
+/******/ 		hotSetStatus("apply");
+/******/
+/******/ 		hotCurrentHash = hotUpdateNewHash;
+/******/
+/******/ 		// insert new code
+/******/ 		for (moduleId in appliedUpdate) {
+/******/ 			if (Object.prototype.hasOwnProperty.call(appliedUpdate, moduleId)) {
+/******/ 				modules[moduleId] = appliedUpdate[moduleId];
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// call accept handlers
+/******/ 		var error = null;
+/******/ 		for (moduleId in outdatedDependencies) {
+/******/ 			if (
+/******/ 				Object.prototype.hasOwnProperty.call(outdatedDependencies, moduleId)
+/******/ 			) {
+/******/ 				module = installedModules[moduleId];
+/******/ 				if (module) {
+/******/ 					moduleOutdatedDependencies = outdatedDependencies[moduleId];
+/******/ 					var callbacks = [];
+/******/ 					for (i = 0; i < moduleOutdatedDependencies.length; i++) {
+/******/ 						dependency = moduleOutdatedDependencies[i];
+/******/ 						cb = module.hot._acceptedDependencies[dependency];
+/******/ 						if (cb) {
+/******/ 							if (callbacks.indexOf(cb) !== -1) continue;
+/******/ 							callbacks.push(cb);
+/******/ 						}
+/******/ 					}
+/******/ 					for (i = 0; i < callbacks.length; i++) {
+/******/ 						cb = callbacks[i];
+/******/ 						try {
+/******/ 							cb(moduleOutdatedDependencies);
+/******/ 						} catch (err) {
+/******/ 							if (options.onErrored) {
+/******/ 								options.onErrored({
+/******/ 									type: "accept-errored",
+/******/ 									moduleId: moduleId,
+/******/ 									dependencyId: moduleOutdatedDependencies[i],
+/******/ 									error: err
+/******/ 								});
+/******/ 							}
+/******/ 							if (!options.ignoreErrored) {
+/******/ 								if (!error) error = err;
+/******/ 							}
+/******/ 						}
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// Load self accepted modules
+/******/ 		for (i = 0; i < outdatedSelfAcceptedModules.length; i++) {
+/******/ 			var item = outdatedSelfAcceptedModules[i];
+/******/ 			moduleId = item.module;
+/******/ 			hotCurrentParents = [moduleId];
+/******/ 			try {
+/******/ 				__webpack_require__(moduleId);
+/******/ 			} catch (err) {
+/******/ 				if (typeof item.errorHandler === "function") {
+/******/ 					try {
+/******/ 						item.errorHandler(err);
+/******/ 					} catch (err2) {
+/******/ 						if (options.onErrored) {
+/******/ 							options.onErrored({
+/******/ 								type: "self-accept-error-handler-errored",
+/******/ 								moduleId: moduleId,
+/******/ 								error: err2,
+/******/ 								originalError: err
+/******/ 							});
+/******/ 						}
+/******/ 						if (!options.ignoreErrored) {
+/******/ 							if (!error) error = err2;
+/******/ 						}
+/******/ 						if (!error) error = err;
+/******/ 					}
+/******/ 				} else {
+/******/ 					if (options.onErrored) {
+/******/ 						options.onErrored({
+/******/ 							type: "self-accept-errored",
+/******/ 							moduleId: moduleId,
+/******/ 							error: err
+/******/ 						});
+/******/ 					}
+/******/ 					if (!options.ignoreErrored) {
+/******/ 						if (!error) error = err;
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// handle errors in accept handlers and self accepted module load
+/******/ 		if (error) {
+/******/ 			hotSetStatus("fail");
+/******/ 			return Promise.reject(error);
+/******/ 		}
+/******/
+/******/ 		hotSetStatus("idle");
+/******/ 		return new Promise(function(resolve) {
+/******/ 			resolve(outdatedModules);
+/******/ 		});
+/******/ 	}
+/******/
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {},
+/******/ 			hot: hotCreateModule(moduleId),
+/******/ 			parents: (hotCurrentParentsTemp = hotCurrentParents, hotCurrentParents = [], hotCurrentParentsTemp),
+/******/ 			children: []
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, hotCreateRequire(moduleId));
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// __webpack_hash__
+/******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return hotCreateRequire("./index.js")(__webpack_require__.s = "./index.js");
+>>>>>>> b5b47688f1c34b40b4c742674611048bdd8413af
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -810,6 +1548,7 @@
   /*! ************************!*\
   !*** ./client/App.jsx ***!
   \************************/
+<<<<<<< HEAD
   /*! exports provided: default */
   /***/ function (module, __webpack_exports__, __webpack_require__) {
     'use strict'
@@ -918,6 +1657,90 @@
 
   /***/ './client/Tests/Tests.jsx':
   /*! ********************************!*\
+=======
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\n/* harmony import */ var _mainContainer_main_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mainContainer/main.jsx */ \"./client/mainContainer/main.jsx\");\n/* harmony import */ var _public_styling_index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./public/styling/index.css */ \"./client/public/styling/index.css\");\n/* harmony import */ var _public_styling_index_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_public_styling_index_css__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var react_particles_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-particles-js */ \"./node_modules/react-particles-js/lib/particles.js\");\n/* harmony import */ var react_particles_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_particles_js__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! animate.css/animate.min.css */ \"./node_modules/animate.css/animate.min.css\");\n/* harmony import */ var animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var react_animate_on_scroll__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-animate-on-scroll */ \"./node_modules/react-animate-on-scroll/dist/scrollAnimation.min.js\");\n/* harmony import */ var react_animate_on_scroll__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_animate_on_scroll__WEBPACK_IMPORTED_MODULE_6__);\n/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! file-saver */ \"./node_modules/file-saver/dist/FileSaver.min.js\");\n/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_7__);\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\n\n\n\n\n\n\n\n\n\nvar App =\n/*#__PURE__*/\nfunction (_Component) {\n  _inherits(App, _Component);\n\n  function App(props) {\n    var _this;\n\n    _classCallCheck(this, App);\n\n    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));\n    _this.state = {\n      schema: {\n        email: 'justinkwon123@gmail.com',\n        username: 'jkwizzle',\n        fullName: 'justin kwon'\n      }\n    };\n    _this.handleNextClick = _this.handleNextClick.bind(_assertThisInitialized(_this));\n    _this.handleExportClick = _this.handleExportClick.bind(_assertThisInitialized(_this));\n    return _this;\n  }\n\n  _createClass(App, [{\n    key: \"openDocs\",\n    value: function openDocs() {\n      window.open(\"https://github.com/oslabs-beta/SpectiQL/blob/master/README.md\");\n    } //retrieving user's schema after they configure their file path\n\n  }, {\n    key: \"handleNextClick\",\n    value: function handleNextClick() {\n      var _this2 = this;\n\n      fetch('/spectiql', {\n        method: 'POST'\n      }).then(function (response) {\n        return response.json();\n      }).then(function (response) {\n        _this2.setState({\n          schema: response.schema\n        });\n\n        console.log(_this2.state.schema);\n      })[\"catch\"](function (err) {\n        return console.log(err);\n      });\n    } //onClick: user downloads a JSON object that has their test suites.\n\n  }, {\n    key: \"handleExportClick\",\n    value: function handleExportClick() {\n      console.log('helloBruh');\n      var newNew = {};\n      newNew.schema = this.state.schema;\n      var blob = new Blob([JSON.stringify(newNew)], {\n        type: \"text/plain;charset=utf-8\"\n      });\n      Object(file_saver__WEBPACK_IMPORTED_MODULE_7__[\"saveAs\"])(blob, \"hello.test.js\");\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__[\"HashRouter\"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"fullscreen\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"introContainer\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"introHeader\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_animate_on_scroll__WEBPACK_IMPORTED_MODULE_6___default.a, {\n        animateIn: \"fadeIn\",\n        delay: \"3000\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h1\", null, \"SpectiQL\"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"introInstruction\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_particles_js__WEBPACK_IMPORTED_MODULE_4___default.a, {\n        className: \"introAnimate\",\n        params: {\n          \"particles\": {\n            \"number\": {\n              \"value\": 50\n            },\n            \"size\": {\n              \"value\": 3\n            }\n          },\n          \"color\": {\n            \"value\": \"#7a3e3e\"\n          },\n          \"interactivity\": {\n            \"events\": {\n              \"onhover\": {\n                \"enable\": true,\n                \"mode\": \"repulse\"\n              }\n            }\n          }\n        }\n      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n        className: \"buttonclass\",\n        onClick: this.handleExportClick\n      }, \"export\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"introNext\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__[\"Link\"], {\n        to: \"/main\",\n        exact: true\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n        className: \"next-button\",\n        onClick: this.handleNextClick\n      }, \"Next\"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"introDoc\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__[\"Link\"], {\n        to: \"/documentation\",\n        exact: true,\n        onClick: this.openDocs\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n        className: \"doc-button\"\n      }, \"Docs\"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__[\"Switch\"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__[\"Route\"], {\n        path: \"/main\",\n        exact: true,\n        component: _mainContainer_main_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n      })))));\n    }\n  }]);\n\n  return App;\n}(react__WEBPACK_IMPORTED_MODULE_0__[\"Component\"]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (App);\n\n//# sourceURL=webpack:///./client/App.jsx?");
+
+/***/ }),
+
+/***/ "./client/Components/GenerateTest.jsx":
+/*!********************************************!*\
+  !*** ./client/Components/GenerateTest.jsx ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _mainComponents_LeftSideBar_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mainComponents/LeftSideBar.jsx */ \"./client/mainContainer/mainComponents/LeftSideBar.jsx\");\n/* harmony import */ var _mainComponents_TestInput_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mainComponents/TestInput.jsx */ \"./client/mainContainer/mainComponents/TestInput.jsx\");\n/* harmony import */ var _mainComponents_TestQuery_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mainComponents/TestQuery.jsx */ \"./client/mainContainer/mainComponents/TestQuery.jsx\");\n/* harmony import */ var _mainComponents_GenerateTest_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mainComponents/GenerateTest.jsx */ \"./client/mainContainer/mainComponents/GenerateTest.jsx\");\n/* harmony import */ var _mainComponents_TestSuites_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mainComponents/TestSuites.jsx */ \"./client/mainContainer/mainComponents/TestSuites.jsx\");\n/* harmony import */ var animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! animate.css/animate.min.css */ \"./node_modules/animate.css/animate.min.css\");\n/* harmony import */ var animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_6__);\n/* harmony import */ var react_animate_on_scroll__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-animate-on-scroll */ \"./node_modules/react-animate-on-scroll/dist/scrollAnimation.min.js\");\n/* harmony import */ var react_animate_on_scroll__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_animate_on_scroll__WEBPACK_IMPORTED_MODULE_7__);\n/* harmony import */ var react_particles_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-particles-js */ \"./node_modules/react-particles-js/lib/particles.js\");\n/* harmony import */ var react_particles_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_particles_js__WEBPACK_IMPORTED_MODULE_8__);\n/* harmony import */ var _tests_Tests_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./tests/Tests.jsx */ \"./client/mainContainer/tests/Tests.jsx\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\n\n\n\n\n\n\n\n\n\n\n\nvar Main =\n/*#__PURE__*/\nfunction (_Component) {\n  _inherits(Main, _Component);\n\n  function Main(props) {\n    var _this;\n\n    _classCallCheck(this, Main);\n\n    _this = _possibleConstructorReturn(this, _getPrototypeOf(Main).call(this, props));\n    _this.state = {\n      testSuiteName: \"\",\n      testDescription: \"\",\n      writeQuery: \"\",\n      generatedTest: \"\",\n      testSuites: [],\n      selectedTest: \"\",\n      dropDownIndex: 0,\n      testIndex: 0,\n      testFunctions: {\n        validQuery: _tests_Tests_jsx__WEBPACK_IMPORTED_MODULE_9__[\"validQuery\"],\n        invalidQuery: _tests_Tests_jsx__WEBPACK_IMPORTED_MODULE_9__[\"invalidQuery\"],\n        validArgField: _tests_Tests_jsx__WEBPACK_IMPORTED_MODULE_9__[\"validArgField\"],\n        invalidArgField: _tests_Tests_jsx__WEBPACK_IMPORTED_MODULE_9__[\"invalidArgField\"],\n        validArgDataType: _tests_Tests_jsx__WEBPACK_IMPORTED_MODULE_9__[\"validArgDataType\"],\n        invalidArgDataType: _tests_Tests_jsx__WEBPACK_IMPORTED_MODULE_9__[\"invalidArgDataType\"]\n      }\n    };\n    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));\n    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));\n    _this.updateTestSuite = _this.updateTestSuite.bind(_assertThisInitialized(_this));\n    _this.selectTest = _this.selectTest.bind(_assertThisInitialized(_this));\n    _this.deleteTest = _this.deleteTest.bind(_assertThisInitialized(_this));\n    _this.editTest = _this.editTest.bind(_assertThisInitialized(_this));\n    _this.dropDownReset = _this.dropDownReset.bind(_assertThisInitialized(_this));\n    return _this;\n  }\n\n  _createClass(Main, [{\n    key: \"handleChange\",\n    value: function handleChange(e) {\n      var value = e.target.value;\n      this.setState(_defineProperty({}, e.target.name, value));\n    }\n  }, {\n    key: \"handleClick\",\n    value: function handleClick() {\n      var value = this.state.testFunctions[this.state.selectedTest](this.state);\n      return this.setState({\n        generatedTest: value\n      });\n    }\n  }, {\n    key: \"selectTest\",\n    value: function selectTest(e) {\n      this.setState({\n        selectedTest: e.target.value,\n        dropDownIndex: e.target.selectedIndex\n      });\n    }\n  }, {\n    key: \"updateTestSuite\",\n    value: function updateTestSuite() {\n      //push the generated test value into the test suites array\n      var newTestSuite = {\n        savedGeneratedTest: this.state.generatedTest,\n        savedTestSuiteName: this.state.testSuiteName,\n        savedTestDescription: this.state.testDescription,\n        savedWriteQuery: this.state.writeQuery,\n        savedSelectedTest: this.state.selectedTest,\n        savedDropDownIndex: this.state.dropDownIndex,\n        testIndex: this.state.testIndex + 1\n      }; //shallow copy of array\n\n      var testSuites = this.state.testSuites.slice();\n      testSuites.push(newTestSuite);\n      return this.setState({\n        testSuiteName: \"\",\n        testDescription: \"\",\n        writeQuery: \"\",\n        generatedTest: \"\",\n        dropDownIndex: 0,\n        selectedTest: this.dropDownReset(),\n        testIndex: this.state.testIndex + 1,\n        testSuites: testSuites\n      });\n    }\n  }, {\n    key: \"editTest\",\n    value: function editTest(idx) {\n      var testSuite = this.state.testSuites[idx - 1];\n      console.log('testSuite', testSuite);\n      var dropDownIndex = document.getElementById(\"dd-reset\");\n      dropDownIndex.selectedIndex = testSuite.savedDropDownIndex;\n      return this.setState({\n        testSuiteName: testSuite.savedTestSuiteName,\n        testDescription: testSuite.savedTestDescription,\n        writeQuery: testSuite.savedWriteQuery,\n        selectedTest: dropDownIndex.selectedIndex,\n        generatedTest: testSuite.savedGeneratedTest\n      });\n    }\n  }, {\n    key: \"deleteTest\",\n    value: function deleteTest(idx) {\n      var testSuites = this.state.testSuites.filter(function (test) {\n        return test.testIndex !== idx;\n      });\n      return this.setState({\n        testSuiteName: \"\",\n        testDescription: \"\",\n        writeQuery: \"\",\n        generatedTest: \"\",\n        selectedTest: this.dropDownReset(),\n        testSuites: testSuites,\n        testIndex: this.state.testIndex - 1\n      });\n    }\n  }, {\n    key: \"dropDownReset\",\n    value: function dropDownReset() {\n      document.getElementById(\"dd-reset\").selectedIndex = 0;\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"fullscreen\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"mainContainer\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"leftSideBar\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_mainComponents_LeftSideBar_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"testInput\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_mainComponents_TestInput_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n        testSuiteName: this.state.testSuiteName,\n        testDescription: this.state.testDescription,\n        writeQuery: this.state.writeQuery,\n        onChange: this.handleChange\n      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"testQuery\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_mainComponents_TestQuery_jsx__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n        writeQuery: this.state.writeQuery,\n        onChange: this.handleChange\n      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"generateTest\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_mainComponents_GenerateTest_jsx__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n        testSuiteName: this.state.testSuiteName,\n        testDescription: this.state.testDescription,\n        writeQuery: this.state.writeQuery,\n        handleClick: this.handleClick,\n        generatedTest: this.state.generatedTest,\n        updateTestSuite: this.updateTestSuite,\n        selectTest: this.selectTest\n      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"testSuites\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_mainComponents_TestSuites_jsx__WEBPACK_IMPORTED_MODULE_5__[\"default\"], {\n        testSuites: this.state.testSuites,\n        deleteTest: this.deleteTest,\n        editTest: this.editTest\n      }))));\n    }\n  }]);\n\n  return Main;\n}(react__WEBPACK_IMPORTED_MODULE_0__[\"Component\"]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Main);\n\n//# sourceURL=webpack:///./client/mainContainer/main.jsx?");
+
+/***/ }),
+
+/***/ "./client/Components/LeftSideBar.jsx":
+/*!*******************************************!*\
+  !*** ./client/Components/LeftSideBar.jsx ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ \"./node_modules/react-bootstrap/esm/index.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\n\n\n\nvar GenerateTest =\n/*#__PURE__*/\nfunction (_Component) {\n  _inherits(GenerateTest, _Component);\n\n  function GenerateTest() {\n    _classCallCheck(this, GenerateTest);\n\n    return _possibleConstructorReturn(this, _getPrototypeOf(GenerateTest).apply(this, arguments));\n  }\n\n  _createClass(GenerateTest, [{\n    key: \"render\",\n    value: function render() {\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"], {\n        className: \"generate-test\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Group, {\n        as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Col\"],\n        style: {\n          margin: 0,\n          padding: 0\n        }\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"select\", {\n        className: \"selectType\",\n        id: \"dd-reset\",\n        onChange: this.props.selectTest\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"option\", {\n        value: \"default\",\n        disabled: true,\n        selected: true\n      }, \"Select Test\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"option\", {\n        value: \"validQuery\"\n      }, \"Valid Query\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"option\", {\n        value: \"invalidQuery\"\n      }, \"Invalid Query\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"option\", {\n        value: \"validArgField\"\n      }, \"Valid Argument Field\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"option\", {\n        value: \"invalidArgField\"\n      }, \"Invalid Argument Field\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"option\", {\n        value: \"validArgDataType\"\n      }, \"Valid Argument DataType\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"option\", {\n        value: \"invalidArgDataType\"\n      }, \"Invalid Argument DataType\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n        className: \"generateTest\",\n        variant: \"primary\",\n        size: \"lg\",\n        block: true,\n        style: {\n          height: \"35%\",\n          width: \"100%\"\n        },\n        onClick: this.props.handleClick\n      }, \"Generate Test\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n        className: \"addTest\",\n        variant: \"outline-primary\",\n        size: \"lg\",\n        block: true,\n        style: {\n          height: \"35%\",\n          width: \"100%\"\n        },\n        onClick: this.props.updateTestSuite\n      }, \"Add to Test Suite\")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Group, {\n        as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Col\"],\n        controlId: \"sample-test\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Label, {\n        column: true,\n        sm: 6\n      }, \"Generated Test:\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Control, {\n        as: \"textarea\",\n        placeholder: \"Sample Test...\",\n        style: {\n          width: \"80%\",\n          height: \"18rem\"\n        },\n        value: this.props.generatedTest\n      }))));\n    }\n  }]);\n\n  return GenerateTest;\n}(react__WEBPACK_IMPORTED_MODULE_0__[\"Component\"]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GenerateTest);\n\n//# sourceURL=webpack:///./client/mainContainer/mainComponents/GenerateTest.jsx?");
+
+/***/ }),
+
+/***/ "./client/Components/TestInput.jsx":
+/*!*****************************************!*\
+  !*** ./client/Components/TestInput.jsx ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ \"./node_modules/react-bootstrap/esm/index.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\n\n\n\nvar SideBar =\n/*#__PURE__*/\nfunction (_Component) {\n  _inherits(SideBar, _Component);\n\n  function SideBar() {\n    _classCallCheck(this, SideBar);\n\n    return _possibleConstructorReturn(this, _getPrototypeOf(SideBar).apply(this, arguments));\n  }\n\n  _createClass(SideBar, [{\n    key: \"render\",\n    value: function render() {\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"leftSideBar\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"ButtonToolbar\"], {\n        className: \"buttonContainer\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"selections\"\n      }, \"Select\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n        className: \"queries\",\n        variant: \"outline-dark\",\n        size: \"lg\"\n      }, \"Queries\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n        className: \"mutations\",\n        variant: \"outline-dark\",\n        size: \"lg\"\n      }, \"Mutations\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n        className: \"subscriptions\",\n        variant: \"outline-dark\",\n        size: \"lg\"\n      }, \"Subscriptions\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"testing\"\n      }, \"Testing\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n        className: \"tester\",\n        variant: \"outline-dark\",\n        size: \"lg\"\n      }, \"Tester\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n        className: \"save\",\n        variant: \"outline-dark\",\n        size: \"lg\"\n      }, \"Save\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n        className: \"export\",\n        variant: \"outline-dark\",\n        size: \"lg\"\n      }, \"Export\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n        className: \"clear\",\n        variant: \"outline-dark\",\n        size: \"lg\"\n      }, \"Clear\")));\n    }\n  }]);\n\n  return SideBar;\n}(react__WEBPACK_IMPORTED_MODULE_0__[\"Component\"]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (SideBar);\n\n//# sourceURL=webpack:///./client/mainContainer/mainComponents/LeftSideBar.jsx?");
+
+/***/ }),
+
+/***/ "./client/Components/TestQuery.jsx":
+/*!*****************************************!*\
+  !*** ./client/Components/TestQuery.jsx ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ \"./node_modules/react-bootstrap/esm/index.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\n\n\n\nvar TestInput =\n/*#__PURE__*/\nfunction (_Component) {\n  _inherits(TestInput, _Component);\n\n  function TestInput() {\n    _classCallCheck(this, TestInput);\n\n    return _possibleConstructorReturn(this, _getPrototypeOf(TestInput).apply(this, arguments));\n  }\n\n  _createClass(TestInput, [{\n    key: \"render\",\n    value: function render() {\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"testInputContainer\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"], {\n        className: \"testSuiteInput\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Group, {\n        controlId: \"test-suite\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Label, {\n        column: true,\n        sm: 6\n      }, \"Test Suite:\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Col\"], {\n        sm: \"10\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Control, {\n        type: \"text\",\n        placeholder: \"Enter test suite here...\",\n        name: \"testSuiteName\",\n        value: this.props.testSuiteName,\n        onChange: this.props.onChange\n      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"], {\n        className: \"testDescriptionInput\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Group, {\n        controlId: \"test-description\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Label, {\n        column: true,\n        sm: 6\n      }, \"Test Description:\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Col\"], {\n        sm: \"10\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Control, {\n        type: \"text\",\n        placeholder: \"Enter test description here...\",\n        name: \"testDescription\",\n        value: this.props.testDescription,\n        onChange: this.props.onChange\n      })))));\n    }\n  }]);\n\n  return TestInput;\n}(react__WEBPACK_IMPORTED_MODULE_0__[\"Component\"]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (TestInput);\n\n//# sourceURL=webpack:///./client/mainContainer/mainComponents/TestInput.jsx?");
+
+/***/ }),
+
+/***/ "./client/Components/TestSuites.jsx":
+/*!******************************************!*\
+  !*** ./client/Components/TestSuites.jsx ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ \"./node_modules/react-bootstrap/esm/index.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\n\n\n\nvar TestQuery =\n/*#__PURE__*/\nfunction (_Component) {\n  _inherits(TestQuery, _Component);\n\n  function TestQuery() {\n    _classCallCheck(this, TestQuery);\n\n    return _possibleConstructorReturn(this, _getPrototypeOf(TestQuery).apply(this, arguments));\n  }\n\n  _createClass(TestQuery, [{\n    key: \"render\",\n    value: function render() {\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        className: \"writeQueryBox\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"], {\n        className: \"test-query-box\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Group, {\n        as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Col\"],\n        controlId: \"write-query\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Label, {\n        column: true,\n        sm: 6\n      }, \"Write Query:\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Control, {\n        as: \"textarea\",\n        placeholder: \"Enter query here...\",\n        style: {\n          width: \"80%\",\n          height: \"18rem\"\n        },\n        name: \"writeQuery\",\n        value: this.props.writeQuery,\n        onChange: this.props.onChange\n      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Group, {\n        as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Col\"],\n        controlId: \"select-query\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Label, {\n        column: true,\n        sm: 6\n      }, \"Select Query:\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Form\"].Control, {\n        as: \"textarea\",\n        placeholder: \"Sample selected query here...\",\n        style: {\n          width: \"80%\",\n          height: \"18rem\"\n        }\n      })))));\n    }\n  }]);\n\n  return TestQuery;\n}(react__WEBPACK_IMPORTED_MODULE_0__[\"Component\"]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (TestQuery);\n\n//# sourceURL=webpack:///./client/mainContainer/mainComponents/TestQuery.jsx?");
+
+/***/ }),
+
+/***/ "./client/Containers/QueryContainer.jsx":
+/*!**********************************************!*\
+  !*** ./client/Containers/QueryContainer.jsx ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ \"./node_modules/react-bootstrap/esm/index.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\n\n\n\nvar TestSuites =\n/*#__PURE__*/\nfunction (_Component) {\n  _inherits(TestSuites, _Component);\n\n  function TestSuites() {\n    _classCallCheck(this, TestSuites);\n\n    return _possibleConstructorReturn(this, _getPrototypeOf(TestSuites).apply(this, arguments));\n  }\n\n  _createClass(TestSuites, [{\n    key: \"render\",\n    value: function render() {\n      var _this = this;\n\n      // console.log(`this.props`,this.props)\n      var testSuite = this.props.testSuites.map(function (test, index) {\n        return (// console.log(`test`, test)\n          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Card\"], {\n            style: {\n              width: \"18rem\"\n            },\n            key: index\n          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Card\"].Body, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Card\"].Title, null, \"Test Suite \", index + 1), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Card\"].Subtitle, {\n            className: \"mb-2 text-muted\"\n          }, test.savedTestSuiteName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Card\"].Text, null, test.savedTestDescription), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n            onClick: function onClick() {\n              return _this.props.editTest(test.testIndex);\n            }\n          }, \"Edit Test\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"Button\"], {\n            onClick: function onClick() {\n              return _this.props.deleteTest(test.testIndex);\n            }\n          }, \"Delete Test\")))\n        );\n      });\n      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        \"class\": \"wrapper\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"nav\", {\n        id: \"sidebar\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        \"class\": \"sidebar-header\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h3\", null, \"Test Suites\")), testSuite), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        id: \"content\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"nav\", {\n        id: \"content\",\n        \"class\": \"navbar navbar-expand-lg navbar-light bg-light\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n        \"class\": \"container-fluid\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n        type: \"button\",\n        id: \"sidebarCollapse\",\n        \"class\": \"btn btn-info\"\n      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"i\", {\n        \"class\": \"fas fa-align-left\"\n      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", null, \"Toggle Sidebar\"))))));\n    }\n  }]);\n\n  return TestSuites;\n}(react__WEBPACK_IMPORTED_MODULE_0__[\"Component\"]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (TestSuites);\n\n//# sourceURL=webpack:///./client/mainContainer/mainComponents/TestSuites.jsx?");
+
+/***/ }),
+
+/***/ "./client/Tests/Tests.jsx":
+/*!********************************!*\
+>>>>>>> b5b47688f1c34b40b4c742674611048bdd8413af
   !*** ./client/Tests/Tests.jsx ***!
   \********************************/
   /*! exports provided: validQuery, invalidQuery, validArgField, invalidArgField, validArgDataType, invalidArgDataType, validMutation, invalidMutation */
@@ -1183,10 +2006,23 @@
   /*! *******************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./client/public/styling/index.css ***!
   \*******************************************************************************/
+<<<<<<< HEAD
   /*! no static exports found */
   /***/ function (module, exports, __webpack_require__) {
     eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"\\n  .fullscreen {\\n    position: fixed;\\n    top: 0;\\n    left: 0;\\n    bottom: 0;\\n    right: 0;\\n    overflow: auto;\\n    /* background: rgb(99, 56, 56); Just to visualize the extent */\\n    \\n  }\\n\\nform {\\n  /* display: inline-flex; */\\n}\\n\\n#content {\\n  background: none !important;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  width: 100%;\\n}\\n\\n.introContainer {\\n\\n    display: grid;\\n    position: fixed;\\n    grid-template-columns: repeat(4, 25% [col-start]);\\n    grid-template-rows: repeat(4, 25% [row-start]);\\n    /* overflow: auto; */\\n    /* background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed; */\\n    background: rgb(29, 29, 31);\\n    background-size: cover;\\n    /* width: 100vw;\\n    height: 100vh; */\\n    width: 100%;\\n    height: 100%;\\n  }\\n\\n.introHeader {\\n  text-align: center;\\n  font-size: 50px;\\n  grid-column: 1/5;\\n  grid-row: 1/2;\\n}\\n\\nh1 {\\n  line-height: 7.5;\\n  font-weight: 800;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  font-size: 88px;\\n  color: #f5f5f7;\\n\\n}\\n\\n.introInstruction {\\n  grid-column: 1/5;\\n  grid-row: 2/4;\\n}\\n\\n.introNext {\\n  grid-column: 2;\\n  grid-row: 4;\\n  vertical-align: 50%;\\n}\\n\\n.introDoc {\\n  grid-column: 3;\\n  grid-row: 4;\\n  vertical-align: 50%;\\n}\\n\\n.next-button {\\n    width: 100%;\\n    padding: 8px 4px 8px 10px;\\n    margin-bottom: 0px;\\n    color: black;\\n\\n    /* Styles */\\n    border: 1px solid #4e3043; /* Fallback */\\n    border: 1px solid rgba(78,48,67, 0.8);\\n    background: whitesmoke;\\n    opacity: 75%;\\n    box-shadow: \\n        0 1px 0 rgba(255,255,255,0.2), \\n        inset 0 1px 1px rgba(0,0,0,0.1);\\n    -webkit-transition: all 0.3s ease-out;\\n    -moz-transition: all 0.3s ease-out;\\n    -ms-transition: all 0.3s ease-out;\\n    -o-transition: all 0.3s ease-out;\\n    transition: all 0.3s ease-out;\\n\\n    /* Font styles */\\n    font-family: 'Poppins', sans-serif;\\n    text-align: center;\\n    color: black;\\n    font-size: 13px;\\n    margin-top: 50%;\\n    }\\n .next-button:hover {\\n    background: rgb(136, 133, 133);\\n    color: white;\\n    }\\n .next-button:active {\\n    background: white;\\n    }\\n\\n    .doc-button {\\n      width: 100%;\\n      padding: 8px 4px 8px 10px;\\n      margin-bottom: 0px;\\n      color: black;\\n  \\n      /* Styles */\\n      border: 1px solid #4e3043; /* Fallback */\\n      border: 1px solid rgba(78,48,67, 0.8);\\n      background: whitesmoke;\\n      opacity: 75%;\\n      box-shadow: \\n          0 1px 0 rgba(255,255,255,0.2), \\n          inset 0 1px 1px rgba(0,0,0,0.1);\\n      -webkit-transition: all 0.3s ease-out;\\n      -moz-transition: all 0.3s ease-out;\\n      -ms-transition: all 0.3s ease-out;\\n      -o-transition: all 0.3s ease-out;\\n      transition: all 0.3s ease-out;\\n  \\n      /* Font styles */\\n      font-family: 'Poppins', sans-serif;\\n      text-align: center;\\n      color: black;\\n      font-size: 13px;\\n      margin-top: 50%;\\n      }\\n   .doc-button:hover {\\n    background: rgb(136, 133, 133);\\n    color: white;\\n      }\\n   .doc-button:active {\\n    background: white;\\n      }\\n\\n\\n.buttonContainer {\\n  display: grid;\\n  grid-template-columns: 10% 23.33% 23.33% 23.33% 20%;\\n  grid-template-rows: auto;\\n  position: relative;\\n  background-color: rgb(29, 29, 31);\\n}\\n\\n  .selections {\\n    text-align: center;\\n    line-height: 2.5;\\n    font-weight: 800;\\n    font-size: 33px;\\n    font-family: 'Poppins', sans-serif;\\n  }\\n\\n  .queries {\\n    grid-column: 2;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n    color: #f5f5f7;\\n  }\\n\\n  .mutations {\\n    grid-column: 3;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n    color: #f5f5f7;\\n  }\\n\\n  .subscriptions {\\n    grid-column: 4;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n    color: #f5f5f7;\\n  }\\n\\n  .testing {\\n    text-align: center;\\n    line-height: 2.5;\\n    font-weight: 800;\\n    font-size: 33px;\\n    font-family: 'Poppins', sans-serif;\\n    /* grid-row: 5; */\\n    width: 70%;\\n    margin-right: 20%;\\n  }\\n\\n  .tester {\\n    /* grid-row: 6; */\\n    width: inherit;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n  }\\n\\n  .save {\\n    /* grid-row: 7; */\\n    width: inherit;\\n    color: green;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n  }\\n\\n  .export {\\n    /* grid-row: 8; */\\n    width: inherit;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n  }\\n\\n  .schemaTree {\\n    grid-column: 5;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n    color: #f5f5f7;\\n  }\\n\\n.mainContainer {\\n  /* background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed; */\\n  background-color: #fff;\\n  background-size: cover;\\n  display: grid;\\n  position: fixed;\\n  grid-template-columns: 15% 42.5% 42.5%;\\n  grid-template-rows: 9% 20% 35% 35% 1%;\\n  /* overflow: auto; */\\n  width: 100vw;\\n  height: 100vh;\\n}\\n\\n.leftSideBar {\\n  position: top;\\n  grid-column: 1/4;\\n  grid-row: 1;\\n  z-index: 1;\\n}\\n\\n.testSuites {\\n  grid-column: 1;\\n  grid-row: 2/6;\\n  /* background-color: rgb(157, 157, 160); */\\n  color: black;\\n}\\n\\n  .wrapper {\\n    background: none;\\n    position: fixed;\\n    /* width: 150px;\\n    overflow-y: scroll;\\n    top: 5%;\\n    bottom: 0; */\\n  }\\n\\n  #sidebar {\\n    background: none;\\n    position: fixed;\\n    width: 150px;\\n    overflow-y: scroll;\\n    top: 14%;\\n    bottom: 0;\\n  }\\n\\n  .testSuiteDeleteButton {\\n    width: 100%;\\n    padding: 8px 4px 8px 10px;\\n    margin-bottom: 0px;\\n    color: black;\\n\\n    /* Styles */\\n    border: 1px solid #4e3043; /* Fallback */\\n    border: 1px solid rgba(78,48,67, 0.8);\\n    background: whitesmoke;\\n    opacity: 75%;\\n    box-shadow: \\n        0 1px 0 rgba(255,255,255,0.2), \\n        inset 0 1px 1px rgba(0,0,0,0.1);\\n    -webkit-transition: all 0.3s ease-out;\\n    -moz-transition: all 0.3s ease-out;\\n    -ms-transition: all 0.3s ease-out;\\n    -o-transition: all 0.3s ease-out;\\n    transition: all 0.3s ease-out;\\n\\n    /* Font styles */\\n    font-family: 'Poppins', sans-serif;\\n    text-align: center;\\n    color: black;\\n    font-size: 13px;\\n    }\\n .testSuiteDeleteButton:hover {\\n    background: rgb(136, 133, 133);\\n    color: red;\\n    }\\n .testSuiteEditButton:active {\\n    background: white;\\n    }\\n\\n    .testSuiteEditButton {\\n      width: 100%;\\n      padding: 8px 4px 8px 10px;\\n      margin-bottom: 0px;\\n      color: black;\\n  \\n      /* Styles */\\n      border: 1px solid #4e3043; /* Fallback */\\n      border: 1px solid rgba(78,48,67, 0.8);\\n      background: whitesmoke;\\n      opacity: 75%;\\n      box-shadow: \\n          0 1px 0 rgba(255,255,255,0.2), \\n          inset 0 1px 1px rgba(0,0,0,0.1);\\n      -webkit-transition: all 0.3s ease-out;\\n      -moz-transition: all 0.3s ease-out;\\n      -ms-transition: all 0.3s ease-out;\\n      -o-transition: all 0.3s ease-out;\\n      transition: all 0.3s ease-out;\\n  \\n      /* Font styles */\\n      font-family: 'Poppins', sans-serif;\\n      text-align: center;\\n      color: black;\\n      font-size: 13px;\\n      }\\n   .testSuiteEditButton:hover {\\n      background: rgb(136, 133, 133);\\n      color: whitesmoke;\\n      }\\n   .testSuiteEditButton:active {\\n      background: white;\\n      }\\n\\n.enterInfo {\\n  grid-column: 2;\\n  grid-row: 2;\\n  height: 100%;\\n  width: 100%;\\n}\\n  .enterInfoContainer {\\n    height: 100%;\\n    width: 100%;\\n    display: grid;\\n    grid-template-columns: auto;\\n    grid-template-rows: 33.33% 33.33% 33.33%;\\n  }\\n    .enterTestSuiteText {\\n      grid-row: 1;\\n      font-family: 'Poppins', sans-serif;\\n      text-align: right;\\n      font-style: italic;\\n      margin-top: 1%;\\n      font-size: 15px;\\n      color: rgb(29, 29, 31);\\n    }\\n    .enterTestDescText {\\n      grid-row: 2;\\n      font-family: 'Poppins', sans-serif;\\n      text-align: right;\\n      font-style: italic;\\n      margin-top: 1%;\\n      font-size: 15px;\\n      color: rgb(29, 29, 31);\\n    }\\n    .selectTestText {\\n      grid-row: 3;\\n      font-family: 'Poppins', sans-serif;\\n      text-align: right;\\n      margin-top: 1%;\\n      font-size: 15px;\\n      color: rgb(29, 29, 31);\\n    }\\n\\n.testInput {\\n  grid-column: 2;\\n  grid-row: 2;\\n  height: 100%;\\n  width: 100%;\\n}\\n\\n.testQuery {\\n  grid-column: 2;\\n  grid-row: 3;\\n}\\n\\n.queryVisualizer {\\n  grid-column: 3;\\n  grid-row: 2/6;\\n  width: 100%;\\n  height: 100%;\\n}\\n.generateTest {\\n  grid-column: 2;\\n  grid-row: 4;\\n  /* background-color: whitesmoke; */\\n}\\n\\n.testInputContainer {\\n  display: grid;\\n  text-align: center;\\n  grid-template-columns: auto;\\n  grid-template-rows: 33.33% 33.33% 33.33%;\\n  background: none;\\n  width: 100%;\\n  height: 100%\\n}\\n\\n    .testSuiteInput {\\n      grid-row: 1;\\n      font-family: 'Poppins', sans-serif;\\n    }\\n\\n    .testDescriptionInput {\\n      grid-row: 2;\\n      font-family: 'Poppins', sans-serif;\\n    }\\n\\n    .selectQueryType {\\n      -webkit-appearance: none;\\n      -moz-appearance: none;\\n      -ms-appearance: none;\\n      appearance: none;\\n      outline: 0;\\n      box-shadow: none;\\n      border: 0 !important;\\n      background: rgb(29, 29, 31);\\n      background-image: none;\\n    }\\n    /* Remove IE arrow */\\n    .selectQueryType::-ms-expand {\\n      display: none;\\n    }\\n    /* Custom Select */\\n    .selectQueryType {\\n      position: relative;\\n      display: flex;\\n      width: 77%;\\n      height: 2.5em;\\n      line-height: 3;\\n      background: rgb(29, 29, 31);\\n      overflow: hidden;\\n      border-radius: .25em;\\n      margin-left: 3%;\\n    }\\n    .selectQueryType {\\n      flex: 1;\\n      padding: 0 .5em;\\n      color: #fff;\\n      cursor: pointer;\\n    }\\n    /* Arrow */\\n    .selectQueryType::after {\\n      content: '\\\\25BC';\\n      position: absolute;\\n      top: 0;\\n      right: 0;\\n      padding: 0 1em;\\n      background: rgb(29, 29, 31);\\n      cursor: pointer;\\n      pointer-events: none;\\n      -webkit-transition: .25s all ease;\\n      -o-transition: .25s all ease;\\n      transition: .25s all ease;\\n    }\\n    /* Transition */\\n    .select:hover::after {\\n      color: #f39c12;\\n    }\\n    \\n\\n.writeQueryBox {\\n  font-family: 'Poppins', sans-serif;\\n  text-align: center;\\n  height: 100%;\\n  width: 100%;\\n  display: grid;\\n  grid-template-columns: 50% 50%;\\n  grid-template-rows: auto;\\n}\\n\\n  .test-query-write {\\n    grid-column: 1/3;\\n    width: 100%;\\n    /* display: inline-block; */\\n  }\\n\\n  /* .test-query-select {\\n    grid-column: 2;\\n    width: 100%;\\n    display: inline-block;\\n  } */\\n\\n.generateTestBox {\\n  font-family: 'Poppins', sans-serif;\\n  text-align: center;\\n  height: 100%;\\n  width: 100%;\\n  display: grid;\\n  grid-template-columns: 30% 70%;\\n  grid-template-rows: auto;\\n}\\n\\n    .addTestButton{\\n      font-family: 'Poppins', sans-serif;\\n      background: #e2e2e9;\\n    }\\n    .addTestButton:active{\\n      background: rgb(189, 240, 191) !important;\\n    }\\n    .addTestButton:hover {\\n      background: rgb(189, 240, 191) !important;\\n      }\\n\\n    .generateTestButton {\\n      font-family: 'Poppins', sans-serif;\\n      background: #e2e2e9;\\n    }\\n    .generateTestButton:active{\\n      background: rgb(189, 240, 191) !important;\\n    }\\n    .generateTestButton:hover {\\n      background: rgb(189, 240, 191) !important;\\n      }\\n\\n\\nh3 {\\n  text-align: left;\\n  text-shadow: 5px;\\n  /* line-height: 2.5; */\\n  font-weight: 800;\\n  font-size: 27px;\\n  font-family: 'Poppins', sans-serif;\\n  width: 100%;\\n  margin-left: 1%;\\n}\\n\\n.btn-info {\\n  background: #cfcfd4 !important;\\n  width: 100%;\\n}\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./client/public/styling/index.css?./node_modules/css-loader/dist/cjs.js")
     /***/ },
+=======
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+<<<<<<< HEAD
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"/* .buttonContainer{\\n    display: flex; \\n    flex-direction: column;\\n    justify-items: center;\\n    position: absolute;\\n    top:0;\\n    bottom:0;\\n    left:0;\\n    height:100%;\\n  } */\\n\\n.fullscreen {\\n  position: fixed;\\n  top: 0;\\n  left: 0;\\n  bottom: 0;\\n  right: 0;\\n  overflow: auto;\\n  /* background: rgb(99, 56, 56); Just to visualize the extent */\\n}\\n\\n.form-control {\\n  /* opacity: 80%;\\n  background: whitesmoke; */\\n}\\n\\n#content {\\n  background: none !important;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  width: 100%;\\n}\\n\\n.introContainer {\\n\\n    display: grid;\\n    position: fixed;\\n    grid-template-columns: repeat(4, 25% [col-start]);\\n    grid-template-rows: repeat(4, 25% [row-start]);\\n    overflow: auto;\\n    background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed;\\n    background-size: cover;\\n    width: 100vw;\\n    height: 100vh;\\n  }\\n\\n.introHeader {\\n  text-align: center;\\n  font-size: 50px;\\n  grid-column: 1/5;\\n  grid-row: 1/2;\\n}\\n\\nh1 {\\n  line-height: 5.5;\\n  font-weight: 800;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  font-size: 88px;\\n}\\n\\n.introInstruction {\\n  grid-column: 1/5;\\n  grid-row: 2/4;\\n}\\n\\n.introNext {\\n  grid-column: 2;\\n  grid-row: 4;\\n  vertical-align: 50%;\\n}\\n\\n.introDoc {\\n  grid-column: 3;\\n  grid-row: 4;\\n  vertical-align: 50%;\\n}\\n\\n.next-button {\\n    width: 100%;\\n    padding: 8px 4px 8px 10px;\\n    margin-bottom: 0px;\\n    color: black;\\n\\n    /* Styles */\\n    border: 1px solid #4e3043; /* Fallback */\\n    border: 1px solid rgba(78,48,67, 0.8);\\n    background: whitesmoke;\\n    opacity: 75%;\\n    box-shadow: \\n        0 1px 0 rgba(255,255,255,0.2), \\n        inset 0 1px 1px rgba(0,0,0,0.1);\\n    -webkit-transition: all 0.3s ease-out;\\n    -moz-transition: all 0.3s ease-out;\\n    -ms-transition: all 0.3s ease-out;\\n    -o-transition: all 0.3s ease-out;\\n    transition: all 0.3s ease-out;\\n\\n    /* Font styles */\\n    font-family: 'Poppins', sans-serif;\\n    text-align: center;\\n    color: black;\\n    font-size: 13px;\\n    margin-top: 40%;\\n    }\\n .next-button:hover {\\n    background: rgb(136, 133, 133);\\n    color: white;\\n    }\\n .next-button:active {\\n    background: white;\\n    }\\n\\n    .doc-button {\\n      width: 100%;\\n      padding: 8px 4px 8px 10px;\\n      margin-bottom: 0px;\\n      color: black;\\n  \\n      /* Styles */\\n      border: 1px solid #4e3043; /* Fallback */\\n      border: 1px solid rgba(78,48,67, 0.8);\\n      background: whitesmoke;\\n      opacity: 75%;\\n      box-shadow: \\n          0 1px 0 rgba(255,255,255,0.2), \\n          inset 0 1px 1px rgba(0,0,0,0.1);\\n      -webkit-transition: all 0.3s ease-out;\\n      -moz-transition: all 0.3s ease-out;\\n      -ms-transition: all 0.3s ease-out;\\n      -o-transition: all 0.3s ease-out;\\n      transition: all 0.3s ease-out;\\n  \\n      /* Font styles */\\n      font-family: 'Poppins', sans-serif;\\n      text-align: center;\\n      color: black;\\n      font-size: 13px;\\n      margin-top: 40%;\\n      }\\n   .doc-button:hover {\\n    background: rgb(136, 133, 133);\\n    color: white;\\n      }\\n   .doc-button:active {\\n    background: white;\\n      }\\n\\n.leftSideBar {\\n  position: left;\\n}\\n\\n.buttonContainer {\\n  display: grid;\\n  grid-template-columns: auto;\\n  grid-template-rows: repeat(10, 10% [row-start]);\\n}\\n\\n.selections {\\n  text-align: center;\\n  line-height: 2.5;\\n  font-weight: 800;\\n  font-size: 33px;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  grid-row: 1;\\n  width: 70%;\\n  margin-right: 30%;\\n}\\n\\n.queries {\\n  grid-row: 2;\\n  width: 100%;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n}\\n\\n.mutations {\\n  grid-row: 3;\\n  width: 100%;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n}\\n\\n.subscriptions {\\n  grid-row: 4;\\n  width: 100%;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n}\\n\\n.testing {\\n  text-align: center;\\n  line-height: 2.5;\\n  font-weight: 800;\\n  font-size: 33px;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  grid-row: 5;\\n  width: 70%;\\n  margin-right: 20%;\\n}\\n\\n.tester {\\n  grid-row: 6;\\n  width: 100%;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n}\\n\\n.save {\\n  grid-row: 7;\\n  width: 100%;\\n  color: green;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n}\\n\\n.export {\\n  grid-row: 8;\\n  width: 100%;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n}\\n\\n.clear {\\n  grid-row: 10;\\n  width: 100%;\\n  color: red;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n}\\n\\n.mainContainer {\\n  background: url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg)\\n    no-repeat center center fixed;\\n  background-size: cover;\\n  display: grid;\\n  position: fixed;\\n  grid-template-columns: 15% 35% 35% 15%;\\n  grid-template-rows: repeat(4, 25% [row-start]);\\n  /* overflow: auto; */\\n  width: 100vw;\\n  height: 100vh;\\n}\\n\\n.leftSideBar {\\n  grid-column: 1;\\n  grid-row: 1/5;\\n}\\n\\n.testSuites {\\n  grid-column: 4;\\n  grid-row: 1/4;\\n}\\n\\n.testInput {\\n  grid-column: 2/4;\\n  grid-row: 1;\\n}\\n\\n.testQuery {\\n  grid-column: 2/4;\\n  grid-row: 2;\\n}\\n\\n.generateTest {\\n  grid-column: 2/4;\\n  grid-row: 4;\\n}\\n\\n.testInputContainer {\\n  display: grid;\\n  grid-template-columns: 50% 50%;\\n  grid-template-rows: auto;\\n  background: none;\\n  width: inherit;\\n}\\n\\n.testSuiteInput {\\n  grid-column: 1;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  text-align: left;\\n  margin-top: 17%;\\n}\\n\\n.testDescriptionInput {\\n  grid-column: 2;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  text-align: left;\\n  margin-top: 17%;\\n}\\n\\n.writeQueryBox {\\n  font-family: \\\"Poppins\\\", sans-serif;\\n}\\n\\n.test-query-box {\\n  text-align: left;\\n}\\n\\n.generate-test {\\n  font-family: \\\"Poppins\\\", sans-serif;\\n}\\n\\n.addTest {\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  height: 35%;\\n}\\n\\n.generateTest {\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  height: 35%;\\n  margin-top: 2%;\\n}\\n\\n#dd-reset {\\n  margin-top: 8.7%;\\n  width: 100%;\\n}\\n\\nh3 {\\n  text-align: center;\\n  line-height: 2.5;\\n  font-weight: 800;\\n  font-size: 33px;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  width: 100%;\\n  margin-right: 30%;\\n}\\n\\n.btn-info {\\n  background: rgb(0, 123, 255) !important;\\n  width: 100%;\\n}\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./client/public/styling/index.css?./node_modules/css-loader/dist/cjs.js");
+=======
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"\\n  .fullscreen {\\n    position: fixed;\\n    top: 0;\\n    left: 0;\\n    bottom: 0;\\n    right: 0;\\n    overflow: auto;\\n    /* background: rgb(99, 56, 56); Just to visualize the extent */\\n    \\n  }\\n\\nform {\\n  /* display: inline-flex; */\\n}\\n\\n#content {\\n  background: none !important;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  width: 100%;\\n}\\n\\n.introContainer {\\n\\n    display: grid;\\n    position: fixed;\\n    grid-template-columns: repeat(4, 25% [col-start]);\\n    grid-template-rows: repeat(4, 25% [row-start]);\\n    /* overflow: auto; */\\n    /* background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed; */\\n    background: rgb(29, 29, 31);\\n    background-size: cover;\\n    /* width: 100vw;\\n    height: 100vh; */\\n    width: 100%;\\n    height: 100%;\\n  }\\n\\n.introHeader {\\n  text-align: center;\\n  font-size: 50px;\\n  grid-column: 1/5;\\n  grid-row: 1/2;\\n}\\n\\nh1 {\\n  line-height: 7.5;\\n  font-weight: 800;\\n  font-family: \\\"Poppins\\\", sans-serif;\\n  font-size: 88px;\\n  color: #f5f5f7;\\n\\n}\\n\\n.introInstruction {\\n  grid-column: 1/5;\\n  grid-row: 2/4;\\n}\\n\\n.introNext {\\n  grid-column: 2;\\n  grid-row: 4;\\n  vertical-align: 50%;\\n}\\n\\n.introDoc {\\n  grid-column: 3;\\n  grid-row: 4;\\n  vertical-align: 50%;\\n}\\n\\n.next-button {\\n    width: 100%;\\n    padding: 8px 4px 8px 10px;\\n    margin-bottom: 0px;\\n    color: black;\\n\\n    /* Styles */\\n    border: 1px solid #4e3043; /* Fallback */\\n    border: 1px solid rgba(78,48,67, 0.8);\\n    background: whitesmoke;\\n    opacity: 75%;\\n    box-shadow: \\n        0 1px 0 rgba(255,255,255,0.2), \\n        inset 0 1px 1px rgba(0,0,0,0.1);\\n    -webkit-transition: all 0.3s ease-out;\\n    -moz-transition: all 0.3s ease-out;\\n    -ms-transition: all 0.3s ease-out;\\n    -o-transition: all 0.3s ease-out;\\n    transition: all 0.3s ease-out;\\n\\n    /* Font styles */\\n    font-family: 'Poppins', sans-serif;\\n    text-align: center;\\n    color: black;\\n    font-size: 13px;\\n    margin-top: 50%;\\n    }\\n .next-button:hover {\\n    background: rgb(136, 133, 133);\\n    color: white;\\n    }\\n .next-button:active {\\n    background: white;\\n    }\\n\\n    .doc-button {\\n      width: 100%;\\n      padding: 8px 4px 8px 10px;\\n      margin-bottom: 0px;\\n      color: black;\\n  \\n      /* Styles */\\n      border: 1px solid #4e3043; /* Fallback */\\n      border: 1px solid rgba(78,48,67, 0.8);\\n      background: whitesmoke;\\n      opacity: 75%;\\n      box-shadow: \\n          0 1px 0 rgba(255,255,255,0.2), \\n          inset 0 1px 1px rgba(0,0,0,0.1);\\n      -webkit-transition: all 0.3s ease-out;\\n      -moz-transition: all 0.3s ease-out;\\n      -ms-transition: all 0.3s ease-out;\\n      -o-transition: all 0.3s ease-out;\\n      transition: all 0.3s ease-out;\\n  \\n      /* Font styles */\\n      font-family: 'Poppins', sans-serif;\\n      text-align: center;\\n      color: black;\\n      font-size: 13px;\\n      margin-top: 50%;\\n      }\\n   .doc-button:hover {\\n    background: rgb(136, 133, 133);\\n    color: white;\\n      }\\n   .doc-button:active {\\n    background: white;\\n      }\\n\\n\\n.buttonContainer {\\n  display: grid;\\n  grid-template-columns: 10% 23.33% 23.33% 23.33% 20%;\\n  grid-template-rows: auto;\\n  position: relative;\\n  background-color: rgb(29, 29, 31);\\n}\\n\\n  .selections {\\n    text-align: center;\\n    line-height: 2.5;\\n    font-weight: 800;\\n    font-size: 33px;\\n    font-family: 'Poppins', sans-serif;\\n  }\\n\\n  .queries {\\n    grid-column: 2;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n    color: #f5f5f7;\\n  }\\n\\n  .mutations {\\n    grid-column: 3;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n    color: #f5f5f7;\\n  }\\n\\n  .subscriptions {\\n    grid-column: 4;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n    color: #f5f5f7;\\n  }\\n\\n  .testing {\\n    text-align: center;\\n    line-height: 2.5;\\n    font-weight: 800;\\n    font-size: 33px;\\n    font-family: 'Poppins', sans-serif;\\n    /* grid-row: 5; */\\n    width: 70%;\\n    margin-right: 20%;\\n  }\\n\\n  .tester {\\n    /* grid-row: 6; */\\n    width: inherit;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n  }\\n\\n  .save {\\n    /* grid-row: 7; */\\n    width: inherit;\\n    color: green;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n  }\\n\\n  .export {\\n    /* grid-row: 8; */\\n    width: inherit;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n  }\\n\\n  .clear {\\n    grid-column: 5;\\n    font-family: 'Poppins', sans-serif;\\n    font-size: 12px;\\n    color: #f5f5f7;\\n  }\\n\\n.mainContainer {\\n  /* background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed; */\\n  background-color: #fff;\\n  background-size: cover;\\n  display: grid;\\n  position: fixed;\\n  grid-template-columns: 15% 42.5% 42.5%;\\n  grid-template-rows: 9% 20% 35% 35% 1%;\\n  /* overflow: auto; */\\n  width: 100vw;\\n  height: 100vh;\\n}\\n\\n.leftSideBar {\\n  position: top;\\n  grid-column: 1/4;\\n  grid-row: 1;\\n}\\n\\n.testSuites {\\n  grid-column: 1;\\n  grid-row: 2/6;\\n  /* background-color: rgb(157, 157, 160); */\\n  color: black;\\n}\\n\\n  .wrapper {\\n    background: none;\\n    position: fixed;\\n    /* width: 150px;\\n    overflow-y: scroll;\\n    top: 5%;\\n    bottom: 0; */\\n  }\\n\\n  #sidebar {\\n    background: none;\\n    position: fixed;\\n    width: 150px;\\n    overflow-y: scroll;\\n    top: 14%;\\n    bottom: 0;\\n  }\\n\\n  .testSuiteDeleteButton {\\n    width: 100%;\\n    padding: 8px 4px 8px 10px;\\n    margin-bottom: 0px;\\n    color: black;\\n\\n    /* Styles */\\n    border: 1px solid #4e3043; /* Fallback */\\n    border: 1px solid rgba(78,48,67, 0.8);\\n    background: whitesmoke;\\n    opacity: 75%;\\n    box-shadow: \\n        0 1px 0 rgba(255,255,255,0.2), \\n        inset 0 1px 1px rgba(0,0,0,0.1);\\n    -webkit-transition: all 0.3s ease-out;\\n    -moz-transition: all 0.3s ease-out;\\n    -ms-transition: all 0.3s ease-out;\\n    -o-transition: all 0.3s ease-out;\\n    transition: all 0.3s ease-out;\\n\\n    /* Font styles */\\n    font-family: 'Poppins', sans-serif;\\n    text-align: center;\\n    color: black;\\n    font-size: 13px;\\n    }\\n .testSuiteDeleteButton:hover {\\n    background: rgb(136, 133, 133);\\n    color: red;\\n    }\\n .testSuiteEditButton:active {\\n    background: white;\\n    }\\n\\n    .testSuiteEditButton {\\n      width: 100%;\\n      padding: 8px 4px 8px 10px;\\n      margin-bottom: 0px;\\n      color: black;\\n  \\n      /* Styles */\\n      border: 1px solid #4e3043; /* Fallback */\\n      border: 1px solid rgba(78,48,67, 0.8);\\n      background: whitesmoke;\\n      opacity: 75%;\\n      box-shadow: \\n          0 1px 0 rgba(255,255,255,0.2), \\n          inset 0 1px 1px rgba(0,0,0,0.1);\\n      -webkit-transition: all 0.3s ease-out;\\n      -moz-transition: all 0.3s ease-out;\\n      -ms-transition: all 0.3s ease-out;\\n      -o-transition: all 0.3s ease-out;\\n      transition: all 0.3s ease-out;\\n  \\n      /* Font styles */\\n      font-family: 'Poppins', sans-serif;\\n      text-align: center;\\n      color: black;\\n      font-size: 13px;\\n      }\\n   .testSuiteEditButton:hover {\\n      background: rgb(136, 133, 133);\\n      color: whitesmoke;\\n      }\\n   .testSuiteEditButton:active {\\n      background: white;\\n      }\\n\\n.enterInfo {\\n  grid-column: 2;\\n  grid-row: 2;\\n  height: 100%;\\n  width: 100%;\\n}\\n  .enterInfoContainer {\\n    height: 100%;\\n    width: 100%;\\n    display: grid;\\n    grid-template-columns: auto;\\n    grid-template-rows: 33.33% 33.33% 33.33%;\\n  }\\n    .enterTestSuiteText {\\n      grid-row: 1;\\n      font-family: 'Poppins', sans-serif;\\n      text-align: right;\\n      font-style: italic;\\n      margin-top: 1%;\\n      font-size: 15px;\\n      color: rgb(29, 29, 31);\\n    }\\n    .enterTestDescText {\\n      grid-row: 2;\\n      font-family: 'Poppins', sans-serif;\\n      text-align: right;\\n      font-style: italic;\\n      margin-top: 1%;\\n      font-size: 15px;\\n      color: rgb(29, 29, 31);\\n    }\\n    .selectTestText {\\n      grid-row: 3;\\n      font-family: 'Poppins', sans-serif;\\n      text-align: right;\\n      margin-top: 1%;\\n      font-size: 15px;\\n      color: rgb(29, 29, 31);\\n    }\\n\\n.testInput {\\n  grid-column: 3;\\n  grid-row: 2;\\n  height: 100%;\\n  width: 100%;\\n}\\n\\n.testQuery {\\n  grid-column: 2/4;\\n  grid-row: 3;\\n}\\n\\n.generateTest {\\n  grid-column: 2/4;\\n  grid-row: 4;\\n  /* background-color: whitesmoke; */\\n}\\n\\n.testInputContainer {\\n  display: grid;\\n  text-align: center;\\n  grid-template-columns: auto;\\n  grid-template-rows: 33.33% 33.33% 33.33%;\\n  background: none;\\n  width: 100%;\\n  height: 100%\\n}\\n\\n    .testSuiteInput {\\n      grid-row: 1;\\n      font-family: 'Poppins', sans-serif;\\n    }\\n\\n    .testDescriptionInput {\\n      grid-row: 2;\\n      font-family: 'Poppins', sans-serif;\\n    }\\n\\n    .selectQueryType {\\n      -webkit-appearance: none;\\n      -moz-appearance: none;\\n      -ms-appearance: none;\\n      appearance: none;\\n      outline: 0;\\n      box-shadow: none;\\n      border: 0 !important;\\n      background: rgb(29, 29, 31);\\n      background-image: none;\\n    }\\n    /* Remove IE arrow */\\n    .selectQueryType::-ms-expand {\\n      display: none;\\n    }\\n    /* Custom Select */\\n    .selectQueryType {\\n      position: relative;\\n      display: flex;\\n      width: 77%;\\n      height: 2.5em;\\n      line-height: 3;\\n      background: rgb(29, 29, 31);\\n      overflow: hidden;\\n      border-radius: .25em;\\n      margin-left: 3%;\\n    }\\n    .selectQueryType {\\n      flex: 1;\\n      padding: 0 .5em;\\n      color: #fff;\\n      cursor: pointer;\\n    }\\n    /* Arrow */\\n    .selectQueryType::after {\\n      content: '\\\\25BC';\\n      position: absolute;\\n      top: 0;\\n      right: 0;\\n      padding: 0 1em;\\n      background: rgb(29, 29, 31);\\n      cursor: pointer;\\n      pointer-events: none;\\n      -webkit-transition: .25s all ease;\\n      -o-transition: .25s all ease;\\n      transition: .25s all ease;\\n    }\\n    /* Transition */\\n    .select:hover::after {\\n      color: #f39c12;\\n    }\\n    \\n\\n.writeQueryBox {\\n  font-family: 'Poppins', sans-serif;\\n  text-align: center;\\n  height: 100%;\\n  width: 100%;\\n  display: grid;\\n  grid-template-columns: 50% 50%;\\n  grid-template-rows: auto;\\n}\\n\\n  .test-query-write {\\n    grid-column: 1;\\n    width: 100%;\\n    display: inline-block;\\n  }\\n\\n  .test-query-select {\\n    grid-column: 2;\\n    width: 100%;\\n    display: inline-block;\\n  }\\n\\n.generateTestBox {\\n  font-family: 'Poppins', sans-serif;\\n  text-align: center;\\n  height: 100%;\\n  width: 100%;\\n  display: grid;\\n  grid-template-columns: 50% 50%;\\n  grid-template-rows: auto;\\n}\\n\\n    .addTestButton{\\n      font-family: 'Poppins', sans-serif;\\n      background: #e2e2e9;\\n    }\\n    .addTestButton:active{\\n      background: rgb(189, 240, 191) !important;\\n    }\\n    .addTestButton:hover {\\n      background: rgb(189, 240, 191) !important;\\n      }\\n\\n    .generateTestButton {\\n      font-family: 'Poppins', sans-serif;\\n      background: #e2e2e9;\\n    }\\n    .generateTestButton:active{\\n      background: rgb(189, 240, 191) !important;\\n    }\\n    .generateTestButton:hover {\\n      background: rgb(189, 240, 191) !important;\\n      }\\n\\n\\nh3 {\\n  text-align: left;\\n  text-shadow: 5px;\\n  /* line-height: 2.5; */\\n  font-weight: 800;\\n  font-size: 27px;\\n  font-family: 'Poppins', sans-serif;\\n  width: 100%;\\n  margin-left: 1%;\\n}\\n\\n.btn-info {\\n  background: #cfcfd4 !important;\\n  width: 100%;\\n}\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./client/public/styling/index.css?./node_modules/css-loader/dist/cjs.js");
+>>>>>>> cd1fe22ce4a85aa02dfa333a0c1fc8d18e3f15b7
+
+/***/ }),
+>>>>>>> b5b47688f1c34b40b4c742674611048bdd8413af
 
   /***/ './node_modules/css-loader/dist/cjs.js!./node_modules/animate.css/animate.min.css':
   /*! ****************************************************************************************!*\
@@ -1450,6 +2286,7 @@
   /*! *******************************************************!*\
   !*** ./node_modules/dom-helpers/esm/transitionEnd.js ***!
   \*******************************************************/
+<<<<<<< HEAD
   /*! exports provided: TRANSITION_SUPPORTED, parseDuration, emulateTransitionEnd, default */
   /***/ function (module, __webpack_exports__, __webpack_require__) {
     'use strict'
@@ -1498,6 +2335,29 @@
 
   /***/ './node_modules/gud/index.js':
   /*! ***********************************!*\
+=======
+/*! exports provided: TRANSITION_SUPPORTED, parseDuration, emulateTransitionEnd, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"TRANSITION_SUPPORTED\", function() { return TRANSITION_SUPPORTED; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseDuration\", function() { return parseDuration; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"emulateTransitionEnd\", function() { return emulateTransitionEnd; });\n/* harmony import */ var _canUseDOM__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./canUseDOM */ \"./node_modules/dom-helpers/esm/canUseDOM.js\");\n/* harmony import */ var _css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css */ \"./node_modules/dom-helpers/esm/css.js\");\n/* harmony import */ var _listen__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./listen */ \"./node_modules/dom-helpers/esm/listen.js\");\n\n\n\nvar TRANSITION_SUPPORTED = _canUseDOM__WEBPACK_IMPORTED_MODULE_0__[\"default\"] && 'ontransitionend' in window;\nfunction parseDuration(node) {\n  var str = Object(_css__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(node, 'transitionDuration') || '';\n  var mult = str.indexOf('ms') === -1 ? 1000 : 1;\n  return parseFloat(str) * mult;\n}\n\nfunction triggerTransitionEnd(element) {\n  var evt = document.createEvent('HTMLEvents');\n  evt.initEvent('transitionend', true, true);\n  element.dispatchEvent(evt);\n}\n\nfunction emulateTransitionEnd(element, duration, padding) {\n  if (padding === void 0) {\n    padding = 5;\n  }\n\n  var called = false;\n  var handle = setTimeout(function () {\n    if (!called) triggerTransitionEnd(element);\n  }, duration + padding);\n  var remove = Object(_listen__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(element, 'transitionend', function () {\n    called = true;\n  }, {\n    once: true\n  });\n  return function () {\n    clearTimeout(handle);\n    remove();\n  };\n}\n\nfunction transitionEnd(element, handler, duration) {\n  if (!TRANSITION_SUPPORTED) {\n    return emulateTransitionEnd(element, 0, 0);\n  }\n\n  if (duration == null) duration = parseDuration(element) || 0;\n  emulateTransitionEnd(element, duration);\n  return Object(_listen__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(element, 'transitionend', handler);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (transitionEnd);\n\n//# sourceURL=webpack:///./node_modules/dom-helpers/esm/transitionEnd.js?");
+
+/***/ }),
+
+/***/ "./node_modules/file-saver/dist/FileSaver.min.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/file-saver/dist/FileSaver.min.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),\n\t\t\t\t__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?\n\t\t\t\t(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),\n\t\t\t\t__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){\"use strict\";function b(a,b){return\"undefined\"==typeof b?b={autoBom:!1}:\"object\"!=typeof b&&(console.warn(\"Deprecated: Expected third argument to be a object\"),b={autoBom:!b}),b.autoBom&&/^\\s*(?:text\\/\\S*|application\\/xml|\\S*\\/\\S*\\+xml)\\s*;.*charset\\s*=\\s*utf-8/i.test(a.type)?new Blob([\"\\uFEFF\",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open(\"GET\",b),e.responseType=\"blob\",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error(\"could not download file\")},e.send()}function d(a){var b=new XMLHttpRequest;b.open(\"HEAD\",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent(\"click\"))}catch(c){var b=document.createEvent(\"MouseEvents\");b.initMouseEvent(\"click\",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f=\"object\"==typeof window&&window.window===window?window:\"object\"==typeof self&&self.self===self?self:\"object\"==typeof global&&global.global===global?global:void 0,a=f.saveAs||(\"object\"!=typeof window||window!==f?function(){}:\"download\"in HTMLAnchorElement.prototype?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement(\"a\");g=g||b.name||\"download\",j.download=g,j.rel=\"noopener\",\"string\"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target=\"_blank\")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:\"msSaveOrOpenBlob\"in navigator?function(f,g,h){if(g=g||f.name||\"download\",\"string\"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement(\"a\");i.href=f,i.target=\"_blank\",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open(\"\",\"_blank\"),e&&(e.document.title=e.document.body.innerText=\"downloading...\"),\"string\"==typeof a)return c(a,b,d);var g=\"application/octet-stream\"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\\/[\\d]+/.test(navigator.userAgent);if((i||g&&h)&&\"object\"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,\"data:attachment/file;\"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a, true&&(module.exports=a)});\n\n//# sourceMappingURL=FileSaver.min.js.map\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack:///./node_modules/file-saver/dist/FileSaver.min.js?");
+
+/***/ }),
+
+/***/ "./node_modules/gud/index.js":
+/*!***********************************!*\
+>>>>>>> b5b47688f1c34b40b4c742674611048bdd8413af
   !*** ./node_modules/gud/index.js ***!
   \***********************************/
   /*! no static exports found */

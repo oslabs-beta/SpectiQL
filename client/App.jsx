@@ -4,6 +4,7 @@ import "./public/styling/index.css";
 import Particles from "react-particles-js"; 
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
+import FileSaver, { saveAs } from 'file-saver';
 
 //all the components we need
 // import Main from "./main.jsx";
@@ -32,6 +33,7 @@ class App extends Component {
     super(props);
     this.state = {
       landingPageState: true,
+      filePath: `"./schema.gql"`,
       schema: {},
       testSuiteName: "",
       testDescription: "",
@@ -63,11 +65,14 @@ class App extends Component {
     this.editTest = this.editTest.bind(this);
     this.dropDownReset = this.dropDownReset.bind(this);
     this.testSuiteToggler = this.testSuiteToggler.bind(this);
+    this.handleExportClick = this.handleExportClick.bind(this);
   }
 
+
+  //redirects to doc page when clicked
   openDocs() {
     window.open(
-      "https://github.com/oslabs-beta/SpectiQL/blob/master/README.md"
+      "https://github.com/oslabs-beta/SpectiQL/blob/master/REAMDE.md"
     );
   }
 
@@ -76,7 +81,7 @@ class App extends Component {
     console.log('this is landingPageState', this.state.landingPageState);
 }
   
-
+ //retrieving user's schema and schema filepath after they configure their file path from their backend
   handleNextClick() {
     // fetch('/spectiql', {
     //   method: 'POST',
@@ -84,7 +89,7 @@ class App extends Component {
     // .then(response => response.json())
     // .then((response) => {
     //   schemaData = response.schema;
-    //   this.setState({ landingPageState: false, schema: response.schema});
+    //   this.setState({ filePath: `${filePath}`, landingPageState: false, schema: response.schema});
     // })
     // .catch(err => console.log(err));
 
@@ -101,6 +106,22 @@ class App extends Component {
   handleClick() {
     const value = this.state.testFunctions[this.state.selectedTest](this.state);
     return this.setState({ generatedTest: value });
+  }
+
+  //function for when user clicks export
+  handleExportClick() {
+    const beforeAll = `describe('All the tests', () => {
+      let tester;
+      beforeAll(() => {
+        tester = testSchema(${this.state.filePath});
+      })`
+    const requiredLibraries = `const { testSchema } = require('spectiql')`;
+    const testArray = [];
+    for (let i = 0; i < this.state.testSuites.length; i++) {
+      testArray.push(this.state.testSuites[i].savedGeneratedTest);
+    }
+    var blob = new Blob([`'use strict' \n`,`${requiredLibraries} \n \n`,`${beforeAll} \n`,testArray, `})`], {type: "text/plain;charset=utf-8"});
+    FileSaver.saveAs(blob, "spectiql.test.js");
   }
 
 
