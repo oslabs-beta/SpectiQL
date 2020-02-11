@@ -120,7 +120,7 @@ class App extends Component {
     const requiredLibraries = `const { testSchema } = require('spectiql')`;
     const testArray = [];
     for (let i = 0; i < this.state.testSuites.length; i++) {
-      testArray.push(this.state.testSuites[i].savedGeneratedTest);
+      testArray.push(this.state.testSuites[i].savedGeneratedTest + `})`);
     }
     var blob = new Blob(
       [
