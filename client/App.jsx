@@ -18,6 +18,7 @@ import {
   invalidMutation,
 } from "./Tests/Tests.jsx";
 
+let schemaData;
 
 class App extends Component {
   constructor(props) {
@@ -61,15 +62,20 @@ class App extends Component {
       "https://github.com/oslabs-beta/SpectiQL/blob/master/README.md"
     );
   }
- 
+  
+
   handleNextClick() {
     fetch('/spectiql', {
       method: 'POST',
     })
     .then(response => response.json())
     .then((response) => {
+      // console.log('this is schemaData before saving to local variable', schemaData);
+      schemaData = response.schema;
+      
+      // console.log('this is schemaData after saving to local variable', schemaData);
       this.setState({ schema: response.schema});
-      console.log(this.state.schema);
+      // console.log(this.state.schema);
     })
     .catch(err => console.log(err));
   }
@@ -227,14 +233,12 @@ class App extends Component {
             <Switch>
                 <Route path="/main" exact render={props=> (<Main appstate={this.state} handleChange={this.handleChange} 
                 handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
-            </Switch>
-            <Switch>
+                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest} schemaData={schemaData}/>)}/>
+
                <Route path="/queries" exact render={props=> (<Main appstate={this.state} handleChange={this.handleChange} 
                 handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
-            </Switch>
-            <Switch>
+                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest} schemaData={schemaData}/>)}/>
+
                <Route path="/mutations" exact render={props=> (<Mutations appstate={this.state} handleChange={this.handleChange} 
                 handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
                 selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>

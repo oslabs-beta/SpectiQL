@@ -4,6 +4,7 @@ import MutationTestInput from "../Components/MutationTestInput.jsx";
 import TestMutation from "../Components/TestMutation.jsx";
 import GenerateTest from "../Components/GenerateTest.jsx";
 import TestSuites from "../Components/TestSuites.jsx";
+// import SchemaTreeD3 from "../Components/schemaTreeD3.jsx";
 
 class Mutations extends Component {
   constructor(props) {
@@ -31,8 +32,14 @@ class Mutations extends Component {
               writeTest={this.props.appstate.writeTest}
               writeInput={this.props.writeInput}
               handleChange={this.props.handleChange}
+              schema={this.props.schema}
             />
           </div>
+          {/* <div className="queryVisualizer">
+            <SchemaTreeD3 
+              schema={this.props.schema}
+            />
+          </div> */}
           <div className="generateTest">
             <GenerateTest
               testSuiteName={this.props.testSuiteName}

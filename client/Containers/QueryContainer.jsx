@@ -40,6 +40,7 @@ class Query extends Component {
           <div className="queryVisualizer">
             <SchemaTreeD3 
               schema={this.props.schema}
+              schemaData={this.props.schemaData}
             />
           </div>
           <div className="generateTest">
