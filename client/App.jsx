@@ -102,8 +102,12 @@ class App extends Component {
   }
 
   handleClick() {
-    const value = this.state.testFunctions[this.state.selectedTest](this.state);
-    return this.setState({ generatedTest: value });
+    if (document.getElementById("dd-reset").selectedIndex === 0) {
+      alert('Please select a test type from the drop-down to Generate Test')
+    } else {
+      const value = this.state.testFunctions[this.state.selectedTest](this.state);
+      return this.setState({ generatedTest: value });
+    }
   }
 
   //function for when user clicks export
@@ -139,27 +143,33 @@ class App extends Component {
 
   addTestSuite() {
     //push the generated test value into the test suites array
-    const newTestSuite = {
-      savedGeneratedTest: this.state.generatedTest,
-      savedTestSuiteName: this.state.testSuiteName,
-      savedTestDescription: this.state.testDescription,
-      savedWriteTest: this.state.writeTest,
-      savedSelectedTest: this.state.selectedTest,
-      savedTestSuiteType: this.state.testSuiteType,
-      testIndex: this.state.testIndex + 1
-    };
-    //shallow copy of array
-    let testSuites = this.state.testSuites.slice();
-    testSuites.push(newTestSuite);
-    return this.setState({
-      testSuiteName: "",
-      testDescription: "",
-      writeTest: "",
-      generatedTest: "",
-      selectedTest: this.dropDownReset(),
-      testIndex: this.state.testIndex + 1,
-      testSuites
-    });
+    if (document.getElementById("dd-reset").selectedIndex === 0) {
+      alert('Please select a test type from the drop-down to Add to Test Suite')
+    } else {
+      const newTestSuite = {
+        savedGeneratedTest: this.state.generatedTest,
+        savedTestSuiteName: this.state.testSuiteName,
+        savedTestDescription: this.state.testDescription,
+        savedWriteTest: this.state.writeTest,
+        savedSelectedTest: this.state.selectedTest,
+        savedTestSuiteType: this.state.testSuiteType,
+        savedWriteInput: this.state.writeInput,
+        testIndex: this.state.testIndex + 1
+      };
+      //shallow copy of array
+      let testSuites = this.state.testSuites.slice();
+      testSuites.push(newTestSuite);
+      return this.setState({
+        testSuiteName: "",
+        testDescription: "",
+        writeTest: "",
+        writeInput: "",
+        generatedTest: "",
+        selectedTest: this.dropDownReset(),
+        testIndex: this.state.testIndex + 1,
+        testSuites
+      });
+    }
   }
 
   updateTestSuite() {
@@ -169,6 +179,7 @@ class App extends Component {
       savedTestSuiteName: this.state.testSuiteName,
       savedTestDescription: this.state.testDescription,
       savedWriteTest: this.state.writeTest,
+      savedWriteInput: this.state.writeInput,
       savedSelectedTest: this.state.selectedTest,
       savedTestSuiteType: this.state.testSuiteType,
       testIndex: this.state.testIndex
@@ -178,6 +189,7 @@ class App extends Component {
       testSuiteName: "",
       testDescription: "",
       writeTest: "",
+      writeInput: "",
       generatedTest: "",
       selectedTest: this.dropDownReset(),
       testSuites,
@@ -191,6 +203,7 @@ class App extends Component {
       testSuiteName: testSuite.savedTestSuiteName,
       testDescription: testSuite.savedTestDescription,
       writeTest: testSuite.savedWriteTest,
+      writeInput: testSuite.savedWriteInput,
       selectedTest: this.dropDownReset(),
       generatedTest: testSuite.savedGeneratedTest,
       testIndex: testSuite.testIndex,
@@ -209,6 +222,7 @@ class App extends Component {
       writeTest: "",
       generatedTest: "",
       selectedTest: this.dropDownReset(),
+      testSuiteToggler: true,
       testSuites,
       testIndex: this.state.testIndex - 1
     });
