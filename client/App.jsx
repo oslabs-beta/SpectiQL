@@ -12,6 +12,7 @@ import Query from "./Containers/QueryContainer.jsx";
 import LeftSideBar from "./Components/LeftSideBar.jsx";
 import SchemaTreeD3 from "./Components/schemaTreeD3.jsx";
 import TestSuites from "./Components/TestSuites.jsx";
+import LandingPage from "./Components/LandingPage.jsx";
 
 //functions imported from test
 import {
@@ -25,13 +26,13 @@ import {
   invalidMutation,
 } from "./Tests/Tests.jsx";
 
-let schemaData='what the fk is up!';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      schema: {yes:'hello'},
+      landingPageState: true,
+      schema: {},
       testSuiteName: "",
       testDescription: "",
       selectedTest: "",
@@ -69,22 +70,26 @@ class App extends Component {
       "https://github.com/oslabs-beta/SpectiQL/blob/master/README.md"
     );
   }
+
+  //use this to check if a state changed/altered
+  componentDidUpdate() {
+    console.log('this is landingPageState', this.state.landingPageState);
+}
   
 
   handleNextClick() {
-    fetch('/spectiql', {
-      method: 'POST',
-    })
-    .then(response => response.json())
-    .then((response) => {
-      // console.log('this is schemaData before saving to local variable', schemaData);
-      schemaData = response.schema;
-      
-      // console.log('this is schemaData after saving to local variable', schemaData);
-      this.setState({ schema: response.schema});
-      // console.log(this.state.schema);
-    })
-    .catch(err => console.log(err));
+    // fetch('/spectiql', {
+    //   method: 'POST',
+    // })
+    // .then(response => response.json())
+    // .then((response) => {
+    //   schemaData = response.schema;
+    //   this.setState({ landingPageState: false, schema: response.schema});
+    // })
+    // .catch(err => console.log(err));
+
+    //when testing on developnment side
+    this.setState({ landingPageState: false});
   }
 
   handleChange(e) {
@@ -193,54 +198,25 @@ class App extends Component {
   }
 
   render() {
+    let landingPage;
+    if (this.state.landingPageState === true) {
+      landingPage = <LandingPage landingPageState={this.state.landingPageState} handleNextClick={this.handleNextClick} openDocs={this.openDocs}/>
+    }
+    //landingPage={this.state.landingPageState} handleNextClick={this.handleNextClick}
+
     return (
         <HashRouter>
-        <div className="fullscreen">
-          <div className="mainContainer">
-          {/* <div className="introContainer">
-            <div className="introHeader">
-            <ScrollAnimation animateIn="fadeIn" delay="3000" >
-            <h1>SpectiQL</h1>
-              </ScrollAnimation>
-                  </div>
-            <div className="introInstruction">
-                              <Particles className="introAnimate"
-                    params={{
-                      "particles": {
-                          "number": {
-                              "value": 50
-                          },
-                          "size": {
-                              "value": 3
-                          }
-                      },
-                      "color": {
-                        "value": "#7a3e3e"
-                      },
-                      "interactivity": {
-                          "events": {
-                              "onhover": {
-                                  "enable": true,
-                                  "mode": "repulse"
-                              }
-                          }
-                      }
-                  }} />
-            </div> */}
-            
-            {/* <div className="introNext">
-              <Link to="/main" exact>
-                <button className="next-button" onClick={this.handleNextClick}>Next</button>
-              </Link>
+          <div className="fullscreen">
+            <div className="mainContainer">
+
+            <div className="landingPage">
+              {landingPage}
             </div>
-            <div className="introDoc">
-              <Link to="/documentation" exact onClick={this.openDocs}>
-                <button className="doc-button">Docs</button>
-              </Link>
-            </div> */}
+
             <div className="mainNavBar">
               <LeftSideBar/>
             </div>
+
             <div className="queryVisualizer">
               <SchemaTreeD3 
                 schema={this.state.schema}
@@ -252,22 +228,15 @@ class App extends Component {
             </div>
 
             <div className="testSuites">
-            <TestSuites
-                   testSuites={this.state.testSuites}
-                   deleteTest={this.state.deleteTest}
-                   editTest={this.state.editTest}
-            />
-          </div>
-
+                <TestSuites
+                      testSuites={this.state.testSuites}
+                      deleteTest={this.state.deleteTest}
+                      editTest={this.state.editTest}
+                />
+            </div>
 
             <Switch>
-                {/* <Route path="/main" >
-                  <Main appstate={this.state} handleChange={this.handleChange} 
-                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
-                </Route> */}
                 
-
                 <Route path="/queries">
                 <Query appstate={this.state} handleChange={this.handleChange} 
                   handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
@@ -281,8 +250,8 @@ class App extends Component {
                 </Route>
 
             </Switch>
+            </div>
           </div>
-        </div>
         </HashRouter>
     );
   }

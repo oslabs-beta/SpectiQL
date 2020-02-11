@@ -10,6 +10,18 @@
     
   }
 
+  .introscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    z-index: 1;
+    /* background: rgb(99, 56, 56); Just to visualize the extent */
+    
+  }
+
 form {
   /* display: inline-flex; */
 }
@@ -34,6 +46,7 @@ form {
     height: 100vh; */
     width: 100%;
     height: 100%;
+    z-index: 1;
   }
 
 .introHeader {
@@ -208,7 +221,7 @@ h1 {
   background-size: cover;
   display: grid;
   position: fixed;
-  grid-template-columns: 15% 42.5% 42.5%;
+  grid-template-columns: 15% 40% 45%;
   grid-template-rows: 9% 20% 35% 35% 1%;
   /* overflow: auto; */
   width: 100vw;
@@ -219,7 +232,6 @@ h1 {
   position: top;
   grid-column: 1/4;
   grid-row: 1;
-  z-index: 1;
 }
 
 .testSuites {

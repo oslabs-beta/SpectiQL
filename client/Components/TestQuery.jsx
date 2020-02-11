@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Form, Col } from "react-bootstrap";
-import Tree from 'react-d3-tree';
+import React, { Component } from 'react'
+import { Form, Col } from 'react-bootstrap'
+import Tree from 'react-d3-tree'
 
 class TestQuery extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   };
 
-  render() {
+  render () {
     // console.log('schema within testquery of Query:', this.props.schema);
     // console.log('RootQuery within testquery of Query:', this.props.schema.Query);
 
@@ -29,53 +29,52 @@ class TestQuery extends Component {
     //   }
     //   return object;
     // }
-    
+
     // let queryTreeData = convertJSON(this.props.schema);
     // console.log(queryTreeData);
 
     return (
-      <div className="writeQueryBox">
-      {/* <Form className="test-query-box"> */}
+      <div className='writeQueryBox'>
+        {/* <Form className="test-query-box"> */}
         {/* <Form.Row> */}
-          <div className= "test-query-write">
-          <Form.Group as={Col} controlId="write-query">
+        <div className='test-query-write'>
+          <Form.Group as={Col} controlId='write-query'>
             {/* <Form.Label column sm={6}>
               Write Query:
             </Form.Label> */}
             <Form.Control
-              as="textarea"
-              placeholder="Enter query here..."
-              style={{ width: "100%", height: "17.7rem" }}
-              name = "writeTest"
-              value = {this.props.writeTest}
-              onChange = {this.props.handleChange}
+              as='textarea'
+              placeholder='Enter query here...'
+              style={{ width: '100%', height: '17.7rem' }}
+              name='writeTest'
+              value={this.props.writeTest}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
-          </div>
-          
-          {/* <div className= "test-query-select"> */}
+        </div>
 
-          {/* <div id="treeWrapper" style={{width: '50em', height: '20em'}}>
+        {/* <div className= "test-query-select"> */}
+
+        {/* <div id="treeWrapper" style={{width: '50em', height: '20em'}}>
               <Tree data={queryTreeData} />
             </div> */}
-          {/* <Form.Group as={Col} controlId="select-query"> */}
-            {/* <Form.Label column sm={6}>
+        {/* <Form.Group as={Col} controlId="select-query"> */}
+        {/* <Form.Label column sm={6}>
               Select Query:
             </Form.Label> */}
-            {/* <Form.Control
+        {/* <Form.Control
               as="textarea"
               placeholder="Sample selected query here..."
               style={{ width: "100%", height: "17.7rem" }}
             /> */}
-          {/* </Form.Group> */}
+        {/* </Form.Group> */}
 
-
-          {/* </div> */}
+        {/* </div> */}
         {/* </Form.Row> */}
-      {/* </Form> */}
+        {/* </Form> */}
       </div>
-    );
+    )
   }
 }
 
-export default TestQuery;
+export default TestQuery
