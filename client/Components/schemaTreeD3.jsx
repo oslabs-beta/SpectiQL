@@ -4,7 +4,19 @@ import Tree from 'react-d3-tree'
 class SchemaTreeD3 extends Component {
   constructor (props) {
     super(props)
+
+    this.state = {}
   };
+
+  componentDidMount() {
+    const dimensions = this.treeContainer.getBoundingClientRect();
+    this.setState({
+      translate: {
+        x: dimensions.width / 2,
+        y: dimensions.height / 2
+      }
+    });
+  }
 
   render () {
     // console.log('schema within testquery of schemaTreeD3:', this.props.schema);
@@ -71,9 +83,13 @@ class SchemaTreeD3 extends Component {
     console.log('this is queryTreeData from schemaTreeD3.jsx:', queryTreeData)
 
     return (
-    // <div>Hello!</div>
-      <div id='treeWrapper' style={{ width: '60em', height: '50em' }}>
-        <Tree data={queryTreeData} />
+    <div className="svg-container">
+      <div id='treeWrapper' style={{ width: '100%', height: '100%' }} ref={tc => (this.treeContainer = tc)} initialDepth={ 1 }>
+        <Tree 
+          data={queryTreeData} 
+          translate={this.state.translate}
+          />
+      </div>
       </div>
     )
   }
