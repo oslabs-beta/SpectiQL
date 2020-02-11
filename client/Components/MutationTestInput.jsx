@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
-class TestInput extends Component {
+class MutationTestInput extends Component {
   constructor(props) {
     super(props);
   }
@@ -44,12 +44,12 @@ class TestInput extends Component {
         {/* </Form> */}
         <select className="selectQueryType" id="dd-reset" onChange={this.props.selectTest}>
               <option  value ="default" disabled selected>Select Test</option>
-              <option  value = "validQuery">Valid Query</option>
-              <option  value= "invalidQuery" >Invalid Query</option>
-              <option  value= "validArgField" >Valid Argument Field</option>
-              <option  value = "invalidArgField" >Invalid Argument Field</option>
-              <option  value= "validArgDataType" >Valid Argument DataType</option>
-              <option  value = "invalidArgDataType" >Invalid Argument DataType</option>
+              <option value = "validMutation">Valid Mutation</option>
+              <option value= "invalidMutation" >Invalid Mutation</option>
+              <option value= "validArgField" >Valid Argument Field</option>
+              <option value = "invalidArgField" >Invalid Argument Field</option>
+              <option value= "validInputType" >Valid Input Type</option>
+              <option value = "invalidInputType" >Invalid Input Type</option>
               {/* <option  value = "validMutation" >Valid Mutation</option> */}
 
             </select>
@@ -58,4 +58,4 @@ class TestInput extends Component {
   }
 }
   
-export default TestInput;
+export default MutationTestInput;

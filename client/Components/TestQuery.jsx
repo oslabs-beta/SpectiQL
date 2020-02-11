@@ -46,14 +46,14 @@ class TestQuery extends Component {
               as="textarea"
               placeholder="Enter query here..."
               style={{ width: "100%", height: "17.7rem" }}
-              name = "writeQuery"
-              value = {this.props.writeQuery}
-              onChange = {this.props.onChange}
+              name = "writeTest"
+              value = {this.props.writeTest}
+              onChange = {this.props.handleChange}
             />
           </Form.Group>
           </div>
           
-          <div className= "test-query-select">
+          {/* <div className= "test-query-select"> */}
 
           {/* <div id="treeWrapper" style={{width: '50em', height: '20em'}}>
               <Tree data={queryTreeData} />
@@ -70,7 +70,7 @@ class TestQuery extends Component {
           {/* </Form.Group> */}
 
 
-          </div>
+          {/* </div> */}
         {/* </Form.Row> */}
       {/* </Form> */}
       </div>

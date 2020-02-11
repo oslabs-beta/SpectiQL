@@ -8,6 +8,7 @@ class SchemaTreeD3 extends Component {
 
     render() {
 
+        //function below is for converting entire 
         function convertSchema(object) {
             for (let key in object) {
               if (typeof(object[key]) == "object") {
