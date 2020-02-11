@@ -10,7 +10,7 @@ class SideBar extends Component {
   render() {
     return (
       // <div>Hello</div>
-      <div className="leftSideBar">
+      <div className="mainNavBar">
         <ButtonToolbar className="buttonContainer">
           {/* <div className="selections">Select</div> */}
           <Button className="queries" variant="outline-dark" size="lg">

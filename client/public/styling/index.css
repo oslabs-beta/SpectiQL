@@ -188,21 +188,6 @@ h1 {
     margin-right: 20%;
   }
 
-  .tester {
-    /* grid-row: 6; */
-    width: inherit;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-  }
-
-  .save {
-    /* grid-row: 7; */
-    width: inherit;
-    color: green;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-  }
-
   .export {
     /* grid-row: 8; */
     width: inherit;
@@ -230,7 +215,7 @@ h1 {
   height: 100vh;
 }
 
-.leftSideBar {
+.mainNavBar {
   position: top;
   grid-column: 1/4;
   grid-row: 1;
@@ -370,28 +355,38 @@ h1 {
       color: rgb(29, 29, 31);
     }
 
-.testInput {
+.testTypeContainer {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 2/5;
   height: 100%;
   width: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 20% 40% 40%;
 }
+    .testInput {
+      grid-row: 1;
+      height: 100%;
+      width: 100%;
+    }
 
-.testQuery {
-  grid-column: 2;
-  grid-row: 3;
-}
+    .testQuery {
+      grid-row: 2;
+      height: 100%;
+      width: 100%;
+    }
+
+    .generateTest {
+      grid-row: 3;
+      height: 100%;
+      width: 100%;
+    }
 
 .queryVisualizer {
   grid-column: 3;
   grid-row: 2/6;
   width: 100%;
   height: 100%;
-}
-.generateTest {
-  grid-column: 2;
-  grid-row: 4;
-  /* background-color: whitesmoke; */
 }
 
 .testInputContainer {
@@ -488,6 +483,23 @@ h1 {
     width: 100%;
     display: inline-block;
   } */
+
+  .writeMutationBox {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 50% 50%;
+  }
+      .test-mutation-write {
+        grid-row: 1;
+        width: 100%;
+      }
+      .test-mutation-write {
+        grid-row: 2;
+        width: 100%;
+      }
 
 .generateTestBox {
   font-family: 'Poppins', sans-serif;

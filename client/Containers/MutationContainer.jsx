@@ -13,11 +13,11 @@ class Mutations extends Component {
   render() {
     console.log('inside in the mutation props', this.props)
     return (
-      <div className="fullscreen">
-        <div className="mainContainer">
-          <div className="leftSideBar">
+      <div className="testTypeContainer">
+        {/* <div className="mainContainer"> */}
+          {/* <div className="leftSideBar">
             <LeftSideBar />
-          </div>
+          </div> */}
           <div className="testInput">
             <MutationTestInput             
               testSuiteName={this.props.appstate.testSuiteName}
@@ -52,13 +52,13 @@ class Mutations extends Component {
               selectTest={this.props.selectTest}
               testSuiteToggler={this.props.appstate.testSuiteToggler}
               />
-          </div>
+          {/* </div>
           <div className="testSuites">
             <TestSuites
               testSuites={this.props.appstate.testSuites}
               deleteTest={this.props.deleteTest}
             />
-          </div>
+          </div> */}
 
         </div>
       </div>

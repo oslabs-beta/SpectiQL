@@ -19,8 +19,8 @@ class Query extends Component {
     console.log('this is props in query:', this.props)
     return (
 
-      <div className="fullscreen">
-        <div className="mainContainer">
+      <div className="testTypeContainer">
+        {/* <div className="mainContainer"> */}
           <div className="testInput">
             <TestInput
               testSuiteName={this.props.testSuiteName}
@@ -50,14 +50,14 @@ class Query extends Component {
               testSuiteToggler={this.props.testSuiteToggler}
             />
           </div>
-          <div className="testSuites">
+          {/* <div className="testSuites">
             <TestSuites
                    testSuites={this.props.testSuites}
                    deleteTest={this.props.deleteTest}
                    editTest={this.props.editTest}
             />
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
     );
   }

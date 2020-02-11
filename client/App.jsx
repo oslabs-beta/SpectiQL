@@ -6,10 +6,12 @@ import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 
 //all the components we need
-import Main from "./main.jsx";
-import Mutations from "./Containers/MutationContainer.jsx"
+// import Main from "./main.jsx";
+import Mutation from "./Containers/MutationContainer.jsx"
+import Query from "./Containers/QueryContainer.jsx";
 import LeftSideBar from "./Components/LeftSideBar.jsx";
 import SchemaTreeD3 from "./Components/schemaTreeD3.jsx";
+import TestSuites from "./Components/TestSuites.jsx";
 
 //functions imported from test
 import {
@@ -194,7 +196,8 @@ class App extends Component {
     return (
         <HashRouter>
         <div className="fullscreen">
-          <div className="introContainer">
+          <div className="mainContainer">
+          {/* <div className="introContainer">
             <div className="introHeader">
             <ScrollAnimation animateIn="fadeIn" delay="3000" >
             <h1>SpectiQL</h1>
@@ -223,9 +226,9 @@ class App extends Component {
                           }
                       }
                   }} />
-            </div>
+            </div> */}
             
-            <div className="introNext">
+            {/* <div className="introNext">
               <Link to="/main" exact>
                 <button className="next-button" onClick={this.handleNextClick}>Next</button>
               </Link>
@@ -234,28 +237,45 @@ class App extends Component {
               <Link to="/documentation" exact onClick={this.openDocs}>
                 <button className="doc-button">Docs</button>
               </Link>
-            </div>
-            <div>
+            </div> */}
+            <div className="mainNavBar">
               <LeftSideBar/>
             </div>
-            <div>
+            <div className="queryVisualizer">
               <SchemaTreeD3 
                 schema={this.state.schema}
               />
             </div>
+
+            <div className="testTypeContainer">
+              Landing Page
+            </div>
+
+            <div className="testSuites">
+            <TestSuites
+                   testSuites={this.state.testSuites}
+                   deleteTest={this.state.deleteTest}
+                   editTest={this.state.editTest}
+            />
+          </div>
+
+
             <Switch>
-                <Route path="/main" >
+                {/* <Route path="/main" >
                   <Main appstate={this.state} handleChange={this.handleChange} 
                   handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
                   selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
-                </Route>
+                </Route> */}
                 
 
                 <Route path="/queries">
+                <Query appstate={this.state} handleChange={this.handleChange} 
+                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
+                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
                 </Route> 
 
                 <Route path="/mutations" exact>
-                  <Mutations appstate={this.state} handleChange={this.handleChange} 
+                  <Mutation appstate={this.state} handleChange={this.handleChange} 
                   handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
                   selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
                 </Route>
