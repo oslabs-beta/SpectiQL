@@ -21,6 +21,7 @@ class LandingPage extends Component {
               </h1>
             </ScrollAnimation>
           </div>
+
           <div className='introInstruction'>
             <Particles
               className='introAnimate'
@@ -49,9 +50,7 @@ class LandingPage extends Component {
           </div>
 
           <div className='introNext'>
-            {/* <Link to="/main" exact> */}
             <button className='next-button' onClick={this.props.handleNextClick}>Next</button>
-            {/* </Link> */}
           </div>
           <div className='introDoc'>
             <Link to='/documentation' exact>
@@ -64,4 +63,4 @@ class LandingPage extends Component {
   }
 }
 
-export default LandingPage
+export default LandingPage;

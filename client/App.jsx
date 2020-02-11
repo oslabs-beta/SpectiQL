@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import "./public/styling/index.css";
-import Particles from "react-particles-js";
 import "animate.css/animate.min.css";
-import ScrollAnimation from "react-animate-on-scroll";
 import FileSaver, { saveAs } from "file-saver";
 
 //all the components we need
-// import Main from "./main.jsx";
 import Mutation from "./Containers/MutationContainer.jsx";
 import Query from "./Containers/QueryContainer.jsx";
 import LeftSideBar from "./Components/LeftSideBar.jsx";
@@ -154,7 +151,6 @@ class App extends Component {
     //shallow copy of array
     let testSuites = this.state.testSuites.slice();
     testSuites.push(newTestSuite);
-    console.log('testsuites', testSuites)
     return this.setState({
       testSuiteName: "",
       testDescription: "",
@@ -229,7 +225,6 @@ class App extends Component {
   }
 
   pageReset() {
-    console.log('page resetted')
     return this.setState({
       testSuiteName: "",
       testDescription: "",
@@ -266,18 +261,17 @@ class App extends Component {
         />
       );
     }
-    //landingPage={this.state.landingPageState} handleNextClick={this.handleNextClick}
 
     return (
       <HashRouter>
         <div className="fullscreen">
           <div className="mainContainer">
             <div className="landingPage">{landingPage}</div>
-
             <div className="mainNavBar">
               <LeftSideBar
                 queryPage={this.queryPage}
                 mutationPage={this.mutationPage}
+                handleExportClick={this.handleExportClick}
               />
             </div>
 

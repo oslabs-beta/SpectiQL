@@ -1,18 +1,19 @@
+//libraries
 import React, { Component } from "react";
+import "animate.css/animate.min.css";
+
+//components
 import TestInput from "../Components/TestInput.jsx";
 import TestQuery from "../Components/TestQuery.jsx";
 import GenerateTest from "../Components/GenerateTest.jsx";
-import TestSuites from "../Components/TestSuites.jsx";
-import SchemaTreeD3 from "../Components/schemaTreeD3.jsx";
-import "animate.css/animate.min.css";
-import ScrollAnimation from "react-animate-on-scroll";
-import Particles from "react-particles-js";
-import { Switch } from "react-router-dom";
+
+
 
 class Query extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <div className="testTypeContainer">

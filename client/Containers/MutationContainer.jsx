@@ -4,7 +4,6 @@ import MutationTestInput from "../Components/MutationTestInput.jsx";
 import TestMutation from "../Components/TestMutation.jsx";
 import GenerateTest from "../Components/GenerateTest.jsx";
 import TestSuites from "../Components/TestSuites.jsx";
-// import SchemaTreeD3 from "../Components/schemaTreeD3.jsx";
 
 class Mutations extends Component {
   constructor(props) {

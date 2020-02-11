@@ -7,7 +7,6 @@ class TestSuites extends Component {
     const testSuite = this.props.testSuites.map((test, index) => {
       const route = test.savedTestSuiteType ? "mutations" : "queries";
       return (
-      // console.log(`test`, test)
       <Card style={{ }} key={index}>
         <Card.Body>
           <Card.Title>Test Suite {index + 1}</Card.Title>
@@ -57,4 +56,4 @@ class TestSuites extends Component {
   }
 }
 
-export default TestSuites
+export default TestSuites;
