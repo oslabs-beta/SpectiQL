@@ -3,6 +3,7 @@ import TestInput from "../Components/TestInput.jsx";
 import TestQuery from "../Components/TestQuery.jsx";
 import GenerateTest from "../Components/GenerateTest.jsx";
 import TestSuites from "../Components/TestSuites.jsx";
+import SchemaTreeD3 from "../Components/schemaTreeD3.jsx";
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 import Particles from "react-particles-js";
@@ -33,6 +34,11 @@ class Query extends Component {
             <TestQuery
               writeTest={this.props.writeTest}
               handleChange={this.props.handleChange}
+              schema={this.props.schema}
+            />
+          </div>
+          <div className="queryVisualizer">
+            <SchemaTreeD3 
               schema={this.props.schema}
             />
           </div>
