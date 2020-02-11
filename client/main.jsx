@@ -22,14 +22,10 @@ class Main extends Component {
   };
   
   render() {
-    console.log('yo this is schemaData, a local variable lmfao!:', this.props.schemaData);
     console.log('yo this is this.props in main:',this.props)
     return (
       <div className="fullscreen">
         <div className="mainContainer">
-         <div className="leftSideBar">
-            <LeftSideBar/>
-         </div>
          <div>
         <QueryContainer 
               testSuiteName={this.props.appstate.testSuiteName}

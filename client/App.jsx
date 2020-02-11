@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
-import Main from "./main.jsx";
-import Mutations from "./Containers/MutationContainer.jsx"
 import "./public/styling/index.css";
 import Particles from "react-particles-js"; 
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 
+//all the components we need
+import Main from "./main.jsx";
+import Mutations from "./Containers/MutationContainer.jsx"
+import LeftSideBar from "./Components/LeftSideBar.jsx";
+import SchemaTreeD3 from "./Components/schemaTreeD3.jsx";
+
+//functions imported from test
 import {
   validQuery,
   invalidQuery,
@@ -18,13 +23,13 @@ import {
   invalidMutation,
 } from "./Tests/Tests.jsx";
 
-let schemaData;
+let schemaData='what the fk is up!';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      schema: {},
+      schema: {yes:'hello'},
       testSuiteName: "",
       testDescription: "",
       selectedTest: "",
@@ -231,17 +236,30 @@ class App extends Component {
               </Link>
             </div>
             <Switch>
-                <Route path="/main" exact render={props=> (<Main appstate={this.state} handleChange={this.handleChange} 
-                handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest} schemaData={schemaData}/>)}/>
+                <Route path="/main" exact>
+                  <LeftSideBar/>
+                  <Main appstate={this.state} handleChange={this.handleChange} 
+                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
+                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
+                    <SchemaTreeD3 
+                      schema={this.state.schema}
+                    />
+                </Route>
+                
 
-               <Route path="/queries" exact render={props=> (<Main appstate={this.state} handleChange={this.handleChange} 
-                handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest} schemaData={schemaData}/>)}/>
+                <Route path="/queries" exact>
+                  <LeftSideBar/>
+                  <Main appstate={this.state} handleChange={this.handleChange} 
+                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
+                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest} schemaData={schemaData}/>
+                </Route> 
 
-               <Route path="/mutations" exact render={props=> (<Mutations appstate={this.state} handleChange={this.handleChange} 
-                handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
+                <Route path="/mutations" exact>
+                  <Mutations appstate={this.state} handleChange={this.handleChange} 
+                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
+                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
+                </Route>
+
             </Switch>
           </div>
         </div>
