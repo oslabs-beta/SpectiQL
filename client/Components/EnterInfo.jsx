@@ -1,26 +1,26 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
 class EnterInfo extends Component {
-    render() {
-        return (
-            <div className="enterInfoContainer">
+  render () {
+    return (
+      <div className='enterInfoContainer'>
 
-                <div className="enterTestSuiteText">
-                    How do you want to name your test suite? 
-                </div>
+        <div className='enterTestSuiteText'>
+                    How do you want to name your test suite?
+        </div>
 
-                <div className="enterTestDescText">
+        <div className='enterTestDescText'>
                     What is this test specifically testing?
-                </div>
+        </div>
 
-                <div className="selectTestText">
+        <div className='selectTestText'>
                     *Please select the type of test
-                </div>
+        </div>
 
-            </div>
+      </div>
 
-        )
-    }
+    )
+  }
 }
 
-export default EnterInfo;
+export default EnterInfo

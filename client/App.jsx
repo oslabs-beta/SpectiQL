@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
-import Main from "./main.jsx";
-import Mutations from "./Containers/MutationContainer.jsx"
 import "./public/styling/index.css";
 import Particles from "react-particles-js"; 
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
+import FileSaver, { saveAs } from 'file-saver';
 
+//all the components we need
+// import Main from "./main.jsx";
+import Mutation from "./Containers/MutationContainer.jsx"
+import Query from "./Containers/QueryContainer.jsx";
+import LeftSideBar from "./Components/LeftSideBar.jsx";
+import SchemaTreeD3 from "./Components/schemaTreeD3.jsx";
+import TestSuites from "./Components/TestSuites.jsx";
+import LandingPage from "./Components/LandingPage.jsx";
+
+//functions imported from test
 import {
   validQuery,
   invalidQuery,
@@ -23,6 +32,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      landingPageState: true,
+      filePath: `"./schema.gql"`,
       schema: {},
       testSuiteName: "",
       testDescription: "",
@@ -54,24 +65,36 @@ class App extends Component {
     this.editTest = this.editTest.bind(this);
     this.dropDownReset = this.dropDownReset.bind(this);
     this.testSuiteToggler = this.testSuiteToggler.bind(this);
+    this.handleExportClick = this.handleExportClick.bind(this);
   }
 
+
+  //redirects to doc page when clicked
   openDocs() {
     window.open(
-      "https://github.com/oslabs-beta/SpectiQL/blob/master/README.md"
+      "https://github.com/oslabs-beta/SpectiQL/blob/master/REAMDE.md"
     );
   }
- 
+
+  //use this to check if a state changed/altered
+  componentDidUpdate() {
+    console.log('this is landingPageState', this.state.landingPageState);
+}
+  
+ //retrieving user's schema and schema filepath after they configure their file path from their backend
   handleNextClick() {
-    fetch('/spectiql', {
-      method: 'POST',
-    })
-    .then(response => response.json())
-    .then((response) => {
-      this.setState({ schema: response.schema});
-      console.log(this.state.schema);
-    })
-    .catch(err => console.log(err));
+    // fetch('/spectiql', {
+    //   method: 'POST',
+    // })
+    // .then(response => response.json())
+    // .then((response) => {
+    //   schemaData = response.schema;
+    //   this.setState({ filePath: `${filePath}`, landingPageState: false, schema: response.schema});
+    // })
+    // .catch(err => console.log(err));
+
+    //when testing on developnment side
+    this.setState({ landingPageState: false});
   }
 
   handleChange(e) {
@@ -83,6 +106,22 @@ class App extends Component {
   handleClick() {
     const value = this.state.testFunctions[this.state.selectedTest](this.state);
     return this.setState({ generatedTest: value });
+  }
+
+  //function for when user clicks export
+  handleExportClick() {
+    const beforeAll = `describe('All the tests', () => {
+      let tester;
+      beforeAll(() => {
+        tester = testSchema(${this.state.filePath});
+      })`
+    const requiredLibraries = `const { testSchema } = require('spectiql')`;
+    const testArray = [];
+    for (let i = 0; i < this.state.testSuites.length; i++) {
+      testArray.push(this.state.testSuites[i].savedGeneratedTest);
+    }
+    var blob = new Blob([`'use strict' \n`,`${requiredLibraries} \n \n`,`${beforeAll} \n`,testArray, `})`], {type: "text/plain;charset=utf-8"});
+    FileSaver.saveAs(blob, "spectiql.test.js");
   }
 
 
@@ -180,67 +219,60 @@ class App extends Component {
   }
 
   render() {
+    let landingPage;
+    if (this.state.landingPageState === true) {
+      landingPage = <LandingPage landingPageState={this.state.landingPageState} handleNextClick={this.handleNextClick} openDocs={this.openDocs}/>
+    }
+    //landingPage={this.state.landingPageState} handleNextClick={this.handleNextClick}
+
     return (
         <HashRouter>
-        <div className="fullscreen">
-          <div className="introContainer">
-            <div className="introHeader">
-            <ScrollAnimation animateIn="fadeIn" delay="3000" >
-            <h1>SpectiQL</h1>
-              </ScrollAnimation>
-                  </div>
-            <div className="introInstruction">
-                              <Particles className="introAnimate"
-                    params={{
-                      "particles": {
-                          "number": {
-                              "value": 50
-                          },
-                          "size": {
-                              "value": 3
-                          }
-                      },
-                      "color": {
-                        "value": "#7a3e3e"
-                      },
-                      "interactivity": {
-                          "events": {
-                              "onhover": {
-                                  "enable": true,
-                                  "mode": "repulse"
-                              }
-                          }
-                      }
-                  }} />
+          <div className="fullscreen">
+            <div className="mainContainer">
+
+            <div className="landingPage">
+              {landingPage}
             </div>
-            
-            <div className="introNext">
-              <Link to="/main" exact>
-                <button className="next-button" onClick={this.handleNextClick}>Next</button>
-              </Link>
+
+            <div className="mainNavBar">
+              <LeftSideBar/>
             </div>
-            <div className="introDoc">
-              <Link to="/documentation" exact onClick={this.openDocs}>
-                <button className="doc-button">Docs</button>
-              </Link>
+
+            <div className="queryVisualizer">
+              <SchemaTreeD3 
+                schema={this.state.schema}
+              />
             </div>
+
+            <div className="testTypeContainer">
+              Landing Page
+            </div>
+
+            <div className="testSuites">
+                <TestSuites
+                      testSuites={this.state.testSuites}
+                      deleteTest={this.state.deleteTest}
+                      editTest={this.state.editTest}
+                />
+            </div>
+
             <Switch>
-                <Route path="/main" exact render={props=> (<Main appstate={this.state} handleChange={this.handleChange} 
-                handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
+                
+                <Route path="/queries">
+                <Query appstate={this.state} handleChange={this.handleChange} 
+                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
+                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
+                </Route> 
+
+                <Route path="/mutations" exact>
+                  <Mutation appstate={this.state} handleChange={this.handleChange} 
+                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
+                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
+                </Route>
+
             </Switch>
-            <Switch>
-               <Route path="/queries" exact render={props=> (<Main appstate={this.state} handleChange={this.handleChange} 
-                handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
-            </Switch>
-            <Switch>
-               <Route path="/mutations" exact render={props=> (<Mutations appstate={this.state} handleChange={this.handleChange} 
-                handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>)}/>
-            </Switch>
+            </div>
           </div>
-        </div>
         </HashRouter>
     );
   }
