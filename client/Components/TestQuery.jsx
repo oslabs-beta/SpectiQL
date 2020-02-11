@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
+import Tree from 'react-d3-tree';
 
 class TestQuery extends Component {
   constructor(props) {
@@ -16,8 +17,31 @@ class TestQuery extends Component {
     //   },
     //   children:[ {}]
     // ];
-    console.log(this.props.schema.queries);
+    console.log('schema within testquery of Query:', this.props.schema);
+    console.log('RootQuery within testquery of Query:', this.props.schema.Query);
+
+    function convertJSON(object) {
+      for (let key in object) {
+        if (typeof(object[key]) == "object" && object[key].type !== "InputObjectTypeDefinition") {
+          let obj = convertJSON(object[key]);
+          obj.key = obj.name ? obj.name : "";
+          if (obj.key === "") {
+            obj.name = key;
+          } else {
+            obj.name = obj.key;
+          }
+          if (!object["children"])
+            object["children"] = [];
+          object["children"].push(obj);
+          delete object[key];
+        }
+      }
+      return object;
+    }
     
+    let queryTreeData = convertJSON(this.props.schema);
+    console.log(queryTreeData);
+
     return (
       <div className="writeQueryBox">
       {/* <Form className="test-query-box"> */}
@@ -39,16 +63,22 @@ class TestQuery extends Component {
           </div>
           
           <div className= "test-query-select">
-          <Form.Group as={Col} controlId="select-query">
+
+          <div id="treeWrapper" style={{width: '50em', height: '20em'}}>
+              <Tree data={queryTreeData} />
+            </div>
+          {/* <Form.Group as={Col} controlId="select-query"> */}
             {/* <Form.Label column sm={6}>
               Select Query:
             </Form.Label> */}
-            <Form.Control
+            {/* <Form.Control
               as="textarea"
               placeholder="Sample selected query here..."
               style={{ width: "100%", height: "17.7rem" }}
-            />
-          </Form.Group>
+            /> */}
+          {/* </Form.Group> */}
+
+
           </div>
         {/* </Form.Row> */}
       {/* </Form> */}
