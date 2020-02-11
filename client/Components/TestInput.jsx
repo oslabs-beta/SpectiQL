@@ -7,14 +7,14 @@ class TestInput extends Component {
   }
 
   render () {
-    console.log('this is inside testinput:', this.props)
+    // console.log('this is inside testinput:', this.props)
     return (
       <div className='testInputContainer'>
         {/* <Form className="testSuiteInput"> */}
         <Form.Group controlId='test-suite'>
-          {/* <Form.Label column sm={6}>
-              Test Suite:
-            </Form.Label> */}
+          <Form.Label column sm={6}>
+              Query Test Name:
+            </Form.Label>
           <Col sm='10'>
             <Form.Control
               type='text'
@@ -29,9 +29,9 @@ class TestInput extends Component {
 
         {/* <Form className="testDescriptionInput"> */}
         <Form.Group controlId='test-description'>
-          {/* <Form.Label column sm={6}>
-              Test Description:
-            </Form.Label> */}
+          <Form.Label column sm={6}>
+              Query Test Description:
+            </Form.Label>
           <Col sm='10'>
             <Form.Control
               type='text'
