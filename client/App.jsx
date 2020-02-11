@@ -33,7 +33,7 @@ class App extends Component {
     super(props);
     this.state = {
       landingPageState: true,
-      filePath: `"./schema.gql"`,
+      // filePath: `"./schema.gql"`,
       schema: {},
       testSuiteName: "",
       testDescription: "",
@@ -89,7 +89,8 @@ class App extends Component {
     .then(response => response.json())
     .then((response) => {
       schemaData = response.schema;
-      this.setState({ filePath: `${filePath}`, landingPageState: false, schema: response.schema});
+      // this.setState({ filePath: `${filePath}`, landingPageState: false, schema: response.schema});
+      this.setState({ landingPageState: false, schema: response.schema});
     })
     .catch(err => console.log(err));
 
