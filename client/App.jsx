@@ -235,23 +235,23 @@ class App extends Component {
                 <button className="doc-button">Docs</button>
               </Link>
             </div>
+            <div>
+              <LeftSideBar/>
+            </div>
+            <div>
+              <SchemaTreeD3 
+                schema={this.state.schema}
+              />
+            </div>
             <Switch>
-                <Route path="/main" exact>
-                  <LeftSideBar/>
+                <Route path="/main" >
                   <Main appstate={this.state} handleChange={this.handleChange} 
                   handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
                   selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
-                    <SchemaTreeD3 
-                      schema={this.state.schema}
-                    />
                 </Route>
                 
 
-                <Route path="/queries" exact>
-                  <LeftSideBar/>
-                  <Main appstate={this.state} handleChange={this.handleChange} 
-                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest} schemaData={schemaData}/>
+                <Route path="/queries">
                 </Route> 
 
                 <Route path="/mutations" exact>
