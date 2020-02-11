@@ -20,7 +20,7 @@ class TestMutation extends Component {
               as="textarea"
               placeholder="Enter Mutation here..."
               style={{ width: "100%", height: "17.7rem" }}
-              name = "writeQuery"
+              name = "writeTest"
               value = {this.props.writeTest}
               onChange = {this.props.handleChange}
             />
@@ -36,6 +36,9 @@ class TestMutation extends Component {
               as="textarea"
               placeholder="Insert your input type variable as an object:"
               style={{ width: "100%", height: "17.7rem" }}
+              name = "writeInput"
+              value = {this.props.writeInput}
+              onChange = {this.props.handleChange}
             />
           </Form.Group>
           </div>

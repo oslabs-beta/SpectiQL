@@ -36,8 +36,8 @@ class SideBar extends Component {
           <Button className="export" variant="outline-dark" size="lg">
             Export
           </Button> */}
-          <Button className="clear" variant="outline-dark" size="lg">
-            Clear
+          <Button className="schemaTree" variant="outline-dark" size="lg">
+            Schema Tree
           </Button>
         </ButtonToolbar>
       </div>

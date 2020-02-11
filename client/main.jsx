@@ -22,6 +22,7 @@ class Main extends Component {
   };
   
   render() {
+    console.log('yo this is schemaData, a local variable lmfao!:', this.props.schemaData);
     console.log('yo this is this.props in main:',this.props)
     return (
       <div className="fullscreen">
@@ -44,6 +45,8 @@ class Main extends Component {
               testSuites={this.props.appstate.testSuites}
               deleteTest={this.props.deleteTest}
               editTest={this.props.editTest}
+              schema={this.props.appstate.schema}
+              schemaData={this.props.schemaData}
       />
       </div>
       </div>
