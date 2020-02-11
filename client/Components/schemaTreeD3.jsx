@@ -15,11 +15,51 @@ class SchemaTreeD3 extends Component {
         x: dimensions.width / 10,
         y: dimensions.height / 2
       },
-      depth: 1
+      depth: 0
     });
   }
 
   render () {
+    //using for testing 
+    const json = {
+      "date": "10242013",
+      "id": "34534",
+      "addr": "444 Little Lane",
+      "department": {
+        "id": 13,
+        "addr": "555 ShoeHorse Road",
+        "name": "CTS",
+        "computer": {
+          "id": 56,
+          "name": "CT"
+        },
+        "electronics": {
+          "id": 65,
+          "name": "EC",
+          "computer": {
+            "id": 56,
+            "name": "CT"
+          },
+          "electronics": {
+            "id": 65,
+            "name": "EC"
+          }
+        }
+      },
+      "manager": {
+        "id": 454,
+        "addr": "444 Little Lane",
+        "name": "Bobby Johnson",
+        "computer": {
+          "id": 56,
+          "name": "CT"
+        },
+        "electronics": {
+          "id": 65,
+          "name": "EC"
+        }
+      }
+    };
     // console.log('schema within testquery of schemaTreeD3:', this.props.schema);
     // console.log('RootQuery within testquery of schemaTreeD3:', this.props.schema.Query);
     // function below is for converting entire
@@ -79,7 +119,14 @@ class SchemaTreeD3 extends Component {
     }
 
     //   let schemaTreeData = convertSchema(this.props.schema);
+
+    //testing below
+            // const queryTreeData = convertQuerySchema(json) //testing
+
+    //comment out for testing
     const queryTreeData = convertQuerySchema(this.props.schema)
+
+
     // let mutationTreeData = convertMutationSchema(this.props.schema);
     console.log('this is queryTreeData from schemaTreeD3.jsx:', queryTreeData)
 
@@ -89,7 +136,8 @@ class SchemaTreeD3 extends Component {
         <Tree 
           data={queryTreeData} 
           translate={this.state.translate}
-          initialDepth={this.state.depth}
+          shouldCollapseNeighborNodes={false}
+          zoom={1}
           />
       </div>
       </div>
