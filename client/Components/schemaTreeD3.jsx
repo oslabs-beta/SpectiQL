@@ -73,6 +73,7 @@ class SchemaTreeD3 extends Component {
           console.log('this is queryTreeData from schemaTreeD3.jsx:', queryTreeData);
 
         return (
+          // <div>Hello!</div>
             <div id="treeWrapper" style={{width: '60em', height: '50em'}}>
             <Tree data={queryTreeData} />
           </div>

@@ -37,12 +37,6 @@ class Query extends Component {
               schema={this.props.schema}
             />
           </div>
-          <div className="queryVisualizer">
-            <SchemaTreeD3 
-              schema={this.props.schema}
-              schemaData={this.props.schemaData}
-            />
-          </div>
           <div className="generateTest">
             <GenerateTest
               testSuiteName={this.props.testSuiteName}
