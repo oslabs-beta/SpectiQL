@@ -11,9 +11,9 @@ class MutationTestInput extends Component {
       <div className='testInputContainer'>
         {/* <Form className="testSuiteInput"> */}
         <Form.Group controlId='test-suite'>
-          {/* <Form.Label column sm={6}>
-              Test Suite:
-            </Form.Label> */}
+          <Form.Label column sm={6}>
+              Mutation Test Name:
+            </Form.Label>
           <Col sm='10'>
             <Form.Control
               type='text'
@@ -28,9 +28,9 @@ class MutationTestInput extends Component {
 
         {/* <Form className="testDescriptionInput"> */}
         <Form.Group controlId='test-description'>
-          {/* <Form.Label column sm={6}>
-              Test Description:
-            </Form.Label> */}
+          <Form.Label column sm={6}>
+              Mutation Test Description:
+            </Form.Label>
           <Col sm='10'>
             <Form.Control
               type='text'

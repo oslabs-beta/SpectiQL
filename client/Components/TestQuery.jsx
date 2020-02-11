@@ -39,9 +39,9 @@ class TestQuery extends Component {
         {/* <Form.Row> */}
         <div className='test-query-write'>
           <Form.Group as={Col} controlId='write-query'>
-            {/* <Form.Label column sm={6}>
+            <Form.Label column sm={6}>
               Write Query:
-            </Form.Label> */}
+            </Form.Label>
             <Form.Control
               as='textarea'
               placeholder='Enter query here...'

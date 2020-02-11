@@ -14,9 +14,9 @@ class TestMutation extends Component {
         {/* <Form.Row> */}
         <div className='test-mutation-write'>
           <Form.Group as={Col} controlId='write-query'>
-            {/* <Form.Label column sm={6}>
-              Write Query:
-            </Form.Label> */}
+            <Form.Label column sm={6}>
+              Write Mutation:
+            </Form.Label>
             <Form.Control
               as='textarea'
               placeholder='Enter Mutation here...'
@@ -30,9 +30,9 @@ class TestMutation extends Component {
 
         <div className='test-mutation-select'>
           <Form.Group as={Col} controlId='select-query'>
-            {/* <Form.Label column sm={6}>
-              Select Query:
-            </Form.Label> */}
+            <Form.Label column sm={6}>
+              Enter Mutation Arguments:
+            </Form.Label>
             <Form.Control
               as='textarea'
               placeholder='Insert your input type variable as an object:'

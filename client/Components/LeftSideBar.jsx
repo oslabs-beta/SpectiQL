@@ -13,16 +13,26 @@ class SideBar extends Component {
       <div className='mainNavBar'>
         <ButtonToolbar className='buttonContainer'>
           {/* <div className="selections">Select</div> */}
-          <Button className='queries' variant='outline-dark' size='lg'>
-            <Link to='/queries'>
-            Queries
-            </Link>
-          </Button>
-          <Button className='mutations' variant='outline-dark' size='lg'>
-            <Link to='/mutations'>
-            Mutations
-            </Link>
-          </Button>
+          <Link to="/queries">
+            <Button
+              onClick={this.props.queryPage}
+              className="queries"
+              variant="outline-dark"
+              size="lg"
+            >
+              Queries
+            </Button>
+          </Link>
+          <Link to="/mutations">
+            <Button
+              onClick={this.props.mutationPage}
+              className="mutations"
+              variant="outline-dark"
+              size="lg"
+            >
+              Mutations
+            </Button>
+          </Link>
           <Button className='subscriptions' variant='outline-dark' size='lg'>
             Subscriptions
           </Button>

@@ -68,7 +68,7 @@ class SchemaTreeD3 extends Component {
     //   let schemaTreeData = convertSchema(this.props.schema);
     const queryTreeData = convertQuerySchema(this.props.schema)
     // let mutationTreeData = convertMutationSchema(this.props.schema);
-    console.log('this is queryTreeData from schemaTreeD3.jsx:', queryTreeData)
+    // console.log('this is queryTreeData from schemaTreeD3.jsx:', queryTreeData)
 
     return (
     // <div>Hello!</div>
