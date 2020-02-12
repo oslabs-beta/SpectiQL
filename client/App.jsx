@@ -93,6 +93,11 @@ class App extends Component {
     })
     .catch(err => console.log(err));
 
+    queryArray.push(
+                    <SchemaTreeD3 
+      schema={this.state.schema}
+      />
+    )
     // when testing on developnment side
     // this.setState({ landingPageState: false});
   }
@@ -219,6 +224,7 @@ class App extends Component {
   }
 
   render() {
+    let queryArray = [];
     let landingPage;
     if (this.state.landingPageState === true) {
       landingPage = <LandingPage landingPageState={this.state.landingPageState} handleNextClick={this.handleNextClick} openDocs={this.openDocs}/>
@@ -239,9 +245,10 @@ class App extends Component {
             </div>
 
             <div className="queryVisualizer">
-              <SchemaTreeD3 
+              {queryArray}
+              {/* <SchemaTreeD3 
                 schema={this.state.schema}
-              />
+              /> */}
             </div>
 
             <div className="testTypeContainer">

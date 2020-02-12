@@ -207,7 +207,7 @@ h1 {
   display: grid;
   position: fixed;
   grid-template-columns: 15% 40% 45%;
-  grid-template-rows: 9% 20% 35% 35% 1%;
+  grid-template-rows: 8% 21% 35% 35% 1%;
   /* overflow: auto; */
   width: 100vw;
   height: 100vh;
