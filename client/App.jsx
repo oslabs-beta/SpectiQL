@@ -27,7 +27,7 @@ import {
   invalidMutation,
 } from "./Tests/Tests.jsx";
 
-let queryArray = [];
+// let queryArray = [];
 
 class App extends Component {
   constructor(props) {
@@ -111,19 +111,27 @@ class App extends Component {
   //   // this.setState({ landingPageState: false});
   // }
 
+  componentDidUpdate() {
+    queryArray.push(
+                    <SchemaTreeD3 
+      schema={this.state.schema}
+      />
+    )
+  }
+
   handleNextClick() {
-    fetch('/spectiql', {
-      method: 'POST',
-    })
-    .then(response => response.json())
-    .then((response) => {
-      console.log('before setState has occured');
-      this.setState({ landingPageState: false, schema: response.schema})
-      })
-    .catch(err => console.log(err));
+    // fetch('/spectiql', {
+    //   method: 'POST',
+    // })
+    // .then(response => response.json())
+    // .then((response) => {
+    //   console.log('before setState has occured');
+    //   this.setState({ landingPageState: false, schema: response.schema})
+    //   })
+    // .catch(err => console.log(err));
 
     // when testing on developnment side
-    // this.setState({ landingPageState: false});
+    this.setState({ landingPageState: false});
   }
 
   handleChange(e) {
@@ -248,7 +256,7 @@ class App extends Component {
   }
 
   render() {
-    // let queryArray = [];
+    let queryArray = [];
     let landingPage;
     if (this.state.landingPageState === true) {
       landingPage = <LandingPage landingPageState={this.state.landingPageState} handleNextClick={this.handleNextClick} openDocs={this.openDocs}/>
@@ -269,10 +277,10 @@ class App extends Component {
             </div>
 
             <div className="queryVisualizer">
-              {/* {queryArray} */}
-              <SchemaTreeD3 
+              {queryArray}
+              {/* <SchemaTreeD3 
                 schema={this.state.schema}
-              />
+              /> */}
             </div>
 
             <div className="testTypeContainer">
