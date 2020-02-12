@@ -83,22 +83,45 @@ class App extends Component {
 }
   
  //retrieving user's schema and schema filepath after they configure their file path from their backend
+  //  handleNextClick() {
+  //   fetch('/spectiql', {
+  //     method: 'POST',
+  //   })
+  //   .then(response => response.json())
+  //   .then((response) => {
+  //     console.log('before setState has occured');
+  //     this.setState({ landingPageState: false, schema: response.schema}, () => {
+  //       console.log('this is the second parameter for setState');
+  //               queryArray.push(
+  //                 <SchemaTreeD3 
+  //       schema={this.state.schema}
+  //       />
+  //       )
+  //     });
+  //     console.log('after setState has occured');
+  //   })
+  //   .catch(err => console.log(err));
+
+  //   // queryArray.push(
+  //   //                 <SchemaTreeD3 
+  //   //   schema={this.state.schema}
+  //   //   />
+  //   // )
+  //   // when testing on developnment side
+  //   // this.setState({ landingPageState: false});
+  // }
+
   handleNextClick() {
     fetch('/spectiql', {
       method: 'POST',
     })
     .then(response => response.json())
     .then((response) => {
-      // this.setState({ filePath: `${filePath}`, landingPageState: false, schema: response.schema});
-      this.setState({ landingPageState: false, schema: response.schema});
-    })
+      console.log('before setState has occured');
+      this.setState({ landingPageState: false, schema: response.schema})
+      })
     .catch(err => console.log(err));
 
-    queryArray.push(
-                    <SchemaTreeD3 
-      schema={this.state.schema}
-      />
-    )
     // when testing on developnment side
     // this.setState({ landingPageState: false});
   }
@@ -246,10 +269,10 @@ class App extends Component {
             </div>
 
             <div className="queryVisualizer">
-              {queryArray}
-              {/* <SchemaTreeD3 
+              {/* {queryArray} */}
+              <SchemaTreeD3 
                 schema={this.state.schema}
-              /> */}
+              />
             </div>
 
             <div className="testTypeContainer">

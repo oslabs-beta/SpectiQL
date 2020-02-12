@@ -63,24 +63,24 @@ class SchemaTreeD3 extends Component {
     // console.log('schema within testquery of schemaTreeD3:', this.props.schema);
     // console.log('RootQuery within testquery of schemaTreeD3:', this.props.schema.Query);
     // function below is for converting entire
-    // function convertSchema(object) {
-    //     for (let key in object) {
-    //       if (typeof(object[key]) == "object") {
-    //         let obj = convertJSON(object[key]);
-    //         obj.key = obj.name ? obj.name : "";
-    //         if (obj.key === "") {
-    //           obj.name = key;
-    //         } else {
-    //           obj.name = obj.key;
-    //         }
-    //         if (!object["children"])
-    //           object["children"] = [];
-    //         object["children"].push(obj);
-    //         delete object[key];
-    //       }
-    //     }
-    //     return object;
-    //   }
+    function convertSchema(object) {
+        for (let key in object) {
+          if (typeof(object[key]) == "object") {
+            let obj = convertSchema(object[key]);
+            obj.key = obj.name ? obj.name : "";
+            if (obj.key === "") {
+              obj.name = key;
+            } else {
+              obj.name = obj.key;
+            }
+            if (!object["children"])
+              object["children"] = [];
+            object["children"].push(obj);
+            delete object[key];
+          }
+        }
+        return object;
+      }
     // below will convert all of the schema json data
     function convertQuerySchema (object) {
       for (const key in object) {
@@ -124,7 +124,8 @@ class SchemaTreeD3 extends Component {
             // const queryTreeData = convertQuerySchema(this.state.json); //testing
 
     //comment out for testing
-    const queryTreeData = convertQuerySchema(this.props.schema)
+    const queryTreeData = convertSchema(this.props.schema);
+    // const queryTreeData = convertQuerySchema(this.props.schema)
 
 
     // let mutationTreeData = convertMutationSchema(this.props.schema);
