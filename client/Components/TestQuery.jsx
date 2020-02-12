@@ -8,40 +8,15 @@ class TestQuery extends Component {
   };
 
   render () {
-    // console.log('schema within testquery of Query:', this.props.schema);
-    // console.log('RootQuery within testquery of Query:', this.props.schema.Query);
-
-    // function convertJSON(object) {
-    //   for (let key in object) {
-    //     if (typeof(object[key]) == "object" && object[key].type !== "InputObjectTypeDefinition") {
-    //       let obj = convertJSON(object[key]);
-    //       obj.key = obj.name ? obj.name : "";
-    //       if (obj.key === "") {
-    //         obj.name = key;
-    //       } else {
-    //         obj.name = obj.key;
-    //       }
-    //       if (!object["children"])
-    //         object["children"] = [];
-    //       object["children"].push(obj);
-    //       delete object[key];
-    //     }
-    //   }
-    //   return object;
-    // }
-
-    // let queryTreeData = convertJSON(this.props.schema);
-    // console.log(queryTreeData);
-
     return (
       <div className='writeQueryBox'>
         {/* <Form className="test-query-box"> */}
         {/* <Form.Row> */}
         <div className='test-query-write'>
           <Form.Group as={Col} controlId='write-query'>
-            {/* <Form.Label column sm={6}>
+            <Form.Label column sm={6}>
               Write Query:
-            </Form.Label> */}
+            </Form.Label>
             <Form.Control
               as='textarea'
               placeholder='Enter query here...'
@@ -77,4 +52,4 @@ class TestQuery extends Component {
   }
 }
 
-export default TestQuery
+export default TestQuery;

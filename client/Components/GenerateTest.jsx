@@ -7,7 +7,6 @@ class GenerateTest extends Component {
   };
 
   render () {
-    console.log('testSuiteToggler:', this.propstestSuiteToggler)
     const editTestSuite = () => {
       if (this.props.testSuiteToggler) {
         return (
@@ -39,8 +38,6 @@ class GenerateTest extends Component {
     }
     return (
       <div className='generateTestBox'>
-        {/* <Form className="generate-test"> */}
-        {/* <Form.Row> */}
         <Form.Group as={Col} style={{ margin: 0, padding: 3 }}>
           <Button
             className='generateTestButton'
@@ -52,22 +49,10 @@ class GenerateTest extends Component {
           >
               Generate Test
           </Button>
-          {/* <Button className="addTestButton"
-              variant="outline-primary"
-              size="lg"
-              block
-              style={{ height: "42%", width: "100%", color: "black", borderColor: "black" }}
-              onClick={this.props.updateTestSuite}
-            >
-              Add to Test Suites
-            </Button> */}
           {editTestSuite()}
         </Form.Group>
 
         <Form.Group as={Col} controlId='sample-test'>
-          {/* <Form.Label column sm={6}>
-              Generated Test:
-            </Form.Label> */}
           <Form.Control
             as='textarea'
             placeholder='Generated Test...'
@@ -75,11 +60,9 @@ class GenerateTest extends Component {
             value={this.props.generatedTest}
           />
         </Form.Group>
-        {/* </Form.Row> */}
-        {/* </Form> */}
       </div>
     )
   }
 }
 
-export default GenerateTest
+export default GenerateTest;

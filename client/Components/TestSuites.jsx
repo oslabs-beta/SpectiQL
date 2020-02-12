@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class TestSuites extends Component {
   render () {
-    console.log('testsuites props', this.props)
-    const testSuite = this.props.testSuites.map((test, index) => (
-      // console.log(`test`, test)
+    const testSuite = this.props.testSuites.map((test, index) => {
+      const route = test.savedTestSuiteType ? "mutations" : "queries";
+      return (
       <Card style={{ }} key={index}>
         <Card.Body>
           <Card.Title>Test Suite {index + 1}</Card.Title>
@@ -13,12 +14,14 @@ class TestSuites extends Component {
             {test.savedTestSuiteName}
           </Card.Subtitle>
           <Card.Text>{test.savedTestDescription}</Card.Text>
+          <Link to={route}>
           <button
             className='testSuiteEditButton'
             onClick={() => this.props.editTest(test.testIndex)}
           >
             Edit Test
           </button>
+          </Link>
           <button
             className='testSuiteDeleteButton'
             onClick={() => this.props.deleteTest(test.testIndex)}
@@ -27,7 +30,7 @@ class TestSuites extends Component {
           </button>
         </Card.Body>
       </Card>
-    ))
+    )})
     return (
       <div class='wrapper'>
         <h3>Test Suites</h3>
@@ -53,4 +56,4 @@ class TestSuites extends Component {
   }
 }
 
-export default TestSuites
+export default TestSuites;

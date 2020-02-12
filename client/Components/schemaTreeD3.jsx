@@ -95,7 +95,7 @@ class SchemaTreeD3 extends Component {
 
 
     // let mutationTreeData = convertMutationSchema(this.props.schema);
-    console.log('this is queryTreeData from schemaTreeD3.jsx:', queryTreeData)
+    // console.log('this is queryTreeData from schemaTreeD3.jsx:', queryTreeData)
 
     return (
     <div className="svg-container">
@@ -112,4 +112,4 @@ class SchemaTreeD3 extends Component {
   }
 }
 
-export default SchemaTreeD3
+export default SchemaTreeD3;

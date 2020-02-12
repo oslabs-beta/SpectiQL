@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import "./public/styling/index.css";
-import Particles from "react-particles-js"; 
 import "animate.css/animate.min.css";
-import ScrollAnimation from 'react-animate-on-scroll';
-import FileSaver, { saveAs } from 'file-saver';
+import FileSaver, { saveAs } from "file-saver";
 
 //all the components we need
-// import Main from "./main.jsx";
-import Mutation from "./Containers/MutationContainer.jsx"
+import Mutation from "./Containers/MutationContainer.jsx";
 import Query from "./Containers/QueryContainer.jsx";
 import LeftSideBar from "./Components/LeftSideBar.jsx";
 import SchemaTreeD3 from "./Components/schemaTreeD3.jsx";
@@ -24,9 +21,8 @@ import {
   validArgDataType,
   invalidArgDataType,
   validMutation,
-  invalidMutation,
+  invalidMutation
 } from "./Tests/Tests.jsx";
-
 
 class App extends Component {
   constructor(props) {
@@ -38,22 +34,23 @@ class App extends Component {
       testSuiteName: "",
       testDescription: "",
       selectedTest: "",
-      writeTest: "", 
-      writeInput:"",
+      writeTest: "",
+      writeInput: "",
       generatedTest: "",
       testFunctions: {
-                validQuery,
-                invalidQuery,
-                validArgField,
-                invalidArgField,
-                validArgDataType,
-                invalidArgDataType,
-                validMutation,
-                invalidMutation
+        validQuery,
+        invalidQuery,
+        validArgField,
+        invalidArgField,
+        validArgDataType,
+        invalidArgDataType,
+        validMutation,
+        invalidMutation
       },
       testSuites: [],
       testIndex: 0,
-      testSuiteToggler: true
+      testSuiteToggler: true,
+      testSuiteType: false
     };
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -66,8 +63,10 @@ class App extends Component {
     this.dropDownReset = this.dropDownReset.bind(this);
     this.testSuiteToggler = this.testSuiteToggler.bind(this);
     this.handleExportClick = this.handleExportClick.bind(this);
+    this.queryPage = this.queryPage.bind(this);
+    this.mutationPage = this.mutationPage.bind(this);
+    this.pageReset = this.pageReset.bind(this);
   }
-
 
   //redirects to doc page when clicked
   openDocs() {
@@ -78,23 +77,23 @@ class App extends Component {
 
   //use this to check if a state changed/altered
   componentDidUpdate() {
-    console.log('this is landingPageState', this.state.landingPageState);
-}
-  
- //retrieving user's schema and schema filepath after they configure their file path from their backend
-  handleNextClick() {
-    fetch('/spectiql', {
-      method: 'POST',
-    })
-    .then(response => response.json())
-    .then((response) => {
-      console.log('before setState has occured');
-      this.setState({ landingPageState: false, schema: response.schema})
-      })
-    .catch(err => console.log(err));
+    console.log("this is landingPageState", this.state.landingPageState);
+  }
 
-    // when testing on developnment side
-    // this.setState({ landingPageState: false});
+  //retrieving user's schema and schema filepath after they configure their file path from their backend
+  handleNextClick() {
+    // fetch('/spectiql', {
+    //   method: 'POST',
+    // })
+    // .then(response => response.json())
+    // .then((response) => {
+    //   console.log('before setState has occured');
+    //   this.setState({ landingPageState: false, schema: response.schema})
+    //   })
+    // .catch(err => console.log(err));
+
+    //when testing on developnment side
+    this.setState({ landingPageState: false });
   }
 
   handleChange(e) {
@@ -102,10 +101,13 @@ class App extends Component {
     this.setState({ [e.target.name]: value });
   }
 
-
   handleClick() {
-    const value = this.state.testFunctions[this.state.selectedTest](this.state);
-    return this.setState({ generatedTest: value });
+    if (document.getElementById("dd-reset").selectedIndex === 0) {
+      alert('Please select a test type from the drop-down to Generate Test')
+    } else {
+      const value = this.state.testFunctions[this.state.selectedTest](this.state);
+      return this.setState({ generatedTest: value });
+    }
   }
 
   //function for when user clicks export
@@ -114,46 +116,60 @@ class App extends Component {
       let tester;
       beforeAll(() => {
         tester = testSchema(${this.state.filePath});
-      })`
+      })`;
     const requiredLibraries = `const { testSchema } = require('spectiql')`;
     const testArray = [];
     for (let i = 0; i < this.state.testSuites.length; i++) {
-      testArray.push(this.state.testSuites[i].savedGeneratedTest);
+      testArray.push(this.state.testSuites[i].savedGeneratedTest + `})`);
     }
-    var blob = new Blob([`'use strict' \n`,`${requiredLibraries} \n \n`,`${beforeAll} \n`,testArray, `})`], {type: "text/plain;charset=utf-8"});
+    var blob = new Blob(
+      [
+        `'use strict' \n`,
+        `${requiredLibraries} \n \n`,
+        `${beforeAll} \n`,
+        testArray,
+        `})`
+      ],
+      { type: "text/plain;charset=utf-8" }
+    );
     FileSaver.saveAs(blob, "spectiql.test.js");
   }
 
-
   selectTest(e) {
     this.setState({
-      selectedTest: e.target.value,
-      dropDownIndex: e.target.selectedIndex
+      selectedTest: e.target.value
     });
   }
 
   addTestSuite() {
     //push the generated test value into the test suites array
-    const newTestSuite = {
-      savedGeneratedTest: this.state.generatedTest,
-      savedTestSuiteName: this.state.testSuiteName,
-      savedTestDescription: this.state.testDescription,
-      savedWriteTest: this.state.writeTest,
-      savedSelectedTest: this.state.selectedTest,
-      testIndex: this.state.testIndex + 1
-    };
-    //shallow copy of array
-    let testSuites = this.state.testSuites.slice();
-    testSuites.push(newTestSuite);
-    return this.setState({
-      testSuiteName: "",
-      testDescription: "",
-      writeTest: "",
-      generatedTest: "",
-      selectedTest: this.dropDownReset(),
-      testIndex: this.state.testIndex + 1,
-      testSuites
-    });
+    if (document.getElementById("dd-reset").selectedIndex === 0) {
+      alert('Please select a test type from the drop-down to Add to Test Suite')
+    } else {
+      const newTestSuite = {
+        savedGeneratedTest: this.state.generatedTest,
+        savedTestSuiteName: this.state.testSuiteName,
+        savedTestDescription: this.state.testDescription,
+        savedWriteTest: this.state.writeTest,
+        savedSelectedTest: this.state.selectedTest,
+        savedTestSuiteType: this.state.testSuiteType,
+        savedWriteInput: this.state.writeInput,
+        testIndex: this.state.testIndex + 1
+      };
+      //shallow copy of array
+      let testSuites = this.state.testSuites.slice();
+      testSuites.push(newTestSuite);
+      return this.setState({
+        testSuiteName: "",
+        testDescription: "",
+        writeTest: "",
+        writeInput: "",
+        generatedTest: "",
+        selectedTest: this.dropDownReset(),
+        testIndex: this.state.testIndex + 1,
+        testSuites
+      });
+    }
   }
 
   updateTestSuite() {
@@ -163,7 +179,9 @@ class App extends Component {
       savedTestSuiteName: this.state.testSuiteName,
       savedTestDescription: this.state.testDescription,
       savedWriteTest: this.state.writeTest,
+      savedWriteInput: this.state.writeInput,
       savedSelectedTest: this.state.selectedTest,
+      savedTestSuiteType: this.state.testSuiteType,
       testIndex: this.state.testIndex
     };
     testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
@@ -171,40 +189,38 @@ class App extends Component {
       testSuiteName: "",
       testDescription: "",
       writeTest: "",
+      writeInput: "",
       generatedTest: "",
-      dropDownIndex: 0,
       selectedTest: this.dropDownReset(),
       testSuites,
       testSuiteToggler: true
-    })
+    });
   }
 
   editTest(idx) {
-    let testSuite = this.state.testSuites[idx - 1];   
-    console.log('edit test state', this.state) 
-    let dropDownIndex = document.getElementById("dd-reset");
-    dropDownIndex.selectedIndex = testSuite.savedDropDownIndex;
+    let testSuite = this.state.testSuites[idx - 1];
     return this.setState({
       testSuiteName: testSuite.savedTestSuiteName,
       testDescription: testSuite.savedTestDescription,
       writeTest: testSuite.savedWriteTest,
+      writeInput: testSuite.savedWriteInput,
       selectedTest: this.dropDownReset(),
       generatedTest: testSuite.savedGeneratedTest,
       testIndex: testSuite.testIndex,
+      testSuiteType: testSuite.savedTestSuiteType,
       testSuiteToggler: false
-    })
+    });
   }
 
   deleteTest(idx) {
-    let testSuites = this.state.testSuites.filter(test => test.testIndex !== idx);
+    let testSuites = this.state.testSuites.filter(
+      test => test.testIndex !== idx
+    );
     return this.setState({
-      testSuiteName: "",
-      testDescription: "",
-      writeTest: "",
-      generatedTest: "",
       selectedTest: this.dropDownReset(),
+      testSuiteToggler: true,
       testSuites,
-      testIndex: this.state.testIndex - 1,
+      testIndex: this.state.testIndex - 1
     });
   }
 
@@ -214,34 +230,63 @@ class App extends Component {
 
   testSuiteToggler() {
     return this.setState({
-      testSuiteToggler: !this.state.testSuiteToggler
-    })
+      testSuiteToggler: true
+    });
+  }
+
+  pageReset() {
+    return this.setState({
+      testSuiteName: "",
+      testDescription: "",
+      selectedTest: this.dropDownReset(),
+      writeTest: "",
+      writeInput: "",
+      generatedTest: "",
+      testSuiteToggler: true
+    });
+  }
+
+  queryPage() {
+    this.pageReset();
+    return this.setState({
+      testSuiteType: false
+    });
+  }
+
+  mutationPage() {
+    this.pageReset();
+    return this.setState({
+      testSuiteType: true
+    });
   }
 
   render() {
     let landingPage;
     if (this.state.landingPageState === true) {
-      landingPage = <LandingPage landingPageState={this.state.landingPageState} handleNextClick={this.handleNextClick} openDocs={this.openDocs}/>
+      landingPage = (
+        <LandingPage
+          landingPageState={this.state.landingPageState}
+          handleNextClick={this.handleNextClick}
+          openDocs={this.openDocs}
+        />
+      );
     }
-    //landingPage={this.state.landingPageState} handleNextClick={this.handleNextClick}
 
     return (
-        <HashRouter>
-          <div className="fullscreen">
-            <div className="mainContainer">
-
-            <div className="landingPage">
-              {landingPage}
-            </div>
-
+      <HashRouter>
+        <div className="fullscreen">
+          <div className="mainContainer">
+            <div className="landingPage">{landingPage}</div>
             <div className="mainNavBar">
-              <LeftSideBar/>
+              <LeftSideBar
+                queryPage={this.queryPage}
+                mutationPage={this.mutationPage}
+                handleExportClick={this.handleExportClick}
+              />
             </div>
 
             <div className="queryVisualizer">
-              <SchemaTreeD3 
-                schema={this.state.schema}
-              />
+              <SchemaTreeD3 schema={this.state.schema} />
             </div>
 
             <div className="testTypeContainer">
@@ -257,23 +302,34 @@ class App extends Component {
             </div>
 
             <Switch>
-                
-                <Route path="/queries">
-                <Query appstate={this.state} handleChange={this.handleChange} 
-                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
-                </Route> 
-
-                <Route path="/mutations" exact>
-                  <Mutation appstate={this.state} handleChange={this.handleChange} 
-                  handleClick={this.handleClick} addTestSuite={this.addTestSuite} updateTestSuite={this.updateTestSuite} 
-                  selectTest={this.selectTest} deleteTest={this.deleteTest} editTest={this.editTest}/>
-                </Route>
-
+              <Route path="/queries">
+                <Query
+                  appstate={this.state}
+                  handleChange={this.handleChange}
+                  handleClick={this.handleClick}
+                  addTestSuite={this.addTestSuite}
+                  updateTestSuite={this.updateTestSuite}
+                  selectTest={this.selectTest}
+                  deleteTest={this.deleteTest}
+                  editTest={this.editTest}
+                />
+              </Route>
+              <Route path="/mutations" exact>
+                <Mutation
+                  appstate={this.state}
+                  handleChange={this.handleChange}
+                  handleClick={this.handleClick}
+                  addTestSuite={this.addTestSuite}
+                  updateTestSuite={this.updateTestSuite}
+                  selectTest={this.selectTest}
+                  deleteTest={this.deleteTest}
+                  editTest={this.editTest}
+                />
+              </Route>
             </Switch>
-            </div>
           </div>
-        </HashRouter>
+        </div>
+      </HashRouter>
     );
   }
 }

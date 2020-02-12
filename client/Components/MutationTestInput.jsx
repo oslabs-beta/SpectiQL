@@ -9,11 +9,10 @@ class MutationTestInput extends Component {
   render () {
     return (
       <div className='testInputContainer'>
-        {/* <Form className="testSuiteInput"> */}
         <Form.Group controlId='test-suite'>
-          {/* <Form.Label column sm={6}>
-              Test Suite:
-            </Form.Label> */}
+          <Form.Label column sm={6}>
+              Mutation Test Name:
+            </Form.Label>
           <Col sm='10'>
             <Form.Control
               type='text'
@@ -24,13 +23,11 @@ class MutationTestInput extends Component {
             />
           </Col>
         </Form.Group>
-        {/* </Form> */}
 
-        {/* <Form className="testDescriptionInput"> */}
         <Form.Group controlId='test-description'>
-          {/* <Form.Label column sm={6}>
-              Test Description:
-            </Form.Label> */}
+          <Form.Label column sm={6}>
+              Mutation Test Description:
+            </Form.Label>
           <Col sm='10'>
             <Form.Control
               type='text'
@@ -41,7 +38,6 @@ class MutationTestInput extends Component {
             />
           </Col>
         </Form.Group>
-        {/* </Form> */}
         <select className='selectQueryType' id='dd-reset' onChange={this.props.selectTest}>
           <option value='default' disabled selected>Select Test</option>
           <option value='validMutation'>Valid Mutation</option>
@@ -50,7 +46,6 @@ class MutationTestInput extends Component {
           <option value='invalidArgField'>Invalid Argument Field</option>
           <option value='validInputType'>Valid Input Type</option>
           <option value='invalidInputType'>Invalid Input Type</option>
-          {/* <option  value = "validMutation" >Valid Mutation</option> */}
 
         </select>
       </div>
@@ -58,4 +53,4 @@ class MutationTestInput extends Component {
   }
 }
 
-export default MutationTestInput
+export default MutationTestInput;
