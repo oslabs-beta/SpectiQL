@@ -1,59 +1,56 @@
-import React, { Component } from "react";
-import { Form, Col } from "react-bootstrap";
+import React, { Component } from 'react'
+import { Form, Col } from 'react-bootstrap'
 
 class MutationTestInput extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   }
 
-  render() {
+  render () {
     return (
-      <div className="testInputContainer">
-        {/* <Form className="testSuiteInput"> */}
-          <Form.Group controlId="test-suite">
-            {/* <Form.Label column sm={6}>
-              Test Suite:
-            </Form.Label> */}
-            <Col sm="10">
-              <Form.Control
-                type="text"
-                placeholder="Enter test suite here..."
-                name="testSuiteName"
-                value={this.props.testSuiteName}
-                onChange={this.props.handleChange}
-              />
-            </Col>
-          </Form.Group>
-        {/* </Form> */}
-            
-        {/* <Form className="testDescriptionInput"> */}
-          <Form.Group controlId="test-description">
-            {/* <Form.Label column sm={6}>
-              Test Description:
-            </Form.Label> */}
-            <Col sm="10">
-              <Form.Control
-                type="text"
-                placeholder="Enter test description here..."
-                name="testDescription"
-                value={this.props.testDescription}
-                onChange={this.props.handleChange}
-              />
-            </Col>
-          </Form.Group>
-        {/* </Form> */}
-        <select className="selectQueryType" id="dd-reset" onChange={this.props.selectTest}>
-              <option  value ="default" disabled selected>Select Test</option>
-              <option value = "validMutationInput">Valid Mutation Input</option>
-              <option value= "invalidMutationInput" >Invalid Mutation Input</option>
-              <option value= "validMutationDataType" >Valid Argument Field</option>
-              <option value = "invalidMutationDataType" >Invalid Argument Field</option>
-              {/* <option  value = "validMutation" >Valid Mutation</option> */}
+      <div className='testInputContainer'>
+        <Form.Group controlId='test-suite'>
+          <Form.Label column sm={6}>
+              Mutation Test Name:
+            </Form.Label>
+          <Col sm='10'>
+            <Form.Control
+              type='text'
+              placeholder='Enter test suite here...'
+              name='testSuiteName'
+              value={this.props.testSuiteName}
+              onChange={this.props.handleChange}
+            />
+          </Col>
+        </Form.Group>
 
-            </select>
+        <Form.Group controlId='test-description'>
+          <Form.Label column sm={6}>
+              Mutation Test Description:
+            </Form.Label>
+          <Col sm='10'>
+            <Form.Control
+              type='text'
+              placeholder='Enter test description here...'
+              name='testDescription'
+              value={this.props.testDescription}
+              onChange={this.props.handleChange}
+            />
+          </Col>
+        </Form.Group>
+        <select className='selectQueryType' id='dd-reset' onChange={this.props.selectTest}>
+          <option value='default' disabled selected>Select Test</option>
+          <option value='validMutation'>Valid Mutation</option>
+          <option value='invalidMutation'>Invalid Mutation</option>
+          <option value='validArgField'>Valid Argument Field</option>
+          <option value='invalidArgField'>Invalid Argument Field</option>
+          <option value='validInputType'>Valid Input Type</option>
+          <option value='invalidInputType'>Invalid Input Type</option>
+
+        </select>
       </div>
-    );
+    )
   }
 }
-  
+
 export default MutationTestInput;

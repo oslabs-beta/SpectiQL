@@ -1,64 +1,71 @@
-const validQuery = (props) =>{
+const validQuery = (props) => {
   // console.log(props);
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const validQueryTest = \`\n${props.writeTest}\`
     tester.test(true, validQueryTest)
-  })`;
-  return newTest;
-};
+  })`
+  return newTest
+}
 
 const invalidQuery = props => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const invalidQueryTest = \`${props.writeTest}\`
     tester.test(false, invalidQueryTest)
-  })`;
-  return newTest;
-};
+  })`
+  return newTest
+}
 
 const validArgField = props => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const validArgFieldTest = \`${props.writeTest}\`
     tester.test(true, validArgFieldTest)
-  })`;
-  return newTest;
-};
+  })`
+  return newTest
+}
 
 const invalidArgField = props => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const invalidArgFieldTest = \`${props.writeTest}\`
     tester.test(false, invalidArgFieldTest)
-  })`;
-  return newTest;
-};
+  })`
+  return newTest
+}
 
 const validArgDataType = props => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const validArgValueTypeTest = \`${props.writeTest}\`
     tester.test(true, validArgValueTypeTest)
-  })`;
-  return newTest;
-};
+  })`
+  return newTest
+}
 
 const invalidArgDataType = props => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const invalidArgValueTypeTest = \`${props.writeTest}\`
     tester.test(false, invalidArgValueTypeTest)
+<<<<<<< HEAD
   })`;
   return newTest;
 };
 const validMutationInput = (props) => {
+=======
+  })`
+  return newTest
+}
+const validMutation = (props) => {
+>>>>>>> a1aff1880fd554e3897c8941b03807e4178101a5
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const validMutationTest = \`\n${props.writeTest}\`
     tester.test(true, validMutationTest, ${props.writeInput})
   })`
-  return newTest;
+  return newTest
 }
 
 const invalidMutationInput = (props) => {
@@ -67,9 +74,10 @@ const invalidMutationInput = (props) => {
     const invalidMutationTest = \`\n${props.writeTest}\`
     tester.test(false, validMutationTest, ${props.writeInput})
   })`
-  return newTest;
+  return newTest
 }
 
+<<<<<<< HEAD
 const validMutationDataType = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
@@ -109,3 +117,15 @@ export  {
     validMutationDataType,
     invalidMutationDataType
 };
+=======
+export {
+  validQuery,
+  invalidQuery,
+  validArgField,
+  invalidArgField,
+  validArgDataType,
+  invalidArgDataType,
+  validMutation,
+  invalidMutation
+}
+>>>>>>> a1aff1880fd554e3897c8941b03807e4178101a5
