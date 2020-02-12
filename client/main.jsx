@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LeftSideBar from "./Components/LeftSideBar.jsx";
 import QueryContainer from "./Containers/QueryContainer.jsx";
-import "animate.css/animate.min.css";
+// import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 import Particles from "react-particles-js";
 import { Switch, Route } from "react-router-dom";

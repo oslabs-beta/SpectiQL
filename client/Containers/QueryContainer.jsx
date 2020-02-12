@@ -3,7 +3,7 @@ import TestInput from "../Components/TestInput.jsx";
 import TestQuery from "../Components/TestQuery.jsx";
 import GenerateTest from "../Components/GenerateTest.jsx";
 import TestSuites from "../Components/TestSuites.jsx";
-import "animate.css/animate.min.css";
+// import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 import Particles from "react-particles-js";
 import { Switch } from "react-router-dom";

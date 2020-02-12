@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Main from "./main.jsx";
 import Mutations from "./Containers/MutationContainer.jsx"
-import "./public/styling/index.css";
+// import "./public/styling/index.css";
 import Particles from "react-particles-js"; 
-import "animate.css/animate.min.css";
+// import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 
 import {
@@ -14,8 +14,10 @@ import {
   invalidArgField,
   validArgDataType,
   invalidArgDataType,
-  validMutation,
-  invalidMutation,
+  validMutationInput,
+  invalidMutationInput,
+  validMutationDataType,
+  invalidMutationDataType
 } from "./Tests/Tests.jsx";
 
 
@@ -37,8 +39,10 @@ class App extends Component {
                 invalidArgField,
                 validArgDataType,
                 invalidArgDataType,
-                validMutation,
-                invalidMutation
+                validMutationInput,
+                invalidMutationInput,
+                validMutationDataType,
+                invalidMutationDataType
       },
       testSuites: [],
       testIndex: 0,
