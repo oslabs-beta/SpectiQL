@@ -29,10 +29,25 @@
 }
 
 
+a {
+  display: block;
+  color: #f5f5f7;
+  width: 100%;
+  height: 100%;
+}
+  a:hover {
+    color: #71bb6e !important;
+    text-decoration:none !important;
+  }
+
 #content {
   background: none !important;
   font-family: "Poppins", sans-serif;
   width: 100%;
+}
+
+.btn-lg {
+  padding: 0 !important;
 }
 
 .introContainer {
@@ -158,6 +173,7 @@ h1 {
 
 .buttonContainer {
   display: grid;
+  height: 100%;
   grid-template-columns: 15% 21.25% 21.25% 21.25% 21%;
   grid-template-rows: auto;
   position: relative;
@@ -177,6 +193,8 @@ h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     color: #f5f5f7;
+    width: 100%;
+    height: 100%;
   }
 
   .mutations {
@@ -184,6 +202,8 @@ h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     color: #f5f5f7;
+    width: 100%;
+    height: 100%;
   }
 
   .subscriptions {
@@ -191,6 +211,8 @@ h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     color: #f5f5f7;
+    width: 100%;
+    height: 100%;
   }
 
   .export {
@@ -198,6 +220,8 @@ h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     color: #f5f5f7;
+    width: 100%;
+    height: 100%;
   }
 
 .mainContainer {
@@ -207,13 +231,14 @@ h1 {
   display: grid;
   position: fixed;
   grid-template-columns: 15% 40% 45%;
-  grid-template-rows: 8% 21% 35% 35% 1%;
+  grid-template-rows: 4% 25% 35% 35% 1%;
   /* overflow: auto; */
   width: 100vw;
   height: 100vh;
 }
 
 .mainNavBar {
+  height: 100%;
   position: top;
   grid-column: 1/4;
   grid-row: 1;
