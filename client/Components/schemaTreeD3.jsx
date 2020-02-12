@@ -6,45 +6,7 @@ class SchemaTreeD3 extends Component {
     super(props)
 
     this.state = {
-      json : {
-        "date": "10242013",
-        "id": "34534",
-        "addr": "444 Little Lane",
-        "department": {
-          "id": 13,
-          "addr": "555 ShoeHorse Road",
-          "name": "CTS",
-          "computer": {
-            "id": 56,
-            "name": "CT"
-          },
-          "electronics": {
-            "id": 65,
-            "name": "EC",
-            "computer": {
-              "id": 56,
-              "name": "CT"
-            },
-            "electronics": {
-              "id": 65,
-              "name": "EC"
-            }
-          }
-        },
-        "manager": {
-          "id": 454,
-          "addr": "444 Little Lane",
-          "name": "Bobby Johnson",
-          "computer": {
-            "id": 56,
-            "name": "CT"
-          },
-          "electronics": {
-            "id": 65,
-            "name": "EC"
-          }
-        }
-      }
+      initialDepth: 1
     }
   };
 
@@ -55,8 +17,12 @@ class SchemaTreeD3 extends Component {
         x: dimensions.width / 10,
         y: dimensions.height / 2
       },
-      depth: 0
+      initialDepth: 1
     });
+  }
+
+  componentDidUpdate() {
+
   }
 
   render () {
@@ -138,7 +104,7 @@ class SchemaTreeD3 extends Component {
           data={queryTreeData} 
           translate={this.state.translate}
           shouldCollapseNeighborNodes={false}
-          initialDepth={1}
+          initialDepth={this.state.initialDepth}
           />
       </div>
       </div>
