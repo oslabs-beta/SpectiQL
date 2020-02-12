@@ -5,7 +5,47 @@ class SchemaTreeD3 extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {}
+    this.state = {
+      json : {
+        "date": "10242013",
+        "id": "34534",
+        "addr": "444 Little Lane",
+        "department": {
+          "id": 13,
+          "addr": "555 ShoeHorse Road",
+          "name": "CTS",
+          "computer": {
+            "id": 56,
+            "name": "CT"
+          },
+          "electronics": {
+            "id": 65,
+            "name": "EC",
+            "computer": {
+              "id": 56,
+              "name": "CT"
+            },
+            "electronics": {
+              "id": 65,
+              "name": "EC"
+            }
+          }
+        },
+        "manager": {
+          "id": 454,
+          "addr": "444 Little Lane",
+          "name": "Bobby Johnson",
+          "computer": {
+            "id": 56,
+            "name": "CT"
+          },
+          "electronics": {
+            "id": 65,
+            "name": "EC"
+          }
+        }
+      }
+    }
   };
 
   componentDidMount() {
@@ -20,46 +60,6 @@ class SchemaTreeD3 extends Component {
   }
 
   render () {
-    //using for testing 
-    const json = {
-      "date": "10242013",
-      "id": "34534",
-      "addr": "444 Little Lane",
-      "department": {
-        "id": 13,
-        "addr": "555 ShoeHorse Road",
-        "name": "CTS",
-        "computer": {
-          "id": 56,
-          "name": "CT"
-        },
-        "electronics": {
-          "id": 65,
-          "name": "EC",
-          "computer": {
-            "id": 56,
-            "name": "CT"
-          },
-          "electronics": {
-            "id": 65,
-            "name": "EC"
-          }
-        }
-      },
-      "manager": {
-        "id": 454,
-        "addr": "444 Little Lane",
-        "name": "Bobby Johnson",
-        "computer": {
-          "id": 56,
-          "name": "CT"
-        },
-        "electronics": {
-          "id": 65,
-          "name": "EC"
-        }
-      }
-    };
     // console.log('schema within testquery of schemaTreeD3:', this.props.schema);
     // console.log('RootQuery within testquery of schemaTreeD3:', this.props.schema.Query);
     // function below is for converting entire
@@ -121,7 +121,7 @@ class SchemaTreeD3 extends Component {
     //   let schemaTreeData = convertSchema(this.props.schema);
 
     //testing below
-            // const queryTreeData = convertQuerySchema(json) //testing
+            // const queryTreeData = convertQuerySchema(this.state.json); //testing
 
     //comment out for testing
     const queryTreeData = convertQuerySchema(this.props.schema)
@@ -132,12 +132,12 @@ class SchemaTreeD3 extends Component {
 
     return (
     <div className="svg-container">
-      <div id='treeWrapper' style={{ width: '100%', height: '100%' }} ref={tc => (this.treeContainer = tc)} >
+      <div id='treeWrapper' style={{ width: '100%', height: '100%' }} ref={tc => (this.treeContainer = tc)}>
         <Tree 
           data={queryTreeData} 
           translate={this.state.translate}
           shouldCollapseNeighborNodes={false}
-          zoom={1}
+          initialDepth={1}
           />
       </div>
       </div>
