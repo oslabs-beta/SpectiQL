@@ -29,7 +29,7 @@ class App extends Component {
     super(props);
     this.state = {
       landingPageState: true,
-      filePath: `"./schema.gql"`,
+      // filePath: `"./schema.gql"`,
       schema: {},
       testSuiteName: "",
       testDescription: "",
@@ -87,9 +87,9 @@ class App extends Component {
     // })
     // .then(response => response.json())
     // .then((response) => {
-    //   schemaData = response.schema;
-    //   this.setState({ filePath: `${filePath}`, landingPageState: false, schema: response.schema});
-    // })
+    //   console.log('before setState has occured');
+    //   this.setState({ landingPageState: false, schema: response.schema})
+    //   })
     // .catch(err => console.log(err));
 
     //when testing on developnment side
@@ -289,14 +289,16 @@ class App extends Component {
               <SchemaTreeD3 schema={this.state.schema} />
             </div>
 
-            <div className="testTypeContainer">Landing Page</div>
+            <div className="testTypeContainer">
+              {/* Landing Page */}
+            </div>
 
             <div className="testSuites">
-              <TestSuites
-                testSuites={this.state.testSuites}
-                deleteTest={this.deleteTest}
-                editTest={this.editTest}
-              />
+                <TestSuites
+                      testSuites={this.state.testSuites}
+                      deleteTest={this.deleteTest}
+                      editTest={this.editTest}
+                />
             </div>
 
             <Switch>

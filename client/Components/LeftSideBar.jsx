@@ -34,7 +34,7 @@ class SideBar extends Component {
           <Button className='subscriptions' variant='outline-dark' size='lg'>
             Subscriptions
           </Button>
-          <Button className='schemaTree' onClick={this.props.handleExportClick} className="export" variant="outline-dark" size="lg">
+          <Button className='export' onClick={this.props.handleExportClick} className="export" variant="outline-dark" size="lg">
             Export
           </Button> 
         </ButtonToolbar>
