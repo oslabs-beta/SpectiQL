@@ -4,7 +4,7 @@ import "./public/styling/index.css";
 import "animate.css/animate.min.css";
 import FileSaver, { saveAs } from "file-saver";
 
-//all the components we need
+//all the components we're importing
 import Mutation from "./Containers/MutationContainer.jsx";
 import Query from "./Containers/QueryContainer.jsx";
 import LeftSideBar from "./Components/LeftSideBar.jsx";
@@ -37,6 +37,10 @@ class App extends Component {
       writeTest: "",
       writeInput: "",
       generatedTest: "",
+      testSuites: [],
+      testIndex: 0,
+      testSuiteToggler: true,
+      testSuiteType: false,
       testFunctions: {
         validQuery,
         invalidQuery,
@@ -46,11 +50,7 @@ class App extends Component {
         invalidArgDataType,
         validMutation,
         invalidMutation
-      },
-      testSuites: [],
-      testIndex: 0,
-      testSuiteToggler: true,
-      testSuiteType: false
+      }
     };
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -82,6 +82,7 @@ class App extends Component {
 
   //retrieving user's schema and schema filepath after they configure their file path from their backend
   handleNextClick() {
+    //for production
     // fetch('/spectiql', {
     //   method: 'POST',
     // })
@@ -276,7 +277,9 @@ class App extends Component {
       <HashRouter>
         <div className="fullscreen">
           <div className="mainContainer">
-            <div className="landingPage">{landingPage}</div>
+            <div className="landingPage">
+              {landingPage}
+            </div>
             <div className="mainNavBar">
               <LeftSideBar
                 queryPage={this.queryPage}
@@ -290,7 +293,7 @@ class App extends Component {
             </div>
 
             <div className="testTypeContainer">
-              {/* Landing Page */}
+              Landing Page
             </div>
 
             <div className="testSuites">
