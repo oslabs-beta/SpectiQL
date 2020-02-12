@@ -9,39 +9,43 @@ class TestInput extends Component {
   render () {
     return (
       <div className='testInputContainer'>
-        {/* <Form className="testSuiteInput"> */}
-        <Form.Group controlId='test-suite'>
-          <Form.Label column sm={6}>
-              Query Test Name:
-            </Form.Label>
-          <Col sm='10'>
-            <Form.Control
-              type='text'
-              placeholder='Enter test suite here...'
-              name='testSuiteName'
-              value={this.props.testSuiteName}
-              onChange={this.props.handleChange}
-            />
-          </Col>
-        </Form.Group>
-        {/* </Form> */}
 
-        {/* <Form className="testDescriptionInput"> */}
-        <Form.Group controlId='test-description'>
-          <Form.Label column sm={6}>
-              Query Test Description:
-            </Form.Label>
-          <Col sm='10'>
-            <Form.Control
-              type='text'
-              placeholder='Enter test description here...'
-              name='testDescription'
-              value={this.props.testDescription}
-              onChange={this.props.handleChange}
-            />
-          </Col>
-        </Form.Group>
-        {/* </Form> */}
+        <div className="testSuiteInstruction">
+          Query test name ⟶
+        </div>
+
+        <Form className="testSuiteInput">
+          <Form.Group controlId='test-suite'>
+              <Form.Control
+                type='text'
+                placeholder='Enter test suite here...'
+                name='testSuiteName'
+                value={this.props.testSuiteName}
+                onChange={this.props.handleChange}
+              />
+          </Form.Group>
+        </Form>
+
+        <div className="testDescriptionInstruction">
+          Test description ⟶
+        </div>
+
+        <Form className="testDescriptionInput">
+          <Form.Group controlId='test-description'>
+              <Form.Control
+                type='text'
+                placeholder='Enter test description here...'
+                name='testDescription'
+                value={this.props.testDescription}
+                onChange={this.props.handleChange}
+              />
+          </Form.Group>
+        </Form>
+
+        <div className="selectTestInstruction">
+          Please select test ⟶
+        </div>
+
         <select className='selectQueryType' id='dd-reset' onChange={this.props.selectTest}>
           <option value='default' disabled selected>Select Test</option>
           <option value='validQuery'>Valid Query</option>

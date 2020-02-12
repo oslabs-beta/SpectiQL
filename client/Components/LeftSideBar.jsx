@@ -13,30 +13,34 @@ class SideBar extends Component {
 
         <ButtonToolbar className='buttonContainer'>
 
+        <Link className="queries" to="/queries">
             <Button
               onClick={this.props.queryPage}
               className="queries"
               variant="outline-dark"
               size="lg"
             >
-              <Link to="/queries">
+              {/* <Link className="queries" to="/queries"> */}
               Queries
-              </Link>
+              {/* </Link> */}
             </Button>
+            </Link>
 
+            <Link to="/mutations" className="mutations">
             <Button
               onClick={this.props.mutationPage}
               className="mutations"
               variant="outline-dark"
               size="lg"
             >
-              <Link to="/mutations">
+              {/* <Link to="/mutations" className="mutations"> */}
               Mutations
-              </Link>
+              {/* </Link> */}
             </Button>
+            </Link>
 
           <Button className='subscriptions' variant='outline-dark' size='lg'>
-            Subscriptions
+              Subscriptions
           </Button>
 
           <Button className='export' onClick={this.props.handleExportClick} className="export" variant="outline-dark" size="lg">

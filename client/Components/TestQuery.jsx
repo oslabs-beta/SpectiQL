@@ -13,14 +13,14 @@ class TestQuery extends Component {
         {/* <Form className="test-query-box"> */}
         {/* <Form.Row> */}
         <div className='test-query-write'>
-          <Form.Group as={Col} controlId='write-query'>
-            <Form.Label column sm={6}>
+          <Form.Group as={Col} controlId='write-query' className="writeQueryForm">
+            {/* <Form.Label column sm={6}>
               Write Query:
-            </Form.Label>
+            </Form.Label> */}
             <Form.Control
               as='textarea'
               placeholder='Enter query here...'
-              style={{ width: '100%', height: '17.7rem' }}
+              style={{ width: '100%', height: '98%', marginBottom: '2%' }}
               name='writeTest'
               value={this.props.writeTest}
               onChange={this.props.handleChange}
