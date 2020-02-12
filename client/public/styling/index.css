@@ -22,9 +22,12 @@
     
   }
 
-form {
-  /* display: inline-flex; */
+.svg-container {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 }
+
 
 #content {
   background: none !important;
@@ -155,7 +158,7 @@ h1 {
 
 .buttonContainer {
   display: grid;
-  grid-template-columns: 10% 23.33% 23.33% 23.33% 20%;
+  grid-template-columns: 15% 21.25% 21.25% 21.25% 21%;
   grid-template-rows: auto;
   position: relative;
   background-color: rgb(29, 29, 31);
@@ -190,25 +193,7 @@ h1 {
     color: #f5f5f7;
   }
 
-  .testing {
-    text-align: center;
-    line-height: 2.5;
-    font-weight: 800;
-    font-size: 33px;
-    font-family: 'Poppins', sans-serif;
-    /* grid-row: 5; */
-    width: 70%;
-    margin-right: 20%;
-  }
-
   .export {
-    /* grid-row: 8; */
-    width: inherit;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-  }
-
-  .schemaTree {
     grid-column: 5;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
@@ -222,7 +207,7 @@ h1 {
   display: grid;
   position: fixed;
   grid-template-columns: 15% 40% 45%;
-  grid-template-rows: 9% 20% 35% 35% 1%;
+  grid-template-rows: 8% 21% 35% 35% 1%;
   /* overflow: auto; */
   width: 100vw;
   height: 100vh;
@@ -237,17 +222,13 @@ h1 {
 .testSuites {
   grid-column: 1;
   grid-row: 2/6;
-  /* background-color: rgb(157, 157, 160); */
   color: black;
 }
 
   .wrapper {
     background: none;
     position: fixed;
-    /* width: 150px;
-    overflow-y: scroll;
-    top: 5%;
-    bottom: 0; */
+
   }
 
   #sidebar {
@@ -257,6 +238,7 @@ h1 {
     overflow-y: scroll;
     top: 14%;
     bottom: 0;
+    /* background: rgb(91, 93, 95); */
   }
 
   .testSuiteDeleteButton {
