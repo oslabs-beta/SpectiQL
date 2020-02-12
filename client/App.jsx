@@ -27,6 +27,7 @@ import {
   invalidMutation,
 } from "./Tests/Tests.jsx";
 
+let queryArray = [];
 
 class App extends Component {
   constructor(props) {
@@ -224,7 +225,7 @@ class App extends Component {
   }
 
   render() {
-    let queryArray = [];
+    // let queryArray = [];
     let landingPage;
     if (this.state.landingPageState === true) {
       landingPage = <LandingPage landingPageState={this.state.landingPageState} handleNextClick={this.handleNextClick} openDocs={this.openDocs}/>
