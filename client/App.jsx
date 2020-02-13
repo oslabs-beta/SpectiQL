@@ -86,18 +86,18 @@ class App extends Component {
 
   //retrieving user's schema and schema filepath after they configure their file path from their backend
   handleNextClick() {
-    // fetch('/spectiql', {
-    //   method: 'POST',
-    // })
-    // .then(response => response.json())
-    // .then((response) => {
-    //   console.log('before setState has occured');
-    //   this.setState({ landingPageState: false, schema: response.schema})
-    //   })
-    // .catch(err => console.log(err));
+    fetch('/spectiql', {
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then((response) => {
+      console.log('before setState has occured');
+      this.setState({ landingPageState: false, schema: response.schema})
+      })
+    .catch(err => console.log(err));
 
     //when testing on developnment side
-    this.setState({ landingPageState: false });
+    // this.setState({ landingPageState: false });
   }
 
   handleChange(e) {
