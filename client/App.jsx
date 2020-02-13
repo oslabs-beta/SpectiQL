@@ -20,8 +20,10 @@ import {
   invalidArgField,
   validArgDataType,
   invalidArgDataType,
-  validMutation,
-  invalidMutation
+  validMutationInput,
+  invalidMutationInput,
+  validMutationDataType,
+  invalidMutationDataType
 } from "./Tests/Tests.jsx";
 
 class App extends Component {
@@ -44,8 +46,10 @@ class App extends Component {
         invalidArgField,
         validArgDataType,
         invalidArgDataType,
-        validMutation,
-        invalidMutation
+        validMutationInput,
+        invalidMutationInput,
+        validMutationDataType,
+        invalidMutationDataType
       },
       testSuites: [],
       testIndex: 0,

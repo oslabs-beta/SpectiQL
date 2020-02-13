@@ -48,12 +48,10 @@ class MutationTestInput extends Component {
 
         <select className='selectQueryType' id='dd-reset' onChange={this.props.selectTest}>
           <option value='default' disabled selected>Select Test</option>
-          <option value='validMutation'>Valid Mutation</option>
-          <option value='invalidMutation'>Invalid Mutation</option>
-          <option value='validArgField'>Valid Argument Field</option>
-          <option value='invalidArgField'>Invalid Argument Field</option>
-          <option value='validInputType'>Valid Input Type</option>
-          <option value='invalidInputType'>Invalid Input Type</option>
+          <option value='validMutationInput'>Valid Mutation Input</option>
+          <option value='invalidMutationInput'>Invalid Mutation Input</option>
+          <option value='validMutationDataType'>Valid Mutation Data Type</option>
+          <option value='invalidMutationDataType'>Invalid Mutation Data Type</option>
 
         </select>
       </div>
