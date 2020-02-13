@@ -103,7 +103,7 @@ class SchemaTreeD3 extends Component {
         <Tree 
           data={queryTreeData} 
           translate={this.state.translate}
-          shouldCollapseNeighborNodes={false}
+          shouldCollapseNeighborNodes={true}
           initialDepth={this.state.initialDepth}
           />
       </div>
