@@ -97,6 +97,7 @@
           font-size: small;
           grid-row: 1;
           font-family: "Poppins", sans-serif;
+          font-weight: 800;
         }
         .h6 {
           font-size: x-small;
@@ -705,7 +706,7 @@
         text-align: left;
         text-shadow: 5px;
         /* line-height: 2.5; */
-        font-weight: 800;
+        font-weight: 900;
         font-size: 20px;
         font-family: 'Poppins', sans-serif;
         width: 30%;
@@ -753,6 +754,19 @@
   width: 100%;
 }
 
+.h5 {
+  font-size: large;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+}
+.h6 {
+  font-size: medium;
+  font-family: "Poppins", sans-serif;
+}
+.card-text {
+  font-size: small;
+  font-style: italic;
+}
 
 a {
   display: block;
@@ -1252,7 +1266,7 @@ h1 {
       position: relative;
       display: flex;
       width: 100%;
-      height: 90%;
+      height: 85%;
       /* line-height: 3; */
       font-size: small;
       text-align: center;
