@@ -16,7 +16,7 @@ class GenerateTest extends Component {
               variant='outline-primary'
               size='lg'
               block
-              style={{ height: '50%', width: '100%', color: 'black', borderColor: 'black' }}
+              style={{ height: '49.7%', width: '100%', color: 'black', borderColor: 'black' }}
               onClick={this.props.addTestSuite}
             >
             Add to Test Suite
@@ -26,11 +26,11 @@ class GenerateTest extends Component {
       } else {
         return (
           <Button
-            className='updateTest'
+            className='addTestButton'
             variant='outline-primary'
             size='lg'
             block
-            style={{ height: '50%', width: '100%', color: 'black', borderColor: 'black' }}
+            style={{ height: '49.7%', width: '100%', color: 'black', borderColor: 'black' }}
             onClick={this.props.updateTestSuite}
           >
           Update Test Suite
@@ -46,7 +46,7 @@ class GenerateTest extends Component {
             variant='outline-primary'
             size='lg'
             block
-            style={{ height: '49%', width: '100%', color: 'black', borderColor: 'black', marginBottom: '1%' }}
+            style={{ height: '49%', width: '100%', color: 'black', borderColor: 'black', marginBottom: '1.5%' }}
             onClick={this.props.handleClick}
           >
               Generate Test
