@@ -1,6 +1,6 @@
 {
   "name": "spectiql",
-  "version": "3.23.0",
+  "version": "4.0.0",
   "description": "SpectiQL - GraphQL Testing Tool",
   "main": "spectiql.js",
   "scripts": {
