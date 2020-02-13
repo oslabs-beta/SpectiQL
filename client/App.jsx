@@ -173,28 +173,32 @@ class App extends Component {
   }
 
   updateTestSuite() {
-    let testSuites = this.state.testSuites.slice();
-    const updatedTestSuite = {
-      savedGeneratedTest: this.state.generatedTest,
-      savedTestSuiteName: this.state.testSuiteName,
-      savedTestDescription: this.state.testDescription,
-      savedWriteTest: this.state.writeTest,
-      savedWriteInput: this.state.writeInput,
-      savedSelectedTest: this.state.selectedTest,
-      savedTestSuiteType: this.state.testSuiteType,
-      testIndex: this.state.testIndex
-    };
-    testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
-    return this.setState({
-      testSuiteName: "",
-      testDescription: "",
-      writeTest: "",
-      writeInput: "",
-      generatedTest: "",
-      selectedTest: this.dropDownReset(),
-      testSuites,
-      testSuiteToggler: true
-    });
+    if (document.getElementById("dd-reset").selectedIndex === 0) {
+      alert('Please select a test type from the drop-down to Update Test Suite')
+    } else {
+      let testSuites = this.state.testSuites.slice();
+      const updatedTestSuite = {
+        savedGeneratedTest: this.state.generatedTest,
+        savedTestSuiteName: this.state.testSuiteName,
+        savedTestDescription: this.state.testDescription,
+        savedWriteTest: this.state.writeTest,
+        savedWriteInput: this.state.writeInput,
+        savedSelectedTest: this.state.selectedTest,
+        savedTestSuiteType: this.state.testSuiteType,
+        testIndex: this.state.testIndex
+      };
+      testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
+      return this.setState({
+        testSuiteName: "",
+        testDescription: "",
+        writeTest: "",
+        writeInput: "",
+        generatedTest: "",
+        selectedTest: this.dropDownReset(),
+        testSuites,
+        testSuiteToggler: true
+      });
+    }
   }
 
   editTest(idx) {
