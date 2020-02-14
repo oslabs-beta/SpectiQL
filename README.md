@@ -5,7 +5,6 @@ SpectiQL is a JavaScript Graphical User Interface(GUI) for developers to easily 
 If you like our tool and would love to support our team, please don’t forget to star our Github repo above!
 
 <h2> Overview </h2>
-
 <h3> Features </h3>
 
 - Interactive & user-friendly GUI spun up on endpoint /spectiql
