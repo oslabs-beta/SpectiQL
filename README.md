@@ -17,7 +17,7 @@ If you like our tool and would love to support our team, please don’t forget t
 <h2> Getting Started <h2>
 	<h3> Installation </h3>
 	
-Run <code>npm i spectiql@5.2.0</code> in project root directory 
+- Run <code>npm i spectiql@5.2.0</code> in project root directory 
 
 
 How to use & Demo 
