@@ -52,14 +52,14 @@ app.post('/spectiql', getSchema);
 
 
 
-<h4>Authors</h4>
-Jonah Lin <a href="https://github.com/bigboydiamonds">github</a>
-Justin Kwon <a href="https://github.com/jkwonny">github</a>
-Kelly Dekitani <a href="https://github.com/kairiD">github</a>
-Stanford Dai <a href="https://github.com/Dais002">github</a>
+<h2>Authors</h2>
+Jonah Lin <a href="https://github.com/bigboydiamonds">@bigboydiamonds</a>
+Justin Kwon <a href="https://github.com/jkwonny">@jkwonny</a>
+Kelly Dekitani <a href="https://github.com/kairiD">@kairiD</a>
+Stanford Dai <a href="https://github.com/Dais002">@dais002</a>
 	
 Shoutouts -
 Many thanks to easygraphql for sharing their tool.  Please check out their page and star the github repo!
 
-Licenses –
-MIT
+<h2>License</h2>
+This project is licensed under the MIT License - see the LICENSE file for details
