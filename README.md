@@ -62,8 +62,6 @@ app.post('/spectiql', getSchema);
 <p>Kelly Dekitani <a href="https://github.com/kairiD">@kairiD</a> </p>
 
 <p>Stanford Dai <a href="https://github.com/Dais002">@dais002</a> </p>
-	
-Big thanks to <a href="https://github.com/EasyGraphQL">EasyGraphQL</a>!
 
 <h2>License</h2>
 
