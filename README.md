@@ -1,10 +1,6 @@
 # SpectiQL
 
-Current Working Scripts: 
-    'npm run build' will compile all React logic into output.html
-    'standard --run' will check for syntactical errors
-    
-    SpectiQL is a JavaScript GUI for developers to create test scripts for GraphQL. Our interactive interface simplifies the task of writing tests that checks for the validity of GraphQL queries and mutations. 
+SpectiQL is a JavaScript GUI for developers to create test scripts for GraphQL. Our interactive interface simplifies the task of writing tests that checks for the validity of GraphQL queries and mutations. 
 
 If you like our tool and would love to support our team, please don’t forget to star our Github repo above!
 
