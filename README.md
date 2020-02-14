@@ -1,22 +1,22 @@
-# SpectiQL
+<h1> SpectiQL </h1>
 
-SpectiQL is a JavaScript GUI for developers to create test scripts for GraphQL. Our interactive interface simplifies the task of writing tests that checks for the validity of GraphQL queries and mutations. 
+SpectiQL is a JavaScript Graphical User Interface(GUI) for developers to easily create GraphQL tests. Our interactive interface simplifies the task of writing tests that checks GraphQL queries & mutations against a schema. 
 
 If you like our tool and would love to support our team, please don’t forget to star our Github repo above!
 
+<h2> Features </h2>
 
-Features –
-Interactive, easy-to-use GUI that generates boiler plate test scripts
-Reads and parses a schema to generate GraphQL mutations and queries
-Schema tree visualization with D3 tools
-Utilizes EasyGraphQL - an open source tool for GraphQL testing and schema mocking
-Save and export test suites into a JavaScript file to be loaded into project
+- Interactive & user-friendly GUI spun up on endpoint /spectiql
+- Create, Edit, or Delete GraphQL test suites within GUI
+- Ability to generate ready-to-run test scripts (Jest, Mocha compatible)
+- Save & export (.js) test file into your project directory
+- D3 Schema tree visualization
+- Utilizes <a href="https://easygraphql.com/">EasyGraphQL</a> - an open source project containing tools that help simplify GraphQL (<a href="https://github.com/EasyGraphQL">github</a>)
 
-Getting Started 
-Install NPM package 
+# Installation
+Run <code>npm i spectiql@5.2.0</code> in project root directory 
 
-
-
+# Getting Started 
 How to use & Demo 
 How to configure/import your schema –
 Require the methods { config, getSchema, and testSchema } from spectiql into your back-end server after initially setting up your graphql server 
