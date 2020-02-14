@@ -15,6 +15,7 @@ If you like our tool and would love to support our team, please don’t forget t
 - Utilizes <a href="https://easygraphql.com/">EasyGraphQL</a> - an open source project containing tools that help simplify GraphQL (<a href="https://github.com/EasyGraphQL">github</a>)
 
 <h2> Getting Started <h2>
+	
 <h3> Installation </h3>
 	
 - install SpectiQL
