@@ -19,10 +19,12 @@ If you like our tool and would love to support our team, please don’t forget t
 <h3> Installation </h3>
 	
 - install SpectiQL
-<p> <code>npm i spectiql@5.2.0</code> </p>
+<br></br>
+<code>npm i spectiql@5.2.0</code> 
 
 - install Jest
-<p> <code>npm i jest --save-dev</code> </p>
+<br></br>
+<code>npm i jest --save-dev</code>
 
 
 <h3> Configuration </h3>
