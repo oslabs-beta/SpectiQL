@@ -54,13 +54,13 @@ app.post('/spectiql', getSchema);
 
 <h2>Authors</h2>
 
-Jonah Lin <a href="https://github.com/bigboydiamonds">@bigboydiamonds</a>
-<br></br>
-Justin Kwon <a href="https://github.com/jkwonny">@jkwonny</a>
-<br></br>
-Kelly Dekitani <a href="https://github.com/kairiD">@kairiD</a>
-<br></br>
-Stanford Dai <a href="https://github.com/Dais002">@dais002</a>
+<p> Jonah Lin <a href="https://github.com/bigboydiamonds">@bigboydiamonds</a> </p>
+
+<p>Justin Kwon <a href="https://github.com/jkwonny">@jkwonny</a> </p>
+
+<p>Kelly Dekitani <a href="https://github.com/kairiD">@kairiD</a> </p>
+
+<p>Stanford Dai <a href="https://github.com/Dais002">@dais002</a> </p>
 	
 Shoutouts -
 Many thanks to easygraphql for sharing their tool.  Please check out their page and star the github repo!
