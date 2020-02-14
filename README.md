@@ -9,7 +9,7 @@ If you like our tool and would love to support our team, please don’t forget t
 
 - Interactive & user-friendly GUI spun up on endpoint /spectiql
 - Create, Edit, or Delete GraphQL test suites within GUI
-- Ability to generate ready-to-run test scripts (Jest, Mocha compatible)
+- Ability to generate ready-to-run test scripts with Jest
 - Save & export (.js) test file into your project directory
 - D3 Schema tree visualization
 - Utilizes <a href="https://easygraphql.com/">EasyGraphQL</a> - an open source project containing tools that help simplify GraphQL (<a href="https://github.com/EasyGraphQL">github</a>)
@@ -17,10 +17,13 @@ If you like our tool and would love to support our team, please don’t forget t
 <h2> Getting Started <h2>
 <h3> Installation </h3>
 	
-- run <code>npm i spectiql@5.2.0</code> in project root directory 
+- install SpectiQL
+<code>npm i spectiql@5.2.0</code> 
+- install Jest
+<code>npm i jest --save-dev</code>
 
 
-<h3> How To Use </h3>
+<h3> Configuration </h3>
 1. Import & configure your server by pasting in the following:
 <br></br>
 <pre>const { config, getSchema, testSchema } = require('spectiql');
@@ -28,9 +31,22 @@ const spect = config();
 const getSchema = getSchema('#enter schema file path');
 </pre>  
 
-2. Great! You've required the methods in. Now, we have to set up your endpoints to spin up Spectiql on your server. You can do this by setting a get and post request to the endpoint ‘/spectiql’ and calling newSchema and testSchema. Here is an example:
+2. Great! You've required the methods in. Now, we have to set up your endpoints to spin up SpectiQL on your server. You can do this by setting a get and post request to the endpoint ‘/spectiql’ and calling spect & getSchema. Example:
 
-Done? Well, that’s all you have to do on your part - our GUI will take care of the rest. Happy testing!
+<pre>app.get('/spectiql', spect);
+app.post('/spectiql', getSchema);
+</pre>  
+
+<h3>Generating and Exporting Tests</h3>
+1. To generate tests, simply select a type of GraphQL query (queries, mutations, subscriptions) at the top sidebar. After selecting a test type, you can give your tests a name and description by populating the test suites and test description fields. This will be helpful to refer back to specific tests!
+
+2. Select a specific test type (valid/invalid field, input, datatype) that you'd like to test for.
+
+3. Enter your query that you'd like to test - the schema tree displays the possible inputs, fields, and types based on provided schema. 
+
+4. Click Generate Tests, and if the tests look good, Add to Test Suite! If you want to edit them later on, you can simply click "Edit Test" on the specific test suite card created.
+
+5. After you've completed constructing all your test suites, click on the "Export" button on the upper right corner on the screen. The test file will be saved as "spectiql.test.js". Simply drag the test file into your project root directory, and run the script with jest!
 
 Generating and Exporting Tests –
 
