@@ -15,16 +15,20 @@ If you like our tool and would love to support our team, please don’t forget t
 - Utilizes <a href="https://easygraphql.com/">EasyGraphQL</a> - an open source project containing tools that help simplify GraphQL (<a href="https://github.com/EasyGraphQL">github</a>)
 
 <h2> Getting Started <h2>
-	<h3> Installation </h3>
+<h3> Installation </h3>
 	
-- Run <code>npm i spectiql@5.2.0</code> in project root directory 
+- run <code>npm i spectiql@5.2.0</code> in project root directory 
 
 
-How to use & Demo 
-How to configure/import your schema –
-Require the methods { config, getSchema, and testSchema } from spectiql into your back-end server after initially setting up your graphql server 
+<h3> How To Use </h3>
+1. Import & configure your server by pasting in the following:
+<br></br>
+<pre>const { config, getSchema, testSchema } = require('spectiql');
+const spect = config();
+const getSchema = getSchema('#enter schema file path');
+</pre>  
 
-Great! You required the methods in. Now, we have to set up your endpoints to spin up Spectiql on your server. You can do this by setting a get and post request to the endpoint ‘/spectiql’ and calling newSchema and testSchema. Here is an example:
+2. Great! You've required the methods in. Now, we have to set up your endpoints to spin up Spectiql on your server. You can do this by setting a get and post request to the endpoint ‘/spectiql’ and calling newSchema and testSchema. Here is an example:
 
 Done? Well, that’s all you have to do on your part - our GUI will take care of the rest. Happy testing!
 
