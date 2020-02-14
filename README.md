@@ -4,7 +4,8 @@ SpectiQL is a JavaScript Graphical User Interface(GUI) for developers to easily 
 
 If you like our tool and would love to support our team, please don’t forget to star our Github repo above!
 
-<h2> Features </h2>
+<h2> Overview </h2>
+	<h3> Features </h3>
 
 - Interactive & user-friendly GUI spun up on endpoint /spectiql
 - Create, Edit, or Delete GraphQL test suites within GUI
@@ -13,10 +14,12 @@ If you like our tool and would love to support our team, please don’t forget t
 - D3 Schema tree visualization
 - Utilizes <a href="https://easygraphql.com/">EasyGraphQL</a> - an open source project containing tools that help simplify GraphQL (<a href="https://github.com/EasyGraphQL">github</a>)
 
-# Installation
+<h2> Getting Started <h2>
+	<h3> Installation </h3>
+	
 Run <code>npm i spectiql@5.2.0</code> in project root directory 
 
-# Getting Started 
+
 How to use & Demo 
 How to configure/import your schema –
 Require the methods { config, getSchema, and testSchema } from spectiql into your back-end server after initially setting up your graphql server 
