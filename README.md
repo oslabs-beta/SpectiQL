@@ -62,9 +62,8 @@ app.post('/spectiql', getSchema);
 
 <p>Stanford Dai <a href="https://github.com/Dais002">@dais002</a> </p>
 	
-Shoutouts -
-Many thanks to easygraphql for sharing their tool.  Please check out their page and star the github repo!
+Big thanks to <a href="https://github.com/EasyGraphQL">EasyGraphQL</a>!
 
 <h2>License</h2>
 
-This project is licensed under the MIT License - see the LICENSE file for details
+This project is licensed under the MIT License - see the LICENSE file for details.
