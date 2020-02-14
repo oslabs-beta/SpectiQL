@@ -38,6 +38,7 @@ app.post('/spectiql', getSchema);
 </pre>  
 
 <h3>Generating and Exporting Tests</h3>
+
 1. To generate tests, simply select a type of GraphQL query (queries, mutations, subscriptions) at the top sidebar. After selecting a test type, you can give your tests a name and description by populating the test suites and test description fields. This will be helpful to refer back to specific tests!
 
 2. Select a specific test type (valid/invalid field, input, datatype) that you'd like to test for.
