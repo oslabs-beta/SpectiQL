@@ -52,7 +52,7 @@ const invalidArgDataType = props => {
   })`
   return newTest
 }
-const validMutation = (props) => {
+const validMutationInput = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const validMutationTest = \`\n${props.writeTest}\`
@@ -60,8 +60,7 @@ const validMutation = (props) => {
   })`
   return newTest
 }
-
-const invalidMutation = (props) => {
+const invalidMutationInput = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const invalidMutationTest = \`\n${props.writeTest}\`
@@ -69,7 +68,30 @@ const invalidMutation = (props) => {
   })`
   return newTest
 }
-
+const validMutationDataType = (props) => {
+  const newTest = `describe('${props.testSuiteName}', () => {
+    it('${props.testDescription}', () => {
+    const validMutationDataType = \`\n${props.writeTest}\`
+    tester.test(true, validMutationDataType, ${props.writeInput})
+  })`
+  return newTest;
+}
+const invalidMutationDataType= (props) => {
+  const newTest = `describe('${props.testSuiteName}', () => {
+    it('${props.testDescription}', () =>{
+      let error;
+      try{
+        const invalidMutationDataType = \`\n${props.writeTest}\`
+        tester.mock(invalidMutationDataType, ${props.writeInput})
+      } catch(err){
+        error=err;
+      }
+      expect(error).toBeInstanceOf(Error);
+    })
+  })
+  `
+  return newTest;
+}
 export {
   validQuery,
   invalidQuery,
@@ -77,6 +99,8 @@ export {
   invalidArgField,
   validArgDataType,
   invalidArgDataType,
-  validMutation,
-  invalidMutation
+  validMutationInput,
+  invalidMutationInput,
+  validMutationDataType,
+  invalidMutationDataType
 }

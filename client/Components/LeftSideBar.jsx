@@ -10,33 +10,43 @@ class SideBar extends Component {
   render () {
     return (
       <div className='mainNavBar'>
+
         <ButtonToolbar className='buttonContainer'>
-          <Link to="/queries">
+
+        <Link className="queries" to="/queries">
             <Button
               onClick={this.props.queryPage}
               className="queries"
               variant="outline-dark"
               size="lg"
             >
+              {/* <Link className="queries" to="/queries"> */}
               Queries
+              {/* </Link> */}
             </Button>
-          </Link>
-          <Link to="/mutations">
+            </Link>
+
+            <Link to="/mutations" className="mutations">
             <Button
               onClick={this.props.mutationPage}
               className="mutations"
               variant="outline-dark"
               size="lg"
             >
+              {/* <Link to="/mutations" className="mutations"> */}
               Mutations
+              {/* </Link> */}
             </Button>
-          </Link>
+            </Link>
+
           <Button className='subscriptions' variant='outline-dark' size='lg'>
-            Subscriptions
+              Subscriptions
           </Button>
+
           <Button className='export' onClick={this.props.handleExportClick} className="export" variant="outline-dark" size="lg">
             Export
           </Button> 
+          
         </ButtonToolbar>
       </div>
     )

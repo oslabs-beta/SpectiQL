@@ -9,43 +9,49 @@ class MutationTestInput extends Component {
   render () {
     return (
       <div className='testInputContainer'>
-        <Form.Group controlId='test-suite'>
-          <Form.Label column sm={6}>
-              Mutation Test Name:
-            </Form.Label>
-          <Col sm='10'>
-            <Form.Control
-              type='text'
-              placeholder='Enter test suite here...'
-              name='testSuiteName'
-              value={this.props.testSuiteName}
-              onChange={this.props.handleChange}
-            />
-          </Col>
-        </Form.Group>
 
-        <Form.Group controlId='test-description'>
-          <Form.Label column sm={6}>
-              Mutation Test Description:
-            </Form.Label>
-          <Col sm='10'>
-            <Form.Control
-              type='text'
-              placeholder='Enter test description here...'
-              name='testDescription'
-              value={this.props.testDescription}
-              onChange={this.props.handleChange}
-            />
-          </Col>
-        </Form.Group>
+        <div className="testSuiteInstruction">
+          Mutation test name ⟶
+        </div>
+
+        <Form className="testSuiteInput">
+          <Form.Group controlId='test-suite'>
+              <Form.Control
+                type='text'
+                placeholder='Enter test suite here...'
+                name='testSuiteName'
+                value={this.props.testSuiteName}
+                onChange={this.props.handleChange}
+              />
+          </Form.Group>
+          </Form>
+
+        <div className="testDescriptionInstruction">
+          Test description ⟶
+        </div>
+
+        <Form className="testDescriptionInput">
+          <Form.Group controlId='test-description'>
+              <Form.Control
+                type='text'
+                placeholder='Enter test description here...'
+                name='testDescription'
+                value={this.props.testDescription}
+                onChange={this.props.handleChange}
+              />
+          </Form.Group>
+        </Form>
+
+        <div className="selectTestInstruction">
+          Please select test ⟶
+        </div>
+
         <select className='selectQueryType' id='dd-reset' onChange={this.props.selectTest}>
           <option value='default' disabled selected>Select Test</option>
-          <option value='validMutation'>Valid Mutation</option>
-          <option value='invalidMutation'>Invalid Mutation</option>
-          <option value='validArgField'>Valid Argument Field</option>
-          <option value='invalidArgField'>Invalid Argument Field</option>
-          <option value='validInputType'>Valid Input Type</option>
-          <option value='invalidInputType'>Invalid Input Type</option>
+          <option value='validMutationInput'>Valid Mutation Input</option>
+          <option value='invalidMutationInput'>Invalid Mutation Input</option>
+          <option value='validMutationDataType'>Valid Mutation Data Type</option>
+          <option value='invalidMutationDataType'>Invalid Mutation Data Type</option>
 
         </select>
       </div>

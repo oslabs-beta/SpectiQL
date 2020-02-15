@@ -20,8 +20,10 @@ import {
   invalidArgField,
   validArgDataType,
   invalidArgDataType,
-  validMutation,
-  invalidMutation
+  validMutationInput,
+  invalidMutationInput,
+  validMutationDataType,
+  invalidMutationDataType
 } from "./Tests/Tests.jsx";
 
 class App extends Component {
@@ -44,8 +46,10 @@ class App extends Component {
         invalidArgField,
         validArgDataType,
         invalidArgDataType,
-        validMutation,
-        invalidMutation
+        validMutationInput,
+        invalidMutationInput,
+        validMutationDataType,
+        invalidMutationDataType
       },
       testSuites: [],
       testIndex: 0,
@@ -82,18 +86,18 @@ class App extends Component {
 
   //retrieving user's schema and schema filepath after they configure their file path from their backend
   handleNextClick() {
-    // fetch('/spectiql', {
-    //   method: 'POST',
-    // })
-    // .then(response => response.json())
-    // .then((response) => {
-    //   console.log('before setState has occured');
-    //   this.setState({ landingPageState: false, schema: response.schema})
-    //   })
-    // .catch(err => console.log(err));
+    fetch('/spectiql', {
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then((response) => {
+      console.log('before setState has occured');
+      this.setState({ landingPageState: false, schema: response.schema})
+      })
+    .catch(err => console.log(err));
 
     //when testing on developnment side
-    this.setState({ landingPageState: false });
+    // this.setState({ landingPageState: false });
   }
 
   handleChange(e) {
@@ -173,28 +177,32 @@ class App extends Component {
   }
 
   updateTestSuite() {
-    let testSuites = this.state.testSuites.slice();
-    const updatedTestSuite = {
-      savedGeneratedTest: this.state.generatedTest,
-      savedTestSuiteName: this.state.testSuiteName,
-      savedTestDescription: this.state.testDescription,
-      savedWriteTest: this.state.writeTest,
-      savedWriteInput: this.state.writeInput,
-      savedSelectedTest: this.state.selectedTest,
-      savedTestSuiteType: this.state.testSuiteType,
-      testIndex: this.state.testIndex
-    };
-    testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
-    return this.setState({
-      testSuiteName: "",
-      testDescription: "",
-      writeTest: "",
-      writeInput: "",
-      generatedTest: "",
-      selectedTest: this.dropDownReset(),
-      testSuites,
-      testSuiteToggler: true
-    });
+    if (document.getElementById("dd-reset").selectedIndex === 0) {
+      alert('Please select a test type from the drop-down to Update Test Suite')
+    } else {
+      let testSuites = this.state.testSuites.slice();
+      const updatedTestSuite = {
+        savedGeneratedTest: this.state.generatedTest,
+        savedTestSuiteName: this.state.testSuiteName,
+        savedTestDescription: this.state.testDescription,
+        savedWriteTest: this.state.writeTest,
+        savedWriteInput: this.state.writeInput,
+        savedSelectedTest: this.state.selectedTest,
+        savedTestSuiteType: this.state.testSuiteType,
+        testIndex: this.state.testIndex
+      };
+      testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
+      return this.setState({
+        testSuiteName: "",
+        testDescription: "",
+        writeTest: "",
+        writeInput: "",
+        generatedTest: "",
+        selectedTest: this.dropDownReset(),
+        testSuites,
+        testSuiteToggler: true
+      });
+    }
   }
 
   editTest(idx) {
