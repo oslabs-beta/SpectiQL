@@ -252,7 +252,7 @@
       .buttonContainer {
         display: grid;
         height: 100%;
-        grid-template-columns: 15% 21.25% 21.25% 21.25% 21%;
+        grid-template-columns: 15% 21.25% 21.25% 21.25% 21.25%;
         grid-template-rows: auto;
         position: relative;
         background-color: rgb(29, 29, 31);

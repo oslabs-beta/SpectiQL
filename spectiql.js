@@ -24,7 +24,7 @@ const createSchema = (filePath) => {
     const testInstance = testSchema(filePath);
     return (request, response) => {
       response.set('Content-Type', 'text/html');
-      response.status(200).json({ testInstance: testInstance, schema: parsedSchema});
+      response.status(200).json({ filePath: filePath, testInstance: testInstance, schema: parsedSchema});
     }
   }
 const testSchema = (filePath) => {
@@ -32,4 +32,4 @@ const testSchema = (filePath) => {
   const testInstance = new EasyGraphQLTester(parsedSchema);
   return testInstance;
 }
-module.exports = { config, getSchema, extension };
+module.exports = { config, getSchema, testSchema, extension };

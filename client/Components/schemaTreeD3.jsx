@@ -26,6 +26,7 @@ class SchemaTreeD3 extends Component {
   }
 
   render () {
+
     // console.log('schema within testquery of schemaTreeD3:', this.props.schema);
     // console.log('RootQuery within testquery of schemaTreeD3:', this.props.schema.Query);
     // function below is for converting entire
@@ -87,7 +88,7 @@ class SchemaTreeD3 extends Component {
     //   let schemaTreeData = convertSchema(this.props.schema);
 
     //testing below
-            // const queryTreeData = convertQuerySchema(this.state.json); //testing
+            // const queryTreeData = convertQuerySchema(exampleSchema); //testing
 
     //comment out for testing
     // const queryTreeData = convertSchema(this.props.schema);
