@@ -92,7 +92,7 @@ class App extends Component {
     .then(response => response.json())
     .then((response) => {
       console.log('before setState has occured');
-      this.setState({ landingPageState: false, schema: response.schema})
+      this.setState({ filePath: response.filePath, landingPageState: false, schema: response.schema})
       })
     .catch(err => console.log(err));
 
@@ -119,7 +119,7 @@ class App extends Component {
     const beforeAll = `describe('All the tests', () => {
       let tester;
       beforeAll(() => {
-        tester = testSchema(${this.state.filePath});
+        tester = testSchema('${this.state.filePath}');
       })`;
     const requiredLibraries = `const { testSchema } = require('spectiql')`;
     const testArray = [];

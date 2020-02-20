@@ -28,10 +28,10 @@ class LandingPage extends Component {
               params={{
                 particles: {
                   number: {
-                    value: 50
+                    value: 175
                   },
                   size: {
-                    value: 3
+                    value: 1
                   }
                 },
                 color: {
