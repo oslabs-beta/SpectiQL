@@ -14,44 +14,41 @@ class TestSuites extends Component {
             {test.savedTestSuiteName}
           </Card.Subtitle>
           <Card.Text>{test.savedTestDescription}</Card.Text>
-          <Link to={route}>
+
+          {/* <Link className='testSuiteEditButton' to={route}> */}
+                <button className='testSuiteEditButton'
+                    // className='testSuiteEditButton'
+                    onClick={() => this.props.editTest(test.testIndex)}
+                  >
+                  <Link to={route}>
+                    Edit Test
+                  </Link>
+                </button>
+          {/* </Link> */}
+
           <button
-            className='testSuiteEditButton'
-            onClick={() => this.props.editTest(test.testIndex)}
-          >
-            Edit Test
+              className='testSuiteDeleteButton'
+              onClick={() => this.props.deleteTest(test.testIndex)}
+            >
+              Delete Test
           </button>
-          </Link>
-          <button
-            className='testSuiteDeleteButton'
-            onClick={() => this.props.deleteTest(test.testIndex)}
-          >
-            Delete Test
-          </button>
+
         </Card.Body>
       </Card>
     )})
     return (
-      <div class='wrapper'>
-        <h3>Test Suites</h3>
-        <div id='sidebar'>
-          <div class='sidebar-header'>
-            {/* <h3>Test Suites</h3> */}
-          </div>
-          {testSuite}
-        </div>
+      <div className="testSuites">
+        <div className='wrapper'>
 
-        <div id='content'>
-          <nav id='content' class='navbar navbar-expand-lg navbar-light bg-light'>
-            {/* <div class="container-fluid">
-              <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-left"></i>
-                <span>Toggle Sidebar</span>
-              </button>
-            </div> */}
-          </nav>
-        </div>
-      </div>
+        <h3>Test Suites</h3>
+
+                <div id='sidebar'>
+                  {/* <div class='sidebar-header'>
+                    </div> */}
+                  {testSuite}
+                </div>
+            </div>
+          </div>
     )
   }
 }

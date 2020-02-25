@@ -31,7 +31,7 @@ class App extends Component {
     super(props);
     this.state = {
       landingPageState: true,
-      filePath: `"./schema.gql"`,
+      // filePath: `"./schema.gql"`,
       schema: {},
       testSuiteName: "",
       testDescription: "",
@@ -86,18 +86,18 @@ class App extends Component {
 
   //retrieving user's schema and schema filepath after they configure their file path from their backend
   handleNextClick() {
-    // fetch('/spectiql', {
-    //   method: 'POST',
-    // })
-    // .then(response => response.json())
-    // .then((response) => {
-    //   schemaData = response.schema;
-    //   this.setState({ filePath: `${filePath}`, landingPageState: false, schema: response.schema});
-    // })
-    // .catch(err => console.log(err));
+    fetch('/spectiql', {
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then((response) => {
+      console.log('before setState has occured');
+      this.setState({ filePath: response.filePath, landingPageState: false, schema: response.schema})
+      })
+    .catch(err => console.log(err));
 
     //when testing on developnment side
-    this.setState({ landingPageState: false });
+    // this.setState({ landingPageState: false });
   }
 
   handleChange(e) {
@@ -119,7 +119,7 @@ class App extends Component {
     const beforeAll = `describe('All the tests', () => {
       let tester;
       beforeAll(() => {
-        tester = testSchema(${this.state.filePath});
+        tester = testSchema('${this.state.filePath}');
       })`;
     const requiredLibraries = `const { testSchema } = require('spectiql')`;
     const testArray = [];
@@ -177,28 +177,32 @@ class App extends Component {
   }
 
   updateTestSuite() {
-    let testSuites = this.state.testSuites.slice();
-    const updatedTestSuite = {
-      savedGeneratedTest: this.state.generatedTest,
-      savedTestSuiteName: this.state.testSuiteName,
-      savedTestDescription: this.state.testDescription,
-      savedWriteTest: this.state.writeTest,
-      savedWriteInput: this.state.writeInput,
-      savedSelectedTest: this.state.selectedTest,
-      savedTestSuiteType: this.state.testSuiteType,
-      testIndex: this.state.testIndex
-    };
-    testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
-    return this.setState({
-      testSuiteName: "",
-      testDescription: "",
-      writeTest: "",
-      writeInput: "",
-      generatedTest: "",
-      selectedTest: this.dropDownReset(),
-      testSuites,
-      testSuiteToggler: true
-    });
+    if (document.getElementById("dd-reset").selectedIndex === 0) {
+      alert('Please select a test type from the drop-down to Update Test Suite')
+    } else {
+      let testSuites = this.state.testSuites.slice();
+      const updatedTestSuite = {
+        savedGeneratedTest: this.state.generatedTest,
+        savedTestSuiteName: this.state.testSuiteName,
+        savedTestDescription: this.state.testDescription,
+        savedWriteTest: this.state.writeTest,
+        savedWriteInput: this.state.writeInput,
+        savedSelectedTest: this.state.selectedTest,
+        savedTestSuiteType: this.state.testSuiteType,
+        testIndex: this.state.testIndex
+      };
+      testSuites[updatedTestSuite.testIndex - 1] = updatedTestSuite;
+      return this.setState({
+        testSuiteName: "",
+        testDescription: "",
+        writeTest: "",
+        writeInput: "",
+        generatedTest: "",
+        selectedTest: this.dropDownReset(),
+        testSuites,
+        testSuiteToggler: true
+      });
+    }
   }
 
   editTest(idx) {
@@ -293,14 +297,16 @@ class App extends Component {
               <SchemaTreeD3 schema={this.state.schema} />
             </div>
 
-            <div className="testTypeContainer">Landing Page</div>
+            <div className="testTypeContainer">
+              {/* Landing Page */}
+            </div>
 
             <div className="testSuites">
-              <TestSuites
-                testSuites={this.state.testSuites}
-                deleteTest={this.deleteTest}
-                editTest={this.editTest}
-              />
+                <TestSuites
+                      testSuites={this.state.testSuites}
+                      deleteTest={this.deleteTest}
+                      editTest={this.editTest}
+                />
             </div>
 
             <Switch>
