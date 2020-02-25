@@ -49,17 +49,10 @@ const invalidArgDataType = props => {
     it('${props.testDescription}', () => {
     const invalidArgValueTypeTest = \`${props.writeTest}\`
     tester.test(false, invalidArgValueTypeTest)
-<<<<<<< HEAD
-  })`;
-  return newTest;
-};
-const validMutationInput = (props) => {
-=======
   })`
   return newTest
 }
-const validMutation = (props) => {
->>>>>>> a1aff1880fd554e3897c8941b03807e4178101a5
+const validMutationInput = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const validMutationTest = \`\n${props.writeTest}\`
@@ -77,7 +70,6 @@ const invalidMutationInput = (props) => {
   return newTest
 }
 
-<<<<<<< HEAD
 const validMutationDataType = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
@@ -117,15 +109,3 @@ export  {
     validMutationDataType,
     invalidMutationDataType
 };
-=======
-export {
-  validQuery,
-  invalidQuery,
-  validArgField,
-  invalidArgField,
-  validArgDataType,
-  invalidArgDataType,
-  validMutation,
-  invalidMutation
-}
->>>>>>> a1aff1880fd554e3897c8941b03807e4178101a5

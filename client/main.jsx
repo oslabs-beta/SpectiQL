@@ -10,7 +10,11 @@ import {
   validArgField,
   invalidArgField,
   validArgDataType,
-  invalidArgDataType
+  invalidArgDataType,
+  validMutationInput,
+  invalidMutationInput,
+  validMutationDataType,
+  invalidMutationDataType
 } from './Tests/Tests.jsx'
 
 class Main extends Component {
