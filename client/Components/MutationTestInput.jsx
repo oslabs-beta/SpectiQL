@@ -52,7 +52,6 @@ class MutationTestInput extends Component {
           <option value='invalidMutationInput'>Invalid Mutation Input</option>
           <option value='validMutationDataType'>Valid Mutation Data Type</option>
           <option value='invalidMutationDataType'>Invalid Mutation Data Type</option>
-
         </select>
       </div>
     )

@@ -60,6 +60,7 @@ const validMutationInput = (props) => {
   })`
   return newTest
 }
+
 const invalidMutationInput = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
@@ -68,6 +69,7 @@ const invalidMutationInput = (props) => {
   })`
   return newTest
 }
+
 const validMutationDataType = (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
@@ -76,6 +78,7 @@ const validMutationDataType = (props) => {
   })`
   return newTest;
 }
+
 const invalidMutationDataType= (props) => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () =>{
@@ -92,15 +95,17 @@ const invalidMutationDataType= (props) => {
   `
   return newTest;
 }
-export {
-  validQuery,
-  invalidQuery,
-  validArgField,
-  invalidArgField,
-  validArgDataType,
-  invalidArgDataType,
-  validMutationInput,
-  invalidMutationInput,
-  validMutationDataType,
-  invalidMutationDataType
-}
+
+
+export  {
+    validQuery,
+    invalidQuery,
+    validArgField,
+    invalidArgField,
+    validArgDataType,
+    invalidArgDataType,
+    validMutationInput,
+    invalidMutationInput,
+    validMutationDataType,
+    invalidMutationDataType
+};

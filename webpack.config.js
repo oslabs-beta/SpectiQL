@@ -41,6 +41,8 @@ module.exports = {
           {
             loader: 'webpack-graphql-loader',
             options: {
+              presets: ["@babel/preset-env", "@babel/preset-react"],
+              plugins: ['@babel/plugin-transform-runtime', '@babel/transform-async-to-generator']
               // validate: true,
               // schema: "./path/to/schema.json",
               // removeUnusedFragments: true
