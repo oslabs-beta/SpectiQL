@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+//refactor to functional component
 class TestSuites extends Component {
-  render () {
+  render() {
     const testSuite = this.props.testSuites.map((test, index) => {
       const route = test.savedTestSuiteType ? "mutations" : "queries";
       return (
@@ -14,17 +15,13 @@ class TestSuites extends Component {
             {test.savedTestSuiteName}
           </Card.Subtitle>
           <Card.Text>{test.savedTestDescription}</Card.Text>
-
-          {/* <Link className='testSuiteEditButton' to={route}> */}
                 <button className='testSuiteEditButton'
-                    // className='testSuiteEditButton'
                     onClick={() => this.props.editTest(test.testIndex)}
                   >
                   <Link to={route}>
                     Edit Test
                   </Link>
                 </button>
-          {/* </Link> */}
 
           <button
               className='testSuiteDeleteButton'
@@ -39,12 +36,8 @@ class TestSuites extends Component {
     return (
       <div className="testSuites">
         <div className='wrapper'>
-
         <h3>Test Suites</h3>
-
                 <div id='sidebar'>
-                  {/* <div class='sidebar-header'>
-                    </div> */}
                   {testSuite}
                 </div>
             </div>

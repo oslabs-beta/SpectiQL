@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Col } from 'react-bootstrap'
 
+//requires refactoring into functional component
 class MutationTestInput extends Component {
   constructor (props) {
     super(props)

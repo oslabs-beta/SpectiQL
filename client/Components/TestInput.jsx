@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Col } from 'react-bootstrap'
 
+//refactor to functional component 
 class TestInput extends Component {
   constructor (props) {
     super(props)
@@ -54,8 +55,6 @@ class TestInput extends Component {
           <option value='invalidArgField'>Invalid Argument Field</option>
           <option value='validArgDataType'>Valid Argument DataType</option>
           <option value='invalidArgDataType'>Invalid Argument DataType</option>
-          {/* <option  value = "validMutation" >Valid Mutation</option> */}
-
         </select>
       </div>
     )

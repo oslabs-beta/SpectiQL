@@ -20,9 +20,7 @@ class SideBar extends Component {
               variant="outline-dark"
               size="lg"
             >
-              {/* <Link className="queries" to="/queries"> */}
               Queries
-              {/* </Link> */}
             </Button>
             </Link>
 
@@ -33,9 +31,7 @@ class SideBar extends Component {
               variant="outline-dark"
               size="lg"
             >
-              {/* <Link to="/mutations" className="mutations"> */}
               Mutations
-              {/* </Link> */}
             </Button>
             </Link>
 

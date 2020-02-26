@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import { Form, Col } from 'react-bootstrap'
 
+//refactor to functional component
 class TestMutation extends Component {
   constructor (props) {
     super(props)
-  }
-  ;
-  render () {
+  };
+
+  render() {
     return (
       <div className='writeMutationBox'>
         <div className='test-mutation-write'>
           <Form.Group as={Col} controlId='write-mutation' className="writeMutationForm">
-            {/* <Form.Label column sm={6}>
-              Write Mutation:
-            </Form.Label> */}
             <Form.Control
               as='textarea'
               placeholder='Enter Mutation here...'
@@ -27,9 +25,6 @@ class TestMutation extends Component {
 
         <div className='test-mutation-select'>
           <Form.Group as={Col} controlId='select-mutation' className="writeMutationForm">
-            {/* <Form.Label column sm={6}>
-              Enter Mutation Arguments:
-            </Form.Label> */}
             <Form.Control
               as='textarea'
               placeholder='Insert your input type variable as an object:'

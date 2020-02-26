@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { HashRouter, Route, Link, Switch } from 'react-router-dom'
-import '../public/styling/index.css'
 import Particles from 'react-particles-js'
-import 'animate.css/animate.min.css'
 import ScrollAnimation from 'react-animate-on-scroll'
 
+import '../public/styling/index.css'
+import 'animate.css/animate.min.css'
+
+//requires refactoring into functional components
 class LandingPage extends Component {
   constructor (props) {
     super(props)
@@ -21,7 +23,7 @@ class LandingPage extends Component {
               </h1>
             </ScrollAnimation>
           </div>
-
+          
           <div className='introInstruction'>
             <Particles
               className='introAnimate'

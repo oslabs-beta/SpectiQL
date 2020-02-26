@@ -5,6 +5,7 @@ class SchemaTreeD3 extends Component {
   constructor (props) {
     super(props)
 
+    //initialDepth sets the initial levels of nodes that will appear by default
     this.state = {
       initialDepth: 1
     }
@@ -21,34 +22,10 @@ class SchemaTreeD3 extends Component {
     });
   }
 
-  componentDidUpdate() {
+  render() {
 
-  }
-
-  render () {
-
-    // console.log('schema within testquery of schemaTreeD3:', this.props.schema);
-    // console.log('RootQuery within testquery of schemaTreeD3:', this.props.schema.Query);
-    // function below is for converting entire
-    function convertSchema(object) {
-        for (let key in object) {
-          if (typeof(object[key]) == "object") {
-            let obj = convertSchema(object[key]);
-            obj.key = obj.name ? obj.name : "";
-            if (obj.key === "") {
-              obj.name = key;
-            } else {
-              obj.name = obj.key;
-            }
-            if (!object["children"])
-              object["children"] = [];
-            object["children"].push(obj);
-            delete object[key];
-          }
-        }
-        return object;
-      }
-    // below will convert all of the schema json data
+    //traverses through object imported in from user's schema file to determine if elements within object are object
+    //if element is object, convert into a new parent node and elements within given object into children nodes
     function convertQuerySchema (object) {
       for (const key in object) {
         if (typeof (object[key]) === 'object' && object[key].type !== 'InputObjectTypeDefinition') {
@@ -67,36 +44,8 @@ class SchemaTreeD3 extends Component {
       return object
     }
 
-    function convertMutationSchema (object) {
-      for (const key in object) {
-        if (typeof (object[key]) === 'object' && object[key].type === 'InputObjectTypeDefinition') {
-          const obj = convertMutationSchema(object[key])
-          obj.key = obj.name ? obj.name : ''
-          if (obj.key === '') {
-            obj.name = key
-          } else {
-            obj.name = obj.key
-          }
-          if (!object.children) { object.children = [] }
-          object.children.push(obj)
-          delete object[key]
-        }
-      }
-      return object
-    }
-
-    //   let schemaTreeData = convertSchema(this.props.schema);
-
-    //testing below
-            // const queryTreeData = convertQuerySchema(exampleSchema); //testing
-
-    //comment out for testing
-    // const queryTreeData = convertSchema(this.props.schema);
+    //invokes function to convert imported schema file into object d3 tree can utilize
     const queryTreeData = convertQuerySchema(this.props.schema)
-
-
-    // let mutationTreeData = convertMutationSchema(this.props.schema);
-    // console.log('this is queryTreeData from schemaTreeD3.jsx:', queryTreeData)
 
     return (
     <div className="svg-container">

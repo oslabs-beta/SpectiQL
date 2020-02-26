@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import { Button, Form, Col } from 'react-bootstrap'
 
+//requires refactoring into functional component
 class GenerateTest extends Component {
   constructor (props) {
     super(props)
   };
 
   render () {
+
+    //conditional rendering of 'Edit Test' button located on each generated test card within Test Suites toolbar
+    //if 'Edit Test' is clicked, 'Add To Test Suite' button changes to 'Update Test Suite'
     const editTestSuite = () => {
       if (this.props.testSuiteToggler) {
         return (
