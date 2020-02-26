@@ -82,14 +82,18 @@ class App extends Component {
 
   //retrieving user's schema and schema filepath after they invoke the function from their backend
   handleNextClick() {
-    fetch('/spectiql', {
-      method: 'POST',
+    fetch("/spectiql", {
+      method: "POST"
     })
-    .then(response => response.json())
-    .then((response) => {
-      this.setState({ filePath: response.filePath, landingPageState: false, schema: response.schema})
+      .then(response => response.json())
+      .then(response => {
+        this.setState({
+          filePath: response.filePath,
+          landingPageState: false,
+          schema: response.schema
+        });
       })
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
 
     //when testing on development side, uncomment when testing on local server
     //this.setState({ landingPageState: false });
@@ -103,9 +107,11 @@ class App extends Component {
 
   handleClick() {
     if (document.getElementById("dd-reset").selectedIndex === 0) {
-      alert('Please select a test type from the drop-down to Generate Test')
+      alert("Please select a test type from the drop-down to Generate Test");
     } else {
-      const value = this.state.testFunctions[this.state.selectedTest](this.state);
+      const value = this.state.testFunctions[this.state.selectedTest](
+        this.state
+      );
       return this.setState({ generatedTest: value });
     }
   }
@@ -145,7 +151,9 @@ class App extends Component {
   addTestSuite() {
     //push the generated test value into the test suites array
     if (document.getElementById("dd-reset").selectedIndex === 0) {
-      alert('Please select a test type from the drop-down to Add to Test Suite')
+      alert(
+        "Please select a test type from the drop-down to Add to Test Suite"
+      );
     } else {
       const newTestSuite = {
         savedGeneratedTest: this.state.generatedTest,
@@ -175,7 +183,9 @@ class App extends Component {
 
   updateTestSuite() {
     if (document.getElementById("dd-reset").selectedIndex === 0) {
-      alert('Please select a test type from the drop-down to Update Test Suite')
+      alert(
+        "Please select a test type from the drop-down to Update Test Suite"
+      );
     } else {
       let testSuites = this.state.testSuites.slice();
       const updatedTestSuite = {
@@ -301,11 +311,11 @@ class App extends Component {
             </div>
 
             <div className="testSuites">
-                <TestSuites
-                      testSuites={this.state.testSuites}
-                      deleteTest={this.deleteTest}
-                      editTest={this.editTest}
-                />
+              <TestSuites
+                testSuites={this.state.testSuites}
+                deleteTest={this.deleteTest}
+                editTest={this.editTest}
+              />
             </div>
 
             <Switch>

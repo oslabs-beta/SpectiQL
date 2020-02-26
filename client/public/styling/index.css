@@ -1,730 +1,4 @@
 @media screen and (min-width: 0px) and (max-width: 992px) {
-
-
-        .fullscreen {
-          position: fixed;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          overflow: auto;
-          /* background: rgb(99, 56, 56); Just to visualize the extent */
-          
-        }
-
-        .introscreen {
-          position: fixed;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          overflow: auto;
-          z-index: 1;
-          /* background: rgb(99, 56, 56); Just to visualize the extent */
-          
-        }
-
-      .svg-container {
-        display: inline-block;
-        height: 100%;
-        width: 100%;
-      }
-
-
-      a {
-        display: block;
-        color: black;
-        width: 100%;
-        height: 100%;
-      }
-        a:hover {
-          color: #71bb6e !important;
-          text-decoration:none !important;
-        }
-        .workingButton {
-          line-height: 1.5;
-        }
-
-        btn {
-          vertical-align:middle !important;
-        }
-
-      #content {
-        background: none !important;
-        font-family: "Poppins", sans-serif;
-        width: 100%;
-      }
-
-      .btn-lg {
-        padding: 0 !important;
-      }
-
-      .form-group {
-        height: 100% !important;
-      }
-        #test-suite {
-          height: 90% !important;
-          font-size: x-small;
-        }
-        #test-description {
-          height: 90% !important;
-          font-size: x-small;
-        }
-
-
-        ::-webkit-input-placeholder {
-          font-style: italic;
-          font-size: smaller;
-        }
-        :-moz-placeholder {
-          font-style: italic;  
-          font-size: smaller;
-        }
-        ::-moz-placeholder {
-          font-style: italic; 
-          font-size: smaller; 
-        }
-        :-ms-input-placeholder {  
-          font-style: italic; 
-          font-size: smaller;
-        }
-
-      .card {
-        flex-direction: row !important;
-
-      }
-        .h5 {
-          font-size: small;
-          grid-row: 1;
-          font-family: "Poppins", sans-serif;
-          font-weight: 800;
-        }
-        .h6 {
-          font-size: x-small;
-          font-family: "Poppins", sans-serif;
-        }
-        .btn-block+.btn-block {
-          margin-top: 0rem !important;
-      }
-
-      .card-body { 
-        font-size: smaller;
-        height: 100% !important;
-        width: 100% !important;
-        line-height: 0% !important;
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: 25% 25% 25% 25%;
-        border-radius: 5px;
-      }
-
-      .mb-2 text-muted {
-        font-family: "Poppins", sans-serif;
-        grid-row: 2;
-        /* font-size: smaller; */
-      }
-
-      .card-text {
-        display: none;
-      }
-
-      .introContainer {
-
-          display: grid;
-          position: fixed;
-          grid-template-columns: repeat(4, 25% [col-start]);
-          grid-template-rows: repeat(4, 25% [row-start]);
-          /* overflow: auto; */
-          /* background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed; */
-          background: rgb(29, 29, 31);
-          background-size: cover;
-          /* width: 100vw;
-          height: 100vh; */
-          width: 100%;
-          height: 100%;
-          z-index: 1;
-        }
-
-      .introHeader {
-        text-align: center;
-        font-size: 50px;
-        grid-column: 1/5;
-        grid-row: 1/2;
-      }
-
-      h1 {
-        line-height: 7.5;
-        font-weight: 800;
-        font-family: "Poppins", sans-serif;
-        font-size: 88px;
-        color: #f5f5f7;
-
-      }
-
-      .introInstruction {
-        grid-column: 1/5;
-        grid-row: 2/4;
-      }
-
-      .introNext {
-        grid-column: 2;
-        grid-row: 4;
-        vertical-align: 50%;
-      }
-
-      .introDoc {
-        grid-column: 3;
-        grid-row: 4;
-        vertical-align: 50%;
-      }
-
-      .next-button {
-          width: 100%;
-          padding: 8px 4px 8px 10px;
-          margin-bottom: 0px;
-          color: black;
-
-          /* Styles */
-          border: 1px solid #4e3043; /* Fallback */
-          border: 1px solid rgba(78,48,67, 0.8);
-          background: whitesmoke;
-          opacity: 75%;
-          box-shadow: 
-              0 1px 0 rgba(255,255,255,0.2), 
-              inset 0 1px 1px rgba(0,0,0,0.1);
-          -webkit-transition: all 0.3s ease-out;
-          -moz-transition: all 0.3s ease-out;
-          -ms-transition: all 0.3s ease-out;
-          -o-transition: all 0.3s ease-out;
-          transition: all 0.3s ease-out;
-
-          /* Font styles */
-          font-family: 'Poppins', sans-serif;
-          text-align: center;
-          color: black;
-          font-size: 13px;
-          margin-top: 50%;
-          }
-      .next-button:hover {
-          background: rgb(136, 133, 133);
-          color: white;
-          }
-      .next-button:active {
-          background: white;
-          }
-
-          .doc-button {
-            width: 100%;
-            padding: 8px 4px 8px 10px;
-            margin-bottom: 0px;
-            color: black;
-        
-            /* Styles */
-            border: 1px solid #4e3043; /* Fallback */
-            border: 1px solid rgba(78,48,67, 0.8);
-            background: whitesmoke;
-            opacity: 75%;
-            box-shadow: 
-                0 1px 0 rgba(255,255,255,0.2), 
-                inset 0 1px 1px rgba(0,0,0,0.1);
-            -webkit-transition: all 0.3s ease-out;
-            -moz-transition: all 0.3s ease-out;
-            -ms-transition: all 0.3s ease-out;
-            -o-transition: all 0.3s ease-out;
-            transition: all 0.3s ease-out;
-        
-            /* Font styles */
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            color: black;
-            font-size: 13px;
-            margin-top: 50%;
-            }
-        .doc-button:hover {
-          background: rgb(136, 133, 133);
-          color: white;
-            }
-        .doc-button:active {
-          background: white;
-            }
-
-
-      .buttonContainer {
-        display: grid;
-        height: 100%;
-        grid-template-columns: 15% 21.25% 21.25% 21.25% 21.25%;
-        grid-template-rows: auto;
-        position: relative;
-        background-color: rgb(29, 29, 31);
-      }
-
-        .selections {
-          text-align: center;
-          line-height: 2.5;
-          font-weight: 800;
-          font-size: 33px;
-          font-family: 'Poppins', sans-serif;
-        }
-
-        .queries {
-          grid-column: 2;
-          font-family: 'Poppins', sans-serif;
-          font-size: 12px;
-          color: #f5f5f7;
-          width: 100%;
-          height: 100%;
-        }
-
-        .mutations {
-          grid-column: 3;
-          font-family: 'Poppins', sans-serif;
-          font-size: 12px;
-          color: #f5f5f7;
-          width: 100%;
-          height: 100%;
-        }
-
-        .subscriptions {
-          grid-column: 4;
-          font-family: 'Poppins', sans-serif;
-          font-size: 12px;
-          color: #f5f5f7;
-          width: 100%;
-          height: 100%;
-        }
-
-        .export {
-          grid-column: 5;
-          font-family: 'Poppins', sans-serif;
-          font-size: 12px;
-          color: #f5f5f7;
-          width: 100%;
-          height: 100%;
-        }
-
-      .mainContainer {
-        /* background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed; */
-        background-color: #fff;
-        background-size: cover;
-        display: grid;
-        position: fixed;
-        grid-template-columns: 50% 55%;
-        grid-template-rows: 6% 20% 20% 30% 24% 1%;
-        /* overflow: auto; */
-        width: 100vw;
-        height: 100vh;
-      }
-
-      .mainNavBar {
-        height: 100%;
-        position: top;
-        grid-column: 1/3;
-        grid-row: 1;
-      }
-
-      .testSuites {
-        grid-column: 1/3;
-        grid-row: 2;
-        color: black;
-        height: 100%;
-      }
-
-        .wrapper {
-          grid-column: 2;
-          background: none;
-          position: relative;
-
-          overflow-x: scroll;
-          overflow-y: hidden;
-          white-space: nowrap;
-
-          /* display: flex; */
-          /* flex-wrap: nowrap; */
-          /* overflow-x: auto; */
-        }
-
-        #sidebar {
-          display: flex;
-          flex-wrap: nowrap;
-          overflow-x: scroll;
-          /* background: none; */
-          /* position: relative; */
-          /* overflow-x: scroll; */
-          /* overflow-y: hidden; */
-          /* flex: 0 0 auto; */
-
-          /* display: inline-flex; */
-          height: 100%;
-          white-space: nowrap;
-          right: 0;
-          grid-column: 2;
-          /* background: rgb(91, 93, 95); */
-        }
-
-        .testSuiteDeleteButton {
-          width: 100%;
-          padding: 8px 4px 8px 10px;
-          margin-bottom: 0px;
-          color: black;
-
-          /* Styles */
-          border-radius: 5px;
-          border: 1px solid #4e3043; /* Fallback */
-          border: 1px solid rgba(78,48,67, 0.8);
-          background: whitesmoke;
-          opacity: 75%;
-          box-shadow: 
-              0 1px 0 rgba(255,255,255,0.2), 
-              inset 0 1px 1px rgba(0,0,0,0.1);
-          -webkit-transition: all 0.3s ease-out;
-          -moz-transition: all 0.3s ease-out;
-          -ms-transition: all 0.3s ease-out;
-          -o-transition: all 0.3s ease-out;
-          transition: all 0.3s ease-out;
-
-          /* Font styles */
-          font-family: 'Poppins', sans-serif;
-          text-align: center;
-          color: black;
-          font-size: xx-small;
-          grid-row: 4;
-          }
-      .testSuiteDeleteButton:hover {
-          background: rgb(136, 133, 133);
-          color: red;
-          }
-      .testSuiteEditButton:active {
-          background: white;
-          }
-
-          .testSuiteEditButton {
-            width: 100%;
-            padding: 8px 4px 8px 10px;
-            margin-bottom: 0px;
-            color: black;
-        
-            /* Styles */
-            border-radius: 5px;
-            border: 1px solid #4e3043; /* Fallback */
-            border: 1px solid rgba(78,48,67, 0.8);
-            background: whitesmoke;
-            opacity: 75%;
-            box-shadow: 
-                0 1px 0 rgba(255,255,255,0.2), 
-                inset 0 1px 1px rgba(0,0,0,0.1);
-            -webkit-transition: all 0.3s ease-out;
-            -moz-transition: all 0.3s ease-out;
-            -ms-transition: all 0.3s ease-out;
-            -o-transition: all 0.3s ease-out;
-            transition: all 0.3s ease-out;
-        
-            /* Font styles */
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            color: black;
-            font-size: xx-small;
-            grid-row: 3;
-            }
-        .testSuiteEditButton:hover {
-            background: rgb(136, 133, 133);
-            color: whitesmoke;
-            }
-        .testSuiteEditButton:active {
-            background: white;
-            }
-
-      .enterInfo {
-        grid-column: 2;
-        grid-row: 2;
-        height: 100%;
-        width: 100%;
-      }
-        .enterInfoContainer {
-          height: 100%;
-          width: 100%;
-          display: grid;
-          grid-template-columns: auto;
-          grid-template-rows: 33.33% 33.33% 33.33%;
-        }
-          .enterTestSuiteText {
-            grid-row: 1;
-            font-family: 'Poppins', sans-serif;
-            text-align: right;
-            font-style: italic;
-            margin-top: 1%;
-            font-size: 15px;
-            color: rgb(29, 29, 31);
-          }
-          .enterTestDescText {
-            grid-row: 2;
-            font-family: 'Poppins', sans-serif;
-            text-align: right;
-            font-style: italic;
-            margin-top: 1%;
-            font-size: 15px;
-            color: rgb(29, 29, 31);
-          }
-          .selectTestText {
-            grid-row: 3;
-            font-family: 'Poppins', sans-serif;
-            text-align: right;
-            margin-top: 1%;
-            font-size: 15px;
-            color: rgb(29, 29, 31);
-          }
-
-      .testTypeContainer {
-        grid-column: 1;
-        grid-row: 3/6;
-        height: 100%;
-        width: 100%;
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: 20% 40% 40%;
-      }
-          .testInput {
-            grid-row: 1;
-            height: 100%;
-            width: 100%;
-          }
-
-          .testQuery {
-            grid-row: 2;
-            height: 100%;
-            width: 100%;
-          }
-
-          .generateTest {
-            grid-row: 3;
-            height: 100%;
-            width: 100%;
-          }
-
-      .queryVisualizer {
-        grid-column: 2;
-        grid-row: 3/7;
-        width: 100%;
-        height: 100%;
-      }
-
-      .testInputContainer {
-        display: grid;
-        text-align: center;
-        grid-template-columns: 40% 60%;
-        grid-template-rows: 10% 30% 30% 30%;
-        background: none;
-        width: 100%;
-        height: 100%
-      }
-          .testSuiteInstruction {
-            grid-column: 1;
-            grid-row: 2;
-            font-family: 'Poppins', sans-serif;
-            text-align: right;
-            font-size: xx-small;
-          }
-
-          .testSuiteInput {
-            grid-column: 2;
-            grid-row: 2;
-            font-family: 'Poppins', sans-serif;
-          }
-
-          .testDescriptionInstruction {
-            grid-column: 1;
-            grid-row: 3;
-            font-family: 'Poppins', sans-serif;
-            text-align: right;
-            font-size: xx-small;
-          }
-
-          .testDescriptionInput {
-            grid-column: 2;
-            grid-row: 3;
-            font-family: 'Poppins', sans-serif;
-          }
-
-          .selectTestInstruction {
-            grid-column: 1;
-            grid-row: 4;
-            font-family: 'Poppins', sans-serif;
-            text-align: right;
-            font-size: xx-small;
-          }
-
-          .selectQueryType {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            -ms-appearance: none;
-            appearance: none;
-            outline: 0;
-            box-shadow: none;
-            border: 0 !important;
-            background: rgb(29, 29, 31);
-            background-image: none;
-          }
-          /* Remove IE arrow */
-          .selectQueryType::-ms-expand {
-            display: none;
-          }
-          /* Custom Select */
-          .selectQueryType {
-            grid-column: 2;
-            grid-row: 4;
-            position: relative;
-            display: flex;
-            width: 100%;
-            height: 90%;
-            /* line-height: 3; */
-            font-size: x-small;
-            text-align: center;
-            background: rgb(29, 29, 31);
-            overflow: hidden;
-            border-radius: .25em;
-          }
-          .selectQueryType {
-            flex: 1;
-            padding: 0 .5em;
-            color: #fff;
-            cursor: pointer;
-          }
-          /* Arrow */
-          .selectQueryType::after {
-            content: '\25BC';
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 0 1em;
-            background: rgb(29, 29, 31);
-            cursor: pointer;
-            pointer-events: none;
-            -webkit-transition: .25s all ease;
-            -o-transition: .25s all ease;
-            transition: .25s all ease;
-          }
-          /* Transition */
-          .select:hover::after {
-            color: #f39c12;
-          }
-          
-
-      .writeQueryBox {
-        font-family: 'Poppins', sans-serif;
-        text-align: center;
-        height: 100%;
-        width: 100%;
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: auto;
-      }
-
-        .test-query-write {
-          grid-column: 1/3;
-          width: 100%;
-          /* display: inline-block; */
-        }
-            #write-query {
-              margin-top: 0%;
-            }
-            .writeQueryForm {
-              padding-left: 0px !important;
-              padding-right: 0px !important;
-            }
-
-        /* .test-query-select {
-          grid-column: 2;
-          width: 100%;
-          display: inline-block;
-        } */
-
-        .writeMutationBox {
-          font-family: 'Poppins', sans-serif;
-          text-align: center;
-          height: 100%;
-          width: 100%;
-          display: grid;
-          grid-template-rows: 50% 50%;
-        }
-            #write-mutation {
-              margin-top: 0%;
-            }
-
-            .writeMutationForm {
-              padding-left: 0px !important;
-              padding-right: 0px !important;
-            }
-
-            .test-mutation-write {
-              grid-row: 2;
-              width: 100%;
-            }
-            .test-mutation-write {
-              grid-row: 1;
-              width: 100%;
-            }
-
-      .generateTestBox {
-        font-family: 'Poppins', sans-serif;
-        text-align: center;
-        height: 100%;
-        width: 100%;
-        display: grid;
-        grid-template-columns: 30% 70%;
-        grid-template-rows: auto;
-      }
-          .generatedTestForm {
-              padding-left: 2px !important;
-              padding-right: 0px !important;
-          }
-
-          .addTestButton{
-            font-family: 'Poppins', sans-serif;
-            background: #e2e2e9;
-            font-size: smaller;
-          }
-          .addTestButton:active{
-            background: rgb(189, 240, 191) !important;
-          }
-          .addTestButton:hover {
-            background: rgb(189, 240, 191) !important;
-            }
-
-          .generateTestButton {
-            font-family: 'Poppins', sans-serif;
-            background: #e2e2e9;
-            font-size: smaller;
-          }
-          .generateTestButton:active{
-            background: rgb(189, 240, 191) !important;
-          }
-          .generateTestButton:hover {
-            background: rgb(189, 240, 191) !important;
-            }
-
-
-      h3 {
-        text-align: left;
-        text-shadow: 5px;
-        /* line-height: 2.5; */
-        font-weight: 900;
-        font-size: 20px;
-        font-family: 'Poppins', sans-serif;
-        width: 30%;
-        margin-left: 1%;
-        grid-column: 1;
-      }
-
-      .btn-info {
-        background: #cfcfd4 !important;
-        width: 100%;
-      }
-}
-
-
-
-@media screen and (min-width: 992px) {
-
-
   .fullscreen {
     position: fixed;
     top: 0;
@@ -732,8 +6,6 @@
     bottom: 0;
     right: 0;
     overflow: auto;
-    /* background: rgb(99, 56, 56); Just to visualize the extent */
-    
   }
 
   .introscreen {
@@ -744,141 +16,154 @@
     right: 0;
     overflow: auto;
     z-index: 1;
-    /* background: rgb(99, 56, 56); Just to visualize the extent */
-    
   }
 
-.svg-container {
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-}
+  .svg-container {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+  }
 
-.h5 {
-  font-size: large;
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-}
-.h6 {
-  font-size: medium;
-  font-family: "Poppins", sans-serif;
-}
-.card-text {
-  font-size: small;
-  font-style: italic;
-}
-
-a {
-  display: block;
-  color: black;
-  width: 100%;
-  height: 100%;
-}
+  a {
+    display: block;
+    color: black;
+    width: 100%;
+    height: 100%;
+  }
   a:hover {
     color: #71bb6e !important;
-    text-decoration:none !important;
+    text-decoration: none !important;
   }
   .workingButton {
     line-height: 1.5;
   }
 
   btn {
-    vertical-align:middle !important;
+    vertical-align: middle !important;
   }
-#content {
-  background: none !important;
-  font-family: "Poppins", sans-serif;
-  width: 100%;
-}
 
-.btn-block+.btn-block {
-  margin-top: 0rem !important;
-}
+  #content {
+    background: none !important;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+  }
 
-.btn-lg {
-  padding: 0 !important;
-}
+  .btn-lg {
+    padding: 0 !important;
+  }
 
-.form-group {
-  height: 100% !important;
-}
+  .form-group {
+    height: 100% !important;
+  }
+  #test-suite {
+    height: 90% !important;
+    font-size: x-small;
+  }
+  #test-description {
+    height: 90% !important;
+    font-size: x-small;
+  }
 
-.card-body { 
-  border-radius: 5px;
-}
+  ::-webkit-input-placeholder {
+    font-style: italic;
+    font-size: smaller;
+  }
+  :-moz-placeholder {
+    font-style: italic;
+    font-size: smaller;
+  }
+  ::-moz-placeholder {
+    font-style: italic;
+    font-size: smaller;
+  }
+  :-ms-input-placeholder {
+    font-style: italic;
+    font-size: smaller;
+  }
 
-/* textarea.form-control {
-  font-style: italic;
-} */
+  .card {
+    flex-direction: row !important;
+  }
+  .h5 {
+    font-size: small;
+    grid-row: 1;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+  }
+  .h6 {
+    font-size: x-small;
+    font-family: "Poppins", sans-serif;
+  }
+  .btn-block + .btn-block {
+    margin-top: 0rem !important;
+  }
 
-::-webkit-input-placeholder {
-  font-style: italic;
-  font-size: smaller;
-}
-:-moz-placeholder {
-  font-style: italic;  
-  font-size: smaller;
-}
-::-moz-placeholder {
-  font-style: italic; 
-  font-size: smaller; 
-}
-:-ms-input-placeholder {  
-  font-style: italic; 
-  font-size: smaller;
-}
+  .card-body {
+    font-size: smaller;
+    height: 100% !important;
+    width: 100% !important;
+    line-height: 0% !important;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 25% 25% 25% 25%;
+    border-radius: 5px;
+  }
 
-.introContainer {
+  .mb-2 text-muted {
+    font-family: "Poppins", sans-serif;
+    grid-row: 2;
+    /* font-size: smaller; */
+  }
 
+  .card-text {
+    display: none;
+  }
+
+  .introContainer {
     display: grid;
     position: fixed;
     grid-template-columns: repeat(4, 25% [col-start]);
     grid-template-rows: repeat(4, 25% [row-start]);
-    /* overflow: auto; */
-    /* background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed; */
     background: rgb(29, 29, 31);
     background-size: cover;
-    /* width: 100vw;
-    height: 100vh; */
     width: 100%;
     height: 100%;
     z-index: 1;
   }
 
-.introHeader {
-  text-align: center;
-  font-size: 50px;
-  grid-column: 1/5;
-  grid-row: 1/2;
-}
+  .introHeader {
+    text-align: center;
+    font-size: 50px;
+    grid-column: 1/5;
+    grid-row: 1/2;
+  }
 
-h1 {
-  line-height: 7.5;
-  font-weight: 800;
-  font-family: "Poppins", sans-serif;
-  font-size: 88px;
-  color: #f5f5f7;
+  h1 {
+    line-height: 7.5;
+    font-weight: 800;
+    font-family: "Poppins", sans-serif;
+    font-size: 88px;
+    color: #f5f5f7;
+  }
 
-}
+  .introInstruction {
+    grid-column: 1/5;
+    grid-row: 2/4;
+  }
 
-.introInstruction {
-  grid-column: 1/5;
-  grid-row: 2/4;
-}
+  .introNext {
+    grid-column: 2;
+    grid-row: 4;
+    vertical-align: 50%;
+  }
 
-.introNext {
-  grid-column: 2;
-  grid-row: 4;
-  vertical-align: 50%;
-}
+  .introDoc {
+    grid-column: 3;
+    grid-row: 4;
+    vertical-align: 50%;
+  }
 
-.introDoc {
-  grid-column: 3;
-  grid-row: 4;
-  vertical-align: 50%;
-}
-
-.next-button {
+  .next-button {
     width: 100%;
     padding: 8px 4px 8px 10px;
     margin-bottom: 0px;
@@ -886,12 +171,11 @@ h1 {
 
     /* Styles */
     border: 1px solid #4e3043; /* Fallback */
-    border: 1px solid rgba(78,48,67, 0.8);
+    border: 1px solid rgba(78, 48, 67, 0.8);
     background: whitesmoke;
     opacity: 75%;
-    box-shadow: 
-        0 1px 0 rgba(255,255,255,0.2), 
-        inset 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 1px 1px rgba(0, 0, 0, 0.1);
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -ms-transition: all 0.3s ease-out;
@@ -899,76 +183,74 @@ h1 {
     transition: all 0.3s ease-out;
 
     /* Font styles */
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     text-align: center;
     color: black;
     font-size: 13px;
     margin-top: 50%;
-    }
- .next-button:hover {
+  }
+  .next-button:hover {
     background: rgb(136, 133, 133);
     color: white;
-    }
- .next-button:active {
+  }
+  .next-button:active {
     background: white;
-    }
+  }
 
-    .doc-button {
-      width: 100%;
-      padding: 8px 4px 8px 10px;
-      margin-bottom: 0px;
-      color: black;
-  
-      /* Styles */
-      border: 1px solid #4e3043; /* Fallback */
-      border: 1px solid rgba(78,48,67, 0.8);
-      background: whitesmoke;
-      opacity: 75%;
-      box-shadow: 
-          0 1px 0 rgba(255,255,255,0.2), 
-          inset 0 1px 1px rgba(0,0,0,0.1);
-      -webkit-transition: all 0.3s ease-out;
-      -moz-transition: all 0.3s ease-out;
-      -ms-transition: all 0.3s ease-out;
-      -o-transition: all 0.3s ease-out;
-      transition: all 0.3s ease-out;
-  
-      /* Font styles */
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      color: black;
-      font-size: 13px;
-      margin-top: 50%;
-      }
-   .doc-button:hover {
+  .doc-button {
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 0px;
+    color: black;
+
+    /* Styles */
+    border: 1px solid #4e3043; /* Fallback */
+    border: 1px solid rgba(78, 48, 67, 0.8);
+    background: whitesmoke;
+    opacity: 75%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    /* Font styles */
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: black;
+    font-size: 13px;
+    margin-top: 50%;
+  }
+  .doc-button:hover {
     background: rgb(136, 133, 133);
     color: white;
-      }
-   .doc-button:active {
+  }
+  .doc-button:active {
     background: white;
-      }
+  }
 
-
-.buttonContainer {
-  display: grid;
-  height: 100%;
-  grid-template-columns: 15% 21.25% 21.25% 21.25% 21%;
-  grid-template-rows: auto;
-  position: relative;
-  background-color: rgb(29, 29, 31);
-}
+  .buttonContainer {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 15% 21.25% 21.25% 21.25% 21.25%;
+    grid-template-rows: auto;
+    position: relative;
+    background-color: rgb(29, 29, 31);
+  }
 
   .selections {
     text-align: center;
     line-height: 2.5;
     font-weight: 800;
     font-size: 33px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 
   .queries {
     grid-column: 2;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     color: #f5f5f7;
     width: 100%;
@@ -977,7 +259,7 @@ h1 {
 
   .mutations {
     grid-column: 3;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     color: #f5f5f7;
     width: 100%;
@@ -986,7 +268,7 @@ h1 {
 
   .subscriptions {
     grid-column: 4;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     color: #f5f5f7;
     width: 100%;
@@ -995,53 +277,57 @@ h1 {
 
   .export {
     grid-column: 5;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     color: #f5f5f7;
     width: 100%;
     height: 100%;
   }
 
-.mainContainer {
-  /* background:url(https://spectiql.s3.us-east-2.amazonaws.com/backgroundgrey.jpg) no-repeat center center fixed; */
-  background-color: #fff;
-  background-size: cover;
-  display: grid;
-  position: fixed;
-  grid-template-columns: 15% 40% 45%;
-  grid-template-rows: 4% 25% 35% 35% 1%;
-  /* overflow: auto; */
-  width: 100vw;
-  height: 100vh;
-}
+  .mainContainer {
+    background-color: #fff;
+    background-size: cover;
+    display: grid;
+    position: fixed;
+    grid-template-columns: 50% 55%;
+    grid-template-rows: 6% 20% 20% 30% 24% 1%;
+    width: 100vw;
+    height: 100vh;
+  }
 
-.mainNavBar {
-  height: 100%;
-  position: top;
-  grid-column: 1/4;
-  grid-row: 1;
-}
+  .mainNavBar {
+    height: 100%;
+    position: top;
+    grid-column: 1/3;
+    grid-row: 1;
+  }
 
-.testSuites {
-  grid-column: 1;
-  grid-row: 2/6;
-  color: black;
-}
+  .testSuites {
+    grid-column: 1/3;
+    grid-row: 2;
+    color: black;
+    height: 100%;
+  }
 
   .wrapper {
+    grid-column: 2;
     background: none;
-    position: absolute;
+    position: relative;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
   }
-  
 
   #sidebar {
-    background: none;
-    position: fixed;
-    width: 150px;
-    overflow-y: scroll;
-    top: 9%;
-    bottom: 0;
-    /* background: rgb(91, 93, 95); */
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+
+    height: 100%;
+    white-space: nowrap;
+    right: 0;
+    grid-column: 2;
   }
 
   .testSuiteDeleteButton {
@@ -1053,12 +339,11 @@ h1 {
     /* Styles */
     border-radius: 5px;
     border: 1px solid #4e3043; /* Fallback */
-    border: 1px solid rgba(78,48,67, 0.8);
+    border: 1px solid rgba(78, 48, 67, 0.8);
     background: whitesmoke;
     opacity: 75%;
-    box-shadow: 
-        0 1px 0 rgba(255,255,255,0.2), 
-        inset 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 1px 1px rgba(0, 0, 0, 0.1);
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -ms-transition: all 0.3s ease-out;
@@ -1066,60 +351,61 @@ h1 {
     transition: all 0.3s ease-out;
 
     /* Font styles */
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     text-align: center;
     color: black;
-    font-size: 13px;
-    }
- .testSuiteDeleteButton:hover {
+    font-size: xx-small;
+    grid-row: 4;
+  }
+  .testSuiteDeleteButton:hover {
     background: rgb(136, 133, 133);
     color: red;
-    }
- .testSuiteEditButton:active {
+  }
+  .testSuiteEditButton:active {
     background: white;
-    }
+  }
 
-    .testSuiteEditButton {
-      width: 100%;
-      padding: 8px 4px 8px 10px;
-      margin-bottom: 0px;
-      color: black;
-  
-      /* Styles */
-      border-radius: 5px;
-      border: 1px solid #4e3043; /* Fallback */
-      border: 1px solid rgba(78,48,67, 0.8);
-      background: whitesmoke;
-      opacity: 75%;
-      box-shadow: 
-          0 1px 0 rgba(255,255,255,0.2), 
-          inset 0 1px 1px rgba(0,0,0,0.1);
-      -webkit-transition: all 0.3s ease-out;
-      -moz-transition: all 0.3s ease-out;
-      -ms-transition: all 0.3s ease-out;
-      -o-transition: all 0.3s ease-out;
-      transition: all 0.3s ease-out;
-  
-      /* Font styles */
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      color: black;
-      font-size: 13px;
-      }
-   .testSuiteEditButton:hover {
-      background: rgb(136, 133, 133);
-      color: whitesmoke;
-      }
-   .testSuiteEditButton:active {
-      background: white;
-      }
+  .testSuiteEditButton {
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 0px;
+    color: black;
 
-.enterInfo {
-  grid-column: 2;
-  grid-row: 2;
-  height: 100%;
-  width: 100%;
-}
+    /* Styles */
+    border-radius: 5px;
+    border: 1px solid #4e3043; /* Fallback */
+    border: 1px solid rgba(78, 48, 67, 0.8);
+    background: whitesmoke;
+    opacity: 75%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    /* Font styles */
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: black;
+    font-size: xx-small;
+    grid-row: 3;
+  }
+  .testSuiteEditButton:hover {
+    background: rgb(136, 133, 133);
+    color: whitesmoke;
+  }
+  .testSuiteEditButton:active {
+    background: white;
+  }
+
+  .enterInfo {
+    grid-column: 2;
+    grid-row: 2;
+    height: 100%;
+    width: 100%;
+  }
   .enterInfoContainer {
     height: 100%;
     width: 100%;
@@ -1127,287 +413,916 @@ h1 {
     grid-template-columns: auto;
     grid-template-rows: 33.33% 33.33% 33.33%;
   }
-    .enterTestSuiteText {
-      grid-row: 1;
-      font-family: 'Poppins', sans-serif;
-      text-align: right;
-      font-style: italic;
-      margin-top: 1%;
-      font-size: 15px;
-      color: rgb(29, 29, 31);
-    }
-    .enterTestDescText {
-      grid-row: 2;
-      font-family: 'Poppins', sans-serif;
-      text-align: right;
-      font-style: italic;
-      margin-top: 1%;
-      font-size: 15px;
-      color: rgb(29, 29, 31);
-    }
-    .selectTestText {
-      grid-row: 3;
-      font-family: 'Poppins', sans-serif;
-      text-align: right;
-      margin-top: 1%;
-      font-size: 15px;
-      color: rgb(29, 29, 31);
-    }
+  .enterTestSuiteText {
+    grid-row: 1;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-style: italic;
+    margin-top: 1%;
+    font-size: 15px;
+    color: rgb(29, 29, 31);
+  }
+  .enterTestDescText {
+    grid-row: 2;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-style: italic;
+    margin-top: 1%;
+    font-size: 15px;
+    color: rgb(29, 29, 31);
+  }
+  .selectTestText {
+    grid-row: 3;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    margin-top: 1%;
+    font-size: 15px;
+    color: rgb(29, 29, 31);
+  }
 
-.testTypeContainer {
-  grid-column: 2;
-  grid-row: 2/5;
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 20% 40% 40%;
-}
-    .testInput {
-      grid-row: 1;
-      height: 100%;
-      width: 100%;
-    }
+  .testTypeContainer {
+    grid-column: 1;
+    grid-row: 3/6;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 20% 40% 40%;
+  }
+  .testInput {
+    grid-row: 1;
+    height: 100%;
+    width: 100%;
+  }
 
-    .testQuery {
-      grid-row: 2;
-      height: 100%;
-      width: 100%;
-    }
+  .testQuery {
+    grid-row: 2;
+    height: 100%;
+    width: 100%;
+  }
 
-    .generateTest {
-      grid-row: 3;
-      height: 100%;
-      width: 100%;
-    }
+  .generateTest {
+    grid-row: 3;
+    height: 100%;
+    width: 100%;
+  }
 
-.queryVisualizer {
-  grid-column: 3;
-  grid-row: 2/6;
-  width: 100%;
-  height: 100%;
-}
+  .queryVisualizer {
+    grid-column: 2;
+    grid-row: 3/7;
+    width: 100%;
+    height: 100%;
+  }
 
-.testInputContainer {
-  display: grid;
-  text-align: center;
-  grid-template-columns: 40% 60%;
-  grid-template-rows: 10% 30% 30% 30%;
-  background: none;
-  width: 100%;
-  height: 100%
-}
-    .testSuiteInstruction {
-      grid-column: 1;
-      grid-row: 2;
-      font-family: 'Poppins', sans-serif;
-      text-align: right;
-      font-size: smaller;
-    }
+  .testInputContainer {
+    display: grid;
+    text-align: center;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 10% 30% 30% 30%;
+    background: none;
+    width: 100%;
+    height: 100%;
+  }
+  .testSuiteInstruction {
+    grid-column: 1;
+    grid-row: 2;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-size: xx-small;
+  }
 
-    .testSuiteInput {
-      grid-column: 2;
-      grid-row: 2;
-      font-family: 'Poppins', sans-serif;
-    }
+  .testSuiteInput {
+    grid-column: 2;
+    grid-row: 2;
+    font-family: "Poppins", sans-serif;
+  }
 
-    .testDescriptionInstruction {
-      grid-column: 1;
-      grid-row: 3;
-      font-family: 'Poppins', sans-serif;
-      text-align: right;
-      font-size: smaller;
-    }
+  .testDescriptionInstruction {
+    grid-column: 1;
+    grid-row: 3;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-size: xx-small;
+  }
 
-    .testDescriptionInput {
-      grid-column: 2;
-      grid-row: 3;
-      font-family: 'Poppins', sans-serif;
-    }
+  .testDescriptionInput {
+    grid-column: 2;
+    grid-row: 3;
+    font-family: "Poppins", sans-serif;
+  }
 
-    .selectTestInstruction {
-      grid-column: 1;
-      grid-row: 4;
-      font-family: 'Poppins', sans-serif;
-      text-align: right;
-      font-size: smaller;
-    }
+  .selectTestInstruction {
+    grid-column: 1;
+    grid-row: 4;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-size: xx-small;
+  }
 
-    .selectQueryType {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      -ms-appearance: none;
-      appearance: none;
-      outline: 0;
-      box-shadow: none;
-      border: 0 !important;
-      background: rgb(29, 29, 31);
-      background-image: none;
-    }
-    /* Remove IE arrow */
-    .selectQueryType::-ms-expand {
-      display: none;
-    }
-    /* Custom Select */
-    .selectQueryType {
-      /* grid-column: 2;
-      grid-row: 4;
-      position: relative;
-      display: flex;
-      width: 100%;
-      height: 2.5em;
-      line-height: 3;
-      background: rgb(29, 29, 31);
-      overflow: hidden;
-      border-radius: .25em; */
+  .selectQueryType {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: rgb(29, 29, 31);
+    background-image: none;
+  }
+  /* Remove IE arrow */
+  .selectQueryType::-ms-expand {
+    display: none;
+  }
+  /* Custom Select */
+  .selectQueryType {
+    grid-column: 2;
+    grid-row: 4;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 90%;
+    /* line-height: 3; */
+    font-size: x-small;
+    text-align: center;
+    background: rgb(29, 29, 31);
+    overflow: hidden;
+    border-radius: 0.25em;
+  }
+  .selectQueryType {
+    flex: 1;
+    padding: 0 0.5em;
+    color: #fff;
+    cursor: pointer;
+  }
+  /* Arrow */
+  .selectQueryType::after {
+    content: "\25BC";
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: rgb(29, 29, 31);
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: 0.25s all ease;
+    -o-transition: 0.25s all ease;
+    transition: 0.25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+    color: #f39c12;
+  }
 
-      grid-column: 2;
-      grid-row: 4;
-      position: relative;
-      display: flex;
-      width: 100%;
-      height: 85%;
-      /* line-height: 3; */
-      font-size: small;
-      text-align: center;
-      background: rgb(29, 29, 31);
-      overflow: hidden;
-      border-radius: .25em;
-    }
-    .selectQueryType {
-      flex: 1;
-      padding: 0 .5em;
-      color: #fff;
-      cursor: pointer;
-    }
-    /* Arrow */
-    .selectQueryType::after {
-      content: '\25BC';
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 0 1em;
-      background: rgb(29, 29, 31);
-      cursor: pointer;
-      pointer-events: none;
-      -webkit-transition: .25s all ease;
-      -o-transition: .25s all ease;
-      transition: .25s all ease;
-    }
-    /* Transition */
-    .select:hover::after {
-      color: #f39c12;
-    }
-    
-
-.writeQueryBox {
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: auto;
-}
+  .writeQueryBox {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+  }
 
   .test-query-write {
     grid-column: 1/3;
     width: 100%;
     /* display: inline-block; */
   }
-      #write-query {
-        margin-top: 0%;
-      }
-      .writeQueryForm {
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-      }
+  #write-query {
+    margin-top: 0%;
+  }
+  .writeQueryForm {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 
   /* .test-query-select {
-    grid-column: 2;
-    width: 100%;
-    display: inline-block;
-  } */
+          grid-column: 2;
+          width: 100%;
+          display: inline-block;
+        } */
 
   .writeMutationBox {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     text-align: center;
     height: 100%;
     width: 100%;
     display: grid;
     grid-template-rows: 50% 50%;
   }
-      #write-mutation {
-        margin-top: 0%;
-      }
+  #write-mutation {
+    margin-top: 0%;
+  }
 
-      .writeMutationForm {
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-      }
+  .writeMutationForm {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 
-      .test-mutation-write {
-        grid-row: 2;
-        width: 100%;
-      }
-      .test-mutation-write {
-        grid-row: 1;
-        width: 100%;
-      }
+  .test-mutation-write {
+    grid-row: 2;
+    width: 100%;
+  }
+  .test-mutation-write {
+    grid-row: 1;
+    width: 100%;
+  }
 
-.generateTestBox {
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 30% 70%;
-  grid-template-rows: auto;
+  .generateTestBox {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto;
+  }
+  .generatedTestForm {
+    padding-left: 2px !important;
+    padding-right: 0px !important;
+  }
+
+  .addTestButton {
+    font-family: "Poppins", sans-serif;
+    background: #e2e2e9;
+    font-size: smaller;
+  }
+  .addTestButton:active {
+    background: rgb(189, 240, 191) !important;
+  }
+  .addTestButton:hover {
+    background: rgb(189, 240, 191) !important;
+  }
+
+  .generateTestButton {
+    font-family: "Poppins", sans-serif;
+    background: #e2e2e9;
+    font-size: smaller;
+  }
+  .generateTestButton:active {
+    background: rgb(189, 240, 191) !important;
+  }
+  .generateTestButton:hover {
+    background: rgb(189, 240, 191) !important;
+  }
+
+  h3 {
+    text-align: left;
+    text-shadow: 5px;
+    font-weight: 900;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    width: 30%;
+    margin-left: 1%;
+    grid-column: 1;
+  }
+
+  .btn-info {
+    background: #cfcfd4 !important;
+    width: 100%;
+  }
 }
-    .generatedTestForm {
-        padding-left: 3.5px !important;
-        padding-right: 0px !important;
-    }
 
-    .addTestButton{
-      font-family: 'Poppins', sans-serif;
-      background: #e2e2e9;
-      font-size: large;
-    }
-    .addTestButton:active{
-      background: rgb(189, 240, 191) !important;
-    }
-    .addTestButton:hover {
-      background: rgb(189, 240, 191) !important;
-      }
+@media screen and (min-width: 992px) {
+  .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+  }
 
-    .generateTestButton {
-      font-family: 'Poppins', sans-serif;
-      background: #e2e2e9;
-      font-size: large;
-    }
-    .generateTestButton:active{
-      background: rgb(189, 240, 191) !important;
-    }
-    .generateTestButton:hover {
-      background: rgb(189, 240, 191) !important;
-      }
+  .introscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    z-index: 1;
+  }
 
+  .svg-container {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+  }
 
-h3 {
-  text-align: left;
-  text-shadow: 5px;
-  /* line-height: 2.5; */
-  font-weight: 800;
-  font-size: 27px;
-  font-family: 'Poppins', sans-serif;
-  width: 100%;
-  margin-left: 1%;
-  line-height: 1.6;
-}
+  .h5 {
+    font-size: large;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+  }
+  .h6 {
+    font-size: medium;
+    font-family: "Poppins", sans-serif;
+  }
+  .card-text {
+    font-size: small;
+    font-style: italic;
+  }
 
-.btn-info {
-  background: #cfcfd4 !important;
-  width: 100%;
-}
+  a {
+    display: block;
+    color: black;
+    width: 100%;
+    height: 100%;
+  }
+  a:hover {
+    color: #71bb6e !important;
+    text-decoration: none !important;
+  }
+  .workingButton {
+    line-height: 1.5;
+  }
+
+  btn {
+    vertical-align: middle !important;
+  }
+  #content {
+    background: none !important;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+  }
+
+  .btn-block + .btn-block {
+    margin-top: 0rem !important;
+  }
+
+  .btn-lg {
+    padding: 0 !important;
+  }
+
+  .form-group {
+    height: 100% !important;
+  }
+
+  .card-body {
+    border-radius: 5px;
+  }
+
+  ::-webkit-input-placeholder {
+    font-style: italic;
+    font-size: smaller;
+  }
+  :-moz-placeholder {
+    font-style: italic;
+    font-size: smaller;
+  }
+  ::-moz-placeholder {
+    font-style: italic;
+    font-size: smaller;
+  }
+  :-ms-input-placeholder {
+    font-style: italic;
+    font-size: smaller;
+  }
+
+  .introContainer {
+    display: grid;
+    position: fixed;
+    grid-template-columns: repeat(4, 25% [col-start]);
+    grid-template-rows: repeat(4, 25% [row-start]);
+    background: rgb(29, 29, 31);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .introHeader {
+    text-align: center;
+    font-size: 50px;
+    grid-column: 1/5;
+    grid-row: 1/2;
+  }
+
+  h1 {
+    line-height: 7.5;
+    font-weight: 800;
+    font-family: "Poppins", sans-serif;
+    font-size: 88px;
+    color: #f5f5f7;
+  }
+
+  .introInstruction {
+    grid-column: 1/5;
+    grid-row: 2/4;
+  }
+
+  .introNext {
+    grid-column: 2;
+    grid-row: 4;
+    vertical-align: 50%;
+  }
+
+  .introDoc {
+    grid-column: 3;
+    grid-row: 4;
+    vertical-align: 50%;
+  }
+
+  .next-button {
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 0px;
+    color: black;
+
+    /* Styles */
+    border: 1px solid #4e3043; /* Fallback */
+    border: 1px solid rgba(78, 48, 67, 0.8);
+    background: whitesmoke;
+    opacity: 75%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    /* Font styles */
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: black;
+    font-size: 13px;
+    margin-top: 50%;
+  }
+  .next-button:hover {
+    background: rgb(136, 133, 133);
+    color: white;
+  }
+  .next-button:active {
+    background: white;
+  }
+
+  .doc-button {
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 0px;
+    color: black;
+
+    /* Styles */
+    border: 1px solid #4e3043; /* Fallback */
+    border: 1px solid rgba(78, 48, 67, 0.8);
+    background: whitesmoke;
+    opacity: 75%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    /* Font styles */
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: black;
+    font-size: 13px;
+    margin-top: 50%;
+  }
+  .doc-button:hover {
+    background: rgb(136, 133, 133);
+    color: white;
+  }
+  .doc-button:active {
+    background: white;
+  }
+
+  .buttonContainer {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 15% 21.25% 21.25% 21.25% 21%;
+    grid-template-rows: auto;
+    position: relative;
+    background-color: rgb(29, 29, 31);
+  }
+
+  .selections {
+    text-align: center;
+    line-height: 2.5;
+    font-weight: 800;
+    font-size: 33px;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .queries {
+    grid-column: 2;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    color: #f5f5f7;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mutations {
+    grid-column: 3;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    color: #f5f5f7;
+    width: 100%;
+    height: 100%;
+  }
+
+  .subscriptions {
+    grid-column: 4;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    color: #f5f5f7;
+    width: 100%;
+    height: 100%;
+  }
+
+  .export {
+    grid-column: 5;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    color: #f5f5f7;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mainContainer {
+    background-color: #fff;
+    background-size: cover;
+    display: grid;
+    position: fixed;
+    grid-template-columns: 15% 40% 45%;
+    grid-template-rows: 4% 25% 35% 35% 1%;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .mainNavBar {
+    height: 100%;
+    position: top;
+    grid-column: 1/4;
+    grid-row: 1;
+  }
+
+  .testSuites {
+    grid-column: 1;
+    grid-row: 2/6;
+    color: black;
+  }
+
+  .wrapper {
+    background: none;
+    position: absolute;
+  }
+
+  #sidebar {
+    background: none;
+    position: fixed;
+    width: 150px;
+    overflow-y: scroll;
+    top: 9%;
+    bottom: 0;
+  }
+
+  .testSuiteDeleteButton {
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 0px;
+    color: black;
+
+    /* Styles */
+    border-radius: 5px;
+    border: 1px solid #4e3043; /* Fallback */
+    border: 1px solid rgba(78, 48, 67, 0.8);
+    background: whitesmoke;
+    opacity: 75%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    /* Font styles */
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: black;
+    font-size: 13px;
+  }
+  .testSuiteDeleteButton:hover {
+    background: rgb(136, 133, 133);
+    color: red;
+  }
+  .testSuiteEditButton:active {
+    background: white;
+  }
+
+  .testSuiteEditButton {
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 0px;
+    color: black;
+
+    /* Styles */
+    border-radius: 5px;
+    border: 1px solid #4e3043; /* Fallback */
+    border: 1px solid rgba(78, 48, 67, 0.8);
+    background: whitesmoke;
+    opacity: 75%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    /* Font styles */
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: black;
+    font-size: 13px;
+  }
+  .testSuiteEditButton:hover {
+    background: rgb(136, 133, 133);
+    color: whitesmoke;
+  }
+  .testSuiteEditButton:active {
+    background: white;
+  }
+
+  .enterInfo {
+    grid-column: 2;
+    grid-row: 2;
+    height: 100%;
+    width: 100%;
+  }
+  .enterInfoContainer {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 33.33% 33.33% 33.33%;
+  }
+  .enterTestSuiteText {
+    grid-row: 1;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-style: italic;
+    margin-top: 1%;
+    font-size: 15px;
+    color: rgb(29, 29, 31);
+  }
+  .enterTestDescText {
+    grid-row: 2;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-style: italic;
+    margin-top: 1%;
+    font-size: 15px;
+    color: rgb(29, 29, 31);
+  }
+  .selectTestText {
+    grid-row: 3;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    margin-top: 1%;
+    font-size: 15px;
+    color: rgb(29, 29, 31);
+  }
+
+  .testTypeContainer {
+    grid-column: 2;
+    grid-row: 2/5;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 20% 40% 40%;
+  }
+  .testInput {
+    grid-row: 1;
+    height: 100%;
+    width: 100%;
+  }
+
+  .testQuery {
+    grid-row: 2;
+    height: 100%;
+    width: 100%;
+  }
+
+  .generateTest {
+    grid-row: 3;
+    height: 100%;
+    width: 100%;
+  }
+
+  .queryVisualizer {
+    grid-column: 3;
+    grid-row: 2/6;
+    width: 100%;
+    height: 100%;
+  }
+
+  .testInputContainer {
+    display: grid;
+    text-align: center;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 10% 30% 30% 30%;
+    background: none;
+    width: 100%;
+    height: 100%;
+  }
+  .testSuiteInstruction {
+    grid-column: 1;
+    grid-row: 2;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-size: smaller;
+  }
+
+  .testSuiteInput {
+    grid-column: 2;
+    grid-row: 2;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .testDescriptionInstruction {
+    grid-column: 1;
+    grid-row: 3;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-size: smaller;
+  }
+
+  .testDescriptionInput {
+    grid-column: 2;
+    grid-row: 3;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .selectTestInstruction {
+    grid-column: 1;
+    grid-row: 4;
+    font-family: "Poppins", sans-serif;
+    text-align: right;
+    font-size: smaller;
+  }
+
+  .selectQueryType {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: rgb(29, 29, 31);
+    background-image: none;
+  }
+  /* Remove IE arrow */
+  .selectQueryType::-ms-expand {
+    display: none;
+  }
+  /* Custom Select */
+  .selectQueryType {
+    grid-column: 2;
+    grid-row: 4;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 85%;
+    font-size: small;
+    text-align: center;
+    background: rgb(29, 29, 31);
+    overflow: hidden;
+    border-radius: 0.25em;
+  }
+  .selectQueryType {
+    flex: 1;
+    padding: 0 0.5em;
+    color: #fff;
+    cursor: pointer;
+  }
+  /* Arrow */
+  .selectQueryType::after {
+    content: "\25BC";
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: rgb(29, 29, 31);
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: 0.25s all ease;
+    -o-transition: 0.25s all ease;
+    transition: 0.25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+    color: #f39c12;
+  }
+
+  .writeQueryBox {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+  }
+
+  .test-query-write {
+    grid-column: 1/3;
+    width: 100%;
+  }
+  #write-query {
+    margin-top: 0%;
+  }
+  .writeQueryForm {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .writeMutationBox {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 50% 50%;
+  }
+  #write-mutation {
+    margin-top: 0%;
+  }
+
+  .writeMutationForm {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .test-mutation-write {
+    grid-row: 2;
+    width: 100%;
+  }
+  .test-mutation-write {
+    grid-row: 1;
+    width: 100%;
+  }
+
+  .generateTestBox {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto;
+  }
+  .generatedTestForm {
+    padding-left: 3.5px !important;
+    padding-right: 0px !important;
+  }
+
+  .addTestButton {
+    font-family: "Poppins", sans-serif;
+    background: #e2e2e9;
+    font-size: large;
+  }
+  .addTestButton:active {
+    background: rgb(189, 240, 191) !important;
+  }
+  .addTestButton:hover {
+    background: rgb(189, 240, 191) !important;
+  }
+
+  .generateTestButton {
+    font-family: "Poppins", sans-serif;
+    background: #e2e2e9;
+    font-size: large;
+  }
+  .generateTestButton:active {
+    background: rgb(189, 240, 191) !important;
+  }
+  .generateTestButton:hover {
+    background: rgb(189, 240, 191) !important;
+  }
+
+  h3 {
+    text-align: left;
+    text-shadow: 5px;
+    font-weight: 800;
+    font-size: 27px;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    margin-left: 1%;
+    line-height: 1.6;
+  }
+
+  .btn-info {
+    background: #cfcfd4 !important;
+    width: 100%;
+  }
 }
