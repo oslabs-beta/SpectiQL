@@ -10,7 +10,6 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    // contentBase: "./build/", //comment out for when developing
     contentBase: './client/public/',
     open: true,
     port: 3000,
@@ -43,10 +42,6 @@ module.exports = {
             options: {
               presets: ["@babel/preset-env", "@babel/preset-react"],
               plugins: ['@babel/plugin-transform-runtime', '@babel/transform-async-to-generator']
-              // validate: true,
-              // schema: "./path/to/schema.json",
-              // removeUnusedFragments: true
-              // etc. See "Loader Options" below
             }
           }
         ]

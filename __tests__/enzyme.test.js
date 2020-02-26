@@ -1,7 +1,6 @@
 import App from '../client/App.jsx';
 import GenerateTest from '../client/Components/GenerateTest.jsx';
 import TestInput from '../client/Components/TestInput.jsx';
-import TestSuites from '../client/Components/TestSuites.jsx';
 import TestQuery from '../client/Components/TestQuery.jsx';
 import MutationTestInput from "../client/Components/MutationTestInput.jsx"
 import LeftSideBar from "../client/Components/LeftSideBar.jsx"
@@ -10,12 +9,13 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
-configure({ adapter: new Adapter() });
+//enzyme configuration
+configure({ adapter: new Adapter()});
 
-// testing App component
+//testing App component
 describe('testing App component', () => {
    let wrapper;
-   beforeAll(() => { wrapper = shallow(<App />); });
+   beforeAll(() => { wrapper = shallow(<App />);});
    it('renders without crashing', () => {
       expect(wrapper.length).toEqual(1);
    });
@@ -26,7 +26,6 @@ describe('testing Generate Test component', () => {
    let wrapper;
    const props = {
     testDescription: 'test description',
-    onClick: jest.fn(),
     testSuiteName: 'test suite name',
     value: 'random value'
    }
@@ -34,7 +33,6 @@ describe('testing Generate Test component', () => {
    it('Snapshot testing', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   })
-
    it('contains a form with 2 buttons', () => {
       expect(wrapper.find('Button')).toHaveLength(2);
    });
@@ -45,11 +43,9 @@ describe('testing Test Input component', () => {
    let wrapper;
    beforeAll(() => { wrapper = shallow(<TestInput/>) })
 
-   // need to test this
    it('snapshot testing', () => {
       expect(wrapper).toMatchSnapshot();
    })
-
     it('has 7 options within dropdown', () => {
       expect(wrapper.find('option')).toHaveLength(7);
    })
