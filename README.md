@@ -56,7 +56,7 @@ app.post('/spectiql', getSchema);
 
 <h2>Authors</h2>
 
-<p> Jonah Lin <a href="https://github.com/bigboydiamonds">@bigboydiamonds</a> </p>
+<p> Jonah Lin <a href="https://github.com/bigboydiamonds">@linjonah</a> </p>
 
 <p>Justin Kwon <a href="https://github.com/jkwonny">@jkwonny</a> </p>
 
