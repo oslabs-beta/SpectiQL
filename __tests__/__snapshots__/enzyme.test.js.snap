@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing Generate Test component Snapshot testing 1`] = `
+<div
+  className="generateTestBox"
+>
+  <FormGroup
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "Col",
+        "render": [Function],
+      }
+    }
+    style={
+      Object {
+        "margin": 0,
+        "padding": 0,
+      }
+    }
+  >
+    <Button
+      active={false}
+      block={true}
+      className="generateTestButton"
+      disabled={false}
+      size="lg"
+      style={
+        Object {
+          "borderColor": "black",
+          "color": "black",
+          "height": "49%",
+          "marginBottom": "1.5%",
+          "width": "100%",
+        }
+      }
+      type="button"
+      variant="outline-primary"
+    >
+      Generate Test
+    </Button>
+    <Button
+      active={false}
+      block={true}
+      className="addTestButton"
+      disabled={false}
+      size="lg"
+      style={
+        Object {
+          "borderColor": "black",
+          "color": "black",
+          "height": "49.7%",
+          "width": "100%",
+        }
+      }
+      type="button"
+      variant="outline-primary"
+    >
+      Update Test Suite
+    </Button>
+  </FormGroup>
+  <FormGroup
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "Col",
+        "render": [Function],
+      }
+    }
+    className="generatedTestForm"
+    controlId="sample-test"
+  >
+    <FormControl
+      as="textarea"
+      className="generatedTestForm"
+      placeholder="Generated Test..."
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    />
+  </FormGroup>
+</div>
+`;
+
+exports[`testing Test Input component snapshot testing 1`] = `ShallowWrapper {}`;
+
+exports[`testing TestQuery component Snapshot testing 1`] = `
+<div
+  className="writeQueryBox"
+>
+  <div
+    className="test-query-write"
+  >
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "Col",
+          "render": [Function],
+        }
+      }
+      className="writeQueryForm"
+      controlId="write-query"
+    >
+      <FormControl
+        as="textarea"
+        name="writeTest"
+        placeholder="Enter query here..."
+        style={
+          Object {
+            "height": "98%",
+            "marginBottom": "2%",
+            "width": "100%",
+          }
+        }
+      />
+    </FormGroup>
+  </div>
+</div>
+`;
+
+exports[`testing for leftSideBar Snapshot testing 1`] = `
+<div
+  className="mainNavBar"
+>
+  <ButtonToolbar
+    className="buttonContainer"
+    role="toolbar"
+  >
+    <Link
+      className="queries"
+      to="/queries"
+    >
+      <Button
+        active={false}
+        className="queries"
+        disabled={false}
+        size="lg"
+        type="button"
+        variant="outline-dark"
+      >
+        Queries
+      </Button>
+    </Link>
+    <Link
+      className="mutations"
+      to="/mutations"
+    >
+      <Button
+        active={false}
+        className="mutations"
+        disabled={false}
+        size="lg"
+        type="button"
+        variant="outline-dark"
+      >
+        Mutations
+      </Button>
+    </Link>
+    <Button
+      active={false}
+      className="subscriptions"
+      disabled={false}
+      size="lg"
+      type="button"
+      variant="outline-dark"
+    >
+      Subscriptions
+    </Button>
+    <Button
+      active={false}
+      className="export"
+      disabled={false}
+      size="lg"
+      type="button"
+      variant="outline-dark"
+    >
+      Export
+    </Button>
+  </ButtonToolbar>
+</div>
+`;

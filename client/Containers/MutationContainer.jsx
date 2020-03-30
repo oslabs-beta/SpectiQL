@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import LeftSideBar from "../Components/LeftSideBar.jsx";
+
 import MutationTestInput from "../Components/MutationTestInput.jsx";
 import TestMutation from "../Components/TestMutation.jsx";
 import GenerateTest from "../Components/GenerateTest.jsx";
-import TestSuites from "../Components/TestSuites.jsx";
 
+//requires refactoring to convert into functional component
 class Mutations extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    console.log("inside in the mutation props", this.props);
     return (
       <div className="testTypeContainer">
         <div className="testInput">

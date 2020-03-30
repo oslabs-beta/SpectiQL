@@ -1,55 +1,54 @@
-import React, { Component } from 'react'
-import { Button, ButtonToolbar } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React, { Component } from "react";
+import { Button, ButtonToolbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class SideBar extends Component {
-  constructor (props) {
-    super(props)
-  };
+  constructor(props) {
+    super(props);
+  }
 
-  render () {
+  render() {
     return (
-      <div className='mainNavBar'>
-
-        <ButtonToolbar className='buttonContainer'>
-
-        <Link className="queries" to="/queries">
+      <div className="mainNavBar">
+        <ButtonToolbar className="buttonContainer">
+          <Link className="queries" to="/queries">
             <Button
               onClick={this.props.queryPage}
               className="queries"
               variant="outline-dark"
               size="lg"
             >
-              {/* <Link className="queries" to="/queries"> */}
               Queries
-              {/* </Link> */}
             </Button>
-            </Link>
+          </Link>
 
-            <Link to="/mutations" className="mutations">
+          <Link to="/mutations" className="mutations">
             <Button
               onClick={this.props.mutationPage}
               className="mutations"
               variant="outline-dark"
               size="lg"
             >
-              {/* <Link to="/mutations" className="mutations"> */}
               Mutations
-              {/* </Link> */}
             </Button>
-            </Link>
+          </Link>
 
-          <Button className='subscriptions' variant='outline-dark' size='lg'>
-              Subscriptions
+          <Button className="subscriptions" variant="outline-dark" size="lg">
+            Subscriptions
           </Button>
 
-          <Button className='export' onClick={this.props.handleExportClick} className="export" variant="outline-dark" size="lg">
+          <Button
+            className="export"
+            onClick={this.props.handleExportClick}
+            className="export"
+            variant="outline-dark"
+            size="lg"
+          >
             Export
-          </Button> 
-          
+          </Button>
         </ButtonToolbar>
       </div>
-    )
+    );
   }
 }
 export default SideBar;

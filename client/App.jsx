@@ -1,10 +1,11 @@
+//importing libraries
 import React, { Component } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import "./public/styling/index.css";
 import "animate.css/animate.min.css";
 import FileSaver, { saveAs } from "file-saver";
 
-//all the components we need
+//importing children components
 import Mutation from "./Containers/MutationContainer.jsx";
 import Query from "./Containers/QueryContainer.jsx";
 import LeftSideBar from "./Components/LeftSideBar.jsx";
@@ -12,7 +13,7 @@ import SchemaTreeD3 from "./Components/schemaTreeD3.jsx";
 import TestSuites from "./Components/TestSuites.jsx";
 import LandingPage from "./Components/LandingPage.jsx";
 
-//functions imported from test
+//boilerplate test functions imported from GUI generated test scripts
 import {
   validQuery,
   invalidQuery,
@@ -31,7 +32,7 @@ class App extends Component {
     super(props);
     this.state = {
       landingPageState: true,
-      // filePath: `"./schema.gql"`,
+      filePath: "",
       schema: {},
       testSuiteName: "",
       testDescription: "",
@@ -72,34 +73,33 @@ class App extends Component {
     this.pageReset = this.pageReset.bind(this);
   }
 
-  //redirects to doc page when clicked
+  //redirects to doc page when "Doc" button is clicked on landing page
   openDocs() {
     window.open(
       "https://github.com/oslabs-beta/SpectiQL/blob/master/REAMDE.md"
     );
   }
 
-  //use this to check if a state changed/altered
-  componentDidUpdate() {
-    console.log("this is landingPageState", this.state.landingPageState);
-  }
-
-  //retrieving user's schema and schema filepath after they configure their file path from their backend
+  //retrieving user's schema and schema filepath after they invoke the function from their backend
   handleNextClick() {
-    fetch('/spectiql', {
-      method: 'POST',
+    fetch("/spectiql", {
+      method: "POST"
     })
-    .then(response => response.json())
-    .then((response) => {
-      console.log('before setState has occured');
-      this.setState({ filePath: response.filePath, landingPageState: false, schema: response.schema})
+      .then(response => response.json())
+      .then(response => {
+        this.setState({
+          filePath: response.filePath,
+          landingPageState: false,
+          schema: response.schema
+        });
       })
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
 
-    //when testing on developnment side
-    // this.setState({ landingPageState: false });
+    //when testing on development side, uncomment when testing on local server
+    //this.setState({ landingPageState: false });
   }
 
+  //handleChange function for any input fields
   handleChange(e) {
     const value = e.target.value;
     this.setState({ [e.target.name]: value });
@@ -107,14 +107,16 @@ class App extends Component {
 
   handleClick() {
     if (document.getElementById("dd-reset").selectedIndex === 0) {
-      alert('Please select a test type from the drop-down to Generate Test')
+      alert("Please select a test type from the drop-down to Generate Test");
     } else {
-      const value = this.state.testFunctions[this.state.selectedTest](this.state);
+      const value = this.state.testFunctions[this.state.selectedTest](
+        this.state
+      );
       return this.setState({ generatedTest: value });
     }
   }
 
-  //function for when user clicks export
+  //handleClick function for when user clicks export
   handleExportClick() {
     const beforeAll = `describe('All the tests', () => {
       let tester;
@@ -139,6 +141,7 @@ class App extends Component {
     FileSaver.saveAs(blob, "spectiql.test.js");
   }
 
+  //selecting test from dropdown
   selectTest(e) {
     this.setState({
       selectedTest: e.target.value
@@ -148,7 +151,9 @@ class App extends Component {
   addTestSuite() {
     //push the generated test value into the test suites array
     if (document.getElementById("dd-reset").selectedIndex === 0) {
-      alert('Please select a test type from the drop-down to Add to Test Suite')
+      alert(
+        "Please select a test type from the drop-down to Add to Test Suite"
+      );
     } else {
       const newTestSuite = {
         savedGeneratedTest: this.state.generatedTest,
@@ -178,7 +183,9 @@ class App extends Component {
 
   updateTestSuite() {
     if (document.getElementById("dd-reset").selectedIndex === 0) {
-      alert('Please select a test type from the drop-down to Update Test Suite')
+      alert(
+        "Please select a test type from the drop-down to Update Test Suite"
+      );
     } else {
       let testSuites = this.state.testSuites.slice();
       const updatedTestSuite = {
@@ -205,6 +212,8 @@ class App extends Component {
     }
   }
 
+  //editTest button from test suites tool bar
+  //repopulates the GUI with the current saved test
   editTest(idx) {
     let testSuite = this.state.testSuites[idx - 1];
     return this.setState({
@@ -236,12 +245,15 @@ class App extends Component {
     document.getElementById("dd-reset").selectedIndex = 0;
   }
 
+  //toggling between queries and mutations when selecting from nav bar
+  //true: queries, false: mutations (could use refactoring)
   testSuiteToggler() {
     return this.setState({
       testSuiteToggler: true
     });
   }
 
+  //wipes/clears all fields after clicking generate test
   pageReset() {
     return this.setState({
       testSuiteName: "",
@@ -269,6 +281,7 @@ class App extends Component {
   }
 
   render() {
+    //conditional rendering landing page based on clicking the next button
     let landingPage;
     if (this.state.landingPageState === true) {
       landingPage = (
@@ -297,16 +310,12 @@ class App extends Component {
               <SchemaTreeD3 schema={this.state.schema} />
             </div>
 
-            <div className="testTypeContainer">
-              {/* Landing Page */}
-            </div>
-
             <div className="testSuites">
-                <TestSuites
-                      testSuites={this.state.testSuites}
-                      deleteTest={this.deleteTest}
-                      editTest={this.editTest}
-                />
+              <TestSuites
+                testSuites={this.state.testSuites}
+                deleteTest={this.deleteTest}
+                editTest={this.editTest}
+              />
             </div>
 
             <Switch>

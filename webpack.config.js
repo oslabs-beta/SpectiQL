@@ -1,25 +1,24 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
-  entry: './index.js',
-  target: 'web',
+  entry: "./index.js",
+  target: "web",
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle.js"
   },
   devServer: {
-    // contentBase: "./build/", //comment out for when developing
-    contentBase: './client/public/',
+    contentBase: "./client/public/",
     open: true,
     port: 3000,
     overlay: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './client/public/index.html',
-      output: './build/index.html'
+      template: "./client/public/index.html",
+      output: "./build/index.html"
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
@@ -29,9 +28,9 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ["@babel/preset-env", "@babel/preset-react"]
           }
         }
       },
@@ -39,12 +38,13 @@ module.exports = {
         test: /\.(graphql|gql)$/,
         use: [
           {
-            loader: 'webpack-graphql-loader',
+            loader: "webpack-graphql-loader",
             options: {
-              // validate: true,
-              // schema: "./path/to/schema.json",
-              // removeUnusedFragments: true
-              // etc. See "Loader Options" below
+              presets: ["@babel/preset-env", "@babel/preset-react"],
+              plugins: [
+                "@babel/plugin-transform-runtime",
+                "@babel/transform-async-to-generator"
+              ]
             }
           }
         ]
@@ -53,21 +53,21 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader'
+            loader: "html-loader"
           }
         ]
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.node$/,
-        loader: 'node-loader'
+        loader: "node-loader"
       }
     ]
   },
   node: {
-    fs: 'empty'
+    fs: "empty"
   }
-}
+};

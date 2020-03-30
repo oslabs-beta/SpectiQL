@@ -24,20 +24,38 @@
     "url": "https://github.com/oslabs-beta/SpectiQL/issues"
   },
   "homepage": "https://github.com/oslabs-beta/SpectiQL#readme",
+  "jest": {
+    "verbose": true,
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "moduleNameMapper": {
+      "\\.(css)$": "identity-obj-proxy"
+    }
+  },
   "dependencies": {
     "@babel/core": "^7.8.4",
+    "@babel/plugin-transform-async-to-generator": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
+    "@babel/runtime": "^7.8.4",
     "animate.css": "^3.7.2",
+    "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.4.1",
     "css-loader": "^3.4.2",
     "d3": "^5.15.0",
     "easygraphql-mock": "^0.1.15",
     "easygraphql-parser": "0.0.13",
     "easygraphql-tester": "^5.1.6",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.4",
     "file-saver": "^2.0.2",
     "graphql": "^14.6.0",
+    "identity-obj-proxy": "^3.0.0",
     "install": "^0.13.0",
     "jest": "^25.1.0",
     "node-loader": "^0.6.0",
@@ -58,6 +76,7 @@
     "webpack-dev-server": "^3.10.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "webpack-cli": "^3.3.10",
