@@ -1,5 +1,4 @@
 const validQuery = props => {
-  // console.log(props);
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
     const validQueryTest = \`\n${props.writeTest}\`
@@ -52,6 +51,7 @@ const invalidArgDataType = props => {
   })`;
   return newTest;
 };
+
 const validMutationInput = props => {
   const newTest = `describe('${props.testSuiteName}', () => {
     it('${props.testDescription}', () => {
