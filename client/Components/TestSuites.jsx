@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-//refactor to functional component
 class TestSuites extends Component {
   render() {
     const testSuite = this.props.testSuites.map((test, index) => {

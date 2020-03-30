@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
-//refactor to functional component
 class TestQuery extends Component {
   constructor(props) {
     super(props);

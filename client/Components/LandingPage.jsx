@@ -6,7 +6,6 @@ import ScrollAnimation from "react-animate-on-scroll";
 import "../public/styling/index.css";
 import "animate.css/animate.min.css";
 
-//requires refactoring into functional components
 class LandingPage extends Component {
   constructor(props) {
     super(props);

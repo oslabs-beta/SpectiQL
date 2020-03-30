@@ -5,7 +5,6 @@ import TestInput from "../Components/TestInput.jsx";
 import TestQuery from "../Components/TestQuery.jsx";
 import GenerateTest from "../Components/GenerateTest.jsx";
 
-//requires refactoring to convert class into functional component
 class Query extends Component {
   constructor(props) {
     super(props);

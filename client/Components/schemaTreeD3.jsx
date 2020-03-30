@@ -5,7 +5,6 @@ class SchemaTreeD3 extends Component {
   constructor(props) {
     super(props);
 
-    //initialDepth sets the initial levels of nodes that will appear by default
     this.state = {
       initialDepth: 1
     };
@@ -23,8 +22,6 @@ class SchemaTreeD3 extends Component {
   }
 
   render() {
-    //traverses through object imported in from user's schema file to determine if elements within object are object
-    //if element is object, convert into a new parent node and elements within given object into children nodes
     function convertQuerySchema(object) {
       for (const key in object) {
         if (
@@ -48,7 +45,6 @@ class SchemaTreeD3 extends Component {
       return object;
     }
 
-    //invokes function to convert imported schema file into object d3 tree can utilize
     const queryTreeData = convertQuerySchema(this.props.schema);
 
     return (
