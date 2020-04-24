@@ -10,14 +10,14 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: "./client/public/",
+    contentBase: "./client-refactored/public/",
     open: true,
     port: 3000,
     overlay: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./client/public/index.html",
+      template: "./client-refactored/public/index.html",
       output: "./build/index.html"
     }),
     new webpack.HotModuleReplacementPlugin()

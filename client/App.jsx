@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import "./public/styling/index.css";
 import "animate.css/animate.min.css";
@@ -6,7 +6,7 @@ import FileSaver, { saveAs } from "file-saver";
 
 import Mutation from "./Containers/MutationContainer.jsx";
 import Query from "./Containers/QueryContainer.jsx";
-import LeftSideBar from "./Components/LeftSideBar.jsx";
+import NavBar from "./Components/NavBar.jsx";
 import SchemaTreeD3 from "./Components/schemaTreeD3.jsx";
 import TestSuites from "./Components/TestSuites.jsx";
 import LandingPage from "./Components/LandingPage.jsx";
@@ -24,20 +24,21 @@ import {
   invalidMutationDataType
 } from "./Tests/Tests.jsx";
 
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      landingPageState: true,
-      filePath: "",
-      schema: {},
-      testSuiteName: "",
-      testDescription: "",
-      selectedTest: "",
-      writeTest: "",
-      writeInput: "",
-      generatedTest: "",
-      testFunctions: {
+      landingPageState: true, // component
+      filePath: "", // component
+      schema: {}, // component
+      testSuiteName: "", // component
+      testDescription: "", // component
+      selectedTest: "", // component
+      writeTest: "", // component
+      writeInput: "", // component
+      generatedTest: "", // component
+      testFunctions: { // component
         validQuery,
         invalidQuery,
         validArgField,
@@ -49,10 +50,10 @@ class App extends Component {
         validMutationDataType,
         invalidMutationDataType
       },
-      testSuites: [],
-      testIndex: 0,
-      testSuiteToggler: true,
-      testSuiteType: false
+      testSuites: [], // context
+      testIndex: 0,  // context
+      testSuiteToggler: true, // context
+      testSuiteType: false // context
     };
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -70,6 +71,7 @@ class App extends Component {
     this.pageReset = this.pageReset.bind(this);
   }
 
+
   openDocs() {
     window.open(
       "https://github.com/oslabs-beta/SpectiQL/blob/master/REAMDE.md"
@@ -77,18 +79,21 @@ class App extends Component {
   }
 
   handleNextClick() {
-    fetch("/spectiql", {
-      method: "POST"
+    this.setState({
+      landingPageState: false
     })
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          filePath: response.filePath,
-          landingPageState: false,
-          schema: response.schema
-        });
-      })
-      .catch(err => console.log(err));
+    // fetch("/spectiql", {
+    //   method: "POST"
+    // })
+    //   .then(response => response.json())
+    //   .then(response => {
+    //     this.setState({
+    //       filePath: response.filePath,
+    //       landingPageState: false,
+    //       schema: response.schema
+    //     });
+    //   })
+    //   .catch(err => console.log(err));
 
   }
 
@@ -281,7 +286,7 @@ class App extends Component {
           <div className="mainContainer">
             <div className="landingPage">{landingPage}</div>
             <div className="mainNavBar">
-              <LeftSideBar
+              <NavBar
                 queryPage={this.queryPage}
                 mutationPage={this.mutationPage}
                 handleExportClick={this.handleExportClick}

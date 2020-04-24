@@ -96,7 +96,7 @@ const invalidMutationDataType = (props) => {
   return newTest;
 };
 
-export {
+export const testFunctions = {
   validQuery,
   invalidQuery,
   validArgField,
@@ -107,4 +107,4 @@ export {
   invalidMutationInput,
   validMutationDataType,
   invalidMutationDataType,
-};
+}

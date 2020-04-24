@@ -20,7 +20,7 @@ class GenerateTest extends Component {
                 height: "49.7%",
                 width: "100%",
                 color: "black",
-                borderColor: "black"
+                borderColor: "black",
               }}
               onClick={this.props.addTestSuite}
             >
@@ -39,7 +39,7 @@ class GenerateTest extends Component {
               height: "49.7%",
               width: "100%",
               color: "black",
-              borderColor: "black"
+              borderColor: "black",
             }}
             onClick={this.props.updateTestSuite}
           >
@@ -61,7 +61,7 @@ class GenerateTest extends Component {
               width: "100%",
               color: "black",
               borderColor: "black",
-              marginBottom: "1.5%"
+              marginBottom: "1.5%",
             }}
             onClick={this.props.handleClick}
           >
