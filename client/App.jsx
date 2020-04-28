@@ -1,19 +1,16 @@
-//importing libraries
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import "./public/styling/index.css";
 import "animate.css/animate.min.css";
 import FileSaver, { saveAs } from "file-saver";
 
-//importing children components
 import Mutation from "./Containers/MutationContainer.jsx";
 import Query from "./Containers/QueryContainer.jsx";
-import LeftSideBar from "./Components/LeftSideBar.jsx";
+import NavBar from "./Components/NavBar.jsx";
 import SchemaTreeD3 from "./Components/schemaTreeD3.jsx";
 import TestSuites from "./Components/TestSuites.jsx";
 import LandingPage from "./Components/LandingPage.jsx";
 
-//boilerplate test functions imported from GUI generated test scripts
 import {
   validQuery,
   invalidQuery,
@@ -27,20 +24,21 @@ import {
   invalidMutationDataType
 } from "./Tests/Tests.jsx";
 
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      landingPageState: true,
-      filePath: "",
-      schema: {},
-      testSuiteName: "",
-      testDescription: "",
-      selectedTest: "",
-      writeTest: "",
-      writeInput: "",
-      generatedTest: "",
-      testFunctions: {
+      landingPageState: true, // component
+      filePath: "", // component
+      schema: {}, // component
+      testSuiteName: "", // component
+      testDescription: "", // component
+      selectedTest: "", // component
+      writeTest: "", // component
+      writeInput: "", // component
+      generatedTest: "", // component
+      testFunctions: { // component
         validQuery,
         invalidQuery,
         validArgField,
@@ -52,10 +50,10 @@ class App extends Component {
         validMutationDataType,
         invalidMutationDataType
       },
-      testSuites: [],
-      testIndex: 0,
-      testSuiteToggler: true,
-      testSuiteType: false
+      testSuites: [], // context
+      testIndex: 0,  // context
+      testSuiteToggler: true, // context
+      testSuiteType: false // context
     };
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -73,33 +71,32 @@ class App extends Component {
     this.pageReset = this.pageReset.bind(this);
   }
 
-  //redirects to doc page when "Doc" button is clicked on landing page
+
   openDocs() {
     window.open(
       "https://github.com/oslabs-beta/SpectiQL/blob/master/REAMDE.md"
     );
   }
 
-  //retrieving user's schema and schema filepath after they invoke the function from their backend
   handleNextClick() {
-    fetch("/spectiql", {
-      method: "POST"
+    this.setState({
+      landingPageState: false
     })
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          filePath: response.filePath,
-          landingPageState: false,
-          schema: response.schema
-        });
-      })
-      .catch(err => console.log(err));
+    // fetch("/spectiql", {
+    //   method: "POST"
+    // })
+    //   .then(response => response.json())
+    //   .then(response => {
+    //     this.setState({
+    //       filePath: response.filePath,
+    //       landingPageState: false,
+    //       schema: response.schema
+    //     });
+    //   })
+    //   .catch(err => console.log(err));
 
-    //when testing on development side, uncomment when testing on local server
-    //this.setState({ landingPageState: false });
   }
 
-  //handleChange function for any input fields
   handleChange(e) {
     const value = e.target.value;
     this.setState({ [e.target.name]: value });
@@ -116,7 +113,6 @@ class App extends Component {
     }
   }
 
-  //handleClick function for when user clicks export
   handleExportClick() {
     const beforeAll = `describe('All the tests', () => {
       let tester;
@@ -141,7 +137,6 @@ class App extends Component {
     FileSaver.saveAs(blob, "spectiql.test.js");
   }
 
-  //selecting test from dropdown
   selectTest(e) {
     this.setState({
       selectedTest: e.target.value
@@ -149,7 +144,6 @@ class App extends Component {
   }
 
   addTestSuite() {
-    //push the generated test value into the test suites array
     if (document.getElementById("dd-reset").selectedIndex === 0) {
       alert(
         "Please select a test type from the drop-down to Add to Test Suite"
@@ -165,7 +159,6 @@ class App extends Component {
         savedWriteInput: this.state.writeInput,
         testIndex: this.state.testIndex + 1
       };
-      //shallow copy of array
       let testSuites = this.state.testSuites.slice();
       testSuites.push(newTestSuite);
       return this.setState({
@@ -212,8 +205,6 @@ class App extends Component {
     }
   }
 
-  //editTest button from test suites tool bar
-  //repopulates the GUI with the current saved test
   editTest(idx) {
     let testSuite = this.state.testSuites[idx - 1];
     return this.setState({
@@ -245,15 +236,12 @@ class App extends Component {
     document.getElementById("dd-reset").selectedIndex = 0;
   }
 
-  //toggling between queries and mutations when selecting from nav bar
-  //true: queries, false: mutations (could use refactoring)
   testSuiteToggler() {
     return this.setState({
       testSuiteToggler: true
     });
   }
 
-  //wipes/clears all fields after clicking generate test
   pageReset() {
     return this.setState({
       testSuiteName: "",
@@ -281,7 +269,6 @@ class App extends Component {
   }
 
   render() {
-    //conditional rendering landing page based on clicking the next button
     let landingPage;
     if (this.state.landingPageState === true) {
       landingPage = (
@@ -299,7 +286,7 @@ class App extends Component {
           <div className="mainContainer">
             <div className="landingPage">{landingPage}</div>
             <div className="mainNavBar">
-              <LeftSideBar
+              <NavBar
                 queryPage={this.queryPage}
                 mutationPage={this.mutationPage}
                 handleExportClick={this.handleExportClick}

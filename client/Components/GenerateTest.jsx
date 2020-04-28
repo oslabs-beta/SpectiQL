@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { Button, Form, Col } from "react-bootstrap";
 
-//requires refactoring into functional component
 class GenerateTest extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    //conditional rendering of 'Edit Test' button located on each generated test card within Test Suites toolbar
-    //if 'Edit Test' is clicked, 'Add To Test Suite' button changes to 'Update Test Suite'
     const editTestSuite = () => {
       if (this.props.testSuiteToggler) {
         return (
@@ -23,7 +20,7 @@ class GenerateTest extends Component {
                 height: "49.7%",
                 width: "100%",
                 color: "black",
-                borderColor: "black"
+                borderColor: "black",
               }}
               onClick={this.props.addTestSuite}
             >
@@ -42,7 +39,7 @@ class GenerateTest extends Component {
               height: "49.7%",
               width: "100%",
               color: "black",
-              borderColor: "black"
+              borderColor: "black",
             }}
             onClick={this.props.updateTestSuite}
           >
@@ -64,7 +61,7 @@ class GenerateTest extends Component {
               width: "100%",
               color: "black",
               borderColor: "black",
-              marginBottom: "1.5%"
+              marginBottom: "1.5%",
             }}
             onClick={this.props.handleClick}
           >

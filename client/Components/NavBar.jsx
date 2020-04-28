@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-class SideBar extends Component {
+class NavBar extends Component {
   constructor(props) {
     super(props);
   }
@@ -13,7 +13,7 @@ class SideBar extends Component {
         <ButtonToolbar className="buttonContainer">
           <Link className="queries" to="/queries">
             <Button
-              onClick={this.props.queryPage}
+              // onClick={this.props.queryPage}
               className="queries"
               variant="outline-dark"
               size="lg"
@@ -24,7 +24,7 @@ class SideBar extends Component {
 
           <Link to="/mutations" className="mutations">
             <Button
-              onClick={this.props.mutationPage}
+              // onClick={this.props.mutationPage}
               className="mutations"
               variant="outline-dark"
               size="lg"
@@ -51,4 +51,4 @@ class SideBar extends Component {
     );
   }
 }
-export default SideBar;
+export default NavBar;

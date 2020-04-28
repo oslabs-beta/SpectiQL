@@ -4,7 +4,6 @@ import MutationTestInput from "../Components/MutationTestInput.jsx";
 import TestMutation from "../Components/TestMutation.jsx";
 import GenerateTest from "../Components/GenerateTest.jsx";
 
-//requires refactoring to convert into functional component
 class Mutations extends Component {
   constructor(props) {
     super(props);
